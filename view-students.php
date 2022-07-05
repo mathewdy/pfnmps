@@ -65,7 +65,7 @@ $start_from = ($page-1)*05;
                                 <td><?php echo $row ['grade']?></td>
                                 <td><?php echo $row ['section']?></td>
                                 <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
-                                <td><a href="">Delete</a></td>
+                                <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
                             </tr>
                         </tbody>
                     </table>
