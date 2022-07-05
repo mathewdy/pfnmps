@@ -23,6 +23,8 @@ include('security-admin.php');
 
     <h2>Name of Patient</h2>
 
+    <!----mamaya lagyan natin to ng mga REQUIRED INPUT FIELD---->
+
     <form action="add-patient.php" method="POST" enctype="multipart/form-data">
         <label for="">Student ID</label>
         <input type="text" name="student_id">
@@ -41,9 +43,6 @@ include('security-admin.php');
         <input type="text" name="last_name">
 
 
-        <br>
-        <label for="">Email</label>
-        <input type="email" name="email">
 
         <br>
         <label for="">Date of Birth</label>
@@ -56,6 +55,45 @@ include('security-admin.php');
         <input type="radio" name="gender" value="Male">
         <label for="">Female</label>
         <input type="radio" name="gender" value="Female">
+
+        <br>
+        <label for="">Image</label>
+        <input type="file" name="image">
+
+        <br>
+
+        <label for="">Grade</label>
+        <select name="grade" id="">
+            <option value="Grade 1">Grade 1</option>
+            <option value="Grade 2">Grade 2</option>
+            <option value="Grade 3">Grade 3</option>
+            <option value="Grade 4">Grade 4</option>
+            <option value="Grade 5">Grade 5</option>
+            <option value="Grade 6">Grade 6</option>
+        </select>
+
+        <br>
+        <label for="">Section</label>
+        <input type="text" name="section">
+
+
+        <!----name of parent--->
+        <h2>Name of Guardian</h2>
+        <br>
+        <label for="">First Name</label>
+        <input type="text" name="guardian_first_name">
+        <br>
+
+        <label for="">Middle Name</label>
+        <input type="text" name="guardian_middle_name">
+
+        <br>
+        <label for="">Last Name</label>
+        <input type="text" name="guardian_last_name">
+        
+        <br>
+        <label for="">Email</label>
+        <input type="email" name="email">
 
 
         <!-----ADDRESS---->
@@ -92,27 +130,22 @@ include('security-admin.php');
         <label for="">Zip Code</label>
         <input type="number" name="zip_code"> 
 
+        <br>
+
+        <label for="">Gender</label>
+        <br>
+        <label for="">Male</label>
+        <input type="radio" name="guardian_gender" value="Male">
+        <label for="">Female</label>
+        <input type="radio" name="guardian_gender" value="Female">
 
         <br>
         <label for="">Image</label>
-        <input type="file" name="image">
+        <input type="file" name="guardian_image">
 
         <br>
 
-        <label for="">Grade</label>
-        <select name="grade" id="">
-            <option value="Grade 1">Grade 1</option>
-            <option value="Grade 2">Grade 2</option>
-            <option value="Grade 3">Grade 3</option>
-            <option value="Grade 4">Grade 4</option>
-            <option value="Grade 5">Grade 5</option>
-            <option value="Grade 6">Grade 6</option>
-        </select>
-
         <br>
-        <label for="">Section</label>
-        <input type="text" name="section">
-
 
         <h2>Health Info</h2>
         <!----dito health info nya naman---BMI-->
@@ -152,6 +185,7 @@ include('security-admin.php');
         <label for="">Health History</label>
         <input type="text" name="health_history">
 
+        <!-----riri ikaw na bahala mag adjust sa stepper--->
         <br>
         <input type="submit" name="add_patient" value="Next">
     </form>
@@ -170,12 +204,13 @@ if(isset($_POST['add_patient'])){
 
 
     //info ni patient or student
-    $student_id = $_POST['student_id'];
-    $first_name = $_POST['first_name'];
-    $middle_name = $_POST['middle_name'];
-    $last_name = $_POST['last_name'];
+    $student_id = ($_POST['student_id']);
+    $first_name = ucfirst($_POST['first_name']);
+    $middle_name = ucfirst($_POST['middle_name']);
+    $last_name = ucfirst($_POST['last_name']); 
 
     $email = $_POST['email'];
+    $default_password = "Welcome@12345";
     $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
     
     $gender = $_POST['gender'];
@@ -195,6 +230,11 @@ if(isset($_POST['add_patient'])){
     $filename = $_FILES ['image']['name'];
     $file_extension = pathinfo($filename , PATHINFO_EXTENSION);
 
+    $guardian_image = $_FILES['guardian_image']['name'];
+    $allowed_extension = array('gif' , 'png' , 'jpeg', 'jpg' , 'PNG' , 'JPEG' , 'JPG' , 'GIF');
+    $filename = $_FILES ['guardian_image']['name'];
+    $file_extension = pathinfo($filename , PATHINFO_EXTENSION);
+
     $grade = $_POST['grade'];
     $section = $_POST['section'];
     
@@ -206,9 +246,19 @@ if(isset($_POST['add_patient'])){
     $category = $_POST['category'];
     $health_history = $_POST['health_history'];
 
+    //random number sa user_id
+    $user_id = "2022" . rand('00000', '99999');
+    $user_type = "2";
+
+    $guardian_first_name = ucfirst($_POST['guardian_first_name']);
+    $guardian_middle_name = ucfirst($_POST['guardian_middle_name']);
+    $guardian_last_name = ucfirst($_POST['guardian_last_name']);
+    $guardian_gender = ucfirst($_POST['guardian_gender']);
+
+
     //verification naman if already added na sa database hindi na sya papasok XD or validation
 
-    $validation = "SELECT * FROM student WHERE student_id = '$student_id' ";
+    $validation = "SELECT * FROM students WHERE student_id = '$student_id' ";
     $run_validation = mysqli_query($conn,$validation);
     if(mysqli_num_rows($run_validation) > 0){
         echo "<script>alert('Student Already Added') </script>";
@@ -221,7 +271,7 @@ if(isset($_POST['add_patient'])){
         echo "image not added"  ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO student (student_id,first_name,middle_name,last_name,email,date_of_birth,gender,address,image,grade,section,date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$email', '$date_of_birth','$gender'
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,address,image,grade,section,date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender'
         ,'$room $house $street $subdivision $barangay $city $zip_code', '$image', '$grade', '$section', '$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
         move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
@@ -229,7 +279,7 @@ if(isset($_POST['add_patient'])){
         if($run_insert_student){
 
             //mareredirect para sa magulang nya naman hahaha
-            echo "added to database query_insert_student";
+            echo "added to database query_insert_student" . '<br>';
            
         }else{
             echo "error" . $conn->error;
@@ -237,16 +287,31 @@ if(isset($_POST['add_patient'])){
 
     }
 
+    //USER NAMAN DITOOO
+    if(!in_array($file_extension, $allowed_extension)){
+        echo "image not added"  ;
+       exit();
+    }else{
+
+    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,address,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' , '$room $house $street $subdivision $barangay $city $zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
+    $run_insert_user = mysqli_query($conn,$query_insert_user);
+    move_uploaded_file($_FILES["guardian_image"]["tmp_name"], "guardian_image/" . $_FILES["guardian_image"] ["name"]);
+
+    if($run_insert_user){
+        echo "insert into database insert_user" . '<br>';
+    }
+
+    }
 
     //DITO NA ATA YUNG SA STEPPER RIRI
     //HEALTH INFO
     // dito mamaya yung BMI chururut nya
     //insert na to
-    $query_insert_health_info = "INSERT INTO health_info (student_id,height,weight,bmi,status,health_history,date_time_created,date_time_updated) VALUES ('$student_id', '$height', '$weight' , '$bmi' , '$category' , '$health_history', '$date $time', '$date $time')";
+    $query_insert_health_info = "INSERT INTO health_infos (student_id,height,weight,bmi,status,health_history,date_time_created,date_time_updated) VALUES ('$student_id', '$height', '$weight' , '$bmi' , '$category' , '$health_history', '$date $time', '$date $time')";
     $run_insert_health_info = mysqli_query($conn,$query_insert_health_info);
 
     if($run_insert_health_info){
-        echo "added to database insert_health_info";
+        echo "added to database insert_health_info" . '<br>';
     }else{
         echo "error health info" . $conn->error;
     }
