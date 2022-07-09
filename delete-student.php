@@ -11,7 +11,7 @@ if(isset($_GET['student_id'])){
 
     if($run){
         echo "<script>alert('deleted info') </script>";
-        echo "<script>window.location.href='view-doctors.php' </script>";
+        echo "<script>window.location.href='view-students.php' </script>";
     }else{
         echo "error" . $conn->error;
     }

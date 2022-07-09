@@ -25,7 +25,7 @@ ob_start();
         <br>
         
         <input type="submit" name="login" value="Login">
-        <a href="">Forgot Password?</a>
+        <a href="forgot-password.php">Forgot Password?</a>
     </form>
 </body>
 </html>
@@ -37,7 +37,7 @@ if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM admin WHERE username='$username' AND password = '$password'";
+    $query = "SELECT * FROM admins WHERE username='$username' AND password = '$password'";
     $run = mysqli_query($conn,$query);
 
     if(mysqli_num_rows($run) > 0){

@@ -271,8 +271,7 @@ if(isset($_POST['add_patient'])){
         echo "image not added"  ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,address,image,grade,section,date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender'
-        ,'$room $house $street $subdivision $barangay $city $zip_code', '$image', '$grade', '$section', '$date $time' , '$date $time')";
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
         move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
 
@@ -293,7 +292,7 @@ if(isset($_POST['add_patient'])){
        exit();
     }else{
 
-    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,address,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' , '$room $house $street $subdivision $barangay $city $zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
+    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,room,house,street,subdivision,barangay,city,zip,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' , '$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
     $run_insert_user = mysqli_query($conn,$query_insert_user);
     move_uploaded_file($_FILES["guardian_image"]["tmp_name"], "guardian_image/" . $_FILES["guardian_image"] ["name"]);
 

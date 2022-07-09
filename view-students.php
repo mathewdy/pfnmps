@@ -48,7 +48,7 @@ $start_from = ($page-1)*05;
     <?php
 
 
-        $query = "SELECT * FROM students ";
+        $query = "SELECT * FROM students";
         $run = mysqli_query($conn,$query);
         $no = 1;
         if(mysqli_num_rows($run) > 0){
