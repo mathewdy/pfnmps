@@ -19,6 +19,9 @@ $email = $_SESSION['email'];
 <body>
 
 <h1>Profile</h1>
+<a href="home-parent.php">Back</a>
+<br>
+<br>
 
 
 <?php
@@ -36,8 +39,35 @@ if(mysqli_num_rows($run) > 0){
 
             <label for="">Name:</label>
             <p><?php echo $row ['users_first_name'] . " " . $row ['users_middle_name'] . " "  . $row ['users_last_name']  ?></p>
+            <br>
+
             <label for="">Address:</label>
-            <p><?php echo $row ['users_room'] . " " . $row ['users_house'] ?></p>
+            <label for="">Room / Floor / Unit No. & Building Name</label>
+            <p><?php echo $row ['users_room'] ?></p>
+            <br>
+
+            <label for="">House / Lot & Block No.</label>
+            <p><?php echo $row ['users_house']?></p>
+            <br>
+
+            <label for="">Street</label>
+            <p><?php echo $row ['users_street']?></p>
+            <br>
+
+            <label for="">Subdivision</label>
+            <p><?php echo $row ['users_subdivision']?></p>
+            <br>
+
+            <label for="">Barangay </label>
+            <p><?php echo $row ['users_barangay']?></p>
+            <br>
+
+            <label for="">City/Municipality </label>
+            <p><?php echo $row ['users_city']?></p>
+            <br>
+
+            <label for="">Zip</label>
+            <p><?php echo $row ['users_zip']?></p>
 
         <?php
     }

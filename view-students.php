@@ -10,7 +10,7 @@ if(isset($_GET['page'])){
     $page = 1;
 }
 
-$num_per_age = 05;
+$num_per_page = 05;
 $start_from = ($page-1)*05;
 
 

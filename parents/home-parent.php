@@ -21,6 +21,7 @@ include('security-parent.php');
 <a href="profile.php">Profile</a>
 
     <!-----so dito , dapat nakalagy na yung daily task ni student---->
+    <h1>Daily Task</h1>
 
 
 
