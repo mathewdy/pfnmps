@@ -8,189 +8,272 @@ include('security-admin.php');
 //mareredirect dapat sa magulang nya naman
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/bootstrap/css/bootstrap.css">
+    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
+    <link href="./admin-template/css/app.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <h1>Add Patient Info</h1>
-    <a href="home-admin.php">Back</a>
+    <a href="logout-admin.php">Logout</a>
+    <div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+          <span class="align-middle">Admin</span>
+        </a>
 
-    <h2>Name of Patient</h2>
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Pages
+					</li>
 
-    <!----mamaya lagyan natin to ng mga REQUIRED INPUT FIELD---->
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="home-admin.php">
+                            <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
+                         </a>
+					</li>
 
-    <form action="add-patient.php" method="POST" enctype="multipart/form-data">
-        <label for="">Student ID</label>
-        <input type="text" name="student_id">
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="view-students.php">
+                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+                        </a>
+					</li>
 
-        <br>
+					<li class="sidebar-item">
+						<a class="sidebar-link disabled" href="#">
+                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Nutritionists</span>
+                        </a>
+					</li>
 
-        <label for="">First Name</label>
-        <input type="text" name="first_name">
-        <br>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="add-patient.php">
+                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+                        </a>
+					</li>
+				
+				</ul>
+			</div>
+		</nav>
 
-        <label for="">Middle Name</label>
-        <input type="text" name="middle_name">
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle js-sidebar-toggle">
+          <i class="hamburger align-self-center"></i>
+        </a>
 
-        <br>
-        <label for="">Last Name</label>
-        <input type="text" name="last_name">
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+                                <i class="align-middle" data-feather="settings"></i>
+                            </a>
 
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+                                <span class="text-dark">ADMIN</span>
+                            </a>
+							<div class="dropdown-menu dropdown-menu-end">
+								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="logout-admin.php">Log out</a>
+							</div>
+						</li>
+					</ul>
+				    <a class="text-light text-center btn btn-primary" href="logout-admin.php">Logout</a>
 
+				</div>
+			</nav>
 
-        <br>
-        <label for="">Date of Birth</label>
-        <input type="date" name="date_of_birth">
+			<main class="content">
+				<div class="container-fluid p-0">
+                <h2>Name of Patient</h2>
+                <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                        <label for="">Student ID</label>
+                        <input type="text" name="student_id">
 
-        <br>
-        <label for="">Gender</label>
-        <br>
-        <label for="">Male</label>
-        <input type="radio" name="gender" value="Male">
-        <label for="">Female</label>
-        <input type="radio" name="gender" value="Female">
+                        <br>
 
-        <br>
-        <label for="">Image</label>
-        <input type="file" name="image">
+                        <label for="">First Name</label>
+                        <input type="text" name="first_name">
+                        <br>
 
-        <br>
+                        <label for="">Middle Name</label>
+                        <input type="text" name="middle_name">
 
-        <label for="">Grade</label>
-        <select name="grade" id="">
-            <option value="Grade 1">Grade 1</option>
-            <option value="Grade 2">Grade 2</option>
-            <option value="Grade 3">Grade 3</option>
-            <option value="Grade 4">Grade 4</option>
-            <option value="Grade 5">Grade 5</option>
-            <option value="Grade 6">Grade 6</option>
-        </select>
-
-        <br>
-        <label for="">Section</label>
-        <input type="text" name="section">
-
-
-        <!----name of parent--->
-        <h2>Name of Guardian</h2>
-        <br>
-        <label for="">First Name</label>
-        <input type="text" name="guardian_first_name">
-        <br>
-
-        <label for="">Middle Name</label>
-        <input type="text" name="guardian_middle_name">
-
-        <br>
-        <label for="">Last Name</label>
-        <input type="text" name="guardian_last_name">
-        
-        <br>
-        <label for="">Email</label>
-        <input type="email" name="email">
-
-
-        <!-----ADDRESS---->
-
-        <br>
-        <label for="">Address</label>
-        <label for="">Room / Floor / Unit No. & Building Name</label>
-        <input type="text" name="room">
-
-        <br>
-        <label for="">House / Lot & Block No.</label>
-        <input type="text" name="house">
-
-        <br>
-        <label for="">Street</label>
-        <input type="text" name="street">
-
-        <br>
-        <label for="">Subdivision</label>
-        <input type="text" name="subdivision">
+                        <br>
+                        <label for="">Last Name</label>
+                        <input type="text" name="last_name">
 
 
-        <br>
-        <label for="">Barangay</label>
-        <input type="text" name="barangay">
+
+                        <br>
+                        <label for="">Date of Birth</label>
+                        <input type="date" name="date_of_birth">
+
+                        <br>
+                        <label for="">Gender</label>
+                        <br>
+                        <label for="">Male</label>
+                        <input type="radio" name="gender" value="Male">
+                        <label for="">Female</label>
+                        <input type="radio" name="gender" value="Female">
+
+                        <br>
+                        <label for="">Image</label>
+                        <input type="file" name="image">
+
+                        <br>
+
+                        <label for="">Grade</label>
+                        <select name="grade" id="">
+                            <option value="Grade 1">Grade 1</option>
+                            <option value="Grade 2">Grade 2</option>
+                            <option value="Grade 3">Grade 3</option>
+                            <option value="Grade 4">Grade 4</option>
+                            <option value="Grade 5">Grade 5</option>
+                            <option value="Grade 6">Grade 6</option>
+                        </select>
+
+                        <br>
+                        <label for="">Section</label>
+                        <input type="text" name="section">
 
 
-        <br>
-        <label for="">City</label>
-        <input type="text" name="city">
+                        <!----name of parent--->
+                        <h2>Name of Guardian</h2>
+                        <br>
+                        <label for="">First Name</label>
+                        <input type="text" name="guardian_first_name">
+                        <br>
 
-        
-        <br>
-        <label for="">Zip Code</label>
-        <input type="number" name="zip_code"> 
+                        <label for="">Middle Name</label>
+                        <input type="text" name="guardian_middle_name">
 
-        <br>
+                        <br>
+                        <label for="">Last Name</label>
+                        <input type="text" name="guardian_last_name">
+                        
+                        <br>
+                        <label for="">Email</label>
+                        <input type="email" name="email">
 
-        <label for="">Gender</label>
-        <br>
-        <label for="">Male</label>
-        <input type="radio" name="guardian_gender" value="Male">
-        <label for="">Female</label>
-        <input type="radio" name="guardian_gender" value="Female">
 
-        <br>
-        <label for="">Image</label>
-        <input type="file" name="guardian_image">
+                        <!-----ADDRESS---->
 
-        <br>
+                        <br>
+                        <label for="">Address</label>
+                        <label for="">Room / Floor / Unit No. & Building Name</label>
+                        <input type="text" name="room">
 
-        <br>
+                        <br>
+                        <label for="">House / Lot & Block No.</label>
+                        <input type="text" name="house">
 
-        <h2>Health Info</h2>
-        <!----dito health info nya naman---BMI-->
-        <label for="">Height</label>
-        <input type="number" name="height">
-        <br>
+                        <br>
+                        <label for="">Street</label>
+                        <input type="text" name="street">
 
-        <label for="">Weight</label>
-        <input type="number" name="weight">
+                        <br>
+                        <label for="">Subdivision</label>
+                        <input type="text" name="subdivision">
 
-        <br>
 
-        <label for="">BMI</label>
-        <input type="number" name="bmi">
+                        <br>
+                        <label for="">Barangay</label>
+                        <input type="text" name="barangay">
 
-        <br>
-        <br>
-        <label for="">BMI Categories / Status</label>
 
-        <br>
-        <label for="">Underweight</label>
-        <input type="radio" name="category" id="Underweigth" value="Underweigth">
+                        <br>
+                        <label for="">City</label>
+                        <input type="text" name="city">
 
-        <br>
-        <label for="">Normal Weight</label>
-        <input type="radio" name="category" id="Normal_Weight" value="Normal Weight">
-        
-        <br>
-        <label for="">Over Weight</label>
-        <input type="radio" name="category" id="Over_Weight" value="Over Weight">
+                        
+                        <br>
+                        <label for="">Zip Code</label>
+                        <input type="number" name="zip_code"> 
 
-        <br>
-        <label for="">Obesity</label>
-        <input type="radio" name="category" id="Obesity" value="obesity">
+                        <br>
 
-        <br>
-        <label for="">Health History</label>
-        <input type="text" name="health_history">
+                        <label for="">Gender</label>
+                        <br>
+                        <label for="">Male</label>
+                        <input type="radio" name="guardian_gender" value="Male">
+                        <label for="">Female</label>
+                        <input type="radio" name="guardian_gender" value="Female">
 
-        <!-----riri ikaw na bahala mag adjust sa stepper--->
-        <br>
-        <input type="submit" name="add_patient" value="Next">
-    </form>
+                        <br>
+                        <label for="">Image</label>
+                        <input type="file" name="guardian_image">
+
+                        <br>
+
+                        <br>
+
+                        <h2>Health Info</h2>
+                        <!----dito health info nya naman---BMI-->
+                        <label for="">Height</label>
+                        <input type="number" name="height">
+                        <br>
+
+                        <label for="">Weight</label>
+                        <input type="number" name="weight">
+
+                        <br>
+
+                        <label for="">BMI</label>
+                        <input type="number" name="bmi">
+
+                        <br>
+                        <br>
+                        <label for="">BMI Categories / Status</label>
+
+                        <br>
+                        <label for="">Underweight</label>
+                        <input type="radio" name="category" id="Underweigth" value="Underweigth">
+
+                        <br>
+                        <label for="">Normal Weight</label>
+                        <input type="radio" name="category" id="Normal_Weight" value="Normal Weight">
+                        
+                        <br>
+                        <label for="">Over Weight</label>
+                        <input type="radio" name="category" id="Over_Weight" value="Over Weight">
+
+                        <br>
+                        <label for="">Obesity</label>
+                        <input type="radio" name="category" id="Obesity" value="obesity">
+
+                        <br>
+                        <label for="">Health History</label>
+                        <input type="text" name="health_history">
+
+                        <!-----riri ikaw na bahala mag adjust sa stepper--->
+                        <br>
+                        <input type="submit" name="add_patient" value="Next">
+                    </form>
+				</div>
+			</main>
+		</div>
+	</div>
+<script src="./admin-template/js/app.js"></script>
+<script src="./styles/bootstrap/js/bootstrap.js"></script>
+<script src="./styles/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+    
+
+    <!----mamaya lagyan natin to ng mga REQUIRED INPUT FIELD---->
 
 
 <?php
