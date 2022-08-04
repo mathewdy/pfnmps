@@ -24,7 +24,6 @@ include('security-admin.php');
     <title>Document</title>
 </head>
 <body>
-    <a href="logout-admin.php">Logout</a>
     <div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
