@@ -36,17 +36,10 @@ include('security-parent.php');
             <div class="container-fluid-sm p-lg-5">
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Active</a>
+                        <a class="nav-link" href="profile.php">Account Settings</a>
+                        <a class="nav-link" href="logout-parent.php">Sign out</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
+                   
                 </ul>
             </div>
            
