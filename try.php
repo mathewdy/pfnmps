@@ -26,10 +26,11 @@
 </body>
 </html>
 <?php
+error_reporting(E_ERROR | E_PARSE);
 if(isset($_POST['submit'])){
     $age = $_POST['age'];
     $gender = $_POST['gender'];
-    $height = (float)$_POST['height'];
+    $height = ($_POST['height']);
     $weight = $_POST['weight'];
     $actlevel = $_POST['actlevel'];
 
@@ -54,7 +55,8 @@ if(isset($_POST['submit'])){
         $age_ = 61.9 * $age;
         $PAL_HW = $PAL_and_HW + 20;
         $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format($age_PAL_HW - $eer,4);
+        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        
     }else if($gender == 0 && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
         $eer = 88.5;
         $weight_ = 26.7 * $weight;
@@ -64,7 +66,7 @@ if(isset($_POST['submit'])){
         $age_ = 61.9 * $age;
         $PAL_HW = $PAL_and_HW + 25;
         $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format($age_PAL_HW - $eer,4);
+        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
     }else if($gender == 1 && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
@@ -74,7 +76,7 @@ if(isset($_POST['submit'])){
         $age_ = 30.8 * $age;
         $PAL_HW = $PAL_and_HW + 20;
         $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format($age_PAL_HW - $eer,4);
+        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
     }else if($gender == 1 && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
@@ -84,8 +86,11 @@ if(isset($_POST['submit'])){
         $age_ = 30.8 * $age;
         $PAL_HW = $PAL_and_HW + 25;
         $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format($age_PAL_HW - $eer,4);
+        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
     }
+
+    echo $total;
+
 }
 
 ?>
