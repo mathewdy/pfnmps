@@ -56,6 +56,8 @@ if(isset($_POST['submit'])){
         $PAL_HW = $PAL_and_HW + 20;
         $age_PAL_HW = $age_ + $PAL_HW;
         $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
         
     }else if($gender == 0 && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
         $eer = 88.5;
@@ -67,6 +69,8 @@ if(isset($_POST['submit'])){
         $PAL_HW = $PAL_and_HW + 25;
         $age_PAL_HW = $age_ + $PAL_HW;
         $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
     }else if($gender == 1 && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
@@ -77,6 +81,8 @@ if(isset($_POST['submit'])){
         $PAL_HW = $PAL_and_HW + 20;
         $age_PAL_HW = $age_ + $PAL_HW;
         $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
     }else if($gender == 1 && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
@@ -87,10 +93,25 @@ if(isset($_POST['submit'])){
         $PAL_HW = $PAL_and_HW + 25;
         $age_PAL_HW = $age_ + $PAL_HW;
         $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
     }
-
-    echo $total;
-
+    echo $total . "<br>";
+    echo $bmi . " ";
+    if($bmi <= 18.5){
+        echo "Under Weight";
+    }else if($bmi >= 18.5 || $bmi <= 24.9){
+        echo "Healthy Weight";
+    }else if($bmi >= 25 || $bmi <= 29.9){
+        echo "Over Weight";
+    }else if($bmi == 30 || $bmi <= 34.9){
+        echo "Obese Class 1";
+    }else if($bmi == 35 || $bmi <= 39.9){
+        echo "Obese Class 2";
+    }else if($bmi >= 40){
+        echo "Obese Class 3";
+    }
+    
 }
 
 ?>
