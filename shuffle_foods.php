@@ -16,4 +16,44 @@ for($i=0;$i<count($days);$i++){
     }
     
 }
+
+
+
+//*underweight
+
+//  28days
+
+// 1day == 5 meals
+
+// 8am  , 10am , 12pm , 5pm ,  8pm 
+
+
+
+//*obese
+
+// 28 days 
+
+//1 day == 5meals 
+// 8am  , 10am , 12pm , 5pm ,  8pm 
+
+// exercise = 80 to 100hrs per week
+
+// *mathew* , ako na din mag dedecide ng workout ng bata. Pwedeng playtime or literally exercise
+
+
+//next flow, is yung checklist,
+
+// mapupunta sya kay user then, yung daily activities is, i checheck nya. KUNG GINAWA NYA BA TALAGA YON.
+
+
+// pag natapos na yung 28 days nya, mag nonotif mismo sa system yun. at sa kanya na kailangan nyang bumalik
+// sa nutritionist personally.
+
+
+
+// pula == nakalimutan or hindi ginawa yung activity
+
+// green == complete tasks sa day 1
+
+
 ?>
