@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2022 at 08:14 PM
+-- Generation Time: Sep 11, 2022 at 10:39 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -29,9 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `activities` (
   `id` int(11) NOT NULL,
-  `student_id` varchar(250) NOT NULL,
   `exercises` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `activities`
+--
+
+INSERT INTO `activities` (`id`, `exercises`) VALUES
+(1, 'Jogging '),
+(2, 'push-up \r\n'),
+(3, 'jumping\r\n'),
+(4, 'catching balls \r\n'),
+(5, 'bear crawl\r\n'),
+(6, 'squats and lunges\r\n'),
+(7, 'sit-ups\r\n'),
+(8, 'stretching');
 
 -- --------------------------------------------------------
 
@@ -71,9 +84,89 @@ INSERT INTO `admins` (`id`, `user_id`, `username`, `password`, `email`, `first_n
 
 CREATE TABLE `foods` (
   `id` int(11) NOT NULL,
-  `student_id` varchar(50) NOT NULL,
-  `name` varchar(250) NOT NULL
+  `food_type_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `foods`
+--
+
+INSERT INTO `foods` (`id`, `food_type_id`, `name`) VALUES
+(1, 3, 'watermelon'),
+(2, 3, 'apples'),
+(3, 3, 'mangos'),
+(4, 3, 'kiwis'),
+(5, 3, 'cherries'),
+(6, 3, 'bananas'),
+(7, 3, 'oranges'),
+(8, 3, 'grapes'),
+(9, 3, 'guava'),
+(10, 3, 'melon'),
+(11, 3, 'strawberries'),
+(12, 3, 'grapefruit'),
+(13, 3, 'blackberries'),
+(14, 3, 'avocados'),
+(15, 3, 'plums'),
+(16, 3, 'lemon'),
+(17, 3, 'dragon fruit'),
+(18, 3, 'pears'),
+(19, 3, 'limes'),
+(20, 3, 'pineapple'),
+(21, 3, 'malunggay'),
+(22, 3, 'saluyot'),
+(23, 3, 'monggo'),
+(24, 3, 'Spinach'),
+(25, 3, 'Broccoli'),
+(26, 3, 'Seaweed'),
+(27, 3, 'Bell peppers'),
+(28, 3, 'Carrots'),
+(29, 3, 'Parsley'),
+(30, 3, 'Cauliflower'),
+(61, 1, 'cereals'),
+(62, 1, 'eggs'),
+(63, 1, 'bread'),
+(64, 1, 'milk'),
+(65, 1, 'pasta'),
+(66, 1, 'grains'),
+(67, 1, 'sweet potato'),
+(68, 1, 'potato'),
+(69, 1, 'honey'),
+(70, 1, 'nuts'),
+(71, 1, 'noodles'),
+(72, 1, 'corn'),
+(73, 1, 'wheats'),
+(74, 1, 'cheese'),
+(75, 1, 'biscuits'),
+(76, 1, 'oats'),
+(77, 2, 'Pumpkin Seeds'),
+(78, 2, 'Fish'),
+(79, 2, 'beef'),
+(80, 2, 'rice'),
+(81, 2, 'chicken'),
+(82, 2, 'cheese'),
+(83, 2, 'eggs'),
+(84, 2, 'crab');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_type`
+--
+
+CREATE TABLE `food_type` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `food_type`
+--
+
+INSERT INTO `food_type` (`id`, `name`) VALUES
+(1, 'go'),
+(2, 'grow'),
+(3, 'glow');
 
 -- --------------------------------------------------------
 
@@ -261,8 +354,7 @@ INSERT INTO `user_types` (`id`, `user_type`) VALUES
 -- Indexes for table `activities`
 --
 ALTER TABLE `activities`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`student_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `admins`
@@ -277,7 +369,13 @@ ALTER TABLE `admins`
 --
 ALTER TABLE `foods`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`student_id`);
+  ADD KEY `food_type_id` (`food_type_id`);
+
+--
+-- Indexes for table `food_type`
+--
+ALTER TABLE `food_type`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `health_infos`
@@ -338,7 +436,7 @@ ALTER TABLE `user_types`
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -350,7 +448,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `foods`
 --
 ALTER TABLE `foods`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- AUTO_INCREMENT for table `food_type`
+--
+ALTER TABLE `food_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `health_infos`
@@ -399,12 +503,6 @@ ALTER TABLE `user_types`
 --
 
 --
--- Constraints for table `activities`
---
-ALTER TABLE `activities`
-  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `health_infos` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `admins`
 --
 ALTER TABLE `admins`
@@ -414,7 +512,7 @@ ALTER TABLE `admins`
 -- Constraints for table `foods`
 --
 ALTER TABLE `foods`
-  ADD CONSTRAINT `foods_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `foods_ibfk_1` FOREIGN KEY (`food_type_id`) REFERENCES `food_type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `health_infos`
