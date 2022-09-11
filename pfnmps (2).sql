@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2022 at 10:01 PM
+-- Generation Time: Sep 11, 2022 at 08:14 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Database: `pfnmps`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(250) NOT NULL,
+  `exercises` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -50,6 +62,18 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `user_id`, `username`, `password`, `email`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `user_type`, `image`, `date_time_created`, `date_time_updated`) VALUES
 (4, '123', 'admin', '123', 'mathewdalisay@gmail.com', '', '', '', 0, '', 1, '', '2022-07-04 00:56:30', '2022-07-04 00:56:30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `foods`
+--
+
+CREATE TABLE `foods` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `name` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -149,6 +173,32 @@ INSERT INTO `students` (`id`, `student_id`, `first_name`, `middle_name`, `last_n
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students_survery_answers`
+--
+
+CREATE TABLE `students_survery_answers` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `question` int(11) NOT NULL,
+  `answer` int(11) NOT NULL,
+  `date_time_created` datetime NOT NULL,
+  `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students_survery_answers`
+--
+
+INSERT INTO `students_survery_answers` (`id`, `student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) VALUES
+(37, 'mathew123', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(38, 'mathew123', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(39, 'mathew123', 3, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(40, 'mathew123', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(41, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -208,12 +258,26 @@ INSERT INTO `user_types` (`id`, `user_type`) VALUES
 --
 
 --
+-- Indexes for table `activities`
+--
+ALTER TABLE `activities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`student_id`);
+
+--
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`,`user_type`),
   ADD KEY `user_type` (`user_type`);
+
+--
+-- Indexes for table `foods`
+--
+ALTER TABLE `foods`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`student_id`);
 
 --
 -- Indexes for table `health_infos`
@@ -245,6 +309,13 @@ ALTER TABLE `students`
   ADD KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `students_survery_answers`
+--
+ALTER TABLE `students_survery_answers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -264,10 +335,22 @@ ALTER TABLE `user_types`
 --
 
 --
+-- AUTO_INCREMENT for table `activities`
+--
+ALTER TABLE `activities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `foods`
+--
+ALTER TABLE `foods`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `health_infos`
@@ -294,6 +377,12 @@ ALTER TABLE `students`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `students_survery_answers`
+--
+ALTER TABLE `students_survery_answers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -310,10 +399,22 @@ ALTER TABLE `user_types`
 --
 
 --
+-- Constraints for table `activities`
+--
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `health_infos` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `admins`
 --
 ALTER TABLE `admins`
   ADD CONSTRAINT `admins_ibfk_1` FOREIGN KEY (`user_type`) REFERENCES `user_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `foods`
+--
+ALTER TABLE `foods`
+  ADD CONSTRAINT `foods_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `health_infos`
@@ -327,6 +428,12 @@ ALTER TABLE `health_infos`
 ALTER TABLE `program_records`
   ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`nutritionist_id`) REFERENCES `nutritionists` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `program_records_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `students_survery_answers`
+--
+ALTER TABLE `students_survery_answers`
+  ADD CONSTRAINT `students_survery_answers_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `users`
