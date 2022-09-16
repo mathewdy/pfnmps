@@ -22,31 +22,31 @@ include ("connection.php");
             $rand_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
             $query_rand_foods = mysqli_query($conn, $rand_foods);
             $rand_meals = mysqli_fetch_array($query_rand_foods);
-            $meals = $rand_meals['name'];
+            $meals = ucwords($rand_meals['name']);
             $meals = implode(',',array_unique(explode(',', $meals)));
 
             $random_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
             $query_random_foods = mysqli_query($conn, $random_foods);
             $random_meals = mysqli_fetch_array($query_random_foods);
-            $rand_meals = $random_meals['name'];
+            $rand_meals = ucwords($random_meals['name']);
             $rand_meals = implode(',',array_unique(explode(',', $rand_meals)));
 
             $go_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
             $query_go_foods = mysqli_query($conn, $go_foods);
             $go_meals = mysqli_fetch_array($query_go_foods);
-            $go = $go_meals['name'];
+            $go = ucwords($go_meals['name']);
             $go = implode(',',array_unique(explode(',', $go)));
 
             $glow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
             $query_glow_foods = mysqli_query($conn, $glow_foods);
             $glow_meals = mysqli_fetch_array($query_glow_foods);
-            $glow = $glow_meals['name'];
+            $glow = ucwords($glow_meals['name']);
             $glow = implode(',',array_unique(explode(',', $glow)));
 
             $grow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 3 ORDER BY RAND()";
             $query_grow_foods = mysqli_query($conn, $grow_foods);
             $grow_meals = mysqli_fetch_array($query_grow_foods);
-            $grow = $grow_meals['name'];
+            $grow = ucwords($grow_meals['name']);
             $grow = implode(',',array_unique(explode(',', $grow)));
             echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
             // $array = explode(" ", $grow);
