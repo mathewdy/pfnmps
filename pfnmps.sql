@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2022 at 10:39 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Sep 18, 2022 at 10:56 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -223,6 +223,8 @@ CREATE TABLE `program_records` (
   `student_id` varchar(20) NOT NULL,
   `date_started` date NOT NULL,
   `accumulated_days` varchar(30) NOT NULL,
+  `foods` varchar(255) NOT NULL,
+  `exercises` varchar(255) NOT NULL,
   `ended_day` date NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
