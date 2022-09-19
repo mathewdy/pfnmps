@@ -1,3 +1,6 @@
+<?php
+include ('connection.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +67,8 @@
 <?php
 error_reporting(E_ERROR | E_PARSE);
 if(isset($_POST['submit'])){
+    date_default_timezone_set("Asia/Manila");
+    $date = date('y-m-d');
     $age = $_POST['age'];
     $gender = $_POST['gender'];
     $height = ($_POST['height']);
@@ -136,82 +141,116 @@ if(isset($_POST['submit'])){
     echo $bmi . " ";
     if($bmi <= 18.5){
         echo "Under Weight";
+        $status = "Under Weight";
     }else if($bmi >= 18.5 || $bmi <= 24.9){
         echo "Healthy Weight";
+        $status = "Healthy Weight";
     }else if($bmi >= 25 || $bmi <= 29.9){
         echo "Over Weight";
+        $status = "Over Weight";
     }else if($bmi == 30 || $bmi <= 34.9){
         echo "Obese Class 1";
+        $status = "Obese Class 1";
     }else if($bmi == 35 || $bmi <= 39.9){
         echo "Obese Class 2";
+        $status = "Obese Class 2";
     }else if($bmi >= 40){
         echo "Obese Class 3";
+        $status = "Obese Class 3";
     }
 
+    $check_stdnt_bmi = "SELECT * FROM `health_infos` WHERE `student_id` = 'mathew123'";
+    $query_check_stdnt_bmi = mysqli_query($conn, $check_stdnt_bmi);
+    if(mysqli_num_rows($query_check_stdnt_bmi) > 0){
+        echo "Request Failed, Your health info is already inserted.";
+    }else{
+   
+    }
+    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `date_time_created`)
+    VALUES ('mathew123', '$height_', '$weight_', '$bmi', '$status', '$date')";
+    $query_bmi = mysqli_query($conn, $insert_bmi);
+    if($query_bmi == true){
+        echo "bmi inserted";
+    }else{
+        echo $conn->error;
+    }
     
-        // Survey
-        $question = array(1, 2, 3, 4, 5);
-        $surveyAnswer = $_POST['surveyAnswer'];
-        if(empty($_POST['surveyAnswer'])){
-            echo "tite";
-        }
-        for($i=0;$i<count($question);$i++){
-            $sql = "INSERT INTO `students_survery_answers` (`student_id`, `question`, `answer`) 
-            VALUES ('mathew123','".$question[$i]."','".$surveyAnswer[$i]."')";
-            $sql_query = mysqli_query($conn, $sql);
-            }
-            if($sql_query == true){
-                $surveyResult = "SELECT COUNT(answer) AS 'yes_answer' FROM students_survery_answers 
-                WHERE student_id = 'mathew123' AND answer = 1";
-                $querysurveyResult = mysqli_query($conn, $surveyResult);
-                $rows = mysqli_fetch_array($querysurveyResult);
 
-                if($rows['yes_answer'] <= 1){
-                    echo "Survey Result: Bad";
-                }else if($rows['yes_answer'] >= 4){
-                    echo "Survey Result: Good";
-                }else if($rows['yes_answer'] == 2 || $rows['yes_answer'] == 3){
-                    echo "Survey Result: Neutral";
+    // Survey
+    $question = array(1, 2, 3, 4, 5);
+    $surveyAnswer = $_POST['surveyAnswer'];
+    if(empty($_POST['surveyAnswer'])){
+        echo "tite";
+    }else{
+        $check_stdnt_srvey = "SELECT * FROM `students_survery_answers` WHERE `student_id` = 'mathew123'";
+        $query_check_stdnt_srvey = mysqli_query($conn, $check_stdnt_srvey);
+        if(mysqli_num_rows($query_check_stdnt_srvey) > 0){
+            echo "You already submitted your information";
+            exit();
+        }else{
+            for($i=0;$i<count($question);$i++){
+                $sql = "INSERT INTO `students_survery_answers` (`student_id`, `question`, `answer`) 
+                VALUES ('mathew123','".$question[$i]."','".$surveyAnswer[$i]."')";
+                $sql_query = mysqli_query($conn, $sql);
                 }
-            }else{
-                echo $conn->error;
-            }
+                if($sql_query == true){
+                    $surveyResult = "SELECT COUNT(answer) AS 'yes_answer' FROM students_survery_answers 
+                    WHERE student_id = 'mathew123' AND answer = 1";
+                    $querysurveyResult = mysqli_query($conn, $surveyResult);
+                    $rows = mysqli_fetch_array($querysurveyResult);
+        
+                    if($rows['yes_answer'] <= 1){
+                        echo "Survey Result: Bad";
+                    }else if($rows['yes_answer'] >= 4){
+                        echo "Survey Result: Good";
+                    }else if($rows['yes_answer'] == 2 || $rows['yes_answer'] == 3){
+                        echo "Survey Result: Neutral";
+                    }
+                }else{
+                    echo $conn->error;
+                }
+        }
+    }
+    
 
-            // Foods
-            $days = array(1, 2, 3, 4, 5, 6, 7);
+        // Foods
+        $days = array(1, 2, 3, 4, 5, 6, 7);
 
-            for($i=0;$i<count($days);$i++){
+        for($i=0;$i<count($days);$i++){
 
-            $rand_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
-            $query_rand_foods = mysqli_query($conn, $rand_foods);
-            $rand_meals = mysqli_fetch_array($query_rand_foods);
-            $meals = ucwords($rand_meals['name']);
-            $meals = implode(',',array_unique(explode(',', $meals)));
+        $rand_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
+        $query_rand_foods = mysqli_query($conn, $rand_foods);
+        $rand_meals = mysqli_fetch_array($query_rand_foods);
+        $meals = ucwords($rand_meals['name']);
+        $meals = implode(',',array_unique(explode(',', $meals)));
 
-            $random_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
-            $query_random_foods = mysqli_query($conn, $random_foods);
-            $random_meals = mysqli_fetch_array($query_random_foods);
-            $rand_meals = ucwords($random_meals['name']);
-            $rand_meals = implode(',',array_unique(explode(',', $rand_meals)));
+        $random_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
+        $query_random_foods = mysqli_query($conn, $random_foods);
+        $random_meals = mysqli_fetch_array($query_random_foods);
+        $rand_meals = ucwords($random_meals['name']);
+        $rand_meals = implode(',',array_unique(explode(',', $rand_meals)));
 
-            $go_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
-            $query_go_foods = mysqli_query($conn, $go_foods);
-            $go_meals = mysqli_fetch_array($query_go_foods);
-            $go = ucwords($go_meals['name']);
-            $go = implode(',',array_unique(explode(',', $go)));
+        $go_foods = "SELECT distinct name FROM foods WHERE food_type_id = 1 ORDER BY RAND()";
+        $query_go_foods = mysqli_query($conn, $go_foods);
+        $go_meals = mysqli_fetch_array($query_go_foods);
+        $go = ucwords($go_meals['name']);
+        $go = implode(',',array_unique(explode(',', $go)));
 
-            $glow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
-            $query_glow_foods = mysqli_query($conn, $glow_foods);
-            $glow_meals = mysqli_fetch_array($query_glow_foods);
-            $glow = ucwords($glow_meals['name']);
-            $glow = implode(',',array_unique(explode(',', $glow)));
+        $glow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 2 ORDER BY RAND()";
+        $query_glow_foods = mysqli_query($conn, $glow_foods);
+        $glow_meals = mysqli_fetch_array($query_glow_foods);
+        $glow = ucwords($glow_meals['name']);
+        $glow = implode(',',array_unique(explode(',', $glow)));
 
-            $grow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 3 ORDER BY RAND()";
-            $query_grow_foods = mysqli_query($conn, $grow_foods);
-            $grow_meals = mysqli_fetch_array($query_grow_foods);
-            $grow = ucwords($grow_meals['name']);
-            $grow = implode(',',array_unique(explode(',', $grow)));
-            echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
+        $grow_foods = "SELECT distinct name FROM foods WHERE food_type_id = 3 ORDER BY RAND()";
+        $query_grow_foods = mysqli_query($conn, $grow_foods);
+        $grow_meals = mysqli_fetch_array($query_grow_foods);
+        $grow = ucwords($grow_meals['name']);
+        $grow = implode(',',array_unique(explode(',', $grow)));
+        echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
+        
+        $array_meals = array($go, $glow, $grow, $meals, $rand_meals);
+        $meal_per_day = implode(", ", $array_meals);
 }
 }
 ?>

@@ -49,6 +49,10 @@ include ("connection.php");
             $grow = ucwords($grow_meals['name']);
             $grow = implode(',',array_unique(explode(',', $grow)));
             echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
+
+            $array_meals = array($go, $glow, $grow, $meals, $rand_meals);
+            $meal_per_day = implode(",", $array_meals);
+            echo $meal_per_day . "<br>";
             // $array = explode(" ", $grow);
             // $array_d = array_unique($array);
             // echo implode(",", $array_d);
