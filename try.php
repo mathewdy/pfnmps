@@ -68,7 +68,10 @@ include ('connection.php');
 error_reporting(E_ERROR | E_PARSE);
 if(isset($_POST['submit'])){
     date_default_timezone_set("Asia/Manila");
-    $date = date('y-m-d');
+    $date_time_created = date("Y-m-d h:i:s");
+    $date = date("Y-m-d");
+    $ended_date = date("Y-m-d", strtotime($date . '+ 30 days'));
+
     $age = $_POST['age'];
     $gender = $_POST['gender'];
     $height = ($_POST['height']);
@@ -136,33 +139,36 @@ if(isset($_POST['submit'])){
         $total = number_format(($age_PAL_HW - $eer)/2.5,4);
         $rootHeight = $height * $height;
         $bmi = number_format(($weight / $rootHeight),3);
+    }else{
+        echo "invalid age input <br>";
+        exit();
     }
-    echo $total . "<br>";
-    echo $bmi . " ";
+    // echo $total . "<br>";
+    // echo $bmi . " ";
     if($bmi <= 18.5){
-        echo "Under Weight";
+        echo "Under Weight <br>";
         $status = "Under Weight";
     }else if($bmi >= 18.5 || $bmi <= 24.9){
-        echo "Healthy Weight";
+        echo "Healthy Weight <br>";
         $status = "Healthy Weight";
     }else if($bmi >= 25 || $bmi <= 29.9){
-        echo "Over Weight";
+        echo "Over Weight <br>";
         $status = "Over Weight";
     }else if($bmi == 30 || $bmi <= 34.9){
-        echo "Obese Class 1";
+        echo "Obese Class 1 <br>";
         $status = "Obese Class 1";
     }else if($bmi == 35 || $bmi <= 39.9){
-        echo "Obese Class 2";
+        echo "Obese Class 2 <br>";
         $status = "Obese Class 2";
     }else if($bmi >= 40){
-        echo "Obese Class 3";
+        echo "Obese Class 3 <br>";
         $status = "Obese Class 3";
     }
 
     $check_stdnt_bmi = "SELECT * FROM `health_infos` WHERE `student_id` = 'mathew123'";
     $query_check_stdnt_bmi = mysqli_query($conn, $check_stdnt_bmi);
     if(mysqli_num_rows($query_check_stdnt_bmi) > 0){
-        echo "Request Failed, Your health info is already inserted.";
+        echo "Request Failed, Your health info is already inserted. <br>";
     }else{
    
     }
@@ -170,7 +176,7 @@ if(isset($_POST['submit'])){
     VALUES ('mathew123', '$height_', '$weight_', '$bmi', '$status', '$date')";
     $query_bmi = mysqli_query($conn, $insert_bmi);
     if($query_bmi == true){
-        echo "bmi inserted";
+        echo "bmi inserted <br>";
     }else{
         echo $conn->error;
     }
@@ -185,7 +191,7 @@ if(isset($_POST['submit'])){
         $check_stdnt_srvey = "SELECT * FROM `students_survery_answers` WHERE `student_id` = 'mathew123'";
         $query_check_stdnt_srvey = mysqli_query($conn, $check_stdnt_srvey);
         if(mysqli_num_rows($query_check_stdnt_srvey) > 0){
-            echo "You already submitted your information";
+            echo "You already submitted your information <br>";
             exit();
         }else{
             for($i=0;$i<count($question);$i++){
@@ -200,11 +206,11 @@ if(isset($_POST['submit'])){
                     $rows = mysqli_fetch_array($querysurveyResult);
         
                     if($rows['yes_answer'] <= 1){
-                        echo "Survey Result: Bad";
+                        echo "Survey Result: Bad <br>";
                     }else if($rows['yes_answer'] >= 4){
-                        echo "Survey Result: Good";
+                        echo "Survey Result: Good <br>";
                     }else if($rows['yes_answer'] == 2 || $rows['yes_answer'] == 3){
-                        echo "Survey Result: Neutral";
+                        echo "Survey Result: Neutral <br>";
                     }
                 }else{
                     echo $conn->error;
@@ -247,10 +253,21 @@ if(isset($_POST['submit'])){
         $grow_meals = mysqli_fetch_array($query_grow_foods);
         $grow = ucwords($grow_meals['name']);
         $grow = implode(',',array_unique(explode(',', $grow)));
-        echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
+        // echo "Day ".$days[$i].": ".$go." , ".$glow.", ".$grow.", ".$meals.", ".$rand_meals." " . "<br>";
         
         $array_meals = array($go, $glow, $grow, $meals, $rand_meals);
         $meal_per_day = implode(", ", $array_meals);
-}
+
+
+        $sql_insert_program_record = "INSERT INTO `program_records`(`student_id`, `date_started`,
+        `foods`, `day`, `ended_day`, `date_time_created`) 
+        VALUES ('mathew123','$date_time_created','$meal_per_day','".$days[$i]."','$ended_date','$date_time_created')";
+        $query_sql_insert_program_record = mysqli_query($conn, $sql_insert_program_record) or die (mysqli_error($conn));
+    }
+        if($query_sql_insert_program_record == true){
+            echo "program record inserted";
+        }else{
+            echo $conn->error;
+        }
 }
 ?>
