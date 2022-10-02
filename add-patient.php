@@ -88,8 +88,6 @@ include('security-admin.php');
 							</div>
 						</li>
 					</ul>
-				    <a class="text-light text-center btn btn-primary" href="logout-admin.php">Logout</a>
-
 				</div>
 			</nav>
 
@@ -264,9 +262,8 @@ include('security-admin.php');
 			</main>
 		</div>
 	</div>
+<script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-<script src="./styles/bootstrap/js/bootstrap.js"></script>
-<script src="./styles/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
 

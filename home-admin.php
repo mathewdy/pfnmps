@@ -16,7 +16,8 @@ include('security-admin.php');
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
     <link href="admin-template/css/app.css" rel="stylesheet">
-	<link rel="./stylesheet" href="./styles/bootstrap/css/bootstrap.css">
+	<!-- <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css"> -->
+	<!-- <link rel="stylesheet" href="./styles/bootstrap/js/bootstrap.bundle.min.js"> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -34,7 +35,7 @@ include('security-admin.php');
 					</li>
 
 					<li class="sidebar-item active">
-						<a class="sidebar-link" href="index.php">
+						<a class="sidebar-link" href="home-admin.php">
                             <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
                          </a>
 					</li>
@@ -57,7 +58,6 @@ include('security-admin.php');
                         </a>
 					</li>
 				</ul>
-				<a class="text-light text-center btn btn-primary" href="logout-admin.php">Logout</a>
 			</div>
 		</nav>
 
@@ -75,15 +75,12 @@ include('security-admin.php');
                                 <i class="align-middle" data-feather="settings"></i>
                             </a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown" id="dropdownMenuButton1">
+							<a class="nav-link dropdown-toggle no-arrow d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
+								
                                 <span class="text-dark">ADMIN</span>
                             </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout-admin.php">Log out</a>
 							</div>
@@ -92,15 +89,23 @@ include('security-admin.php');
 				</div>
 			</nav>
 
-			<!-- <main class="content">
+			<main class="content">
 				<div class="container-fluid p-0">
-                   
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Dropdown
+					</button>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
+						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
+						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
+					</ul>
+					</div>
 				</div>
-			</main> -->
+			</main>
 		</div>
 	</div>
-
+<script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-<script src="./styles/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>

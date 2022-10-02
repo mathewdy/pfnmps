@@ -29,7 +29,7 @@ include('security-parent.php');
             <nav class="navbar topnav bg-white">
                 <div class="container-fluid p-0 justify-content-end">
                     <a class="navbar-brand" href="#">
-                        <img src="" alt="...    ">
+                        <!-- <img src="" alt="...    "> -->
                     </a>
                 </div>
             </nav>

@@ -70,7 +70,6 @@ $start_from = ($page-1)*05;
 					</li>
 				
 				</ul>
-				<a class="text-light text-center btn btn-primary" href="logout-admin.php">Logout</a>
 			</div>
 		</nav>
 
@@ -93,10 +92,6 @@ $start_from = ($page-1)*05;
                             </a>
 							<div class="dropdown-menu dropdown-menu-end">
 								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="index.html"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout-admin.php">Log out</a>
 							</div>
@@ -107,8 +102,8 @@ $start_from = ($page-1)*05;
 
 			<main class="content">
 				<div class="container-fluid p-0">
-                <h1>View Students</h1>
-
+                    <div class="card p-5">
+                        <h1>View Students</h1>
                         <table class="table">
                             <thead>
                                 <th>No.</th>
@@ -118,9 +113,8 @@ $start_from = ($page-1)*05;
                                 <th>Grade</th>
                                 <th>Section</th>
                                 <th>Edit</th>
-                                <th>Delete</th>
                             </thead>
-
+                            <tbody> 
                         <?php
 
 
@@ -132,7 +126,7 @@ $start_from = ($page-1)*05;
                                     ?>
 
                                         
-                                            <tbody>
+                                            
                                                 <tr>
                                                     <td><?php echo $no; ?></td>
                                                     <td><img src="student_image/<?php echo $row ['image']; ?>" alt="" width="80px" height="80px"></td>
@@ -143,13 +137,18 @@ $start_from = ($page-1)*05;
                                                     <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
                                                     <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
                                                 </tr>
-                                            </tbody>
-                                        </table>
+                                         
 
 
                                     <?php
                                 $no++; 
-                                }
+                                }   ?>
+                                </tbody>
+                            </table>
+                    </div>
+
+                       
+                            <?php
                             }
 
 
@@ -178,9 +177,7 @@ $start_from = ($page-1)*05;
 			</main>
 		</div>
 	</div>
-
+<script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-<script src="./styles/bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
-
