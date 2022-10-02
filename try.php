@@ -186,9 +186,9 @@ if(isset($_POST['submit'])){
     $question = array(1, 2, 3, 4, 5);
     $surveyAnswer = $_POST['surveyAnswer'];
     if(empty($_POST['surveyAnswer'])){
-        echo "tite";
+        echo "Please answer the survey form.";
     }else{
-        $check_stdnt_srvey = "SELECT * FROM `students_survery_answers` WHERE `student_id` = 'mathew123'";
+        $check_stdnt_srvey = "SELECT * FROM `students_survery_answers` WHERE `student_id` = 'mathew123'"; //naka default id pa yan kasi di ko alam kung i sesesion ba to or hindi
         $query_check_stdnt_srvey = mysqli_query($conn, $check_stdnt_srvey);
         if(mysqli_num_rows($query_check_stdnt_srvey) > 0){
             echo "You already submitted your information <br>";
@@ -259,9 +259,16 @@ if(isset($_POST['submit'])){
         $meal_per_day = implode(", ", $array_meals);
 
 
+        $select_exercises = "SELECT * FROM `activities` ORDER BY RAND()";
+        $query_exercises = mysqli_query($conn, $select_exercises);
+        $exercises_array = mysqli_fetch_array($query_exercises);
+        $exercises = ucwords($exercises_array['exercises']);
+        $exercises = implode(',', array_unique(explode(',', $exercises)));
+
+
         $sql_insert_program_record = "INSERT INTO `program_records`(`student_id`, `date_started`,
-        `foods`, `day`, `ended_day`, `date_time_created`) 
-        VALUES ('mathew123','$date_time_created','$meal_per_day','".$days[$i]."','$ended_date','$date_time_created')";
+        `foods`, `exercises`, `day`, `ended_day`, `date_time_created`) 
+        VALUES ('mathew123','$date_time_created','$meal_per_day','$exercises','".$days[$i]."','$ended_date','$date_time_created')";
         $query_sql_insert_program_record = mysqli_query($conn, $sql_insert_program_record) or die (mysqli_error($conn));
     }
         if($query_sql_insert_program_record == true){
