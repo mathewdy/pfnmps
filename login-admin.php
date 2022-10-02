@@ -1,5 +1,6 @@
 <?php
 include('connection.php');
+require_once __DIR__.'/vendor/autoload.php';
 session_start();
 ob_start();
 
@@ -66,6 +67,12 @@ if(isset($_POST['login'])){
     if(mysqli_num_rows($run) > 0){
         if($run){
             $_SESSION['username'] = $username;
+            // $messagebird = new MessageBird\Client('M7noSmsStsGtTf2VM7lYapDGs');
+            // $message = new MessageBird\Objects\Message;
+            // $message->originator = '+639156915704';
+            // $message->recipients = $mobile_number;
+            // $message->body = "Dear Mr/Mrs: $last_name, we would like you to inform your reservation from ProCreations is from $date_in $time_in to $date_out $time_out. Please check your email to inbox/spam, thank you.";
+            // $response = $messagebird->messages->create($message);
             echo "<script>window.location.href='home-admin.php' </script>";
         }
     }else{
