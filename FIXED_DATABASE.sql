@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 10:04 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Oct 03, 2022 at 11:10 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -192,7 +192,8 @@ CREATE TABLE `health_infos` (
 --
 
 INSERT INTO `health_infos` (`id`, `student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`, `date_time_updated`) VALUES
-(11, 'mathew123', 23, 23, 23, 'Normal Weight', '', 'asdasdasdasdasdsad', '2022-07-06 08:01:14', '2022-07-06 08:01:14');
+(11, 'mathew123', 23, 23, 23, 'Normal Weight', '', 'asdasdasdasdasdsad', '2022-07-06 08:01:14', '2022-07-06 08:01:14'),
+(14, '129837', 210399, 1469, 0, 'Under Weight', '1', 'ijni', '2022-10-03 05:05:43', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -226,10 +227,24 @@ CREATE TABLE `program_records` (
   `accumulated_days` varchar(30) NOT NULL,
   `foods` varchar(255) NOT NULL,
   `exercises` varchar(255) NOT NULL,
+  `day` text NOT NULL,
   `ended_day` date NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `program_records`
+--
+
+INSERT INTO `program_records` (`id`, `nutritionist_id`, `student_id`, `date_started`, `accumulated_days`, `foods`, `exercises`, `day`, `ended_day`, `date_time_created`, `date_time_updated`) VALUES
+(2, '', '129837', '2022-10-03', '', 'Corn, Fish, Bananas, Cereals, Fish', 'Sit-ups\r\n', '1', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(3, '', '129837', '2022-10-03', '', 'Bread, Cheese, Lemon, Wheats, Crab', 'Stretching', '2', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(4, '', '129837', '2022-10-03', '', 'Bread, Cheese, Watermelon, Sweet Potato, Beef', 'Jumping\r\n', '3', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(5, '', '129837', '2022-10-03', '', 'Bread, Cheese, Melon, Biscuits, Pumpkin Seeds', 'Jumping\r\n', '4', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(6, '', '129837', '2022-10-03', '', 'Eggs, Rice, Lemon, Cereals, Pumpkin Seeds', 'Squats And Lunges\r\n', '5', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(7, '', '129837', '2022-10-03', '', 'Pasta, Rice, Malunggay, Pasta, Eggs', 'Push-up \r\n', '6', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
+(8, '', '129837', '2022-10-03', '', 'Sweet Potato, Pumpkin Seeds, Watermelon, Noodles, Fish', 'Sit-ups\r\n', '7', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -264,7 +279,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `student_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `gender`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `image`, `grade`, `section`, `date_time_created`, `date_time_updated`) VALUES
-(15, 'mathew123', 'Mathew123123', 'Francisco123123', 'Dalisay123123', '2022-07-11', 'Female', '123333', 'SA BAHAY33', ' KO33', 'PUTANGINA MO3', '1233333', '1111333333', '123123123333', 0x3230313434363737305f3839323032393131383034373935345f373931303634303233333433353038373931365f6e2e6a7067, 'Grade 3', '123123123asdas333', '2022-07-06 08:01:14', '2022-07-06 08:37:37');
+(15, 'mathew123', 'Mathew123123', 'Francisco123123', 'Dalisay123123', '2022-07-11', 'Female', '123333', 'SA BAHAY33', ' KO33', 'PUTANGINA MO3', '1233333', '1111333333', '123123123333', 0x3230313434363737305f3839323032393131383034373935345f373931303634303233333433353038373931365f6e2e6a7067, 'Grade 3', '123123123asdas333', '2022-07-06 08:01:14', '2022-07-06 08:37:37'),
+(22, '129837', 'Jade mark', 'Hundsum', 'Sakdlj', '2022-10-05', 'Male', '009', '09', 'OIJ', 'MIOJNOI', '88', 'JKJSND', '23', 0x666c6f7763686172745f657276696e286e65775f70726f6772616d292e64726177696f2e706e67, 'Grade 1', '21312', '2022-10-03 05:05:43', '2022-10-03 05:05:43');
 
 -- --------------------------------------------------------
 
@@ -290,7 +306,12 @@ INSERT INTO `students_survery_answers` (`id`, `student_id`, `question`, `answer`
 (38, 'mathew123', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (39, 'mathew123', 3, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (40, 'mathew123', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(41, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(41, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(52, '129837', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(53, '129837', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(54, '129837', 3, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(55, '129837', 4, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(56, '129837', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -328,7 +349,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `contact_number`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `address`, `gender`, `user_type`, `image`, `student_id`, `date_time_created`, `date_time_updated`) VALUES
-(7, '202280578', 'hehez@gmail.com', '123', 'Leonida4', 'Frnaciso444', 'Dalisay44', '', '12344', 'SA BAHAY4', ' KO4', 'PUTANGINA MO44', '1234', '11114', '123123123444', '', 'Male', 2, 0x7072696d6172792e6a7067, 'mathew123', '2022-07-06 08:01:14', '2022-07-06 09:05:31');
+(7, '202280578', 'hehez@gmail.com', '123', 'Leonida4', 'Frnaciso444', 'Dalisay44', '', '12344', 'SA BAHAY4', ' KO4', 'PUTANGINA MO44', '1234', '11114', '123123123444', '', 'Male', 2, 0x7072696d6172792e6a7067, 'mathew123', '2022-07-06 08:01:14', '2022-07-06 09:05:31'),
+(14, '202228995', 'om@gmail.com', 'Welcome@12345', 'Okm', 'Omom', 'Omo', '', '009', '09', 'OIJ', 'MIOJNOI', '88', 'JKJSND', '23', '', 'Male', 2, 0x666c6f7763686172745f657276696e286f6c64292e64726177696f2e706e67, '129837', '2022-10-03 05:05:43', '2022-10-03 05:05:43');
 
 -- --------------------------------------------------------
 
@@ -464,7 +486,7 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `nutritionists`
@@ -476,25 +498,25 @@ ALTER TABLE `nutritionists`
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user_types`
@@ -528,7 +550,6 @@ ALTER TABLE `health_infos`
 -- Constraints for table `program_records`
 --
 ALTER TABLE `program_records`
-  ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`nutritionist_id`) REFERENCES `nutritionists` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `program_records_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

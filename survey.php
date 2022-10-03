@@ -1,9 +1,10 @@
 <?php
 include ("connection.php");
+session_start();
 if(isset($_GET['id'])){
     $student_id = $_GET['id'];
 }
-if(empty($_GET['e'])){
+if(empty($_GET['id'])){
     header("location:login.php");
     exit();
 }

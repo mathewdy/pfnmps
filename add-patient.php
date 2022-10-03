@@ -309,9 +309,10 @@ if(isset($_POST['add_patient'])){
     //HEALTH INFO
     $age = $_POST['age'];
     $gender = $_POST['gender'];
-    $height = ($_POST['height']);
+    $height = $_POST['height'];
     $weight = $_POST['weight'];
     $actlevel = $_POST['actlevel'];
+    $health_history = $_POST['health_history'];
 
     if($actlevel == 1){
         $actLevel_ = number_format(rand(1.0*10,1.39*10)/10,2);
@@ -325,7 +326,7 @@ if(isset($_POST['add_patient'])){
         echo "Invalid Input";
     }
     
-    if($gender == 0 && $age >= 3 && $age <= 8){ // Boys 3-8 Years old
+    if($gender == 'Male' && $age >= 3 && $age <= 8){ // Boys 3-8 Years old
         $eer = 88.5;
         $weight_ = 26.7 * $weight;
         $height_ = 903 * $height;
@@ -338,7 +339,7 @@ if(isset($_POST['add_patient'])){
         $rootHeight = $height * $height;
         $bmi = number_format(($weight / $rootHeight),3);
         
-    }else if($gender == 0 && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
+    }else if($gender == 'Male' && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
         $eer = 88.5;
         $weight_ = 26.7 * $weight;
         $height_ = 903 * $height;
@@ -350,7 +351,7 @@ if(isset($_POST['add_patient'])){
         $total = number_format(($age_PAL_HW - $eer)/2.5,4);
         $rootHeight = $height * $height;
         $bmi = number_format(($weight / $rootHeight),3);
-    }else if($gender == 1 && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
+    }else if($gender == 'Female' && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
         $height_ = 934 * $height;
@@ -362,7 +363,7 @@ if(isset($_POST['add_patient'])){
         $total = number_format(($age_PAL_HW - $eer)/1.5,4);
         $rootHeight = $height * $height;
         $bmi = number_format(($weight / $rootHeight),3);
-    }else if($gender == 1 && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
+    }else if($gender == 'Female' && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
         $eer = 135.3;
         $weight_ = 10.0 * $weight;
         $height_ = 934 * $height;
@@ -484,13 +485,13 @@ if(isset($_POST['add_patient'])){
     // Use openssl_encrypt() function to encrypt the data
     $encryption = openssl_encrypt($student_id, $ciphering,
                 $encryption_key, $options, $encryption_iv);
-    $check_stdnt_bmi = "SELECT * FROM `health_infos` WHERE `student_id` = 'mathew123'";
+    $check_stdnt_bmi = "SELECT * FROM `health_infos` WHERE `student_id` = '$student_id'";
     $query_check_stdnt_bmi = mysqli_query($conn, $check_stdnt_bmi);
     if(mysqli_num_rows($query_check_stdnt_bmi) > 0){
         echo "Request Failed, Your health info is already inserted. <br>";
         exit();
     }else{
-    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `activity_level`, `health_history`, `date_time_created`)
+    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`)
     VALUES ('$student_id', '$height_', '$weight_', '$bmi', '$status', '$actlevel', '$health_history', '$date $time')";
     $query_bmi = mysqli_query($conn, $insert_bmi);
     if($query_bmi == true){
