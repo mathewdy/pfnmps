@@ -66,14 +66,21 @@ if(isset($_POST['login'])){
 
     if(mysqli_num_rows($run) > 0){
         if($run){
-            $_SESSION['username'] = $username;
+            $get_all_numbers = "SELECT `contact_number` FROM `users`";
+            $query_get_numbers = mysqli_query($conn, $get_all_numbers);
+            if(mysqli_num_rows($query_get_numbers) > 0){
+                $rows = mysqli_fetch_array($query_get_numbers);
+                $_SESSION['username'] = $username;
             // $messagebird = new MessageBird\Client('M7noSmsStsGtTf2VM7lYapDGs');
             // $message = new MessageBird\Objects\Message;
             // $message->originator = '+639156915704';
-            // $message->recipients = $mobile_number;
+            // $message->recipients = $rows['contact_number'];
             // $message->body = "Dear Mr/Mrs: $last_name, we would like you to inform your reservation from ProCreations is from $date_in $time_in to $date_out $time_out. Please check your email to inbox/spam, thank you.";
             // $response = $messagebird->messages->create($message);
             echo "<script>window.location.href='home-admin.php' </script>";
+            }else{
+                echo $conn->error;
+            }
         }
     }else{
         echo "wrong username or password";

@@ -117,7 +117,10 @@ include('security-admin.php');
                             <br>
                             <label for="">Date of Birth</label>
                             <input type="date" name="date_of_birth">
-
+                            
+                            <br>
+                            <label for="">Age</label>
+                            <input type="text" name="age" placeholder="Age">
                             <br>
                             <label for="">Gender</label>
                             <br>
@@ -228,28 +231,12 @@ include('security-admin.php');
 
                             <br>
 
-                            <label for="">BMI</label>
-                            <input type="number" name="bmi">
-
-                            <br>
-                            <br>
-                            <label for="">BMI Categories / Status</label>
-
-                            <br>
-                            <label for="">Underweight</label>
-                            <input type="radio" name="category" id="Underweigth" value="Underweigth">
-
-                            <br>
-                            <label for="">Normal Weight</label>
-                            <input type="radio" name="category" id="Normal_Weight" value="Normal Weight">
-                            
-                            <br>
-                            <label for="">Over Weight</label>
-                            <input type="radio" name="category" id="Over_Weight" value="Over Weight">
-
-                            <br>
-                            <label for="">Obesity</label>
-                            <input type="radio" name="category" id="Obesity" value="obesity">
+                            <select name="actlevel" id="">
+                            <option value="1">Sedentary</option>
+                            <option value="2">Low Active</option>
+                            <option value="3">Active</option>
+                            <option value="4">Very Active</option>
+                            </select>
 
                             <br>
                             <label for="">Health History</label>
@@ -294,7 +281,6 @@ if(isset($_POST['add_patient'])){
     $default_password = "Welcome@12345";
     $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
     
-    $gender = $_POST['gender'];
 
     //address nya naman to 
     $room = strtoupper($_POST['room']);
@@ -321,11 +307,97 @@ if(isset($_POST['add_patient'])){
     
 
     //HEALTH INFO
-    $height = $_POST['height'];
+    $age = $_POST['age'];
+    $gender = $_POST['gender'];
+    $height = ($_POST['height']);
     $weight = $_POST['weight'];
-    $bmi = $_POST['bmi'];
-    $category = $_POST['category'];
-    $health_history = $_POST['health_history'];
+    $actlevel = $_POST['actlevel'];
+
+    if($actlevel == 1){
+        $actLevel_ = number_format(rand(1.0*10,1.39*10)/10,2);
+    }else if($actlevel == 2){
+        $actLevel_ = number_format(rand(1.4*10,1.59*10)/10,2);
+    }else if($actlevel == 3){
+        $actLevel_ = number_format(rand(1.6*10,1.89*10)/10,2);
+    }else if($actlevel == 4){
+        $actLevel_ = number_format(rand(1.9*10,2.5*10)/10,2);
+    }else{
+        echo "Invalid Input";
+    }
+    
+    if($gender == 0 && $age >= 3 && $age <= 8){ // Boys 3-8 Years old
+        $eer = 88.5;
+        $weight_ = 26.7 * $weight;
+        $height_ = 903 * $height;
+        $height_and_weight_ = $weight_ + $height_;
+        $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        $age_ = 61.9 * $age;
+        $PAL_HW = $PAL_and_HW + 20;
+        $age_PAL_HW = $age_ + $PAL_HW;
+        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
+        
+    }else if($gender == 0 && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
+        $eer = 88.5;
+        $weight_ = 26.7 * $weight;
+        $height_ = 903 * $height;
+        $height_and_weight_ = $weight_ + $height_;
+        $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        $age_ = 61.9 * $age;
+        $PAL_HW = $PAL_and_HW + 25;
+        $age_PAL_HW = $age_ + $PAL_HW;
+        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
+    }else if($gender == 1 && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
+        $eer = 135.3;
+        $weight_ = 10.0 * $weight;
+        $height_ = 934 * $height;
+        $height_and_weight_ = $weight_ + $height_;
+        $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        $age_ = 30.8 * $age;
+        $PAL_HW = $PAL_and_HW + 20;
+        $age_PAL_HW = $age_ + $PAL_HW;
+        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
+    }else if($gender == 1 && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
+        $eer = 135.3;
+        $weight_ = 10.0 * $weight;
+        $height_ = 934 * $height;
+        $height_and_weight_ = $weight_ + $height_;
+        $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        $age_ = 30.8 * $age;
+        $PAL_HW = $PAL_and_HW + 25;
+        $age_PAL_HW = $age_ + $PAL_HW;
+        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        $rootHeight = $height * $height;
+        $bmi = number_format(($weight / $rootHeight),3);
+    }else{
+        echo "invalid age input <br>";
+        exit();
+    }
+
+    if($bmi <= 18.5){
+        echo "Under Weight <br>";
+        $status = "Under Weight";
+    }else if($bmi >= 18.5 || $bmi <= 24.9){
+        echo "Healthy Weight <br>";
+        $status = "Healthy Weight";
+    }else if($bmi >= 25 || $bmi <= 29.9){
+        echo "Over Weight <br>";
+        $status = "Over Weight";
+    }else if($bmi == 30 || $bmi <= 34.9){
+        echo "Obese Class 1 <br>";
+        $status = "Obese Class 1";
+    }else if($bmi == 35 || $bmi <= 39.9){
+        echo "Obese Class 2 <br>";
+        $status = "Obese Class 2";
+    }else if($bmi >= 40){
+        echo "Obese Class 3 <br>";
+        $status = "Obese Class 3";
+    }
 
     //random number sa user_id
     $user_id = "2022" . rand('00000', '99999');
@@ -387,13 +459,47 @@ if(isset($_POST['add_patient'])){
     //HEALTH INFO
     // dito mamaya yung BMI chururut nya
     //insert na to
-    $query_insert_health_info = "INSERT INTO health_infos (student_id,height,weight,bmi,status,health_history,date_time_created,date_time_updated) VALUES ('$student_id', '$height', '$weight' , '$bmi' , '$category' , '$health_history', '$date $time', '$date $time')";
-    $run_insert_health_info = mysqli_query($conn,$query_insert_health_info);
+    // $query_insert_health_info = "INSERT INTO health_infos (student_id,height,weight,bmi,status,health_history,date_time_created,date_time_updated) VALUES ('$student_id', '$height', '$weight' , '$bmi' , '$status' , '$health_history', '$date $time', '$date $time')";
+    // $run_insert_health_info = mysqli_query($conn,$query_insert_health_info);
 
-    if($run_insert_health_info){
-        echo "added to database insert_health_info" . '<br>';
+    // if($run_insert_health_info){
+    //     echo "added to database insert_health_info" . '<br>';
+    // }else{
+    //     echo "error health info" . $conn->error;
+    // }
+
+    // Store the cipher method
+    $ciphering = "AES-128-CTR";
+
+    // Use OpenSSl Encryption method
+    $iv_length = openssl_cipher_iv_length($ciphering);
+    $options = 0;
+
+    // Non-NULL Initialization Vector for encryption
+    $encryption_iv = '1234567891011121';
+
+    // Store the encryption key
+    $encryption_key = "TeamAgnat";
+
+    // Use openssl_encrypt() function to encrypt the data
+    $encryption = openssl_encrypt($student_id, $ciphering,
+                $encryption_key, $options, $encryption_iv);
+    $check_stdnt_bmi = "SELECT * FROM `health_infos` WHERE `student_id` = 'mathew123'";
+    $query_check_stdnt_bmi = mysqli_query($conn, $check_stdnt_bmi);
+    if(mysqli_num_rows($query_check_stdnt_bmi) > 0){
+        echo "Request Failed, Your health info is already inserted. <br>";
+        exit();
     }else{
-        echo "error health info" . $conn->error;
+    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `activity_level`, `health_history`, `date_time_created`)
+    VALUES ('$student_id', '$height_', '$weight_', '$bmi', '$status', '$actlevel', '$health_history', '$date $time')";
+    $query_bmi = mysqli_query($conn, $insert_bmi);
+    if($query_bmi == true){
+        echo "added to database insert_health_info" . '<br>';
+        header("location:survey.php?id=$encryption");
+        exit();
+    }else{
+        echo $conn->error;
+    }
     }
 
 
