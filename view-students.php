@@ -28,7 +28,10 @@ $start_from = ($page-1)*05;
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
     <link href="admin-template/css/app.css" rel="stylesheet">
-	<link rel="./stylesheet" href="./styles/bootstrap/css/bootstrap.css">
+	<link rel="./stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -104,7 +107,7 @@ $start_from = ($page-1)*05;
 				<div class="container-fluid p-0">
                     <div class="card p-5">
                         <h1>View Students</h1>
-                        <table class="table">
+                        <table class="table" id="dataTable">
                             <thead>
                                 <th>No.</th>
                                 <th>Image</th>
@@ -112,7 +115,7 @@ $start_from = ($page-1)*05;
                                 <th colspan="2">Date of Birth</th>
                                 <th>Grade</th>
                                 <th>Section</th>
-                                <th>Edit</th>
+                                <th>Action</th>
                             </thead>
                             <tbody> 
                         <?php
@@ -177,7 +180,21 @@ $start_from = ($page-1)*05;
 			</main>
 		</div>
 	</div>
+<!-- Bootstrap -->
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
+
+<!-- jQuery -->
+<script src="src/plugins/jquery/dist/jquery.js"></script>
+
+<!-- Datatables -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#dataTable').DataTable();
+});
+</script>
+
+
 </body>
 </html>

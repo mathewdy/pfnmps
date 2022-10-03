@@ -11,12 +11,9 @@ include('security-admin.php');
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
     <link href="admin-template/css/app.css" rel="stylesheet">
-	<!-- <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.css"> -->
+	<!-- <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css"> -->
 	<!-- <link rel="stylesheet" href="./styles/bootstrap/js/bootstrap.bundle.min.js"> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
@@ -25,7 +22,7 @@ include('security-admin.php');
     <div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="#">
           <span class="align-middle">Admin</span>
         </a>
 
@@ -91,20 +88,14 @@ include('security-admin.php');
 
 			<main class="content">
 				<div class="container-fluid p-0">
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Dropdown
-					</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
-						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
-						<li><a class="dropdown-item" href="#">Dropdown item</a></li>
-					</ul>
+					<div class="card">
+
 					</div>
 				</div>
 			</main>
 		</div>
 	</div>
+<!-- Bootstrap js -->
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
 </body>
