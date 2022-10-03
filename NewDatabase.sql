@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2022 at 05:48 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Oct 03, 2022 at 10:04 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,7 +37,7 @@ CREATE TABLE `activities` (
 --
 
 INSERT INTO `activities` (`id`, `exercises`) VALUES
-(1, 'jogging '),
+(1, 'Jogging '),
 (2, 'push-up \r\n'),
 (3, 'jumping\r\n'),
 (4, 'catching balls \r\n'),
@@ -177,10 +177,11 @@ INSERT INTO `food_type` (`id`, `name`) VALUES
 CREATE TABLE `health_infos` (
   `id` int(11) NOT NULL,
   `student_id` varchar(255) NOT NULL,
-  `height` varchar(255) NOT NULL,
-  `weight` varchar(255) NOT NULL,
-  `bmi` varchar(75) NOT NULL,
+  `height` int(11) NOT NULL,
+  `weight` int(11) NOT NULL,
+  `bmi` int(11) NOT NULL,
   `status` varchar(50) NOT NULL,
+  `active_level` varchar(50) NOT NULL,
   `health_history` varchar(255) NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
@@ -190,9 +191,8 @@ CREATE TABLE `health_infos` (
 -- Dumping data for table `health_infos`
 --
 
-INSERT INTO `health_infos` (`id`, `student_id`, `height`, `weight`, `bmi`, `status`, `health_history`, `date_time_created`, `date_time_updated`) VALUES
-(10, 'mathew123', '142204.44', '1468.5', '0.002', 'Under Weight', '', '2022-09-26 00:00:00', '0000-00-00 00:00:00'),
-(11, 'mathew123', '135142.98', '1468.5', '0.002', 'Under Weight', '', '2022-10-02 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `health_infos` (`id`, `student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`, `date_time_updated`) VALUES
+(11, 'mathew123', 23, 23, 23, 'Normal Weight', '', 'asdasdasdasdasdsad', '2022-07-06 08:01:14', '2022-07-06 08:01:14');
 
 -- --------------------------------------------------------
 
@@ -226,24 +226,10 @@ CREATE TABLE `program_records` (
   `accumulated_days` varchar(30) NOT NULL,
   `foods` varchar(255) NOT NULL,
   `exercises` varchar(255) NOT NULL,
-  `day` varchar(50) NOT NULL,
   `ended_day` date NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `program_records`
---
-
-INSERT INTO `program_records` (`id`, `nutritionist_id`, `student_id`, `date_started`, `accumulated_days`, `foods`, `exercises`, `day`, `ended_day`, `date_time_created`, `date_time_updated`) VALUES
-(16, '', 'mathew123', '2022-10-02', '', 'Cereals, Pumpkin Seeds, Spinach, Cereals, Cheese', 'Push-up \r\n', '1', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(17, '', 'mathew123', '2022-10-02', '', 'Oats, Eggs, Dragon Fruit, Eggs, Crab', 'Bear Crawl\r\n', '2', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(18, '', 'mathew123', '2022-10-02', '', 'Pasta, Fish, Parsley, Nuts, Fish', 'Squats And Lunges\r\n', '3', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(19, '', 'mathew123', '2022-10-02', '', 'Potato, Fish, Pineapple, Bread, Fish', 'Push-up \r\n', '4', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(20, '', 'mathew123', '2022-10-02', '', 'Nuts, Eggs, Strawberries, Eggs, Eggs', 'Jogging ', '5', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(21, '', 'mathew123', '2022-10-02', '', 'Biscuits, Beef, Malunggay, Pasta, Crab', 'Sit-ups\r\n', '6', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00'),
-(22, '', 'mathew123', '2022-10-02', '', 'Grains, Crab, Broccoli, Biscuits, Rice', 'Catching Balls \r\n', '7', '2022-11-01', '2022-10-02 11:40:16', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -278,7 +264,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `student_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `gender`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `image`, `grade`, `section`, `date_time_created`, `date_time_updated`) VALUES
-(16, 'mathew123', 'asdadsd', 'asdasd', 'asdasd', 'asdasd', 'male', '13', 'asdasd', 'asd', '', '', '', '', '', '', '', '2022-09-19 19:09:45', '2022-09-19 19:09:45');
+(15, 'mathew123', 'Mathew123123', 'Francisco123123', 'Dalisay123123', '2022-07-11', 'Female', '123333', 'SA BAHAY33', ' KO33', 'PUTANGINA MO3', '1233333', '1111333333', '123123123333', 0x3230313434363737305f3839323032393131383034373935345f373931303634303233333433353038373931365f6e2e6a7067, 'Grade 3', '123123123asdas333', '2022-07-06 08:01:14', '2022-07-06 08:37:37');
 
 -- --------------------------------------------------------
 
@@ -300,11 +286,11 @@ CREATE TABLE `students_survery_answers` (
 --
 
 INSERT INTO `students_survery_answers` (`id`, `student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) VALUES
-(77, 'mathew123', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(78, 'mathew123', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(79, 'mathew123', 3, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(80, 'mathew123', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(81, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(37, 'mathew123', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(38, 'mathew123', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(39, 'mathew123', 3, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(40, 'mathew123', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(41, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -320,6 +306,7 @@ CREATE TABLE `users` (
   `first_name` varchar(50) NOT NULL,
   `middle_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
+  `contact_number` varchar(50) NOT NULL,
   `room` varchar(50) NOT NULL,
   `house` varchar(50) NOT NULL,
   `street` varchar(50) NOT NULL,
@@ -335,6 +322,13 @@ CREATE TABLE `users` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `contact_number`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `address`, `gender`, `user_type`, `image`, `student_id`, `date_time_created`, `date_time_updated`) VALUES
+(7, '202280578', 'hehez@gmail.com', '123', 'Leonida4', 'Frnaciso444', 'Dalisay44', '', '12344', 'SA BAHAY4', ' KO4', 'PUTANGINA MO44', '1234', '11114', '123123123444', '', 'Male', 2, 0x7072696d6172792e6a7067, 'mathew123', '2022-07-06 08:01:14', '2022-07-06 09:05:31');
 
 -- --------------------------------------------------------
 
@@ -482,19 +476,19 @@ ALTER TABLE `nutritionists`
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -534,6 +528,7 @@ ALTER TABLE `health_infos`
 -- Constraints for table `program_records`
 --
 ALTER TABLE `program_records`
+  ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`nutritionist_id`) REFERENCES `nutritionists` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `program_records_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
