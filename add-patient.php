@@ -27,7 +27,7 @@ include('security-admin.php');
     <div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="#">
           <span class="align-middle">Admin</span>
         </a>
 
@@ -93,171 +93,173 @@ include('security-admin.php');
 
 			<main class="content">
 				<div class="container-fluid p-0">
-                <h2>Name of Patient</h2>
-                <form action="add-patient.php" method="POST" enctype="multipart/form-data">
-                        <label for="">Student ID</label>
-                        <input type="text" name="student_id">
+                    <div class="card p-5">
+                        <h2>Name of Patient</h2>
+                        <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                            <label for="">Student ID</label>
+                            <input type="text" name="student_id">
 
-                        <br>
+                            <br>
 
-                        <label for="">First Name</label>
-                        <input type="text" name="first_name">
-                        <br>
+                            <label for="">First Name</label>
+                            <input type="text" name="first_name">
+                            <br>
 
-                        <label for="">Middle Name</label>
-                        <input type="text" name="middle_name">
+                            <label for="">Middle Name</label>
+                            <input type="text" name="middle_name">
 
-                        <br>
-                        <label for="">Last Name</label>
-                        <input type="text" name="last_name">
-
-
-
-                        <br>
-                        <label for="">Date of Birth</label>
-                        <input type="date" name="date_of_birth">
-
-                        <br>
-                        <label for="">Gender</label>
-                        <br>
-                        <label for="">Male</label>
-                        <input type="radio" name="gender" value="Male">
-                        <label for="">Female</label>
-                        <input type="radio" name="gender" value="Female">
-
-                        <br>
-                        <label for="">Image</label>
-                        <input type="file" name="image">
-
-                        <br>
-
-                        <label for="">Grade</label>
-                        <select name="grade" id="">
-                            <option value="Grade 1">Grade 1</option>
-                            <option value="Grade 2">Grade 2</option>
-                            <option value="Grade 3">Grade 3</option>
-                            <option value="Grade 4">Grade 4</option>
-                            <option value="Grade 5">Grade 5</option>
-                            <option value="Grade 6">Grade 6</option>
-                        </select>
-
-                        <br>
-                        <label for="">Section</label>
-                        <input type="text" name="section">
+                            <br>
+                            <label for="">Last Name</label>
+                            <input type="text" name="last_name">
 
 
-                        <!----name of parent--->
-                        <h2>Name of Guardian</h2>
-                        <br>
-                        <label for="">First Name</label>
-                        <input type="text" name="guardian_first_name">
-                        <br>
 
-                        <label for="">Middle Name</label>
-                        <input type="text" name="guardian_middle_name">
+                            <br>
+                            <label for="">Date of Birth</label>
+                            <input type="date" name="date_of_birth">
 
-                        <br>
-                        <label for="">Last Name</label>
-                        <input type="text" name="guardian_last_name">
-                        
-                        <br>
-                        <label for="">Email</label>
-                        <input type="email" name="email">
+                            <br>
+                            <label for="">Gender</label>
+                            <br>
+                            <label for="">Male</label>
+                            <input type="radio" name="gender" value="Male">
+                            <label for="">Female</label>
+                            <input type="radio" name="gender" value="Female">
 
+                            <br>
+                            <label for="">Image</label>
+                            <input type="file" name="image">
 
-                        <!-----ADDRESS---->
+                            <br>
 
-                        <br>
-                        <label for="">Address</label>
-                        <label for="">Room / Floor / Unit No. & Building Name</label>
-                        <input type="text" name="room">
+                            <label for="">Grade</label>
+                            <select name="grade" id="">
+                                <option value="Grade 1">Grade 1</option>
+                                <option value="Grade 2">Grade 2</option>
+                                <option value="Grade 3">Grade 3</option>
+                                <option value="Grade 4">Grade 4</option>
+                                <option value="Grade 5">Grade 5</option>
+                                <option value="Grade 6">Grade 6</option>
+                            </select>
 
-                        <br>
-                        <label for="">House / Lot & Block No.</label>
-                        <input type="text" name="house">
-
-                        <br>
-                        <label for="">Street</label>
-                        <input type="text" name="street">
-
-                        <br>
-                        <label for="">Subdivision</label>
-                        <input type="text" name="subdivision">
+                            <br>
+                            <label for="">Section</label>
+                            <input type="text" name="section">
 
 
-                        <br>
-                        <label for="">Barangay</label>
-                        <input type="text" name="barangay">
+                            <!----name of parent--->
+                            <h2>Name of Guardian</h2>
+                            <br>
+                            <label for="">First Name</label>
+                            <input type="text" name="guardian_first_name">
+                            <br>
+
+                            <label for="">Middle Name</label>
+                            <input type="text" name="guardian_middle_name">
+
+                            <br>
+                            <label for="">Last Name</label>
+                            <input type="text" name="guardian_last_name">
+                            
+                            <br>
+                            <label for="">Email</label>
+                            <input type="email" name="email">
 
 
-                        <br>
-                        <label for="">City</label>
-                        <input type="text" name="city">
+                            <!-----ADDRESS---->
 
-                        
-                        <br>
-                        <label for="">Zip Code</label>
-                        <input type="number" name="zip_code"> 
+                            <br>
+                            <label for="">Address</label>
+                            <label for="">Room / Floor / Unit No. & Building Name</label>
+                            <input type="text" name="room">
 
-                        <br>
+                            <br>
+                            <label for="">House / Lot & Block No.</label>
+                            <input type="text" name="house">
 
-                        <label for="">Gender</label>
-                        <br>
-                        <label for="">Male</label>
-                        <input type="radio" name="guardian_gender" value="Male">
-                        <label for="">Female</label>
-                        <input type="radio" name="guardian_gender" value="Female">
+                            <br>
+                            <label for="">Street</label>
+                            <input type="text" name="street">
 
-                        <br>
-                        <label for="">Image</label>
-                        <input type="file" name="guardian_image">
+                            <br>
+                            <label for="">Subdivision</label>
+                            <input type="text" name="subdivision">
 
-                        <br>
 
-                        <br>
+                            <br>
+                            <label for="">Barangay</label>
+                            <input type="text" name="barangay">
 
-                        <h2>Health Info</h2>
-                        <!----dito health info nya naman---BMI-->
-                        <label for="">Height</label>
-                        <input type="number" name="height">
-                        <br>
 
-                        <label for="">Weight</label>
-                        <input type="number" name="weight">
+                            <br>
+                            <label for="">City</label>
+                            <input type="text" name="city">
 
-                        <br>
+                            
+                            <br>
+                            <label for="">Zip Code</label>
+                            <input type="number" name="zip_code"> 
 
-                        <label for="">BMI</label>
-                        <input type="number" name="bmi">
+                            <br>
 
-                        <br>
-                        <br>
-                        <label for="">BMI Categories / Status</label>
+                            <label for="">Gender</label>
+                            <br>
+                            <label for="">Male</label>
+                            <input type="radio" name="guardian_gender" value="Male">
+                            <label for="">Female</label>
+                            <input type="radio" name="guardian_gender" value="Female">
 
-                        <br>
-                        <label for="">Underweight</label>
-                        <input type="radio" name="category" id="Underweigth" value="Underweigth">
+                            <br>
+                            <label for="">Image</label>
+                            <input type="file" name="guardian_image">
 
-                        <br>
-                        <label for="">Normal Weight</label>
-                        <input type="radio" name="category" id="Normal_Weight" value="Normal Weight">
-                        
-                        <br>
-                        <label for="">Over Weight</label>
-                        <input type="radio" name="category" id="Over_Weight" value="Over Weight">
+                            <br>
 
-                        <br>
-                        <label for="">Obesity</label>
-                        <input type="radio" name="category" id="Obesity" value="obesity">
+                            <br>
 
-                        <br>
-                        <label for="">Health History</label>
-                        <input type="text" name="health_history">
+                            <h2>Health Info</h2>
+                            <!----dito health info nya naman---BMI-->
+                            <label for="">Height</label>
+                            <input type="number" name="height">
+                            <br>
 
-                        <!-----riri ikaw na bahala mag adjust sa stepper--->
-                        <br>
-                        <input type="submit" name="add_patient" value="Next">
-                    </form>
+                            <label for="">Weight</label>
+                            <input type="number" name="weight">
+
+                            <br>
+
+                            <label for="">BMI</label>
+                            <input type="number" name="bmi">
+
+                            <br>
+                            <br>
+                            <label for="">BMI Categories / Status</label>
+
+                            <br>
+                            <label for="">Underweight</label>
+                            <input type="radio" name="category" id="Underweigth" value="Underweigth">
+
+                            <br>
+                            <label for="">Normal Weight</label>
+                            <input type="radio" name="category" id="Normal_Weight" value="Normal Weight">
+                            
+                            <br>
+                            <label for="">Over Weight</label>
+                            <input type="radio" name="category" id="Over_Weight" value="Over Weight">
+
+                            <br>
+                            <label for="">Obesity</label>
+                            <input type="radio" name="category" id="Obesity" value="obesity">
+
+                            <br>
+                            <label for="">Health History</label>
+                            <input type="text" name="health_history">
+
+                            <!-----riri ikaw na bahala mag adjust sa stepper--->
+                            <br>
+                            <input type="submit" name="add_patient" value="Next">
+                        </form>
+                    </div>
 				</div>
 			</main>
 		</div>
