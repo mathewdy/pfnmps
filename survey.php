@@ -162,8 +162,8 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
 
 
         $sql_insert_program_record = "INSERT INTO `program_records`(`student_id`, `date_started`,
-        `foods`, `exercises`, `day`, `ended_day`, `date_time_created`) 
-        VALUES ('$student_id','$date_time_created','$meal_per_day','$exercises','".$days[$i]."','$ended_date','$date_time_created')";
+        `foods`, `exercises`, `day`, `ended_day`, `date_time_created`, `date_time_updated`) 
+        VALUES ('$student_id','$date_time_created','$meal_per_day','$exercises','".$days[$i]."','$ended_date','$date_time_created', '$date_time_created')";
         $query_sql_insert_program_record = mysqli_query($conn, $sql_insert_program_record) or die (mysqli_error($conn));
     }
         if($query_sql_insert_program_record == true){

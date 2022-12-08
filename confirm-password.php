@@ -39,7 +39,7 @@ if(isset($_POST['reset'])){
     $password2 = $_POST['password2'];
     $email = $_SESSION['email'];
 
-    sendMail("$email");
+    // sendMail("$email");
     echo "sent  or not" . $email;
 
     // if($password1 != $password2){

@@ -39,7 +39,7 @@ $start_from = ($page-1)*05;
     <div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="home-admin.php">
           <span class="align-middle">Admin</span>
         </a>
 
@@ -60,15 +60,17 @@ $start_from = ($page-1)*05;
                         </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link disabled" href="#">
-                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Nutritionists</span>
-                        </a>
-					</li>
+					
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="add-patient.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+                        </a>
+					</li>
+
+                    <li class="sidebar-item">
+						<a class="sidebar-link disabled" href="admin-profile.php">
+                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Profile</span>
                         </a>
 					</li>
 				

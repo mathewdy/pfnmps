@@ -66,11 +66,12 @@ if(isset($_POST['login'])){
 
     if(mysqli_num_rows($run) > 0){
         if($run){
-            $get_all_numbers = "SELECT `contact_number` FROM `users`";
+            $get_all_numbers = "SELECT `user_id` FROM `admins` WHERE username= '$username'";
             $query_get_numbers = mysqli_query($conn, $get_all_numbers);
             if(mysqli_num_rows($query_get_numbers) > 0){
                 $rows = mysqli_fetch_array($query_get_numbers);
                 $_SESSION['username'] = $username;
+                $_SESSION['user_id'] = $rows['user_id'];
             // $messagebird = new MessageBird\Client('M7noSmsStsGtTf2VM7lYapDGs');
             // $message = new MessageBird\Objects\Message;
             // $message->originator = '+639156915704';

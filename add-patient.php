@@ -48,15 +48,16 @@ include('security-admin.php');
                         </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link disabled" href="#">
-                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Nutritionists</span>
-                        </a>
-					</li>
-
+					
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="add-patient.php">
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+                        </a>
+					</li>
+
+                    <li class="sidebar-item">
+						<a class="sidebar-link disabled" href="admin-profile.php">
+                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Profile</span>
                         </a>
 					</li>
 				
