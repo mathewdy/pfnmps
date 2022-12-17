@@ -1,6 +1,9 @@
 <?php
-include ("connection.php");
+ob_start();
+
+include ("../connection.php");
 session_start();
+
 if(isset($_GET['id'])){
     $student_id = $_GET['id'];
 }
@@ -77,7 +80,6 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
     $date = date("Y-m-d");
     $ended_date = date("Y-m-d", strtotime($date . '+ 30 days'));
     $acknowledge = 0;
-        
     // Survey
     $question = array(1, 2, 3, 4, 5);
     $surveyAnswer = $_POST['surveyAnswer'];
@@ -91,7 +93,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
             exit();
         }else{
             for($i=0;$i<count($question);$i++){
-                $sql = "INSERT INTO `students_survery_answers` (`student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) 
+                $sql = "INSERT INTO `students_survery_answers` (`student_id`, `question`, `answer` , `date_time_created` , `date_time_updated`) 
                 VALUES ('$student_id','".$question[$i]."','".$surveyAnswer[$i]."', '".$date_time_created."', '".$date_time_created."')";
                 $sql_query = mysqli_query($conn, $sql);
                 }
@@ -114,7 +116,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
         }
     }
     
-
+       
         // Foods
         $days = array(1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
 
@@ -170,9 +172,13 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
     }
         if($query_sql_insert_program_record == true){
             echo "program record inserted";
-            //dapat malipat pa to don sa set up ng password
+            $_SESSION['student_id'] = $student_id;
+
+            echo "<script>window.location.href='security-questions.php' </script>";
         }else{
             echo $conn->error;
         }
 }
+
+ob_end_flush();
 ?>

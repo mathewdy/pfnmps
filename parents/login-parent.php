@@ -37,13 +37,14 @@ ob_start();
                                         <label class="form-label">Password</label>
                                         <input class="form-control form-control-md" type="password" name="password">
                                         <small>
-                                            <a href="">Forgot password?</a>
+                                            <a href="forgot-password.php">Forgot password?</a>
                                         </small>
                                     </div>
                                     <div class="mt-5 text-center">
                                         <input class="btn btn-primary" type="submit" name="login" value="Sign in">
                                     </div>
                                     </form>
+                                    <a href="registration.php">Registration</a>
                                 </div>
                             </div>
                         </div>
@@ -68,10 +69,15 @@ if(isset($_POST['login']))
     $run = mysqli_query($conn,$query);
 
     if(mysqli_num_rows($run) > 0){
-        if($run){
+
+
+        foreach($run as $row){
             $_SESSION['email'] = $email;
+            $_SESSION['student_id'] = $row['student_id'];
             echo "<script>window.location.href='home-parent.php' </script>";
         }
+
+      
     }else{
         echo "wrong email or password";
     }

@@ -4,6 +4,7 @@ session_start();
 include('security-parent.php');
 $email = $_SESSION['email'];
 
+$student_id = $_SESSION['student_id'];
 ?>
 
 <!DOCTYPE html>
@@ -95,8 +96,56 @@ $email = $_SESSION['email'];
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
-                                No tasks available.
+                                <p>Note: Must do every other day.</p>
                             </div>
+
+                           <?php
+
+
+
+
+                            $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id'";
+                            $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
+
+                            if(mysqli_num_rows($run_daily_activities) > 0){
+                                foreach ($run_daily_activities as $row2){
+                                    ?>
+
+                                        
+                                     
+                                        <label for="">Acitivies:</label>
+                                        <p><?php echo $row2['exercises'] ?></p>
+                                        <label for="">Duration:</label>
+                                        <p>30 min.</p>
+                                        <form action="acknowledge.php" method="POST">
+                                            
+
+                                        <?php
+
+                                            if($row2['exercise_acknowledge'] == 0){
+                                                ?>
+
+                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                <input type="hidden" name="id" value="<?php echo $row2['id']?>">
+                                                <input type="hidden" name="daily_task" value="1">
+                                                <input type="submit" name="acknowledge_task" value="Acknowledge">
+                                        
+
+                                                <?php
+                                            }else{
+                                                echo "<div style='color:green;'>Acknowledged </div>";
+                                            }
+
+                                        ?>
+                                        
+                                        </form>
+                                        
+                                    <?php
+                                }
+                            }
+
+                            ?>
+
                         </div>   
                     </div>     
                 </div>
@@ -116,8 +165,67 @@ $email = $_SESSION['email'];
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
-                                No meal available.
                             </div>
+
+                            <?php
+
+
+                                $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
+                                $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
+
+                                if(mysqli_num_rows($run_program_records_date) > 0){
+                                    foreach($run_program_records_date as $row){
+                                        ?>
+
+
+                                            <label for="">Date Started</label>
+                                            <p><?php echo $row['date_started']?></p>
+
+                                        <?php
+                                    }
+                                }
+
+
+                                ?>
+
+                                <?php
+
+                                $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
+                                $run_program_records = mysqli_query($conn,$sql_program_records);
+
+                                if(mysqli_num_rows($run_program_records) > 0){
+                                    foreach($run_program_records as $row1){
+                                        ?>
+
+
+                                            <label for="">Day: </label>
+                                            <p><?php echo $row1['day']?></p>
+                                            <label for="">Foods:</label>
+                                            <p><?php echo $row1['foods']?></p>
+                                            <form action="acknowledge.php" method="POST">
+                                            <p>
+                                                <?php
+
+                                                    if($row1['food_acknowledge'] == 0){
+                                                        ?>      
+                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                            <input type="hidden" name="id" value="<?php echo $row1['id']?>">
+                                                            <input type="hidden" name="daily_meal" value="1">
+                                                            <input type="submit" name="acknowledge_meal" value="Acknowledge">
+                                                        <?php
+                                                    }else{
+                                                        echo "<div style='color: green;'>Acknowledged </div> ";
+                                                    }
+                                            
+                                                ?>
+                                            </p>
+                                            </form>
+
+                                        <?php
+                                    }
+                                }
+
+                            ?>
                         </div>   
                     </div>
                 </div>

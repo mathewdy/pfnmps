@@ -15,7 +15,7 @@ include ("connection.php");
 // $id_list = implode(",", array_keys($id_list)); 
 // $rows = query "SELECT * FROM QM_Products WHERE id IN ($id_list)"
 
-    $days = array(1, 2, 3, 4, 5, 6, 7);
+    $days = array(1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
 
     for($i=0;$i<count($days);$i++){
 
