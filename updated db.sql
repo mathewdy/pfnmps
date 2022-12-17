@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 03, 2022 at 11:10 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Generation Time: Dec 17, 2022 at 08:46 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -69,13 +69,6 @@ CREATE TABLE `admins` (
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `admins`
---
-
-INSERT INTO `admins` (`id`, `user_id`, `username`, `password`, `email`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `user_type`, `image`, `date_time_created`, `date_time_updated`) VALUES
-(4, '123', 'admin', '123', 'mathewdalisay@gmail.com', '', '', '', 0, '', 1, '', '2022-07-04 00:56:30', '2022-07-04 00:56:30');
-
 -- --------------------------------------------------------
 
 --
@@ -96,26 +89,26 @@ INSERT INTO `foods` (`id`, `food_type_id`, `name`) VALUES
 (1, 3, 'watermelon'),
 (2, 3, 'apples'),
 (3, 3, 'mangos'),
-(4, 3, 'kiwis'),
-(5, 3, 'cherries'),
+(4, 3, 'Monggo'),
+(5, 3, 'Meat'),
 (6, 3, 'bananas'),
 (7, 3, 'oranges'),
-(8, 3, 'grapes'),
-(9, 3, 'guava'),
-(10, 3, 'melon'),
-(11, 3, 'strawberries'),
-(12, 3, 'grapefruit'),
-(13, 3, 'blackberries'),
+(8, 3, 'Potato'),
+(9, 3, 'Stir fried tofu'),
+(10, 3, 'Curry chicken'),
+(11, 3, 'Eggs'),
+(12, 3, 'Ham & Cheese'),
+(13, 3, 'Chocolate'),
 (14, 3, 'avocados'),
-(15, 3, 'plums'),
+(15, 3, 'Coconut Juice'),
 (16, 3, 'lemon'),
-(17, 3, 'dragon fruit'),
-(18, 3, 'pears'),
-(19, 3, 'limes'),
+(17, 3, 'Chicken'),
+(18, 3, 'Carrots'),
+(19, 3, 'Peanuts'),
 (20, 3, 'pineapple'),
 (21, 3, 'malunggay'),
 (22, 3, 'saluyot'),
-(23, 3, 'monggo'),
+(23, 3, 'Corn'),
 (24, 3, 'Spinach'),
 (25, 3, 'Broccoli'),
 (26, 3, 'Seaweed'),
@@ -192,26 +185,7 @@ CREATE TABLE `health_infos` (
 --
 
 INSERT INTO `health_infos` (`id`, `student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`, `date_time_updated`) VALUES
-(11, 'mathew123', 23, 23, 23, 'Normal Weight', '', 'asdasdasdasdasdsad', '2022-07-06 08:01:14', '2022-07-06 08:01:14'),
-(14, '129837', 210399, 1469, 0, 'Under Weight', '1', 'ijni', '2022-10-03 05:05:43', '0000-00-00 00:00:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nutritionists`
---
-
-CREATE TABLE `nutritionists` (
-  `id` int(11) NOT NULL,
-  `user_id` varchar(250) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `middle_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `gender` varchar(50) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `date_time_created` datetime NOT NULL,
-  `date_time_updated` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+(41, 'Brent', 60778182, 858740, 0, 'Under Weight', '1', 'Jamalia', '2022-12-18 03:44:01', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -221,13 +195,13 @@ CREATE TABLE `nutritionists` (
 
 CREATE TABLE `program_records` (
   `id` int(11) NOT NULL,
-  `nutritionist_id` varchar(20) NOT NULL,
   `student_id` varchar(20) NOT NULL,
   `date_started` date NOT NULL,
-  `accumulated_days` varchar(30) NOT NULL,
   `foods` varchar(255) NOT NULL,
   `exercises` varchar(255) NOT NULL,
-  `day` text NOT NULL,
+  `day` varchar(50) NOT NULL,
+  `food_acknowledge` int(11) NOT NULL,
+  `exercise_acknowledge` int(11) NOT NULL,
   `ended_day` date NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
@@ -237,14 +211,61 @@ CREATE TABLE `program_records` (
 -- Dumping data for table `program_records`
 --
 
-INSERT INTO `program_records` (`id`, `nutritionist_id`, `student_id`, `date_started`, `accumulated_days`, `foods`, `exercises`, `day`, `ended_day`, `date_time_created`, `date_time_updated`) VALUES
-(2, '', '129837', '2022-10-03', '', 'Corn, Fish, Bananas, Cereals, Fish', 'Sit-ups\r\n', '1', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(3, '', '129837', '2022-10-03', '', 'Bread, Cheese, Lemon, Wheats, Crab', 'Stretching', '2', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(4, '', '129837', '2022-10-03', '', 'Bread, Cheese, Watermelon, Sweet Potato, Beef', 'Jumping\r\n', '3', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(5, '', '129837', '2022-10-03', '', 'Bread, Cheese, Melon, Biscuits, Pumpkin Seeds', 'Jumping\r\n', '4', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(6, '', '129837', '2022-10-03', '', 'Eggs, Rice, Lemon, Cereals, Pumpkin Seeds', 'Squats And Lunges\r\n', '5', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(7, '', '129837', '2022-10-03', '', 'Pasta, Rice, Malunggay, Pasta, Eggs', 'Push-up \r\n', '6', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00'),
-(8, '', '129837', '2022-10-03', '', 'Sweet Potato, Pumpkin Seeds, Watermelon, Noodles, Fish', 'Sit-ups\r\n', '7', '2022-11-02', '2022-10-03 05:09:36', '0000-00-00 00:00:00');
+INSERT INTO `program_records` (`id`, `student_id`, `date_started`, `foods`, `exercises`, `day`, `food_acknowledge`, `exercise_acknowledge`, `ended_day`, `date_time_created`, `date_time_updated`) VALUES
+(331, 'Brent', '2022-12-18', 'Potato, Eggs, Oranges, Cheese, Beef', 'Jumping\r\n', '1', 0, 1, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(332, 'Brent', '2022-12-18', 'Cheese, Rice, Eggs, Sweet Potato, Eggs', 'Squats And Lunges\r\n', '2', 1, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(333, 'Brent', '2022-12-18', 'Cheese, Fish, Chicken, Eggs, Fish', 'Squats And Lunges\r\n', '3', 1, 1, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(334, 'Brent', '2022-12-18', 'Biscuits, Cheese, Curry Chicken, Potato, Cheese', 'Bear Crawl\r\n', '4', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(335, 'Brent', '2022-12-18', 'Milk, Fish, Monggo, Bread, Fish', 'Stretching', '5', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(336, 'Brent', '2022-12-18', 'Milk, Crab, Parsley, Cereals, Crab', 'Squats And Lunges\r\n', '6', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(337, 'Brent', '2022-12-18', 'Honey, Eggs, Parsley, Eggs, Eggs', 'Jogging ', '7', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(338, 'Brent', '2022-12-18', 'Milk, Beef, Mangos, Eggs, Beef', 'Push-up \r\n', '8', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(339, 'Brent', '2022-12-18', 'Sweet Potato, Rice, Coconut Juice, Honey, Chicken', 'Squats And Lunges\r\n', '9', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(340, 'Brent', '2022-12-18', 'Cereals, Rice, Meat, Potato, Cheese', 'Bear Crawl\r\n', '10', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(341, 'Brent', '2022-12-18', 'Grains, Chicken, Bananas, Grains, Eggs', 'Bear Crawl\r\n', '11', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(342, 'Brent', '2022-12-18', 'Bread, Cheese, Corn, Noodles, Crab', 'Stretching', '12', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(343, 'Brent', '2022-12-18', 'Biscuits, Chicken, Bell Peppers, Corn, Chicken', 'Jumping\r\n', '13', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(344, 'Brent', '2022-12-18', 'Pasta, Beef, Saluyot, Honey, Crab', 'Sit-ups\r\n', '14', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(345, 'Brent', '2022-12-18', 'Pasta, Fish, Oranges, Wheats, Crab', 'Squats And Lunges\r\n', '15', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(346, 'Brent', '2022-12-18', 'Sweet Potato, Rice, Spinach, Honey, Cheese', 'Sit-ups\r\n', '16', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(347, 'Brent', '2022-12-18', 'Pasta, Eggs, Spinach, Biscuits, Beef', 'Bear Crawl\r\n', '17', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(348, 'Brent', '2022-12-18', 'Eggs, Cheese, Pineapple, Cheese, Cheese', 'Jogging ', '18', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(349, 'Brent', '2022-12-18', 'Bread, Cheese, Curry Chicken, Honey, Crab', 'Jumping\r\n', '19', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(350, 'Brent', '2022-12-18', 'Cheese, Cheese, Mangos, Corn, Beef', 'Bear Crawl\r\n', '20', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(351, 'Brent', '2022-12-18', 'Wheats, Rice, Malunggay, Cheese, Pumpkin Seeds', 'Jumping\r\n', '21', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(352, 'Brent', '2022-12-18', 'Eggs, Eggs, Oranges, Cereals, Fish', 'Sit-ups\r\n', '22', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(353, 'Brent', '2022-12-18', 'Potato, Beef, Peanuts, Biscuits, Eggs', 'Sit-ups\r\n', '23', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(354, 'Brent', '2022-12-18', 'Noodles, Cheese, Monggo, Cheese, Rice', 'Sit-ups\r\n', '24', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(355, 'Brent', '2022-12-18', 'Potato, Chicken, Cauliflower, Pasta, Beef', 'Jumping\r\n', '25', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(356, 'Brent', '2022-12-18', 'Grains, Chicken, Lemon, Noodles, Eggs', 'Catching Balls \r\n', '26', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(357, 'Brent', '2022-12-18', 'Bread, Crab, Malunggay, Biscuits, Crab', 'Squats And Lunges\r\n', '27', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(358, 'Brent', '2022-12-18', 'Potato, Eggs, Potato, Honey, Eggs', 'Jumping\r\n', '28', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(359, 'Brent', '2022-12-18', 'Eggs, Fish, Watermelon, Noodles, Rice', 'Push-up \r\n', '29', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(360, 'Brent', '2022-12-18', 'Oats, Beef, Lemon, Corn, Pumpkin Seeds', 'Jogging ', '30', 0, 0, '2023-01-17', '2022-12-18 03:44:05', '2022-12-18 03:44:05');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `questions`
+--
+
+CREATE TABLE `questions` (
+  `id` int(10) NOT NULL,
+  `student_id` varchar(255) NOT NULL,
+  `question_1` varchar(50) NOT NULL,
+  `answer_1` varchar(50) NOT NULL,
+  `question_2` varchar(50) NOT NULL,
+  `answer_2` varchar(50) NOT NULL,
+  `date_time_created` datetime NOT NULL,
+  `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `student_id`, `question_1`, `answer_1`, `question_2`, `answer_2`, `date_time_created`, `date_time_updated`) VALUES
+(6, 'Brent', 'What was your favorite food as a child?', '123', 'What was your first car?', '1234', '2022-12-18 03:44:14', '2022-12-18 03:44:14');
 
 -- --------------------------------------------------------
 
@@ -279,8 +300,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `student_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `gender`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `image`, `grade`, `section`, `date_time_created`, `date_time_updated`) VALUES
-(15, 'mathew123', 'Mathew123123', 'Francisco123123', 'Dalisay123123', '2022-07-11', 'Female', '123333', 'SA BAHAY33', ' KO33', 'PUTANGINA MO3', '1233333', '1111333333', '123123123333', 0x3230313434363737305f3839323032393131383034373935345f373931303634303233333433353038373931365f6e2e6a7067, 'Grade 3', '123123123asdas333', '2022-07-06 08:01:14', '2022-07-06 08:37:37'),
-(22, '129837', 'Jade mark', 'Hundsum', 'Sakdlj', '2022-10-05', 'Male', '009', '09', 'OIJ', 'MIOJNOI', '88', 'JKJSND', '23', 0x666c6f7763686172745f657276696e286e65775f70726f6772616d292e64726177696f2e706e67, 'Grade 1', '21312', '2022-10-03 05:05:43', '2022-10-03 05:05:43');
+(45, 'Brent', 'Lucas', 'Brenda', 'Kameko', '1992-09-20', 'Female', 'MARIS', 'SHELLEY', 'HAVIVA', 'BELL', 'JASON', 'ROSE', '15902', 0x3332303432343434345f3535363637323237353936303437335f353237323131363237353838313337323132345f6e2e6a7067, 'Grade 6', 'Emma', '2022-12-18 03:44:01', '2022-12-18 03:44:01');
 
 -- --------------------------------------------------------
 
@@ -302,16 +322,11 @@ CREATE TABLE `students_survery_answers` (
 --
 
 INSERT INTO `students_survery_answers` (`id`, `student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) VALUES
-(37, 'mathew123', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(38, 'mathew123', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(39, 'mathew123', 3, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(40, 'mathew123', 4, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(41, 'mathew123', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(52, '129837', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(53, '129837', 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(54, '129837', 3, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(55, '129837', 4, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(56, '129837', 5, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(147, 'Brent', 1, 1, '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(148, 'Brent', 2, 1, '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(149, 'Brent', 3, 1, '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(150, 'Brent', 4, 0, '2022-12-18 03:44:05', '2022-12-18 03:44:05'),
+(151, 'Brent', 5, 1, '2022-12-18 03:44:05', '2022-12-18 03:44:05');
 
 -- --------------------------------------------------------
 
@@ -349,8 +364,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `contact_number`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `address`, `gender`, `user_type`, `image`, `student_id`, `date_time_created`, `date_time_updated`) VALUES
-(7, '202280578', 'hehez@gmail.com', '123', 'Leonida4', 'Frnaciso444', 'Dalisay44', '', '12344', 'SA BAHAY4', ' KO4', 'PUTANGINA MO44', '1234', '11114', '123123123444', '', 'Male', 2, 0x7072696d6172792e6a7067, 'mathew123', '2022-07-06 08:01:14', '2022-07-06 09:05:31'),
-(14, '202228995', 'om@gmail.com', 'Welcome@12345', 'Okm', 'Omom', 'Omo', '', '009', '09', 'OIJ', 'MIOJNOI', '88', 'JKJSND', '23', '', 'Male', 2, 0x666c6f7763686172745f657276696e286f6c64292e64726177696f2e706e67, '129837', '2022-10-03 05:05:43', '2022-10-03 05:05:43');
+(37, '202238855', 'fadymic@mailinator.com', 'Welcome@12345', 'Ori', 'Cameran', 'Edan', '', 'MARIS', 'SHELLEY', 'HAVIVA', 'BELL', 'JASON', 'ROSE', '15902', '', 'Female', 2, 0x3331353237373330395f3439373232343633353638393036305f343736343732313631393034333233393338385f6e2e6a7067, 'Brent', '2022-12-18 03:44:01', '2022-12-18 03:44:01');
 
 -- --------------------------------------------------------
 
@@ -411,18 +425,18 @@ ALTER TABLE `health_infos`
   ADD KEY `student_id` (`student_id`);
 
 --
--- Indexes for table `nutritionists`
---
-ALTER TABLE `nutritionists`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
 -- Indexes for table `program_records`
 --
 ALTER TABLE `program_records`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `nutritionist_id` (`nutritionist_id`,`student_id`),
+  ADD KEY `nutritionist_id` (`student_id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `questions`
+--
+ALTER TABLE `questions`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`);
 
 --
@@ -486,37 +500,37 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `nutritionists`
---
-ALTER TABLE `nutritionists`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
+
+--
+-- AUTO_INCREMENT for table `questions`
+--
+ALTER TABLE `questions`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_types`
@@ -550,7 +564,13 @@ ALTER TABLE `health_infos`
 -- Constraints for table `program_records`
 --
 ALTER TABLE `program_records`
-  ADD CONSTRAINT `program_records_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `questions`
+--
+ALTER TABLE `questions`
+  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students_survery_answers`
