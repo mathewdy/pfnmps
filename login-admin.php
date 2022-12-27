@@ -42,6 +42,7 @@ ob_start();
                                     <div class="mt-5 text-center">
                                         <input class="btn btn-primary" type="submit" name="login" value="Sign in">
                                     </div>
+                                    <a href="registration-admin.php">Registration</a>
                                     </form>
                                 </div>
                             </div>

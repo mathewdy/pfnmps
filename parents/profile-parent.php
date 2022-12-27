@@ -87,7 +87,7 @@ $email = $_SESSION['email'];
                         <h1>Parent</h1>
                             <?php
 
-                            $query = "SELECT users.first_name AS 'users_first_name', users.middle_name AS 'users_middle_name', users.last_name AS 'users_last_name' , users.room AS 'users_room', users.house AS 'users_house', users.street AS 'users_street' , users.subdivision AS 'users_subdivision' , users.barangay AS 'users_barangay', users.city AS 'users_city', users.zip AS 'users_zip', users.image AS 'parent_image', students.first_name AS 'students_first_name', students.middle_name  AS 'students_middle_name', students.last_name  AS 'students_last_name', students.date_of_birth AS 'students_date_of_birth', students.gender AS 'students_gender', students.student_id
+                            $query = "SELECT users.first_name AS 'users_first_name', users.middle_name AS 'users_middle_name', users.last_name AS 'users_last_name' , users.room AS 'users_room',users.user_id AS 'users_id', users.house AS 'users_house', users.street AS 'users_street' , users.subdivision AS 'users_subdivision' , users.barangay AS 'users_barangay', users.city AS 'users_city', users.zip AS 'users_zip', users.image AS 'parent_image', students.first_name AS 'students_first_name', students.middle_name  AS 'students_middle_name', students.last_name  AS 'students_last_name', students.date_of_birth AS 'students_date_of_birth', students.gender AS 'students_gender', students.student_id
                             AS 'students_student_id' FROM users 
                             LEFT JOIN students ON  users.student_id = students.student_id WHERE email = '$email'";
                             $run = mysqli_query($conn,$query);
@@ -95,10 +95,11 @@ $email = $_SESSION['email'];
                             if(mysqli_num_rows($run) > 0){
                             foreach ($run as $row) {
                                 ?>
+                                    <form action="" method="POST" enctype="multipart/form-data">
 
                                     <!-----hindi pa tapos yung profile---->
                                     <label for="">Image:</label>
-                                    <img src="<?php echo "../guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
+                                    <img src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
                                     <br>
 
                                     <label for="">Name:</label>
@@ -132,6 +133,9 @@ $email = $_SESSION['email'];
 
                                     <label for="">Zip: </label>
                                     <p><?php echo $row ['users_zip']?></p>
+
+                                    <a href="edit-profile-parent.php?users_id=<?php echo $row['users_id']?>">Edit</a>
+                                    </form>
 
                                 <?php
                             }
