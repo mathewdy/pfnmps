@@ -16,15 +16,125 @@ ob_start();
 </head>
 <body>
 
+    <h2>Registration</h2>
+
     <form action="" method="POST" enctype="multipart/form-data">
-        
+        <label for="">Email: </label>
+        <br>
+        <input type="email" name="email" id="">
+        <br>
+        <label for="">Password:</label>
+        <br>
+        <input type="password" name="password">
+        <br>
+        <label for="">First Name:</label>
+        <br>
+        <input type="text" name="first_name">
+        <br>
+        <label for="">Middle Name:</label>
+        <br>
+        <input type="text" name="middle_name">
+        <br>
+        <label for="">Last Name:</label>
+        <br>
+        <input type="text" name="last_name">
+        <br>
+        <label for="">Gender:</label>
+        <br>
+        <label for="">Male</label>
+        <input type="radio" name="gender" value="Male">
+        <label for="">Female</label>
+        <input type="radio" name="gender" value="Female">
+        <br>
+        <label for="">Address</label>
+        <br>
+        <input type="text" name="address">
+        <br>
+        <label for="">Image:</label>
+        <br>
+        <input type="file" name="image" id="">
+        <br>
+        <input type="submit" name="register" value="Register">
     </form>
+    <a href="login-admin.php">Login</a>
     
 </body>
 </html>
 
 
 <?php
+
+
+if(isset($_POST['register'])){
+
+    //year month date
+    date_default_timezone_set("Asia/Manila");
+    $time= date("h:i:s", time());
+    $date = date('y-m-d');
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $first_name = $_POST['first_name'];
+    $middle_name = $_POST['middle_name'];
+    $last_name = $_POST['last_name'];
+    $gender = $_POST['gender'];
+
+    if($gender == 'Male'){
+        $gender = 1;
+    }else{
+        $gender = 2;
+    }
+    $address = $_POST['address'];
+    
+    
+    $image = $_FILES['image']['name'];
+    $allowed_extension = array('gif' , 'png' , 'jpeg', 'jpg' , 'PNG' , 'JPEG' , 'JPG' , 'GIF');
+    $filename = $_FILES ['image']['name'];
+    $file_extension = pathinfo($filename , PATHINFO_EXTENSION);
+
+
+
+    $user_id = "2022" . rand('00000', '99999');
+    $user_type = "1";
+
+    $verify_sql = "SELECT email FROM admins WHERE email = '$email'";
+    $run_verify = mysqli_query($conn,$verify_sql);
+
+    if(mysqli_num_rows($run_verify) > 0){
+        echo "user already added";
+        exit();
+    }
+
+    $verify_user_id = "SELECT user_id FROM admins WHERE user_id = '$user_id'";
+    $run_verify_2 = mysqli_query($conn,$verify_user_id);
+    if(mysqli_num_rows($run_verify_2) > 0){
+        echo "user_id already added";
+        exit();
+    }
+    
+    if(!in_array($file_extension, $allowed_extension)){
+        echo "image not added"  ;
+        //ayusin din to
+       exit();
+    }else{
+        $insert = "INSERT INTO admins (user_id,email,password,first_name,middle_name,last_name,gender,address,user_type,image,date_time_created,date_time_updated) VALUES ('$user_id', '$email', '$password', '$first_name','$middle_name' , '$last_name' , '$gender', '$address','$user_type', '$image' ,'$date $time' , '$date $time') ";
+        $query_sql = mysqli_query($conn,$insert);
+        move_uploaded_file($_FILES["image"]["tmp_name"], "admin_image/" . $_FILES["image"] ["name"]);
+
+        if($query_sql){
+            echo "user added";
+            $_SESSION['user_id'];
+            header('Location: security-questions-admin.php');
+            // dapat ma redirect na lang sa set up password chrurut
+        }else{
+            echo "error";
+        }
+
+    }
+
+
+
+}
 
 ob_end_flush();
 ?>

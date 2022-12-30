@@ -40,8 +40,11 @@ $user_id = $_SESSION['user_id'];
                     <p><?php echo $row['address']?></p>
                     <label for="">Email:<label>
                     <p><?php echo $row['email']?></p>
+                    <label for="">Image</label>
+                    <img src="<?php echo "admin_image/". $row['image']; ?>" alt="" width="200px" height="200px" alt="">
+                    <br>
                     <a href="edit-profile-admin.php?user_id=<?php echo $row['user_id']?>">Edit</a>
-
+                    
                     
 
 

@@ -170,6 +170,8 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
     }
         if($query_sql_insert_program_record == true){
             echo "program record inserted";
+            $_SESSION['student_id'];
+            header("Location: security-questions.php");
             //dapat malipat pa to don sa set up ng password
         }else{
             echo $conn->error;

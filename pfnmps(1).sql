@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2022 at 10:03 AM
+-- Generation Time: Dec 30, 2022 at 02:44 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,6 +67,14 @@ CREATE TABLE `admins` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `user_type`, `image`, `date_time_created`, `date_time_updated`) VALUES
+(8, '20228648', 'giwejo@mailinator.com', 'Pa$$w0rd!', 'Roanna123', 'Alexandra', 'Vance', 1, 'Alea', 1, 0x70617373706f72742e504e47, '2022-12-29 08:37:48', '2022-12-29 08:37:48'),
+(11, '202280110', 'cogywebino@mailinator.com', '123', 'Vivien', 'Petra', 'Dacey', 2, 'Nita', 1, 0x3331353333313530315f3637323830333736313231343136325f353734333231383235333433333035363131325f6e2e6a7067, '2022-12-29 08:49:38', '2022-12-29 08:49:38');
 
 -- --------------------------------------------------------
 
@@ -250,7 +258,9 @@ INSERT INTO `program_records` (`id`, `student_id`, `date_started`, `foods`, `exe
 
 CREATE TABLE `questions` (
   `id` int(10) NOT NULL,
+  `user_type` int(11) NOT NULL,
   `student_id` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `question_1` varchar(50) NOT NULL,
   `answer_1` varchar(50) NOT NULL,
   `question_2` varchar(50) NOT NULL,
@@ -263,8 +273,9 @@ CREATE TABLE `questions` (
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `student_id`, `question_1`, `answer_1`, `question_2`, `answer_2`, `date_time_created`, `date_time_updated`) VALUES
-(7, 'Jelani', 'What is the name of your first pet?', '123', 'What was your first car?', '14', '2022-12-27 03:58:41', '2022-12-27 03:58:41');
+INSERT INTO `questions` (`id`, `user_type`, `student_id`, `user_id`, `question_1`, `answer_1`, `question_2`, `answer_2`, `date_time_created`, `date_time_updated`) VALUES
+(9, 1, '0', 123, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '12', '2022-12-29 08:37:53', '2022-12-29 08:37:53'),
+(10, 1, '0', 123, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '12', '2022-12-29 08:49:43', '2022-12-29 08:49:43');
 
 -- --------------------------------------------------------
 
@@ -480,7 +491,7 @@ ALTER TABLE `activities`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -510,7 +521,7 @@ ALTER TABLE `program_records`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `students`
@@ -563,12 +574,6 @@ ALTER TABLE `health_infos`
 --
 ALTER TABLE `program_records`
   ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `questions`
---
-ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students_survery_answers`

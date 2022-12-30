@@ -1,10 +1,10 @@
 <?php
-include('../connection.php');
+
+include('connection.php');
 session_start();
 ob_start();
 
- $_SESSION['student_id'];
-
+$_SESSION['user_id'];
 
 ?>
 
@@ -61,17 +61,18 @@ ob_start();
 
 if(isset($_POST['add_security'])){
 
+
     date_default_timezone_set("Asia/Manila");
     $time= date("h:i:s", time());
     $date = date('y-m-d');
-    
+
     $question_1 = $_POST['question_1'];
     $answer1 = $_POST['answer1'];
     $question_2 = $_POST['question_2'];
     $answer2 = $_POST['answer2'];
-    $student_id = $_SESSION['student_id'];
-    $user_type = 2;
-    $user_id = 0;
+    $user_type = 1;
+    $student_id = 0;
+    $user_id = $_SESSION['user_id'];
 
     if($question_1 == $question_2){
         echo "<script>alert('Choose other question') </script>";
@@ -84,17 +85,15 @@ if(isset($_POST['add_security'])){
     
         if($run){
             echo "<script>alert('Registration Successful'); </script>";
-            echo "<script>window.location.href= 'home-admin.php' </script>";
+            echo "<script>window.location.href= 'login-admin.php' </script>";
         }else{
             echo "error" . $conn->error;
         }
     }
-
-
+    
 }
 
 
 ob_end_flush();
-
 
 ?>

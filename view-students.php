@@ -134,7 +134,7 @@ $start_from = ($page-1)*05;
                                             
                                                 <tr>
                                                     <td><?php echo $no; ?></td>
-                                                    <td><img src="student_image/<?php echo $row ['image']; ?>" alt="" width="80px" height="80px"></td>
+                                                    <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
                                                     <td><?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?></td>
                                                     <td colspan="2"><?php echo $row ['date_of_birth']?></td>
                                                     <td><?php echo $row ['grade']?></td>

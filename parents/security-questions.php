@@ -70,6 +70,8 @@ if(isset($_POST['add_security'])){
     $question_2 = $_POST['question_2'];
     $answer2 = $_POST['answer2'];
     $student_id = $_SESSION['student_id'];
+    $user_type = 2;
+    $user_id = 0;
 
     if($question_1 == $question_2){
         echo "<script>alert('Choose other question') </script>";
@@ -77,7 +79,7 @@ if(isset($_POST['add_security'])){
         echo "<script>alert('Answer must not be the same') </script>";
     }else{
 
-        $sql = "INSERT INTO questions (student_id,question_1,answer_1,question_2,answer_2,date_time_created,date_time_updated) VALUES ('$student_id', '$question_1', '$answer1', '$question_2', '$answer2' , '$date $time', '$date $time')";
+        $sql = "INSERT INTO questions (user_type,student_id,user_id,question_1,answer_1,question_2,answer_2,date_time_created,date_time_updated) VALUES ('$user_type','$student_id','$user_id' ,'$question_1', '$answer1', '$question_2', '$answer2' , '$date $time', '$date $time')";
         $run = mysqli_query($conn,$sql);
     
         if($run){

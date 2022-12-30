@@ -31,7 +31,12 @@ ob_start();
             foreach($run as $row){
                 ?>
   
-                    <form action="edit-profile-admin.php" method="POST">
+                    <form action="edit-profile-admin.php" method="POST" enctype="multipart/form-data">
+                    <label for="">Image:</label>
+                    <input type="file" name="image">
+                    <br>
+                    <img src="<?php echo "admin_image/". $row['image']; ?>" alt="" width="200px" height="200px">
+                    <br>
                     <label for="">First Name:</label>
                     <input type="text" name="first_name" value="<?php echo $row['first_name'] ?>">
                     <label for="">Last Name:</label>
@@ -40,6 +45,7 @@ ob_start();
                     <input type="text" name="address" value="<?php echo $row['address']?>">
                     <label for="">Email:<label>
                     <input type="email" value="<?php echo $row['email']?>" name="email">
+                    <input type="hidden" name="old_image" value="<?php echo $row ['image']?>">
                     
                     <label for="">Password:</label>
                     <input type="password" name="password" value="<?php echo $row['password']?>">
@@ -70,14 +76,50 @@ if(isset($_POST['update'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql_update = "UPDATE admins SET first_name = '$first_name' , last_name = '$last_name', address='$address', email = '$email', password='$password' WHERE user_id = '$user_id'";
-    $run_update = mysqli_query($conn,$sql_update);
 
-    if($run_update){
-        echo "updated profile";
+    $new_image = $_FILES['image']['name'];
+    $old_image = $_POST['old_image'];
+
+    if($new_image != ''){
+        $update_filename = $_FILES['image']['name'];
     }else{
-        echo "error";
+        $update_filename = $old_image;
     }
+
+
+    if(empty($new_image)){
+        $query_update_1 = "UPDATE admins SET first_name = '$first_name' , last_name = '$last_name', address='$address', email = '$email', password='$password' WHERE user_id = '$user_id'";
+        $run_1 = mysqli_query($conn,$query_update_1);
+        if($run_1){
+            echo  "<script>window.location.href='admin-profile.php' </script>";
+        }else{
+            echo "error update_1" . $conn->error; 
+        }
+    }
+
+
+    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
+    $filename = $_FILES['image']['name'];
+    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    if(!in_array($file_extension,$allowed_extension)){
+        echo "<script>alert('File not allowed'); </script>";
+        echo "<script>window.location.href='profile.php' </script>";
+    }else{
+        $sql_update = "UPDATE admins SET first_name = '$first_name' , last_name = '$last_name', address='$address', email = '$email', password='$password', image = '$update_filename' WHERE user_id = '$user_id'";
+        $run_update = mysqli_query($conn,$sql_update);
+    
+        if($run_update){
+            move_uploaded_file($_FILES["image"]["tmp_name"], "admin_image/".$_FILES["image"]["name"]);
+            unlink("admin_image/". $old_image);
+            echo "<script>window.location.href='admin-profile.php' </script>";
+
+        }else{
+            echo "error";
+        }
+    }
+    
+
+   
 }
 
 ob_end_flush();
