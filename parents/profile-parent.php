@@ -99,7 +99,7 @@ $email = $_SESSION['email'];
 
                                     <!-----hindi pa tapos yung profile---->
                                     <label for="">Image:</label>
-                                    <img src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
+                                    <img src="<?php echo "../guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
                                     <br>
 
                                     <label for="">Name:</label>

@@ -4,6 +4,7 @@ session_start();
 ob_start();
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -105,6 +106,52 @@ ob_start();
                 //to be continued to 
                 if(isset($_GET['student_id'])){
                     $student_id = $_GET['student_id'];
+
+                    //pagination
+
+                    // if(isset($_GET['page'])){
+                    //     $page = $_GET['page'];
+                    //     $student_id = $_GET['student_id'];
+
+                    // }else{
+                    //     $page = 1;
+
+                    // }
+
+                    // $num_per_page = 05;
+                    // $start_from = ($page-1)*05;
+
+                    // $query = "SELECT exercises,exercise_acknowledge, id FROM program_records
+                    // WHERE student_id = '$student_id' LIMIT $start_from , $num_per_page " ;
+                    // $run_page = mysqli_query($conn,$query);
+
+                        $query = "SELECT * FROM students WHERE student_id = '$student_id'";
+                        $run = mysqli_query($conn,$query);
+
+                        if(mysqli_num_rows($run) > 0){
+                            foreach($run as $row ){
+                                ?>
+
+
+                                    <form action="" method="POST"  enctype="multipart/form-data">
+
+                                        <label for="">Update Image</label>
+                                        <br>
+                                        <img src="student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
+                                        <br>
+
+                                        <input type="file" name="image">
+
+                                        <br>
+                                        <input type="submit" name="update_image" value="Update">
+                                        <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
+                                    </form>
+
+
+                                <?php   
+                            }
+                        }
+
                     
 
                     $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id FROM students LEFT JOIN users
@@ -139,9 +186,13 @@ ob_start();
 
                                     <br>
 
+
+                                    
                                     <a href="edit-student-image.php?student_id=<?php echo $row ['student_student_id']?>">Edit Photo</a>
 
                                     <a href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
+
+                            
 
                                     <br>
                                     <h2>Address</h2>
@@ -207,14 +258,143 @@ ob_start();
                             <?php
                         }
                     }
+
+                    ?>
+
+                        <br>
+                        <h3>Student Activities</h3>
+                        <br>
+
+                    <?php
+
+                        $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
+                        $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
+
+                        if(mysqli_num_rows($run_program_records_date) > 0){
+                            foreach($run_program_records_date as $row){
+                                ?>
+
+
+                                    <h4>Date Started</h4>
+                                    <p><?php echo $row['date_started']?></p>
+
+                                <?php
+                            }
+                        }
+
+                        //gagawa naman ako ng page ination
+
+                        $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
+                        $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
+
+                        if(mysqli_num_rows($run_daily_activities) > 0){
+                            foreach ($run_daily_activities as $row2){
+                                ?>
+                                
+                                    <label for="">Acitivies:</label>
+                                    <p><?php echo $row2['exercises'] ?></p>
+                                    <label for="">Duration:</label>
+                                    <p>30 min.</p>
+                                    <form action="" method="POST">
+                                        <?php
+
+                                            if($row2['exercise_acknowledge'] == 0){
+                                                ?>
+
+                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                <input type="hidden" name="id" value="<?php echo $row2['id']?>">
+                                                <input type="hidden" name="daily_task" value="1">
+                                            
+                                                <input type="submit" name="acknowledge_task" value="Acknowledge">
+                                                <input type="text" name="student_id" value="<?php echo $student_id ?>">
+                                        
+
+                                                <?php
+                                            }else{
+                                                echo "<div style='color:green;'>Acknowledged </div>";
+                                            }
+
+                                        ?>
+                                        
+                                       
+                                    
+                                    </form>
+                                    
+                                <?php
+                            }
+                        }
+
+                    // //pagination continiues
+                    // $pr_query = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
+                    // $pr_result= mysqli_query($conn,$pr_query);
+
+                    // $total_records = mysqli_num_rows($pr_result);
+                    // $total_page = ceil($total_records/$num_per_page);
+
+                    // for($i=1;$i<$total_page;$i++){
+                    
+                    //    echo "<a href='edit-student.php?page=".$i." class='btn btn-primary'>$i</a>";
+
+                    // }
+
+
+                    //ETO YUNG SA PAG KAIN NYA RIRI
+
+                    ?>
+                        <br>
+                            <h3>Daily Meal</h3>
+                        <br>
+
+                    <?php
+                    $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
+                    $run_program_records = mysqli_query($conn,$sql_program_records);
+
+                    if(mysqli_num_rows($run_program_records) > 0){
+                        foreach($run_program_records as $row1){
+                            ?>
+
+
+                                <label for="">Day: </label>
+                                <p><?php echo $row1['day']?></p>
+                                <label for="">Foods:</label>
+                                <p><?php echo $row1['foods']?></p>
+                                <form action="" method="POST">
+                                <p>
+                                    <?php
+
+                                        if($row1['food_acknowledge'] == 0){
+                                            ?>      
+                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                <input type="hidden" name="id" value="<?php echo $row1['id']?>">
+                                                <input type="hidden" name="daily_meal" value="1">
+                                                <input type="submit" name="acknowledge_meal" value="Acknowledge">
+                                            <?php
+                                        }else{
+                                            echo "<div style='color: green;'>Acknowledged </div> ";
+                                        }
+                                
+                                    ?>
+                                </p>
+                                </form>
+
+                            <?php
+                        }
+                    }
+
                 }
 
-                ob_end_flush();
                 ?>
 				</div>
+
+
+                <!---eto yung sa excercises nya haha-->
+                
 			</main>
 		</div>
 	</div>
+
+
+    
 
 <script src="./admin-template/js/app.js"></script>
 <script src="./styles/bootstrap/js/bootstrap.js"></script>
@@ -261,11 +441,11 @@ if(isset($_POST['update'])){
     // }else
     {
 
-        $query_update = "UPDATE students SET first_name = '$first_name' , middle_name = '$middle_name', last_name = '$last_name', date_of_birth = '$date_of_birth', gender = '$gender' , room = '$room', house = '$house' , street = '$street' , subdivision = '$subdivision' , barangay = '$barangay' , city ='$city' , zip = '$zip_code'  , grade = '$grade' , section = '$section', date_time_created = '$date_time_created' , date_time_updated = '$date $time' ";
+        $query_update = "UPDATE students SET first_name = '$first_name' , middle_name = '$middle_name', last_name = '$last_name', date_of_birth = '$date_of_birth', gender = '$gender' , room = '$room', house = '$house' , street = '$street' , subdivision = '$subdivision' , barangay = '$barangay' , city ='$city' , zip = '$zip_code'  , grade = '$grade' , section = '$section', date_time_created = '$date_time_created' , date_time_updated = '$date $time' WHERE student_id = '$student_id'";
         $run_update = mysqli_query($conn,$query_update);
 
         if($run_update){
-            echo "updated data";
+            echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
         }else{
             echo "error" . $conn->error;
         }
@@ -274,5 +454,70 @@ if(isset($_POST['update'])){
 
 }
 
+
+if(isset($_POST['acknowledge_task'])){
+    $daily_task = $_POST['daily_task'];
+    $id = $_POST['id'];
+    $sql_update = "UPDATE program_records SET exercise_acknowledge='$daily_task' WHERE id = '$id'";
+    $run = mysqli_query($conn,$sql_update);
+
+    if($run){
+        echo "Acknowledged";
+        echo "<script>window.location.href='edit-student.php?student_id=$student_id'</script>";
+    }else{
+        echo "error" . $conn->error;
+    }
+}
+
+
+
+//di pa to tapos
+
+if(isset($_POST['acknowledge_meal'])){
+    $daily_meal = $_POST['daily_meal'];
+    $id = $_POST['id'];
+    $sql_update = "UPDATE program_records SET food_acknowledge='$daily_meal' WHERE id = '$id'";
+    $run = mysqli_query($conn,$sql_update);
+    if($run){
+        echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
+
+    }else{
+        echo "error" . $conn->error;
+    }
+}
+
+
+
+if(isset($_POST['update_image'])){
+
+    $image = $_FILES['image']['name'];
+    $allowed_extension = array('gif' , 'png' , 'jpeg', 'jpg' , 'PNG' , 'JPEG' , 'JPG' , 'GIF');
+    $filename = $_FILES ['image']['name'];
+    $file_extension = pathinfo($filename , PATHINFO_EXTENSION);
+
+    $student_id = $_POST['student_id'];
+    if(!in_array($file_extension, $allowed_extension)){
+        echo "image not added"  ;
+        exit();
+    }else{
+        $update = "UPDATE students SET image = '$image' WHERE student_id = '$student_id'";
+        $run_update = mysqli_query($conn,$update);
+        move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
+
+
+        if($run_update){
+            echo "image updated"; 
+            echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
+        }else{
+            echo "error" . $conn->error; 
+        }
+    }
+}
+
+
+
+
+
+ob_end_flush();
 
 ?>

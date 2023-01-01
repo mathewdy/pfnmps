@@ -4,16 +4,21 @@ session_start();
 ob_start();
 include('security-admin.php');
 
+//pagination
+
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }else{
     $page = 1;
 }
 
+
 $num_per_page = 05;
 $start_from = ($page-1)*05;
 
-
+$query_students = "SELECT * FROM students LIMIT $start_from , $num_per_page";
+$run = mysqli_query($conn,$query_students);
+$no = 1;
 
 
 ?>
@@ -105,6 +110,14 @@ $start_from = ($page-1)*05;
 				</div>
 			</nav>
 
+
+            <!----searchbox---->
+            <form action="" method="GET">
+                <input type="text" name="search">
+                <button type="submit" class="btn btn-primary">Search</button>
+
+            </form>
+
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="card p-5">
@@ -120,68 +133,53 @@ $start_from = ($page-1)*05;
                                 <th>Action</th>
                             </thead>
                             <tbody> 
-                        <?php
-
-
-                            $query = "SELECT * FROM students";
-                            $run = mysqli_query($conn,$query);
-                            $no = 1;
-                            if(mysqli_num_rows($run) > 0){
-                                foreach($run as $row){
-                                    ?>
-
-                                        
-                                            
-                                                <tr>
-                                                    <td><?php echo $no; ?></td>
-                                                    <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
-                                                    <td><?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?></td>
-                                                    <td colspan="2"><?php echo $row ['date_of_birth']?></td>
-                                                    <td><?php echo $row ['grade']?></td>
-                                                    <td><?php echo $row ['section']?></td>
-                                                    <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
-                                                    <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
-                                                </tr>
-                                         
-
-
-                                    <?php
-                                $no++; 
-                                }   ?>
-                                </tbody>
-                            </table>
-                    </div>
-
-                       
                             <?php
-                            }
 
+                                if(mysqli_num_rows($run) > 0){
+                                    foreach($run as $row){
+                                        ?>
 
-                            // $pr_query = "SELECT * FROM users LEFT JOIN doctors_details ON users.account_id = doctors_details.user_id WHERE doctor_or_secretary ='doctor'";
-                            // $pr_results = mysqli_query($conn,$pr_query);
-                            // $total_record = mysqli_num_rows($pr_results);
-                            
-                            // $total_page = ceil($total_record/$num_per_age);
+                                            <tr>
+                                                <td><?php echo $no; ?></td>
+                                                <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
+                                                <td>
+                                                    <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
+                                                </td>
+                                                <td colspan="2"><?php echo $row ['date_of_birth']?></td>
+                                                <td><?php echo $row ['grade']?></td>
+                                                <td><?php echo $row ['section']?></td>
+                                                <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
+                                                <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+                                            </tr>
+                                        
+                                        <?php
+                                        $no++; 
+                                    }   
+                                   
+                                }
+                            ?>
 
-                            // if($page > 1 ){
-                            //     echo  "<a href='view-doctors.php?page=".($page-1)."' class='btn btn-danger'>Previous</a> ";
-                            // }
-                            
-                            // for($i=1;$i<$total_page;$i++){
-                            //     echo  "<a href='view-doctors.php?page=".$i."' class='btn btn-primary'>$i</a> ";
-                            // }
-
-                            // if($i > $page ){
-                            //     echo  "<a href='view-doctors.php?page=".($page+1)."' class='btn btn-danger'>Next</a> ";
-                            // }
-
-                        ob_end_flush();
-                        ?>
-
+                            </tbody>
+                        </table>
+                    </div>
 				</div>
+                <?php
+
+                    $pr_query = "SELECT * FROM students";
+                    $pr_result = mysqli_query($conn,$pr_query);
+
+                    $total_record = mysqli_num_rows($pr_result);
+                    $total_page = ceil($total_record/$num_per_page);
+
+                    for($i=1; $i <= $total_page ; $i++){
+                        echo "<a href='view-students.php?page=".$i."' class='btn btn-primary'> $i </a>";
+                    }
+
+                    ?>
 			</main>
 		</div>
 	</div>
+
 <!-- Bootstrap -->
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
@@ -200,3 +198,42 @@ $(document).ready( function () {
 
 </body>
 </html>
+
+
+<?php
+
+
+if(isset($_GET['search'])){
+    $filter = $_GET['search'];
+    $query = "SELECT * FROM students WHERE CONCAT(student_id,first_name,middle_name,last_name) LIKE '%$filter%' ";
+    $run_search = mysqli_query($conn,$query);
+
+    if(mysqli_num_rows($run_search) > 0){
+        foreach($run_search as $row){
+            ?>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
+                            <td>
+                                <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
+                            </td>
+                            <td colspan="2"><?php echo $row ['date_of_birth']?></td>
+                            <td><?php echo $row ['grade']?></td>
+                            <td><?php echo $row ['section']?></td>
+                            <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
+                            <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+            <?php
+        }
+    }else{
+        echo "No records found";
+    }
+}
+
+ob_end_flush(); 
+?>

@@ -104,7 +104,7 @@ $student_id = $_SESSION['student_id'];
 
 
 
-                            $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id'";
+                            $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 10";
                             $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
 
                             if(mysqli_num_rows($run_daily_activities) > 0){
