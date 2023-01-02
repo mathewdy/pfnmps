@@ -53,11 +53,6 @@ include('security-admin.php');
                         </a>
 					</li>
 
-					<li class="sidebar-item">
-						<a class="sidebar-link disabled" href="admin-profile.php">
-                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Profile</span>
-                        </a>
-					</li>
 				</ul>
 			</div>
 		</nav>
@@ -81,7 +76,7 @@ include('security-admin.php');
                                 <span class="text-dark">ADMIN</span>
                             </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="admin-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout-admin.php">Log out</a>
 							</div>

@@ -35,8 +35,7 @@ $no = 1;
     <link href="admin-template/css/app.css" rel="stylesheet">
 	<link rel="./stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
     
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-  
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -72,12 +71,6 @@ $no = 1;
                             <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
                         </a>
 					</li>
-
-                    <li class="sidebar-item">
-						<a class="sidebar-link disabled" href="admin-profile.php">
-                            <i class="align-middle" data-feather="star"></i> <span class="align-middle">Profile</span>
-                        </a>
-					</li>
 				
 				</ul>
 			</div>
@@ -101,7 +94,7 @@ $no = 1;
                                 <span class="text-dark">ADMIN</span>
                             </a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="admin-profile.php"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="logout-admin.php">Log out</a>
 							</div>
@@ -112,16 +105,16 @@ $no = 1;
 
 
             <!----searchbox---->
-            <form action="" method="GET">
+            <!-- <form action="" method="GET">
                 <input type="text" name="search">
                 <button type="submit" class="btn btn-primary">Search</button>
 
-            </form>
+            </form> -->
 
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="card p-5">
-                        <h1>View Students</h1>
+                        <h2 class="mb-5">Students</h2>
                         <table class="table" id="dataTable">
                             <thead>
                                 <th>No.</th>
@@ -163,9 +156,8 @@ $no = 1;
                         </table>
                     </div>
 				</div>
-                <?php
 
-                    $pr_query = "SELECT * FROM students";
+                    <!-- // $pr_query = "SELECT * FROM students";
                     $pr_result = mysqli_query($conn,$pr_query);
 
                     $total_record = mysqli_num_rows($pr_result);
@@ -173,9 +165,7 @@ $no = 1;
 
                     for($i=1; $i <= $total_page ; $i++){
                         echo "<a href='view-students.php?page=".$i."' class='btn btn-primary'> $i </a>";
-                    }
-
-                    ?>
+                    } -->
 			</main>
 		</div>
 	</div>
@@ -185,14 +175,15 @@ $no = 1;
 <script src="./admin-template/js/app.js"></script>
 
 <!-- jQuery -->
-<script src="src/plugins/jquery/dist/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <!-- Datatables -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
 <script>
-$(document).ready( function () {
-    $('#dataTable').DataTable();
-});
+    $(document).ready( function () {
+        $('#dataTable').DataTable();
+    });
 </script>
 
 
@@ -203,37 +194,37 @@ $(document).ready( function () {
 <?php
 
 
-if(isset($_GET['search'])){
-    $filter = $_GET['search'];
-    $query = "SELECT * FROM students WHERE CONCAT(student_id,first_name,middle_name,last_name) LIKE '%$filter%' ";
-    $run_search = mysqli_query($conn,$query);
+// if(isset($_GET['search'])){
+//     $filter = $_GET['search'];
+//     $query = "SELECT * FROM students WHERE CONCAT(student_id,first_name,middle_name,last_name) LIKE '%$filter%' ";
+//     $run_search = mysqli_query($conn,$query);
 
-    if(mysqli_num_rows($run_search) > 0){
-        foreach($run_search as $row){
-            ?>
+//     if(mysqli_num_rows($run_search) > 0){
+//         foreach($run_search as $row){
+//             ?>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
-                            <td>
-                                <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
-                            </td>
-                            <td colspan="2"><?php echo $row ['date_of_birth']?></td>
-                            <td><?php echo $row ['grade']?></td>
-                            <td><?php echo $row ['section']?></td>
-                            <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
-                            <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-               
-            <?php
-        }
-    }else{
-        echo "No records found";
-    }
-}
+<!-- //                 <table>
+//                     <tbody>
+//                         <tr>
+//                             <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
+//                             <td>
+//                                 <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
+//                             </td>
+//                             <td colspan="2"><?php echo $row ['date_of_birth']?></td>
+//                             <td><?php echo $row ['grade']?></td>
+//                             <td><?php echo $row ['section']?></td>
+//                             <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
+//                             <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+//                         </tr>
+//                     </tbody>
+//                 </table>
+                -->
+//             <?php
+//         }
+//     }else{
+//         echo "No records found";
+//     }
+// }
 
 ob_end_flush(); 
 ?>
