@@ -12,51 +12,68 @@ ob_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
     <title>Admin</title>
 </head>
 <body>
+<main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-lg-5 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+                        <div class="card" style="border: none; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.18);">
+                            <div class="card-body">
+                                <div class="m-sm-4">
+                                    <h2 class="text-center">Registration</h2>
+                                    <hr>
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        <label for="">Email: </label>
+                                        <input type="email" class="form-control" name="email" id="">
+                                        <br>
+                                        <label for="">Password:</label>
+                                        <br>
+                                        <input type="password" class="form-control" name="password">
+                                        <br>
+                                        <label for="">First Name:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="first_name">
+                                        <br>
+                                        <label for="">Middle Name:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="middle_name">
+                                        <br>
+                                        <label for="">Last Name:</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="last_name">
+                                        <br>
+                                        <label for="">Gender:</label>
+                                        <br>
+                                        <label for="">Male</label>
+                                        <input type="radio" name="gender" value="Male">
+                                        <label for="">Female</label>
+                                        <input type="radio" name="gender" value="Female">
+                                        <br>
+                                        <label for="">Address</label>
+                                        <br>
+                                        <input type="text" class="form-control" name="address">
+                                        <br>
+                                        <label for="">Image:</label>
+                                        <br>
+                                        <input type="file" class="form-control" name="image" id="">
+                                        <br>
+                                        <input type="submit" class="btn btn-primary w-100" name="register" value="Register">
+                                    </form>
 
-    <h2>Registration</h2>
-
-    <form action="" method="POST" enctype="multipart/form-data">
-        <label for="">Email: </label>
-        <br>
-        <input type="email" name="email" id="">
-        <br>
-        <label for="">Password:</label>
-        <br>
-        <input type="password" name="password">
-        <br>
-        <label for="">First Name:</label>
-        <br>
-        <input type="text" name="first_name">
-        <br>
-        <label for="">Middle Name:</label>
-        <br>
-        <input type="text" name="middle_name">
-        <br>
-        <label for="">Last Name:</label>
-        <br>
-        <input type="text" name="last_name">
-        <br>
-        <label for="">Gender:</label>
-        <br>
-        <label for="">Male</label>
-        <input type="radio" name="gender" value="Male">
-        <label for="">Female</label>
-        <input type="radio" name="gender" value="Female">
-        <br>
-        <label for="">Address</label>
-        <br>
-        <input type="text" name="address">
-        <br>
-        <label for="">Image:</label>
-        <br>
-        <input type="file" name="image" id="">
-        <br>
-        <input type="submit" name="register" value="Register">
-    </form>
-    <a href="login-admin.php">Login</a>
+                                    <a class="nav-link text-center w-100" href="login-admin.php">Log In</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+   
     
 </body>
 </html>

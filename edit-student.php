@@ -89,169 +89,178 @@ ob_start();
 				<div class="container-fluid p-0">
 
                 <a href="view-students.php">Back</a>
-                <?php
-                
-                
+                <div class="row">
+                    <div class="col-lg-6">
 
-                //to be continued to 
-                if(isset($_GET['student_id'])){
-                    $student_id = $_GET['student_id'];
+                   
+                        <div class="card p-5">
+                        <?php
+                        
+                        
 
-                    //pagination
+                        //to be continued to 
+                        if(isset($_GET['student_id'])){
+                            $student_id = $_GET['student_id'];
 
-                    // if(isset($_GET['page'])){
-                    //     $page = $_GET['page'];
-                    //     $student_id = $_GET['student_id'];
+                            //pagination
 
-                    // }else{
-                    //     $page = 1;
+                            // if(isset($_GET['page'])){
+                            //     $page = $_GET['page'];
+                            //     $student_id = $_GET['student_id'];
 
-                    // }
+                            // }else{
+                            //     $page = 1;
 
-                    // $num_per_page = 05;
-                    // $start_from = ($page-1)*05;
+                            // }
 
-                    // $query = "SELECT exercises,exercise_acknowledge, id FROM program_records
-                    // WHERE student_id = '$student_id' LIMIT $start_from , $num_per_page " ;
-                    // $run_page = mysqli_query($conn,$query);
+                            // $num_per_page = 05;
+                            // $start_from = ($page-1)*05;
 
-                        $query = "SELECT * FROM students WHERE student_id = '$student_id'";
-                        $run = mysqli_query($conn,$query);
+                            // $query = "SELECT exercises,exercise_acknowledge, id FROM program_records
+                            // WHERE student_id = '$student_id' LIMIT $start_from , $num_per_page " ;
+                            // $run_page = mysqli_query($conn,$query);
 
-                        if(mysqli_num_rows($run) > 0){
-                            foreach($run as $row ){
-                                ?>
+                                $query = "SELECT * FROM students WHERE student_id = '$student_id'";
+                                $run = mysqli_query($conn,$query);
 
-
-                                    <form action="" method="POST"  enctype="multipart/form-data">
-
-                                        <label for="">Update Image</label>
-                                        <br>
-                                        <img src="student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
-                                        <br>
-
-                                        <input type="file" name="image">
-
-                                        <br>
-                                        <input type="submit" name="update_image" value="Update">
-                                        <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
-                                    </form>
+                                if(mysqli_num_rows($run) > 0){
+                                    foreach($run as $row ){
+                                        ?>
 
 
-                                <?php   
-                            }
-                        }
+                                            <form action="" method="POST"  enctype="multipart/form-data">
 
-                    
+                                                <label for="">Update Image</label>
+                                                <br>
+                                                <img src="student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
+                                                <br>
 
-                    $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id FROM students LEFT JOIN users
-                    ON students.student_id = users.student_id WHERE students.student_id = '$student_id'";
-                    $run = mysqli_query($conn,$query);
+                                                <input type="file" name="image">
 
-                    if(mysqli_num_rows($run) > 0){
-                        foreach($run as $row ){
-                            ?>
-
-                                <form action="edit-student.php" method="POST" enctype="multipart/form-data">
+                                                <br>
+                                                <input type="submit" name="update_image" value="Update">
+                                                <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
+                                            </form>
 
 
-                                    <h2>Personal Info</h2>
-                                    <label for="">First Name</label>
-                                    <input type="text" name="first_name" value="<?php echo $row ['student_first_name']?>">
-
-                                    <br>
-
-                                    <label for="">Middle Name</label>
-                                    <input type="text" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
-
-                                    <br>
-
-                                    <label for="">Last Name</label>
-                                    <input type="text" name="last_name" value="<?php echo $row ['student_last_name']?>">
-                                    <br>
-
-                                    <label for="">Date of Birth</label>
-                                    <input type="date" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
-                                    <br>
-
-                                    <br>
-
-
-                                    
-                                    <a href="edit-student-image.php?student_id=<?php echo $row ['student_student_id']?>">Edit Photo</a>
-
-                                    <a href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
+                                        <?php   
+                                    }
+                                }
 
                             
 
-                                    <br>
-                                    <h2>Address</h2>
-                                    <label for="">Room / Floor / Unit No. & Building Name</label>
-                                    <input type="text" name="room" value="<?php echo $row ['student_room'] ?>">
+                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id FROM students LEFT JOIN users
+                            ON students.student_id = users.student_id WHERE students.student_id = '$student_id'";
+                            $run = mysqli_query($conn,$query);
 
-                                    <br>
-                                    <label for="">House / Lot & Block No.</label>
-                                    <input type="text" name="house" value="<?php echo $row ['student_house']?>">
+                            if(mysqli_num_rows($run) > 0){
+                                foreach($run as $row ){
+                                    ?>
 
-                                    <br>
-                                    <label for="">Street</label>
-                                    <input type="text" name="street" value="<?php echo $row ['student_street']?>">
-
-                                    <br>
-                                    <label for="">Subdivision</label>
-                                    <input type="text" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
+                                        <form action="edit-student.php" method="POST" enctype="multipart/form-data">
 
 
-                                    <br>
-                                    <label for="">Barangay</label>
-                                    <input type="text" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
+                                            <h2>Personal Info</h2>
+                                            <label for="">First Name</label>
+                                            <input type="text" name="first_name" value="<?php echo $row ['student_first_name']?>">
+
+                                            <br>
+
+                                            <label for="">Middle Name</label>
+                                            <input type="text" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
+
+                                            <br>
+
+                                            <label for="">Last Name</label>
+                                            <input type="text" name="last_name" value="<?php echo $row ['student_last_name']?>">
+                                            <br>
+
+                                            <label for="">Date of Birth</label>
+                                            <input type="date" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
+                                            <br>
+
+                                            <br>
 
 
-                                    <br>
-                                    <label for="">City</label>
-                                    <input type="text" name="city" value="<?php echo $row ['student_city']?>">
+                                            
+                                            <a href="edit-student-image.php?student_id=<?php echo $row ['student_student_id']?>">Edit Photo</a>
+
+                                            <a href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
 
                                     
-                                    <br>
-                                    <label for="">Zip Code</label>
-                                    <input type="number" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
-                                    <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
-                                    <br>
-                                    
+                                            <br>
+                                            <h2>Address</h2>
+                                            <label for="">Room / Floor / Unit No. & Building Name</label>
+                                            <input type="text" name="room" value="<?php echo $row ['student_room'] ?>">
 
-                                    <br>
+                                            <br>
+                                            <label for="">House / Lot & Block No.</label>
+                                            <input type="text" name="house" value="<?php echo $row ['student_house']?>">
 
-                                    <label for="">Grade</label>
-                                    <input type="text" name="grade" value="<?php echo $row ['student_grade']?>" readonly>
-                                    <select name="grade" id="">
-                                        <option value="Grade 1">Grade 1</option>
-                                        <option value="Grade 2">Grade 2</option>
-                                        <option value="Grade 3">Grade 3</option>
-                                        <option value="Grade 4">Grade 4</option>
-                                        <option value="Grade 5">Grade 5</option>
-                                        <option value="Grade 6">Grade 6</option>
-                                    </select>
+                                            <br>
+                                            <label for="">Street</label>
+                                            <input type="text" name="street" value="<?php echo $row ['student_street']?>">
 
-                                    <br>
-                                    <label for="">Section</label>
-                                    <input type="text" name="section" value="<?php echo $row ['student_section']?>">
+                                            <br>
+                                            <label for="">Subdivision</label>
+                                            <input type="text" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
 
-                                    <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>">
 
-                                    <br>
-                                    <input type="submit" name="update" value="Update">
-                                    <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
+                                            <br>
+                                            <label for="">Barangay</label>
+                                            <input type="text" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
 
-                                </form>
 
-                            <?php
-                        }
-                    }
+                                            <br>
+                                            <label for="">City</label>
+                                            <input type="text" name="city" value="<?php echo $row ['student_city']?>">
 
-                    ?>
+                                            
+                                            <br>
+                                            <label for="">Zip Code</label>
+                                            <input type="number" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
-                        <br>
+                                            <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
+                                            <br>
+                                            
+
+                                            <br>
+
+                                            <label for="">Grade</label>
+                                            <input type="text" name="grade" value="<?php echo $row ['student_grade']?>" readonly>
+                                            <select name="grade" id="">
+                                                <option value="Grade 1">Grade 1</option>
+                                                <option value="Grade 2">Grade 2</option>
+                                                <option value="Grade 3">Grade 3</option>
+                                                <option value="Grade 4">Grade 4</option>
+                                                <option value="Grade 5">Grade 5</option>
+                                                <option value="Grade 6">Grade 6</option>
+                                            </select>
+
+                                            <br>
+                                            <label for="">Section</label>
+                                            <input type="text" name="section" value="<?php echo $row ['student_section']?>">
+
+                                            <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>">
+
+                                            <br>
+                                            <input type="submit" name="update" value="Update">
+                                            <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
+
+                                        </form>
+
+                                    <?php
+                                }
+                            }
+
+                            ?>
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card p-5">
+
+                            
                         <h3>Student Activities</h3>
                         <br>
 
@@ -374,8 +383,10 @@ ob_start();
                 }
 
                 ?>
+                </div>
 				</div>
-
+                </div>
+                </div>
 
                 <!---eto yung sa excercises nya haha-->
                 

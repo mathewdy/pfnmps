@@ -35,15 +35,21 @@ ob_start();
                                     <div class="mb-2">
                                         <label class="form-label">Password</label>
                                         <input class="form-control form-control-md" type="password" name="password">
+                                    </div>
+                                    <div class="mt-5 pb-4 text-center">
+                                        <input class="btn btn-primary w-100" type="submit" name="login" value="Sign in">
+                                        <a href="registration-admin.php" class="text-dark nav-link mt-2">Registration</a>
+                                    </div>
+                                    <hr class="featurette-divider">
+                                    <div class=" text-center">
                                         <small>
                                             <a href="forgot-password.php">Forgot password?</a>
                                         </small>
                                     </div>
-                                    <div class="mt-5 text-center">
-                                        <input class="btn btn-primary" type="submit" name="login" value="Sign in">
-                                    </div>
-                                    <a href="registration-admin.php">Registration</a>
                                     </form>
+
+                                    
+                                    
                                 </div>
                             </div>
                         </div>

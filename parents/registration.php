@@ -18,7 +18,8 @@ session_start();
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
-    <link href="./admin-template/css/app.css" rel="stylesheet">
+    <!-- <link href="./admin-template/css/app.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../src/styles/bootstrap/css/bootstrap.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -26,35 +27,38 @@ session_start();
     
 
 			<main class="content">
-				<div class="container-fluid p-0">
-                    <div class="card p-5">
+				<div class="container p-0">
+                    <div class="row d-flex justify-content-center p-5">
+                        <div class="col-lg-5">
+
+                        
                         <h2>Name of Patient</h2>
                         <form action="registration.php" method="POST" enctype="multipart/form-data">
                             <label for="">Student ID</label>
-                            <input type="text" name="student_id">
+                            <input type="text" class="form-control py-1" name="student_id">
 
                             <br>
 
                             <label for="">First Name</label>
-                            <input type="text" name="first_name">
+                            <input type="text" class="form-control py-1" name="first_name">
                             <br>
 
                             <label for="">Middle Name</label>
-                            <input type="text" name="middle_name">
+                            <input type="text" class="form-control py-1" name="middle_name">
 
                             <br>
                             <label for="">Last Name</label>
-                            <input type="text" name="last_name">
+                            <input type="text" class="form-control py-1" name="last_name">
 
 
 
                             <br>
                             <label for="">Date of Birth</label>
-                            <input type="date" name="date_of_birth">
+                            <input type="date" class="form-control py-1" name="date_of_birth">
                             
                             <br>
                             <label for="">Age</label>
-                            <input type="text" name="age" placeholder="Age">
+                            <input type="text" class="form-control py-1" name="age" placeholder="Age">
                             <br>
                             <label for="">Gender</label>
                             <br>
@@ -65,12 +69,12 @@ session_start();
 
                             <br>
                             <label for="">Image</label>
-                            <input type="file" name="image">
+                            <input type="file" class="form-control py-1" name="image">
 
                             <br>
 
                             <label for="">Grade</label>
-                            <select name="grade" id="">
+                            <select name="grade" class="form-select py-1" id="">
                                 <option value="Grade 1">Grade 1</option>
                                 <option value="Grade 2">Grade 2</option>
                                 <option value="Grade 3">Grade 3</option>
@@ -81,26 +85,27 @@ session_start();
 
                             <br>
                             <label for="">Section</label>
-                            <input type="text" name="section">
+                            <input type="text" class="form-control py-1"name="section">
+                            </div>
+                            <div class="col-lg-5">
 
-
+                            
                             <!----name of parent--->
                             <h2>Name of Guardian</h2>
-                            <br>
                             <label for="">First Name</label>
-                            <input type="text" name="guardian_first_name">
+                            <input type="text" class="form-control py-1" name="guardian_first_name">
                             <br>
 
                             <label for="">Middle Name</label>
-                            <input type="text" name="guardian_middle_name">
+                            <input type="text" class="form-control py-1" name="guardian_middle_name">
 
                             <br>
                             <label for="">Last Name</label>
-                            <input type="text" name="guardian_last_name">
+                            <input type="text" class="form-control py-1" name="guardian_last_name">
                             
                             <br>
                             <label for="">Email</label>
-                            <input type="email" name="email">
+                            <input type="email" class="form-control py-1" name="email">
 
 
                             <!-----ADDRESS---->
@@ -108,34 +113,34 @@ session_start();
                             <br>
                             <label for="">Address</label>
                             <label for="">Room / Floor / Unit No. & Building Name</label>
-                            <input type="text" name="room">
+                            <input type="text" class="form-control py-1" name="room">
 
                             <br>
                             <label for="">House / Lot & Block No.</label>
-                            <input type="text" name="house">
+                            <input type="text" class="form-control py-1" name="house">
 
                             <br>
                             <label for="">Street</label>
-                            <input type="text" name="street">
+                            <input type="text" class="form-control py-1" name="street">
 
                             <br>
                             <label for="">Subdivision</label>
-                            <input type="text" name="subdivision">
+                            <input type="text" class="form-control py-1" name="subdivision">
 
 
                             <br>
                             <label for="">Barangay</label>
-                            <input type="text" name="barangay">
+                            <input type="text" class="form-control py-1" name="barangay">
 
 
                             <br>
                             <label for="">City</label>
-                            <input type="text" name="city">
+                            <input type="text" class="form-control py-1" name="city">
 
                             
                             <br>
                             <label for="">Zip Code</label>
-                            <input type="number" name="zip_code"> 
+                            <input type="number" class="form-control py-1" name="zip_code"> 
 
                             <br>
 
@@ -148,37 +153,41 @@ session_start();
 
                             <br>
                             <label for="">Image</label>
-                            <input type="file" name="guardian_image">
+                            <input type="file" class="form-control py-1" name="guardian_image">
 
                             <br>
-
+                            </div>
+                            <hr class="featurette-divider">
                             <br>
+                            <div class="container px-5">
+                                <h2>Health Info</h2>
+                                <!----dito health info nya naman---BMI-->
+                                <label for="">Height</label>
+                                <input type="number" class="form-control w-50 py-1" name="height">
+                                <br>
 
-                            <h2>Health Info</h2>
-                            <!----dito health info nya naman---BMI-->
-                            <label for="">Height</label>
-                            <input type="number" name="height">
-                            <br>
+                                <label for="">Weight</label>
+                                <input type="number" class="form-control w-50 py-1" name="weight">
 
-                            <label for="">Weight</label>
-                            <input type="number" name="weight">
+                                <br>
 
-                            <br>
+                                <select name="actlevel" class="form-select w-50 py-1" id="">
+                                <option value="1">Sedentary</option>
+                                <option value="2">Low Active</option>
+                                <option value="3">Active</option>
+                                <option value="4">Very Active</option>
+                                </select>
 
-                            <select name="actlevel" id="">
-                            <option value="1">Sedentary</option>
-                            <option value="2">Low Active</option>
-                            <option value="3">Active</option>
-                            <option value="4">Very Active</option>
-                            </select>
-
-                            <br>
-                            <label for="">Health History</label>
-                            <input type="text" name="health_history">
-
+                                <br>
+                                <label for="">Health History</label>
+                                <input type="text" class="form-control w-50 py-1" name="health_history">
+                            </div>
+                          
                             <!-----riri ikaw na bahala mag adjust sa stepper--->
-                            <br>
-                            <input type="submit" name="add_patient" value="Next">
+                            <span class="text-center mt-5">
+                                <a href="login-parent.php" class="btn btn-secondary">Log In</a>
+                                <input type="submit" class="btn btn-primary" name="add_patient" value="Next">
+                            </span>
                         </form>
                     </div>
 				</div>

@@ -60,7 +60,7 @@
         margin-left: 0;
     }
   }
-@media only screen and (max-width: 321px) {
+@media only screen and (max-width: 376px) {
     
     .nav li{
         width: calc(100/3) ;

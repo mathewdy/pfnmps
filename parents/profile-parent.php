@@ -12,8 +12,8 @@ $email = $_SESSION['email'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../src/styles/bootstrap/css/bootstrap.css"> -->
-    <link rel="stylesheet" href="../admin-template/css/app.css">
+    <link rel="stylesheet" href="../src/styles/bootstrap/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="../admin-template/css/app.css"> -->
     <link rel="stylesheet" href="../src/styles/custom/stickynav.css">
     <!-- <link rel="stylesheet" href="../src/styles/custom/sidenav.css"> -->
     <title>Document</title>
@@ -79,15 +79,15 @@ $email = $_SESSION['email'];
         <div class="container-fluid" style="height: 100%;">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
+                    <div class="card p-3 py-0" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
 
                         <!-----parents--->
 
-                        <h1>Parent</h1>
+                        <h1 class="text-muted h1 px-4 mb-3">Profile</h1>
                             <?php
 
-                            $query = "SELECT users.first_name AS 'users_first_name', users.middle_name AS 'users_middle_name', users.last_name AS 'users_last_name' , users.room AS 'users_room',users.user_id AS 'users_id', users.house AS 'users_house', users.street AS 'users_street' , users.subdivision AS 'users_subdivision' , users.barangay AS 'users_barangay', users.city AS 'users_city', users.zip AS 'users_zip', users.image AS 'parent_image', students.first_name AS 'students_first_name', students.middle_name  AS 'students_middle_name', students.last_name  AS 'students_last_name', students.date_of_birth AS 'students_date_of_birth', students.gender AS 'students_gender', students.student_id
+                            $query = "SELECT users.first_name AS 'users_first_name', users.middle_name AS 'users_middle_name', users.last_name AS 'users_last_name' , users.room AS 'users_room', users.contact_number AS 'users_contact_number',users.user_id AS 'users_id', users.house AS 'users_house', users.street AS 'users_street' , users.subdivision AS 'users_subdivision' , users.barangay AS 'users_barangay', users.city AS 'users_city', users.zip AS 'users_zip', users.image AS 'parent_image', students.first_name AS 'students_first_name', students.middle_name  AS 'students_middle_name', students.last_name  AS 'students_last_name', students.date_of_birth AS 'students_date_of_birth', students.gender AS 'students_gender', students.student_id
                             AS 'students_student_id' FROM users 
                             LEFT JOIN students ON  users.student_id = students.student_id WHERE email = '$email'";
                             $run = mysqli_query($conn,$query);
@@ -98,43 +98,141 @@ $email = $_SESSION['email'];
                                     <form action="" method="POST" enctype="multipart/form-data">
 
                                     <!-----hindi pa tapos yung profile---->
-                                    <label for="">Image:</label>
-                                    <img src="<?php echo "../guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
-                                    <br>
+                                    <!-- <label for="">Image:</label> -->
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-7 mb-5 px-5">
+                                                    <img class="card-img-top" src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="" width="200" height="250">
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Name:</p>
+                                                    <p class="h5 lead text-primary"><?php echo ucfirst($row ['users_first_name']) . " " . ucfirst($row ['users_middle_name']) . " "  . ucfirst($row ['users_last_name'])  ?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5">
+                                                    <p class="p-0 m-0 text-muted">Address (Room / Floor / Unit No. & Building Name): </p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_room'] ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">House / Lot & Block No.: </p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_house']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Street </p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_street']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Subdivision:</p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_subdivision']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Barangay:</p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_barangay']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">City/Municipality:</p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_city']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Zip:</p>
+                                                    <p class="h5 lead text-primary"><?php echo $row ['users_zip']?></p>
+                                                </div>
+                                                <div class="col-lg-12 px-5">
+                                                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" style="padding: 5px 20px;" class="btn btn-primary">Edit</a>
+                                                    <!-- <a data-toggle="modal" data-target="#exampleModal" href="edit-profile-parent.php?users_id=<?php echo $row['users_id']?>"  style="padding: 5px 20px;" class="btn btn-primary">Edit</a> -->
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="" method="POST" enctype="multipart/form-data">
+                                                            <!-----hindi pa tapos yung profile---->
+                                                            <label for="">Image:</label>
+                                                            <br>
+                                                            <span class="text-center ">
+                                                                <img class="card-img-top px-5" src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
+                                                            </span>
+                                                            <br>
+                                                            <input type="file" class="form-control mb-4" id="formFile" name="image">
+                                                            <input type="hidden" name="old_image" value="<?php echo $row ['parent_image']?>">
 
-                                    <label for="">Name:</label>
-                                    <p><?php echo ucfirst($row ['users_first_name']) . " " . ucfirst($row ['users_middle_name']) . " "  . ucfirst($row ['users_last_name'])  ?></p>
-                                    <br>
+                                                            <label for="">First Name:</label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="first_name" value="<?php echo $row['users_first_name']?>">
 
-                                    <label for="">Address:</label>
-                                    <label for="">Room / Floor / Unit No. & Building Name: </label>
-                                    <p><?php echo $row ['users_room'] ?></p>
-                                    <br>
+                                                            <br>
+                                                            <label for="">Middle Name:</label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="middle_name" value="<?php echo $row['users_middle_name']?>">
+                                                            <br>
 
-                                    <label for="">House / Lot & Block No.: </label>
-                                    <p><?php echo $row ['users_house']?></p>
-                                    <br>
+                                                            <label for="">Last Name:</label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="last_name" value="<?php echo $row['users_last_name']?>">
 
-                                    <label for="">Street: </label>
-                                    <p><?php echo $row ['users_street']?></p>
-                                    <br>
+                                                            <br>
+                                                            <label for="">Contact Number:</label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="contact_number" value="<?php echo $row['users_contact_number']?>" placeholder="+63">
 
-                                    <label for="">Subdivision: </label>
-                                    <p><?php echo $row ['users_subdivision']?></p>
-                                    <br>
+                                                            <br>
+                                                            <label for="">Room / Floor / Unit No. & Building Name:</label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="room" value="<?php echo $row['users_room']?>">
+                                                            <br>
 
-                                    <label for="">Barangay: </label>
-                                    <p><?php echo $row ['users_barangay']?></p>
-                                    <br>
+                                                            <label for="">House / Lot & Block No.: </label>
+                                                            <br>
+                                                            <input type="text" class="form-control py-1" name="house" value="<?php echo $row['users_house']?>">
+                                                            <br>
 
-                                    <label for="">City/Municipality: </label>
-                                    <p><?php echo $row ['users_city']?></p>
-                                    <br>
+                                                            <label for="">Street: </label>
+                                                            <input type="text" class="form-control py-1" name="street" value="<?php echo $row['users_street']?>">
+                                                            <br>
 
-                                    <label for="">Zip: </label>
-                                    <p><?php echo $row ['users_zip']?></p>
+                                                            <label for="">Subdivision: </label>
+                                                            <input type="text" class="form-control py-1" name="subdivision" value="<?php echo $row ['users_subdivision']?>">
+                                                            <br>
 
-                                    <a href="edit-profile-parent.php?users_id=<?php echo $row['users_id']?>">Edit</a>
+                                                            <label for="">Barangay: </label>
+                                                            <input type="text" class="form-control py-1" name="barangay" value="<?php echo $row ['users_barangay']?>">
+                                                            <br>
+
+                                                            <label for="">City/Municipality: </label>
+                                                            <input type="text" class="form-control py-1" name="city" value="<?php echo $row ['users_city']?>">
+                                                            <br>
+
+                                                            <label for="">Zip: </label>
+                                                            <input type="text" class="form-control py-1" name="zip" value="<?php echo $row ['users_zip']?>">
+
+                                                            <input type="hidden" name="user_id" value="<?php echo $row['users_id']?>">
+                                                            <br>
+
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <input type="submit" class="btn btn-primary" name="update" value="Update">
+
+
+
+                                                            </form>
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                                        </div> -->
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </form>
 
                                 <?php
@@ -155,7 +253,80 @@ $email = $_SESSION['email'];
 </main>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script> -->
 <!-- <script src="../src/styles/custom/sidenav.js"></script> -->
 <script src="../admin-template/js/app.js"></script>
 </body>
 </html>
+
+<?php
+
+if(isset($_POST['update'])){
+
+    date_default_timezone_set("Asia/Manila");
+    $time= date("h:i:s", time());
+    $date = date('y-m-d');
+
+    $first_name = $_POST['first_name'];
+    $middle_name = $_POST['middle_name'];
+    $last_name= $_POST['last_name'];
+    $contact_number = $_POST['contact_number'];
+    $room = $_POST['room'];
+    $house = $_POST['house'];
+    $street = $_POST['street'];
+    $subdivision = $_POST['subdivision'];
+    $barangay = $_POST['barangay'];
+    $city = $_POST['city'];
+    $zip = $_POST['zip'];
+    $user_id = $_POST['user_id'];
+
+
+    $new_image = $_FILES['image']['name'];
+    $old_image = $_POST['old_image'];
+
+    if($new_image != ''){
+        $update_filename = $_FILES['image']['name'];
+    }else{
+        $update_filename = $old_image;
+    }
+
+    if(empty($new_image)){
+        $query_update_1 = "UPDATE users SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', contact_number=  '$contact_number', room = '$room' , house = '$house', street = '$street' , subdivision = '$subdivision',  barangay = '$barangay', city = '$city', zip = '$zip' WHERE user_id = '$user_id' ";
+        $run_1 = mysqli_query($conn,$query_update_1);
+        if($run_1){
+            echo "updated";
+        }else{
+            echo "error update_1" . $conn->error; 
+        }
+    }
+
+    $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
+    $filename = $_FILES['image']['name'];
+    $file_extension = pathinfo($filename, PATHINFO_EXTENSION);
+    if(!in_array($file_extension,$allowed_extension)){
+        echo "<script>alert('File not allowed'); </script>";
+        echo "<script>window.location.href='profile-parent.php' </script>";
+    }else{
+        
+        $query_update_2 = "UPDATE users SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', contact_number=  '$contact_number', room = '$room' , house = '$house', street = '$street' , subdivision = '$subdivision',  barangay = '$barangay', city = '$city', zip = '$zip' , image= '$update_filename' WHERE user_id = '$user_id' ";
+        $run_update = mysqli_query($conn,$query_update_2);
+
+        if($run_update){
+            move_uploaded_file($_FILES["image"]["tmp_name"], "guardian_image/".$_FILES["image"]["name"]);
+            unlink("guardian_image/". $old_image);
+            echo "<script>alert('Profile updated!') </script>";
+            echo "<script>window.location.href='profile-parent.php' </script>";
+            // echo "<script>window.location.href='Units.php' </script>";
+        }else{
+            echo "error_2" . $conn->error;
+        }
+        
+    }
+
+}
+
+
+
+ob_end_flush();
+?>

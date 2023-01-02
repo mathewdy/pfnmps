@@ -13,8 +13,8 @@ $student_id = $_SESSION['student_id'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../src/styles/bootstrap/css/bootstrap.css"> -->
-    <link rel="stylesheet" href="../admin-template/css/app.css">
+    <link rel="stylesheet" href="../src/styles/bootstrap/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="../admin-template/css/app.css"> -->
     <link rel="stylesheet" href="../src/styles/custom/stickynav.css">
     <!-- <link rel="stylesheet" href="../src/styles/custom/sidenav.css"> -->
     <title>Document</title>
