@@ -134,7 +134,7 @@ $no = 1;
 
                                             <tr>
                                                 <td><?php echo $no; ?></td>
-                                                <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
+                                                <td><img src= "<?php echo "parents/student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
                                                 <td>
                                                     <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
                                                 </td>

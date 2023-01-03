@@ -58,7 +58,7 @@ session_start();
                             
                             <br>
                             <label for="">Age</label>
-                            <input type="text" class="form-control py-1" name="age" placeholder="Age">
+                            <input type="number" class="form-control py-1" name="age" placeholder="Age">
                             <br>
                             <label for="">Gender</label>
                             <br>
@@ -106,6 +106,9 @@ session_start();
                             <br>
                             <label for="">Email</label>
                             <input type="email" class="form-control py-1" name="email">
+
+                            <label for="">Password</label>
+                            <input type="password" class="form-control py-1" name="password">
 
 
                             <!-----ADDRESS---->
@@ -221,7 +224,7 @@ if(isset($_POST['add_patient'])){
     $last_name = ucfirst($_POST['last_name']); 
 
     $email = $_POST['email'];
-    $default_password = "Welcome@12345";
+    $default_password = $_POST['password'];
     $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
     
 

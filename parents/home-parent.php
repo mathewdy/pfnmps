@@ -179,7 +179,10 @@ $student_id = $_SESSION['student_id'];
 
 
                                             <label for="">Date Started</label>
-                                            <p><?php echo $row['date_started']?></p>
+                                            <p>
+                                                <?php $new_format = date("Y-M-d", strtotime($row['date_started']))?>
+                                                <?php echo $new_format?>
+                                            </p>
 
                                         <?php
                                     }

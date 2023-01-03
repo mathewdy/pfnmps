@@ -132,7 +132,7 @@ ob_start();
 
                                                 <label for="">Update Image</label>
                                                 <br>
-                                                <img src="student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
+                                                <img src="parents/student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
                                                 <br>
 
                                                 <input type="file" name="image">
@@ -181,13 +181,7 @@ ob_start();
 
                                             <br>
 
-
-                                            
-                                            <a href="edit-student-image.php?student_id=<?php echo $row ['student_student_id']?>">Edit Photo</a>
-
                                             <a href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
-
-                                    
 
                                             <br>
                                             <h2>Address</h2>
@@ -503,7 +497,7 @@ if(isset($_POST['update_image'])){
     }else{
         $update = "UPDATE students SET image = '$image' WHERE student_id = '$student_id'";
         $run_update = mysqli_query($conn,$update);
-        move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
+        move_uploaded_file($_FILES["image"]["tmp_name"], "parents/student_image/" . $_FILES["image"] ["name"]);
 
 
         if($run_update){

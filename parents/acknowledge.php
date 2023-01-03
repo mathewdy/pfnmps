@@ -9,7 +9,6 @@ if(isset($_POST['acknowledge_task'])){
     $run = mysqli_query($conn,$sql_update);
 
     if($run){
-        echo "Acknowledged";
         echo "<script>window.location.href='home-parent.php' </script>";
     }else{
         echo "error" . $conn->error;

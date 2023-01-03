@@ -109,6 +109,10 @@ $email = $_SESSION['email'];
                                                     <p class="p-0 m-0 text-muted">Name:</p>
                                                     <p class="h5 lead text-primary"><?php echo ucfirst($row ['users_first_name']) . " " . ucfirst($row ['users_middle_name']) . " "  . ucfirst($row ['users_last_name'])  ?></p>
                                                 </div>
+                                                <div class="col-lg-12 px-5 mb-3">
+                                                    <p class="p-0 m-0 text-muted">Mobile Number:</p>
+                                                    <p class="h5 lead text-primary"><?php echo ucfirst($row ['users_contact_number']) ?></p>
+                                                </div>
                                                 <div class="col-lg-12 px-5">
                                                     <p class="p-0 m-0 text-muted">Address (Room / Floor / Unit No. & Building Name): </p>
                                                     <p class="h5 lead text-primary"><?php echo $row ['users_room'] ?></p>
@@ -156,9 +160,10 @@ $email = $_SESSION['email'];
                                                             <!-----hindi pa tapos yung profile---->
                                                             <label for="">Image:</label>
                                                             <br>
-                                                            <span class="text-center ">
-                                                                <img class="card-img-top px-5" src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="" width="200px" height="200px">
+                                                            <span class="text-center">
+                                                                <img class="card-img-top px-5" src="<?php echo "guardian_image/". $row['parent_image']; ?>" alt="Parent's Image" width="200px" height="200px">
                                                             </span>
+                                                            <br>
                                                             <br>
                                                             <input type="file" class="form-control mb-4" id="formFile" name="image">
                                                             <input type="hidden" name="old_image" value="<?php echo $row ['parent_image']?>">
@@ -216,7 +221,7 @@ $email = $_SESSION['email'];
                                                             <br>
 
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                            <input type="submit" class="btn btn-primary" name="update" value="Update">
+                                                            <input type="submit" class="btn btn-primary" name="update_guardian" value="Update">
 
 
 
@@ -262,7 +267,7 @@ $email = $_SESSION['email'];
 
 <?php
 
-if(isset($_POST['update'])){
+if(isset($_POST['update_guardian'])){
 
     date_default_timezone_set("Asia/Manila");
     $time= date("h:i:s", time());
@@ -284,6 +289,16 @@ if(isset($_POST['update'])){
 
     $new_image = $_FILES['image']['name'];
     $old_image = $_POST['old_image'];
+    
+    if(empty($new_image)){
+        $query_update_1 = "UPDATE users SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', contact_number=  '$contact_number', room = '$room' , house = '$house', street = '$street' , subdivision = '$subdivision',  barangay = '$barangay', city = '$city', zip = '$zip' WHERE user_id = '$user_id' ";
+        $run_1 = mysqli_query($conn,$query_update_1);
+        if($run_1){
+            echo "<script>window.location.href='profile-parent.php' </script>";
+        }else{
+            echo "error update_1" . $conn->error; 
+        }
+    }
 
     if($new_image != ''){
         $update_filename = $_FILES['image']['name'];
@@ -291,15 +306,7 @@ if(isset($_POST['update'])){
         $update_filename = $old_image;
     }
 
-    if(empty($new_image)){
-        $query_update_1 = "UPDATE users SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', contact_number=  '$contact_number', room = '$room' , house = '$house', street = '$street' , subdivision = '$subdivision',  barangay = '$barangay', city = '$city', zip = '$zip' WHERE user_id = '$user_id' ";
-        $run_1 = mysqli_query($conn,$query_update_1);
-        if($run_1){
-            echo "updated";
-        }else{
-            echo "error update_1" . $conn->error; 
-        }
-    }
+   
 
     $allowed_extension = array('gif','png','jpg','jpeg', 'PNG', 'GIF', 'JPG', 'JPEG');
     $filename = $_FILES['image']['name'];
