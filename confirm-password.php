@@ -1,9 +1,6 @@
 <?php
 include('connection.php');
 session_start();
-echo $email = $_SESSION['email'];
-
-
 
 ?>
 
@@ -13,21 +10,39 @@ echo $email = $_SESSION['email'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
     <title>Document</title>
 </head>
 <body>
-
-<a href="login-admin.php">Cancel</a>
-    <form method="POST" action="confirm-password.php">
-        <label>Please Enter New Password</label>
-        <input type="password" name="password1" required>
-        <label >Please Enter New Password</label>
-        <input type="password"  name="password2"  required>
-        <input type="submit" name="reset" value="Reset Password">
-    </form>
-
-
-
+<main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-lg-5 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+                        <div class="card" style="border: none; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.18);">
+                            <div class="card-body">
+                                <div class="m-sm-4">
+                                    <form method="POST" action="confirm-password.php">
+                                        <h4 class="my-4 text-primary text-center"><?= $email = $_SESSION['email'];?></h4>
+                                        <hr>
+                                        <label>Please Enter New Password</label>
+                                        <input type="password"  class="form-control mb-3" name="password1" required>
+                                        <label >Confirm New Password</label>
+                                        <input type="password" class="form-control mb-3" name="password2"  required>
+                                        <span class="d-flex justify-content-center align-items-center">
+                                            <a href="login-admin.php" class="px-2">Cancel</a>
+                                            <input type="submit" class="btn btn-primary px-2" name="reset" value="Reset Password">
+                                        </span>
+                                       
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 
 </html>

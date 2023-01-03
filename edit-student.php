@@ -88,7 +88,6 @@ ob_start();
 			<main class="content">
 				<div class="container-fluid p-0">
 
-                <a href="view-students.php">Back</a>
                 <div class="row">
                     <div class="col-lg-6">
 
@@ -132,13 +131,13 @@ ob_start();
 
                                                 <label for="">Update Image</label>
                                                 <br>
-                                                <img src="parents/student_image/<?php echo $row ['image']?>" width="200px" height="200px" alt="student image">
+                                                <img src="parents/student_image/<?php echo $row ['image']?>" width="200" height="200" alt="student image">
                                                 <br>
 
-                                                <input type="file" name="image">
+                                                <input type="file" class="form-control mt-3"name="image">
 
                                                 <br>
-                                                <input type="submit" name="update_image" value="Update">
+                                                <input type="submit" class="btn btn-primary mb-5" name="update_image" value="Update">
                                                 <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
                                             </form>
 
@@ -156,64 +155,60 @@ ob_start();
                             if(mysqli_num_rows($run) > 0){
                                 foreach($run as $row ){
                                     ?>
-
+                                        <hr class="featurette-divider">
                                         <form action="edit-student.php" method="POST" enctype="multipart/form-data">
-
-
                                             <h2>Personal Info</h2>
                                             <label for="">First Name</label>
-                                            <input type="text" name="first_name" value="<?php echo $row ['student_first_name']?>">
+                                            <input type="text" class="form-control" name="first_name" value="<?php echo $row ['student_first_name']?>">
 
                                             <br>
 
                                             <label for="">Middle Name</label>
-                                            <input type="text" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
+                                            <input type="text" class="form-control" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
 
                                             <br>
 
                                             <label for="">Last Name</label>
-                                            <input type="text" name="last_name" value="<?php echo $row ['student_last_name']?>">
+                                            <input type="text" class="form-control" name="last_name" value="<?php echo $row ['student_last_name']?>">
                                             <br>
 
                                             <label for="">Date of Birth</label>
-                                            <input type="date" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
+                                            <input type="date" class="form-control" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
                                             <br>
 
                                             <br>
 
-                                            <a href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
-
-                                            <br>
+                                            <hr class="featurette-divider">
                                             <h2>Address</h2>
                                             <label for="">Room / Floor / Unit No. & Building Name</label>
-                                            <input type="text" name="room" value="<?php echo $row ['student_room'] ?>">
+                                            <input type="text" class="form-control" name="room" value="<?php echo $row ['student_room'] ?>">
 
                                             <br>
                                             <label for="">House / Lot & Block No.</label>
-                                            <input type="text" name="house" value="<?php echo $row ['student_house']?>">
+                                            <input type="text" class="form-control" name="house" value="<?php echo $row ['student_house']?>">
 
                                             <br>
                                             <label for="">Street</label>
-                                            <input type="text" name="street" value="<?php echo $row ['student_street']?>">
+                                            <input type="text" class="form-control" name="street" value="<?php echo $row ['student_street']?>">
 
                                             <br>
                                             <label for="">Subdivision</label>
-                                            <input type="text" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
+                                            <input type="text" class="form-control" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
 
 
                                             <br>
                                             <label for="">Barangay</label>
-                                            <input type="text" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
+                                            <input type="text" class="form-control" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
 
 
                                             <br>
                                             <label for="">City</label>
-                                            <input type="text" name="city" value="<?php echo $row ['student_city']?>">
+                                            <input type="text" class="form-control" name="city" value="<?php echo $row ['student_city']?>">
 
                                             
                                             <br>
                                             <label for="">Zip Code</label>
-                                            <input type="number" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
+                                            <input type="number" class="form-control" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
                                             <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
                                             <br>
@@ -222,8 +217,12 @@ ob_start();
                                             <br>
 
                                             <label for="">Grade</label>
-                                            <input type="text" name="grade" value="<?php echo $row ['student_grade']?>" readonly>
-                                            <select name="grade" id="">
+                                            <!-- <input type="text" class="form-control" name="grade" value="<?php echo $row ['student_grade']?>" readonly> -->
+                                            <select name="grade" id="" class="form-control" style="pointer-events: none; border: none; ">
+                                                <option selected value="<?php echo $row ['student_grade']?>"><?php echo $row ['student_grade']?></option>
+                                            </select>
+
+                                            <select name="grade" class="form-select" id="">
                                                 <option value="Grade 1">Grade 1</option>
                                                 <option value="Grade 2">Grade 2</option>
                                                 <option value="Grade 3">Grade 3</option>
@@ -234,12 +233,14 @@ ob_start();
 
                                             <br>
                                             <label for="">Section</label>
-                                            <input type="text" name="section" value="<?php echo $row ['student_section']?>">
+                                            <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
 
                                             <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>">
 
                                             <br>
-                                            <input type="submit" name="update" value="Update">
+                                            <a href="view-students.php" class="btn btn-danger">Back</a>
+                                            <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
+                                            <input type="submit" class="btn btn-primary" name="update" value="Update">
                                             <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
 
                                         </form>

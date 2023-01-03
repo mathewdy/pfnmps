@@ -21,12 +21,12 @@ $_SESSION['user_id'];
     <link rel="stylesheet" href="../src/css/app.css">
     <title>Soul Inc.</title>
 </head>
-<body style="background: rgba(0, 0, 0, 0.9);">
+<body class="bg-light">
 <div class="container">
     <form action="" method="POST" class="d-flex justify-content-center">
-        <div class="row card p-5 bg-dark mt-5">
-            <div class="col-lg-12">
-                <p class="h1" style="color:rgba(255,255,255,0.6);">Security Questions</p>
+        <div class="row card p-5 mt-5">
+            <div class="col-lg-12 text-center">
+                <p class="h2 mb-5">Security Questions</p>
             </div>
             <div class="col-lg-12 col-md-12 mb-5">
                 <select name="question_1" id="" class="form-select mb-2">
@@ -49,7 +49,7 @@ $_SESSION['user_id'];
                 <input type="text" name="answer2" placeholder="answer" class="form-control">
             </div>
             <div class="col-lg-12">
-                <input type="submit" name="add_security" value="Next" class="btn btn-secondary w-100">
+                <input type="submit" name="add_security" value="Next" class="btn btn-primary w-100">
             </div>
         </div>
     </form>

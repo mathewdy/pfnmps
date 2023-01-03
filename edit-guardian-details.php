@@ -85,6 +85,7 @@ include('security-admin.php');
 
 			<main class="content">
 				<div class="container-fluid p-0">
+                    <div class="card p-5">
                 <?php
 
                     if(isset($_GET['student_id'])){
@@ -106,61 +107,63 @@ include('security-admin.php');
                         if(mysqli_num_rows($run) > 0){
                             foreach($run as $row ){
                                 ?>  
-                                     <a href="edit-student.php?student_id=<?php echo $row ['student_student_id']?>">Back</a>
                                     <form action="edit-guardian-details.php" method="POST">
 
                                     <h2>Guardian's Info</h2>
                                     <label for="">First Name</label>
-                                    <input type="text" name="first_name" value="<?php echo $row ['user_first_name']?>">
+                                    <input type="text" class="form-control py-1" name="first_name" value="<?php echo $row ['user_first_name']?>">
 
                                     <br>
 
                                     <label for="">Middle Name</label>
-                                    <input type="text" name="middle_name" value="<?php echo $row ['user_middle_name']?>">
+                                    <input type="text" class="form-control py-1" name="middle_name" value="<?php echo $row ['user_middle_name']?>">
 
                                     <br>
 
                                     <label for="">Last Name</label>
-                                    <input type="text" name="last_name" value="<?php echo $row ['user_last_name']?>">
+                                    <input type="text" class="form-control py-1" name="last_name" value="<?php echo $row ['user_last_name']?>">
+                                    <br>
+                                    <br>
+                                    <hr>
                                     <br>
 
 
                                     <h2>Address</h2>
                                         <label for="">Room / Floor / Unit No. & Building Name</label>
-                                        <input type="text" name="room" value="<?php echo $row ['user_room'] ?>">
+                                        <input type="text" class="form-control py-1" name="room" value="<?php echo $row ['user_room'] ?>">
 
                                         <br>
                                         <label for="">House / Lot & Block No.</label>
-                                        <input type="text" name="house" value="<?php echo $row ['user_house']?>">
+                                        <input type="text" class="form-control py-1" name="house" value="<?php echo $row ['user_house']?>">
 
                                         <br>
                                         <label for="">Street</label>
-                                        <input type="text" name="street" value="<?php echo $row ['user_street']?>">
+                                        <input type="text" class="form-control py-1" name="street" value="<?php echo $row ['user_street']?>">
 
                                         <br>
                                         <label for="">Subdivision</label>
-                                        <input type="text" name="subdivision" value="<?php echo $row ['user_subdivision']?>">
+                                        <input type="text" class="form-control py-1" name="subdivision" value="<?php echo $row ['user_subdivision']?>">
 
 
                                         <br>
                                         <label for="">Barangay</label>
-                                        <input type="text" name="barangay" value="<?php echo $row ['user_barangay']?>"> 
+                                        <input type="text" class="form-control py-1" name="barangay" value="<?php echo $row ['user_barangay']?>"> 
 
 
                                         <br>
                                         <label for="">City</label>
-                                        <input type="text" name="city" value="<?php echo $row ['user_city']?>">
+                                        <input type="text" class="form-control py-1" name="city" value="<?php echo $row ['user_city']?>">
 
                                         
                                         <br>
                                         <label for="">Zip Code</label>
-                                        <input type="number" name="zip_code" value="<?php echo $row ['user_zip']?>"> 
+                                        <input type="number" class="form-control py-1" name="zip_code" value="<?php echo $row ['user_zip']?>"> 
 
                                         <br>
                                         <input type="hidden" name="date_time_created" value="<?php echo $row ['user_date_time_created']?>">
                                         <input type="hidden" name="user_id" value="<?php echo $row ['user_user_id']?>">
-
-                                        <input type="submit" name="update" value="Update" id="">
+                                        <a class="btn btn-secondary" href="edit-student.php?student_id=<?php echo $row ['student_student_id']?>">Cancel</a>
+                                        <input type="submit" class="btn btn-primary" name="update" value="Update" id="">
                                         <br>
                                        
 
@@ -172,7 +175,7 @@ include('security-admin.php');
 
 
                     ?>
-
+                    </div>
 				</div>
 			</main>
 		</div>

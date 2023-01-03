@@ -27,47 +27,79 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
     <title>Document</title>
 </head>
-<body>
-    <form action="" method="POST">
-    <span>1. Are you a picker eater?
-            <input type="radio" name="surveyAnswer[0]" value="1">
-            <label for="yes">Yes</label>
-            <input type="radio" name="surveyAnswer[0]" value="0">
-            <label for="no">No</label>
-        </span>
-        <br>
-        <span>2. Do you eat vegetables?
-            <input type="radio" name="surveyAnswer[1]" value="1">
-            <label for="yes">Yes</label>
-            <input type="radio" name="surveyAnswer[1]" value="0">
-            <label for="no">No</label>
-        </span>
-        <br>
-        <span>3. Do you play video games?
-            <input type="radio" name="surveyAnswer[2]" value="1">
-            <label for="yes">Yes</label>
-            <input type="radio" name="surveyAnswer[2]" value="0">
-            <label for="no">No</label>
-        </span>
-        <br>
-        <span>4. Do you exercise?
-            <input type="radio" name="surveyAnswer[3]" value="1">
-            <label for="yes">Yes</label>
-            <input type="radio" name="surveyAnswer[3]" value="0">
-            <label for="no">No</label>
-        </span>
-        <br>
-        <span>5. Do you sleep well?
-            <input type="radio" name="surveyAnswer[4]" value="1">
-            <label for="yes">Yes</label>
-            <input type="radio" name="surveyAnswer[4]" value="0">
-            <label for="no">No</label>
-        </span>
-        <br>
-        <button type="submit" name="submit">Submit</button>
-    </form>
+<body class="bg-light">
+<main class="d-flex w-100">
+        <div class="container d-flex flex-column">
+            <div class="row vh-100">
+                <div class="col-lg-5 mx-auto d-table h-100">
+                    <div class="d-table-cell align-middle">
+                        <div class="card" style="border: none; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.18);">
+                            <div class="card-body">
+                                <div class="m-sm-4">
+                                    <form action="" method="POST">
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">1. Are you a picker eater?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[0]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[0]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+                                        <br>
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">2. Do you eat vegetables?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[1]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[1]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+                                        <br>
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">3. Do you play video games?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[2]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[2]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+                                        <br>
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">4. Do you exercise?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[3]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[3]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+                                        <br>
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">5. Do you sleep well?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[4]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[4]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+                                        <br>
+                                            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
 <?php

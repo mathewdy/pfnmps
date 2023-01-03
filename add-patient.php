@@ -89,158 +89,160 @@ include('security-admin.php');
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="card p-5">
-                        <h2>Name of Patient</h2>
-                        <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                                    <!----name of parent--->
+                                <h2>Name of Guardian</h2>
+                                <br>
+                                <label for="">First Name</label>
+                                <input type="text" class="form-control" name="guardian_first_name">
+                                <br>
+
+                                <label for="">Middle Name</label>
+                                <input type="text" class="form-control" name="guardian_middle_name">
+
+                                <br>
+                                <label for="">Last Name</label>
+                                <input type="text" class="form-control" name="guardian_last_name">
+                                
+                                <br>
+                                <label for="">Email</label>
+                                <input type="email" class="form-control" name="email">
+
+
+                                <!-----ADDRESS---->
+
+                                <br>
+                                <label for="">Address</label>
+                                <label for="">Room / Floor / Unit No. & Building Name</label>
+                                <input type="text" class="form-control" name="room">
+
+                                <br>
+                                <label for="">House / Lot & Block No.</label>
+                                <input type="text" class="form-control" ="house">
+
+                                <br>
+                                <label for="">Street</label>
+                                <input type="text" class="form-control" name="street">
+
+                                <br>
+                                <label for="">Subdivision</label>
+                                <input type="text" class="form-control" name="subdivision">
+
+
+                                <br>
+                                <label for="">Barangay</label>
+                                <input type="text" class="form-control" name="barangay">
+
+
+                                <br>
+                                <label for="">City</label>
+                                <input type="text" class="form-control" name="city">
+
+                                
+                                <br>
+                                <label for="">Zip Code</label>
+                                <input type="number" class="form-control" name="zip_code"> 
+
+                                <br>
+
+                                <label for="">Gender</label>
+                                <br>
+                                <label for="">Male</label>
+                                <input type="radio" name="guardian_gender" value="Male">
+                                <label for="">Female</label>
+                                <input type="radio" name="guardian_gender" value="Female">
+
+                                <br>
+                                <label for="">Image</label>
+                                <input type="file" class="form-control" name="guardian_image">
+                               
+                            </div>
+                            <div class="col-lg-4">
+                            <h2>Name of Patient</h2>
                             <label for="">Student ID</label>
-                            <input type="text" name="student_id">
+                                <input type="text" class="form-control" name="student_id">
 
-                            <br>
+                                <br>
 
-                            <label for="">First Name</label>
-                            <input type="text" name="first_name">
-                            <br>
+                                <label for="">First Name</label>
+                                <input type="text" class="form-control" name="first_name">
+                                <br>
 
-                            <label for="">Middle Name</label>
-                            <input type="text" name="middle_name">
+                                <label for="">Middle Name</label>
+                                <input type="text" class="form-control" name="middle_name">
 
-                            <br>
-                            <label for="">Last Name</label>
-                            <input type="text" name="last_name">
-
-
-
-                            <br>
-                            <label for="">Date of Birth</label>
-                            <input type="date" name="date_of_birth">
-                            
-                            <br>
-                            <label for="">Age</label>
-                            <input type="text" name="age" placeholder="Age">
-                            <br>
-                            <label for="">Gender</label>
-                            <br>
-                            <label for="">Male</label>
-                            <input type="radio" name="gender" value="Male">
-                            <label for="">Female</label>
-                            <input type="radio" name="gender" value="Female">
-
-                            <br>
-                            <label for="">Image</label>
-                            <input type="file" name="image">
-
-                            <br>
-
-                            <label for="">Grade</label>
-                            <select name="grade" id="">
-                                <option value="Grade 1">Grade 1</option>
-                                <option value="Grade 2">Grade 2</option>
-                                <option value="Grade 3">Grade 3</option>
-                                <option value="Grade 4">Grade 4</option>
-                                <option value="Grade 5">Grade 5</option>
-                                <option value="Grade 6">Grade 6</option>
-                            </select>
-
-                            <br>
-                            <label for="">Section</label>
-                            <input type="text" name="section">
+                                <br>
+                                <label for="">Last Name</label>
+                                <input type="text" class="form-control" name="last_name">
 
 
-                            <!----name of parent--->
-                            <h2>Name of Guardian</h2>
-                            <br>
-                            <label for="">First Name</label>
-                            <input type="text" name="guardian_first_name">
-                            <br>
 
-                            <label for="">Middle Name</label>
-                            <input type="text" name="guardian_middle_name">
+                                <br>
+                                <label for="">Date of Birth</label>
+                                <input type="date" class="form-control" name="date_of_birth">
+                                
+                                <br>
+                                <label for="">Age</label>
+                                <input type="text" class="form-control" name="age" placeholder="Age">
+                                <br>
+                                <label for="">Gender</label>
+                                <br>
+                                <label for="">Male</label>
+                                <input type="radio" name="gender" value="Male">
+                                <label for="">Female</label>
+                                <input type="radio" name="gender" value="Female">
 
-                            <br>
-                            <label for="">Last Name</label>
-                            <input type="text" name="guardian_last_name">
-                            
-                            <br>
-                            <label for="">Email</label>
-                            <input type="email" name="email">
+                                <br>
+                                <label for="">Image</label>
+                                <input type="file" class="form-control" name="image">
 
+                                <br>
 
-                            <!-----ADDRESS---->
+                                <label for="">Grade</label>
+                                <select name="grade" class="form-select" id="">
+                                    <option value="Grade 1">Grade 1</option>
+                                    <option value="Grade 2">Grade 2</option>
+                                    <option value="Grade 3">Grade 3</option>
+                                    <option value="Grade 4">Grade 4</option>
+                                    <option value="Grade 5">Grade 5</option>
+                                    <option value="Grade 6">Grade 6</option>
+                                </select>
 
-                            <br>
-                            <label for="">Address</label>
-                            <label for="">Room / Floor / Unit No. & Building Name</label>
-                            <input type="text" name="room">
+                                <br>
+                                <label for="">Section</label>
+                                <input type="text" class="form-control" name="section">
+                            </div>
+                            <div class="col-lg-4">
+                                    <h2>Health Info</h2>
+                                    <!----dito health info nya naman---BMI-->
+                                    <label for="">Height</label>
+                                    <input type="number" class="form-control" name="height">
+                                    <br>
 
-                            <br>
-                            <label for="">House / Lot & Block No.</label>
-                            <input type="text" name="house">
+                                    <label for="">Weight</label>
+                                    <input type="number" class="form-control" name="weight">
 
-                            <br>
-                            <label for="">Street</label>
-                            <input type="text" name="street">
+                                    <br>
 
-                            <br>
-                            <label for="">Subdivision</label>
-                            <input type="text" name="subdivision">
+                                    <select name="actlevel" class="form-select" id="">
+                                    <option value="1">Sedentary</option>
+                                    <option value="2">Low Active</option>
+                                    <option value="3">Active</option>
+                                    <option value="4">Very Active</option>
+                                    </select>
 
+                                    <br>
+                                    <label for="">Health History</label>
+                                    <input type="text" class="form-control" name="health_history">
 
-                            <br>
-                            <label for="">Barangay</label>
-                            <input type="text" name="barangay">
-
-
-                            <br>
-                            <label for="">City</label>
-                            <input type="text" name="city">
-
-                            
-                            <br>
-                            <label for="">Zip Code</label>
-                            <input type="number" name="zip_code"> 
-
-                            <br>
-
-                            <label for="">Gender</label>
-                            <br>
-                            <label for="">Male</label>
-                            <input type="radio" name="guardian_gender" value="Male">
-                            <label for="">Female</label>
-                            <input type="radio" name="guardian_gender" value="Female">
-
-                            <br>
-                            <label for="">Image</label>
-                            <input type="file" name="guardian_image">
-
-                            <br>
-
-                            <br>
-
-                            <h2>Health Info</h2>
-                            <!----dito health info nya naman---BMI-->
-                            <label for="">Height</label>
-                            <input type="number" name="height">
-                            <br>
-
-                            <label for="">Weight</label>
-                            <input type="number" name="weight">
-
-                            <br>
-
-                            <select name="actlevel" id="">
-                            <option value="1">Sedentary</option>
-                            <option value="2">Low Active</option>
-                            <option value="3">Active</option>
-                            <option value="4">Very Active</option>
-                            </select>
-
-                            <br>
-                            <label for="">Health History</label>
-                            <input type="text" name="health_history">
-
-                            <!-----riri ikaw na bahala mag adjust sa stepper--->
-                            <br>
-                            <input type="submit" name="add_patient" value="Next">
-                        </form>
+                                    <!-----riri ikaw na bahala mag adjust sa stepper--->
+                                    <br>
+                                    <input type="submit" class="btn btn-primary" name="add_patient" value="Next">
+                                </form>
+                            </div>
+                        </div>
                     </div>
 				</div>
 			</main>
