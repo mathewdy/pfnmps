@@ -2,6 +2,7 @@
 include('../connection.php');
 session_start();
 include('security-parent.php');
+$student_id = $_SESSION['student_id'];
 
 ?>
 
@@ -23,10 +24,8 @@ include('security-parent.php');
 <!-- Sidebar -->
   <div class="sticky-nav bg-white vh-100 shadow">
     <a href="#" class="brand p-3 link-dark text-decoration-none bg-white text-center" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#7895B2" class="bi bi-egg-fried" viewBox="0 0 16 16">
-        <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-        <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
-        </svg>
+        <!---logo-->
+        <img src="../logo.jpg" alt="">
     </a>
     <ul class="list nav nav-flush mb-auto text-center">
       <li class="nav-item">
@@ -72,6 +71,75 @@ include('security-parent.php');
             </div>
         </div>
     </nav>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Section</th>
+                <th>Status</th>
+            </tr>
+          
+        </thead>
+
+
+    <!----ikaw na bahala dito--->
+    <?php
+
+        date_default_timezone_set("Asia/Manila");
+        $time= date("h:i:s", time());
+        $date = date('y-m-d');
+        $total_date_time = $date ." ". $time;
+   
+        $query_name_year_status = "SELECT DISTINCT students.first_name, students.image , students.middle_name , students.last_name , students.grade, students.section , program_records.ended_day
+        FROM students 
+        LEFT JOIN program_records
+        ON students.student_id = program_records.student_id WHERE students.student_id = '$student_id' ";
+        $run_neme_year_status = mysqli_query($conn,$query_name_year_status);
+
+        if(mysqli_num_rows($run_neme_year_status) > 0){
+            $no = 1;
+            foreach($run_neme_year_status as $row2){
+                ?>
+
+                <tr>
+                    <td><?php echo $no?></td>
+                    <img src="<?php echo "student_image/" . $row2['image'] ?>" height="200px" width="200px" alt="Student IMG">
+                    <td><?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?></td>
+                    <td>
+                        <?php echo $row2['grade']?>
+                    </td>
+                    <td>
+                        <?php echo $row2['section']?>
+                    </td>
+                    <td>
+                        <?php
+                        if($total_date_time == $row2['ended_day']){
+                            echo "Ended"; //gawin mong green
+                        }else{
+                            echo "On going"; // gawin mong yellow;
+                        }
+                        ?>
+                        
+                    </td>
+                </tr>
+
+
+
+                <?php
+            
+        $no++;
+            }
+        }
+
+            ?>
+
+    </table>
+
+
+
 
     <!-- Content starts here -->
     <main class="content" style="height:90vh;">

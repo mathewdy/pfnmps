@@ -25,6 +25,8 @@ include('security-admin.php');
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="#">
+					<!--lagyan to ng logo-->
+					<img src="logo.jpg" alt="">
           <span class="align-middle">Admin</span>
         </a>
 
@@ -63,7 +65,9 @@ include('security-admin.php');
           <i class="hamburger align-self-center"></i>
         </a>
 
+			Bucal Elementary School Nutritional Profiling System
 				<div class="navbar-collapse collapse">
+
 					<ul class="navbar-nav navbar-align">
 						
 						<li class="nav-item dropdown">
@@ -84,6 +88,101 @@ include('security-admin.php');
 					</ul>
 				</div>
 			</nav>
+
+			<!---Total number of students-->
+
+			<?php
+
+			$sql_total_students = "SELECT id FROM students";
+			$query_total_students = mysqli_query($conn,$sql_total_students);
+
+			$row = mysqli_num_rows($query_total_students);
+
+			echo "Total students: " . $row. "";
+
+			?>
+
+			<!---total # of new added students--->
+
+			<?php
+
+			//year month date
+			date_default_timezone_set("Asia/Manila");
+			$time= date("h:i:s", time());
+			$date = date('y-m-d');
+			$total_date_time = $date ." ". $time;
+
+			?>
+			
+			<?php
+
+			$sql_new_students = "SELECT id FROM students WHERE date_time_created  = '$date $time'";
+			$query_new_students = mysqli_query($conn,$sql_new_students);
+			$row1 = mysqli_num_rows($query_new_students);
+
+			echo "New Students: " . $row1 . "";
+
+			?>
+
+			<!-----table recent view--->
+			<table>
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Student's Name</th>
+						<th>Grade / Level</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+
+				<?php
+
+
+					$query_name_year_status = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day
+					FROM students 
+					LEFT JOIN program_records
+					ON students.student_id = program_records.student_id ";
+					$run_neme_year_status = mysqli_query($conn,$query_name_year_status);
+
+					if(mysqli_num_rows($run_neme_year_status) > 0){
+						$no = 1;
+						foreach($run_neme_year_status as $row2){
+							?>
+
+							<tr>
+								<td><?php echo $no?></td>
+								<td><?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?></td>
+								<td>
+									<?php echo $row2['grade']?>
+								</td>
+								<td>
+									<?php
+									if($total_date_time == $row2['ended_day']){
+										echo "Ended"; //gawin mong green
+									}else{
+										echo "On going"; // gawin mong yellow;
+									}
+									?>
+									
+								</td>
+							</tr>
+
+
+
+							<?php
+						
+					$no++;
+						}
+					}
+
+
+				?>
+					<tr>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
 
 			<main class="content">
 				<div class="container-fluid p-0">

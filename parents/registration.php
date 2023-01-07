@@ -166,11 +166,11 @@ session_start();
                                 <h2>Health Info</h2>
                                 <!----dito health info nya naman---BMI-->
                                 <label for="">Height</label>
-                                <input type="number" class="form-control w-50 py-1" name="height">
+                                <input type="number" class="form-control w-50 py-1" name="height" min="30" max="95">
                                 <br>
 
                                 <label for="">Weight</label>
-                                <input type="number" class="form-control w-50 py-1" name="weight">
+                                <input type="number" class="form-control w-50 py-1" name="weight" min="30" max="95">
 
                                 <br>
 
@@ -443,6 +443,7 @@ if(isset($_POST['add_patient'])){
     if($query_bmi == true){
         echo "added to database insert_health_info" . '<br>';
         header("location:survey.php?id=$encryption");
+        echo $bmi;
         exit();
     }else{
         echo $conn->error;

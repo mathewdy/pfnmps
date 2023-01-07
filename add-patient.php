@@ -218,11 +218,11 @@ include('security-admin.php');
                                     <h2>Health Info</h2>
                                     <!----dito health info nya naman---BMI-->
                                     <label for="">Height</label>
-                                    <input type="number" class="form-control" name="height">
+                                    <input type="number" class="form-control" name="height" min="30" max="95">
                                     <br>
 
                                     <label for="">Weight</label>
-                                    <input type="number" class="form-control" name="weight">
+                                    <input type="number" class="form-control" name="weight" min="30" max="95">
 
                                     <br>
 
