@@ -28,7 +28,8 @@ include('security-admin.php');
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="#">
-          <span class="align-middle">Admin</span>
+                <img src="logo.jpg" alt="" height="50" style="border-radius: 50px;">
+					<span class="align-middle px-3 text-dark">Bucal ES</span>
         </a>
 
 				<ul class="sidebar-nav">
@@ -51,7 +52,7 @@ include('security-admin.php');
 					
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="add-patient.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+                            <i class="align-middle text-dark" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
                         </a>
 					</li>
 				
@@ -64,7 +65,11 @@ include('security-admin.php');
 				<a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
-
+        <span class="mt-2">
+                    <h4 class="fw-bold">
+                        Bucal Elementary School Nutritional Profiling System
+                    </h4>
+                </span>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 						

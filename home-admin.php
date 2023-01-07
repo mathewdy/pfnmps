@@ -26,18 +26,17 @@ include('security-admin.php');
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="#">
 					<!--lagyan to ng logo-->
-					<img src="logo.jpg" alt="">
-          <span class="align-middle">Admin</span>
-        </a>
-
-				<ul class="sidebar-nav">
+					<img src="logo.jpg" alt="" height="50" style="border-radius: 50px;">
+					<span class="align-middle px-3 text-muted">Bucal ES</span>
+				</a>
+				<ul class="sidebar-nav ">
 					<li class="sidebar-header">
 						Pages
 					</li>
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="home-admin.php">
-                            <i class="align-middle" data-feather="home"></i> <span class="align-middle">Home</span>
+                            <i class="align-middle text-dark" data-feather="home"></i> <span class="align-middle">Home</span>
                          </a>
 					</li>
 
@@ -64,12 +63,14 @@ include('security-admin.php');
 				<a class="sidebar-toggle js-sidebar-toggle">
           <i class="hamburger align-self-center"></i>
         </a>
-
-			Bucal Elementary School Nutritional Profiling System
+		<span class="mt-2">
+			<h4 class="fw-bold">
+				Bucal Elementary School Nutritional Profiling System
+			</h4>
+		</span>
 				<div class="navbar-collapse collapse">
 
 					<ul class="navbar-nav navbar-align">
-						
 						<li class="nav-item dropdown">
 							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
                                 <i class="align-middle" data-feather="settings"></i>
@@ -97,35 +98,46 @@ include('security-admin.php');
 			$query_total_students = mysqli_query($conn,$sql_total_students);
 
 			$row = mysqli_num_rows($query_total_students);
-
-			echo "Total students: " . $row. "";
-
 			?>
+			<div class="container p-5">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="card p-3">
+						<?= "Total students: " . $row. "";?>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="card p-3">
 
-			<!---total # of new added students--->
+					
+					<!---total # of new added students--->
 
-			<?php
+					<?php
 
-			//year month date
-			date_default_timezone_set("Asia/Manila");
-			$time= date("h:i:s", time());
-			$date = date('y-m-d');
-			$total_date_time = $date ." ". $time;
+					//year month date
+					date_default_timezone_set("Asia/Manila");
+					$time= date("h:i:s", time());
+					$date = date('y-m-d');
+					$total_date_time = $date ." ". $time;
 
-			?>
-			
-			<?php
+					?>
+					
+					<?php
 
-			$sql_new_students = "SELECT id FROM students WHERE date_time_created  = '$date $time'";
-			$query_new_students = mysqli_query($conn,$sql_new_students);
-			$row1 = mysqli_num_rows($query_new_students);
+					$sql_new_students = "SELECT id FROM students WHERE date_time_created  = '$date $time'";
+					$query_new_students = mysqli_query($conn,$sql_new_students);
+					$row1 = mysqli_num_rows($query_new_students);
 
-			echo "New Students: " . $row1 . "";
+					echo "New Students: " . $row1 . "";
 
-			?>
+					?>
+					</div>
+				</div>
+			</div>
 
+			<div class="card">
 			<!-----table recent view--->
-			<table>
+			<table class="table">
 				<thead>
 					<tr>
 						<th>#</th>
@@ -183,7 +195,8 @@ include('security-admin.php');
 					</tr>
 				</tbody>
 			</table>
-
+			</div>
+			</div>
 			<main class="content">
 				<div class="container-fluid p-0">
 					<div class="card">

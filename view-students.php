@@ -44,7 +44,8 @@ $no = 1;
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
 				<a class="sidebar-brand" href="home-admin.php">
-          <span class="align-middle">Admin</span>
+                <img src="logo.jpg" alt="" height="50" style="border-radius: 50px;">
+					<span class="align-middle px-3 text-dark">Bucal ES</span>
         </a>
 
 				<ul class="sidebar-nav">
@@ -60,7 +61,7 @@ $no = 1;
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="view-students.php">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+                            <i class="align-middle text-dark" data-feather="user"></i> <span class="align-middle">Students</span>
                         </a>
 					</li>
 
@@ -79,9 +80,13 @@ $no = 1;
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
-
+                    <i class="hamburger align-self-center"></i>
+                </a>
+                <span class="mt-2">
+                    <h4 class="fw-bold">
+                        Bucal Elementary School Nutritional Profiling System
+                    </h4>
+                </span>
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
 						
