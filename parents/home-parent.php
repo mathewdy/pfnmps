@@ -161,6 +161,7 @@ $student_id = $_SESSION['student_id'];
                             <hr class="featurette-divider">
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <p>Note: Must do every day.</p>
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
                             </div>
 
@@ -175,7 +176,7 @@ $student_id = $_SESSION['student_id'];
                                         ?>
 
 
-                                            <label for="">Date Started</label>
+                                            <label for="">Date Started:</label>
                                             <p>
                                                 <?php $new_format = date("Y-M-d", strtotime($row['date_started']))?>
                                                 <?php echo $new_format?>
