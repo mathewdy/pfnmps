@@ -17,7 +17,10 @@ ob_start();
     <title>Document</title>
 </head>
 <body class="bg-light">
-    <main class="d-flex w-100">
+    <main class="d-flex w-100 vh-100" style="overflow: hidden; position: relative;">
+        <svg viewBox="0 0 200 200" style="position: absolute; left: -25%; top: -70%; transform: rotate(25deg);" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#9EF0F0" d="M41.1,-50.6C56.3,-45.6,73.6,-37.6,73.8,-26.5C73.9,-15.4,56.9,-1.2,50,15.1C43.1,31.4,46.4,49.9,39.7,63.4C33.1,77,16.5,85.6,-1.5,87.7C-19.5,89.7,-39.1,85.2,-51.4,73.5C-63.7,61.8,-68.7,42.9,-71.5,25.4C-74.2,7.9,-74.7,-8.3,-66.9,-18.5C-59.1,-28.7,-43.1,-33,-30.6,-38.9C-18,-44.8,-9,-52.3,2,-55C13,-57.7,26,-55.7,41.1,-50.6Z" transform="translate(100 100)" />
+        </svg>
         <div class="container d-flex flex-column">
             <div class="row vh-100">
                 <div class="col-lg-5 mx-auto d-table h-100">
