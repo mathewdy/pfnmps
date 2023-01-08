@@ -25,7 +25,7 @@ $student_id = $_SESSION['student_id'];
   <div class="sticky-nav bg-white vh-100 shadow">
     <a href="#" class="brand p-3 link-dark text-decoration-none bg-white text-center" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
         <!---logo-->
-        <img src="../logo.jpg" alt="">
+        <img src="../logo.jpg" alt="" class="card-img-top" style="border-radius: 50px;">
     </a>
     <ul class="list nav nav-flush mb-auto text-center">
       <li class="nav-item">
@@ -71,85 +71,81 @@ $student_id = $_SESSION['student_id'];
             </div>
         </div>
     </nav>
-
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Grade</th>
-                <th>Section</th>
-                <th>Status</th>
-            </tr>
-          
-        </thead>
-
-
-    <!----ikaw na bahala dito--->
-    <?php
-
-        date_default_timezone_set("Asia/Manila");
-        $time= date("h:i:s", time());
-        $date = date('y-m-d');
-        $total_date_time = $date ." ". $time;
-   
-        $query_name_year_status = "SELECT DISTINCT students.first_name, students.image , students.middle_name , students.last_name , students.grade, students.section , program_records.ended_day
-        FROM students 
-        LEFT JOIN program_records
-        ON students.student_id = program_records.student_id WHERE students.student_id = '$student_id' ";
-        $run_neme_year_status = mysqli_query($conn,$query_name_year_status);
-
-        if(mysqli_num_rows($run_neme_year_status) > 0){
-            $no = 1;
-            foreach($run_neme_year_status as $row2){
-                ?>
-
-                <tr>
-                    <td><?php echo $no?></td>
-                    <img src="<?php echo "student_image/" . $row2['image'] ?>" height="200px" width="200px" alt="Student IMG">
-                    <td><?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?></td>
-                    <td>
-                        <?php echo $row2['grade']?>
-                    </td>
-                    <td>
-                        <?php echo $row2['section']?>
-                    </td>
-                    <td>
-                        <?php
-                        if($total_date_time == $row2['ended_day']){
-                            echo "Ended"; //gawin mong green
-                        }else{
-                            echo "On going"; // gawin mong yellow;
-                        }
-                        ?>
-                        
-                    </td>
-                </tr>
-
-
-
-                <?php
-            
-        $no++;
-            }
-        }
-
-            ?>
-
-    </table>
-
-
-
-
     <!-- Content starts here -->
-    <main class="content" style="height:90vh;">
+    <main class="content pb-5 pt-3">
         <div class="container-fluid" style="height: 100%;">
             <div class="row">
-                
+                <!-- <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Grade</th>
+                        <th>Section</th>
+                        <th>Status</th>
+                    </tr>
+                    
+                </thead> -->
+            <div class="col-lg-5">
+                <div class="card shadow p-5" style="border-radius: 0; border: none;">
+            <!----ikaw na bahala dito--->
+            <?php
+
+                date_default_timezone_set("Asia/Manila");
+                $time= date("h:i:s", time());
+                $date = date('y-m-d');
+                $total_date_time = $date ." ". $time;
+        
+                $query_name_year_status = "SELECT DISTINCT students.first_name, students.image , students.middle_name , students.last_name , students.grade, students.section , program_records.ended_day
+                FROM students 
+                LEFT JOIN program_records
+                ON students.student_id = program_records.student_id WHERE students.student_id = '$student_id' ";
+                $run_neme_year_status = mysqli_query($conn,$query_name_year_status);
+
+                if(mysqli_num_rows($run_neme_year_status) > 0){
+                    $no = 1;
+                    foreach($run_neme_year_status as $row2){
+                        ?>
+                            <!-- <?php echo $no ?>  -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <img class="card-img-top" src="<?php echo "student_image/" . $row2['image'] ?>" height="450" width="450" alt="Student IMG">
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <p class="text-muted p-0 m-0">Name</p>
+                                    <?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?>        
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <p class="text-muted p-0 m-0">Grade</p>
+                                    <?php echo $row2['grade']?>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <p class="text-muted p-0 m-0">Section</p>
+                                    <?php echo $row2['section']?>
+                                </div>
+                                <div class="col-lg-12 mb-2">
+                                    <p class="text-muted p-0 m-0">Status</p>
+                                    <?php
+                                    if($total_date_time == $row2['ended_day']){
+                                    echo "<p class='text-success'> Ended</p>"; //gawin mong green
+                                    }else{
+                                        echo "<p class='text-warning'> On going</p>"; // gawin mong yellow;
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php
+                    
+                $no++;
+                    }
+                }
+
+                    ?>
+                </div>
+                </div>
             </div>
         </div>
     </main>
-    <footer class="footer bg-white p-2 w-100" style="position:absolute; bottom: 0;">
+    <footer class="footer bg-white p-2 pt-5 w-100">
         <p class="text-center text-muted">PFNMPS@2022</p>
     </footer>
 </main>
