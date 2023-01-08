@@ -122,16 +122,7 @@ $student_id = $_SESSION['student_id'];
                                     <p class="text-muted p-0 m-0">Section</p>
                                     <?php echo $row2['section']?>
                                 </div>
-                                <div class="col-lg-12 mb-2">
-                                    <p class="text-muted p-0 m-0">Status</p>
-                                    <?php
-                                    if($total_date_time == $row2['ended_day']){
-                                    echo "<p class='text-success'> Ended</p>"; //gawin mong green
-                                    }else{
-                                        echo "<p class='text-warning'> On going</p>"; // gawin mong yellow;
-                                    }
-                                    ?>
-                                </div>
+                                
                             </div>
                         <?php
                     
@@ -145,6 +136,36 @@ $student_id = $_SESSION['student_id'];
                 <div class="col-lg-6">
                     <div class="card shadow p-5" style="border-radius: 0; border: none">
                         <!-- date dito -->
+                        sadasdasd
+                        <?php
+
+                        $query_date_started = "SELECT DISTINCT date_started , ended_day FROM program_records WHERE student_id = '$student_id'";
+                        $run_date_started = mysqli_query($conn,$query_date_started);
+
+                        if(mysqli_num_rows($run_date_started) > 0){
+                            foreach($run_date_started as $row3){
+                                ?>
+
+                                    <label for="">Start Date:</label>
+                                    <p><?php echo $row3['date_started']?></p>
+                                    <label for="">End Date:</label>
+                                    <p><?php echo $row3['ended_day']?></p>
+                                    <label for="">Status:</label>
+                                    <?php
+                                        if($total_date_time == $row3['ended_day']){
+                                        echo "<p class='text-success'> Ended</p>"; //gawin mong green
+                                        }else{
+                                            echo "<p class='text-warning'> On going</p>"; // gawin mong yellow;
+                                        }
+                                    ?>
+
+                                <?php
+                            }
+                        }else{
+                            echo "no records" . $conn->error;
+                        }
+
+                        ?>
                     </div>
                 </div>
             </div>
