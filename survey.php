@@ -188,16 +188,16 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
         $meal_per_day = implode(", ", $array_meals);
 
 
-        $select_exercises = "SELECT * FROM `activities` ORDER BY RAND()";
+        $select_exercises = "SELECT * FROM `activities` ORDER BY RAND() LIMIT 10";
         $query_exercises = mysqli_query($conn, $select_exercises);
         $exercises_array = mysqli_fetch_array($query_exercises);
         $exercises = ucwords($exercises_array['exercises']);
-        $exercises = implode(',', array_unique(explode(',', $exercises)));
+        $exercises2 = implode(',', array_unique(explode(',', $exercises)));
 
 
         $sql_insert_program_record = "INSERT INTO `program_records`(`student_id`, `date_started`,
         `foods`, `exercises`, `day`, `food_acknowledge`,`exercise_acknowledge`,`ended_day`, `date_time_created`, `date_time_updated`) 
-        VALUES ('$student_id','$date_time_created','$meal_per_day','$exercises','".$days[$i]."','".$acknowledge."','".$acknowledge."','$ended_date','$date_time_created', '$date_time_created')";
+        VALUES ('$student_id','$date_time_created','$meal_per_day','$exercises2','".$days[$i]."','".$acknowledge."','".$acknowledge."','$ended_date','$date_time_created', '$date_time_created')";
         $query_sql_insert_program_record = mysqli_query($conn, $sql_insert_program_record) or die (mysqli_error($conn));
     }
         if($query_sql_insert_program_record == true){

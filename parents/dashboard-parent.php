@@ -95,10 +95,11 @@ $student_id = $_SESSION['student_id'];
                 $date = date('y-m-d');
                 $total_date_time = $date ." ". $time;
         
-                $query_name_year_status = "SELECT DISTINCT students.first_name, students.image , students.middle_name , students.last_name , students.grade, students.section , program_records.ended_day
+                $query_name_year_status = "SELECT DISTINCT students.first_name, students.image , students.middle_name , students.last_name , students.grade, students.section , program_records.ended_day 
                 FROM students 
                 LEFT JOIN program_records
-                ON students.student_id = program_records.student_id WHERE students.student_id = '$student_id' ";
+                ON students.student_id = program_records.student_id 
+                WHERE students.student_id = '$student_id' ";
                 $run_neme_year_status = mysqli_query($conn,$query_name_year_status);
 
                 if(mysqli_num_rows($run_neme_year_status) > 0){
@@ -122,6 +123,7 @@ $student_id = $_SESSION['student_id'];
                                     <p class="text-muted p-0 m-0">Section</p>
                                     <?php echo $row2['section']?>
                                 </div>
+
                                 
                             </div>
                         <?php
@@ -172,6 +174,35 @@ $student_id = $_SESSION['student_id'];
                         }else{
                             echo "no records" . $conn->error;
                         }
+
+                        ?>
+
+                        <?php
+
+
+                        $query_bmi = "SELECT * FROM health_infos WHERE student_id = '$student_id'";
+                        $run_bmi = mysqli_query($conn,$query_bmi);
+
+                        if(mysqli_num_rows($run_bmi) > 0){
+                            foreach($run_bmi as $row4){
+                                ?>
+                                    <br>
+                                    <label for="">Current BMI:</label>
+                                    <input type="number" name="bmi" value="<?php echo $row4['bmi']?>" class="form-control" readonly>
+                                    <label for="">Current Height:</label>
+                                    <input type="number" name="height" class="form-control" value="<?php echo $row4['height'] ?>" readonly>
+                                    <label for="">Current Weight:</label>
+                                    <input type="number" name="weight" class="form-control" value="<?php echo $row4['weight']?>" readonly>
+
+                                    <label for="">Current Status:</label>
+                                    <input type="text" name="status" class="form-control" value="<?php echo $row4['status']?>" readonly>
+                                
+
+                                <?php
+
+                            }
+                        }
+                        
 
                         ?>
                     </div>

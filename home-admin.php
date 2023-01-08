@@ -117,14 +117,14 @@ include('security-admin.php');
 					//year month date
 					date_default_timezone_set("Asia/Manila");
 					$time= date("h:i:s", time());
-					$date = date('y-m-d');
+					$date = date('Y-m-d');
 					$total_date_time = $date ." ". $time;
 
 					?>
 					
 					<?php
 
-					$sql_new_students = "SELECT id FROM students WHERE date_time_created  = '$date $time'";
+					$sql_new_students = "SELECT id FROM students WHERE date_created  = '$date'";
 					$query_new_students = mysqli_query($conn,$sql_new_students);
 					$row1 = mysqli_num_rows($query_new_students);
 
@@ -171,9 +171,9 @@ include('security-admin.php');
 								<td>
 									<?php
 									if($total_date_time == $row2['ended_day']){
-										echo "Ended"; //gawin mong green
+										echo "<span style='color:green;'>Ended <span>"; //gawin mong green
 									}else{
-										echo "On going"; // gawin mong yellow;
+										echo "<span style='color: red;'> On going <span>"; // gawin mong yellow;
 									}
 									?>
 									

@@ -26,7 +26,7 @@ ob_start();
     <div class="wrapper">
 		<nav id="sidebar" class="sidebar js-sidebar">
 			<div class="sidebar-content js-simplebar">
-				<a class="sidebar-brand" href="index.html">
+				<a class="sidebar-brand" href="home-admin.php">
                 <img src="logo.jpg" alt="" height="50" style="border-radius: 50px;">
 					<span class="align-middle px-3 text-dark">Bucal ES</span>
         </a>
@@ -89,6 +89,7 @@ ob_start();
 					</ul>
 				</div>
 			</nav>
+
 
 			<main class="content">
 				<div class="container-fluid p-0">
@@ -153,8 +154,10 @@ ob_start();
 
                             
 
-                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id FROM students LEFT JOIN users
-                            ON students.student_id = users.student_id WHERE students.student_id = '$student_id'";
+                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id , health_infos.bmi AS health_infos_bmi, health_infos.height AS health_infos_height, health_infos.weight AS health_infos_weight, health_infos.status AS health_infos_status FROM students LEFT JOIN users
+                            ON students.student_id = users.student_id 
+                            LEFT JOIN health_infos ON students.student_id = health_infos.student_id
+                            WHERE students.student_id = '$student_id'";
                             $run = mysqli_query($conn,$query);
 
                             if(mysqli_num_rows($run) > 0){
@@ -163,21 +166,21 @@ ob_start();
                                         <hr class="featurette-divider">
                                         <form action="edit-student.php" method="POST" enctype="multipart/form-data">
                                             <h2>Personal Info</h2>
-                                            <label for="">First Name</label>
+                                            <label for="">First Name:</label>
                                             <input type="text" class="form-control" name="first_name" value="<?php echo $row ['student_first_name']?>">
 
                                             <br>
 
-                                            <label for="">Middle Name</label>
+                                            <label for="">Middle Name:</label>
                                             <input type="text" class="form-control" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
 
                                             <br>
 
-                                            <label for="">Last Name</label>
+                                            <label for="">Last Name:</label>
                                             <input type="text" class="form-control" name="last_name" value="<?php echo $row ['student_last_name']?>">
                                             <br>
 
-                                            <label for="">Date of Birth</label>
+                                            <label for="">Date of Birth:</label>
                                             <input type="date" class="form-control" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
                                             <br>
 
@@ -185,11 +188,11 @@ ob_start();
 
                                             <hr class="featurette-divider">
                                             <h2>Address</h2>
-                                            <label for="">Room / Floor / Unit No. & Building Name</label>
+                                            <label for="">Room / Floor / Unit No. & Building Name:</label>
                                             <input type="text" class="form-control" name="room" value="<?php echo $row ['student_room'] ?>">
 
                                             <br>
-                                            <label for="">House / Lot & Block No.</label>
+                                            <label for="">House / Lot & Block No. :</label>
                                             <input type="text" class="form-control" name="house" value="<?php echo $row ['student_house']?>">
 
                                             <br>
@@ -197,22 +200,22 @@ ob_start();
                                             <input type="text" class="form-control" name="street" value="<?php echo $row ['student_street']?>">
 
                                             <br>
-                                            <label for="">Subdivision</label>
+                                            <label for="">Subdivision:</label>
                                             <input type="text" class="form-control" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
 
 
                                             <br>
-                                            <label for="">Barangay</label>
+                                            <label for="">Barangay:</label>
                                             <input type="text" class="form-control" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
 
 
                                             <br>
-                                            <label for="">City</label>
+                                            <label for="">City:</label>
                                             <input type="text" class="form-control" name="city" value="<?php echo $row ['student_city']?>">
 
                                             
                                             <br>
-                                            <label for="">Zip Code</label>
+                                            <label for="">Zip Code:</label>
                                             <input type="number" class="form-control" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
                                             <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
@@ -221,7 +224,7 @@ ob_start();
 
                                             <br>
 
-                                            <label for="">Grade</label>
+                                            <label for="">Grade:</label>
                                             <!-- <input type="text" class="form-control" name="grade" value="<?php echo $row ['student_grade']?>" readonly> -->
                                             <select name="grade" id="" class="form-control" style="pointer-events: none; border: none; ">
                                                 <option selected value="<?php echo $row ['student_grade']?>"><?php echo $row ['student_grade']?></option>
@@ -237,16 +240,29 @@ ob_start();
                                             </select>
 
                                             <br>
-                                            <label for="">Section</label>
+                                            <label for="">Section:</label>
                                             <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
 
-                                            <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>">
+                                            <!---gagawin tong modal---->
+                                            <br>
+                                            <label for="">Current BMI:</label>
+                                            <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" readonly>
+                                            <label for="">Current Height:</label>
+                                            <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>"readonly>
+                                            <label for="">Current Weight:</label>
+                                            <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" readonly>
+
+                                            <label for="">Current Status:</label>
+                                            <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" readonly>
+
+                                            <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>"readonly>
 
                                             <br>
                                             <a href="view-students.php" class="btn btn-danger">Back</a>
                                             <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
                                             <input type="submit" class="btn btn-primary" name="update" value="Update">
                                             <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
+
 
                                         </form>
 
@@ -304,8 +320,8 @@ ob_start();
                                                 <input type="hidden" name="id" value="<?php echo $row2['id']?>">
                                                 <input type="hidden" name="daily_task" value="1">
                                             
-                                                <input type="submit" name="acknowledge_task" value="Acknowledge">
-                                                <input type="text" name="student_id" value="<?php echo $student_id ?>">
+                                                <input type="submit" name="acknowledge_task" value="Acknowledge" class="btn btn-outline-primary py-1">
+                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
                                         
 
                                                 <?php
@@ -366,7 +382,7 @@ ob_start();
                                                 <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
                                                 <input type="hidden" name="id" value="<?php echo $row1['id']?>">
                                                 <input type="hidden" name="daily_meal" value="1">
-                                                <input type="submit" name="acknowledge_meal" value="Acknowledge">
+                                                <input type="submit" name="acknowledge_meal" value="Acknowledge" class="btn btn-outline-primary py-1">
                                             <?php
                                         }else{
                                             echo "<div style='color: green;'>Acknowledged </div> ";
@@ -393,6 +409,7 @@ ob_start();
 			</main>
 		</div>
 	</div>
+
 
 
     
@@ -515,6 +532,48 @@ if(isset($_POST['update_image'])){
     }
 }
 
+
+//eto yung code for modal
+
+if(isset($_POST['edit_health_infos'])){
+    $student_id = $_POST['student_id'];
+
+    $height = $_POST['height'];
+    $weight = $_POST['weight'];
+
+    $compute_height =  $height / 100;
+    $total_height = $compute_height * $compute_height;
+    $compute_BMI = $weight / $total_height;
+
+    if($compute_BMI <= 18.5){
+        echo "Under Weight <br>";
+        $status = "Under Weight";
+    }else if($compute_BMI >= 18.5 || $compute_BMI <= 24.9){
+        echo "Healthy Weight <br>";
+        $status = "Healthy Weight";
+    }else if($compute_BMI >= 25 || $compute_BMI <= 29.9){
+        echo "Over Weight <br>";
+        $status = "Over Weight";
+    }else if($compute_BMI == 30 || $compute_BMI <= 34.9){
+        echo "Obese Class 1 <br>";
+        $status = "Obese Class 1";
+    }else if($compute_BMI == 35 || $compute_BMI <= 39.9){
+        echo "Obese Class 2 <br>";
+        $status = "Obese Class 2";
+    }else if($compute_BMI >= 40){
+        echo "Obese Class 3 <br>";
+        $status = "Obese Class 3";
+    }
+
+
+    $query_update_health_infos = "UPDATE health_infos SET height = '$height', weight='$weight' ,bmi ='$compute_BMI' , status = '$status' WHERE student_id = '$student_id'";
+    $sql_update_health_infos = mysqli_query($conn,$query_update_health_infos);
+
+    if($sql_update_health_infos == TRUE){
+        echo "<script> window.location.href='edit-student.php?student_id=$student_id' </script>";
+    }
+    
+}
 
 
 

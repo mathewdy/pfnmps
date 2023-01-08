@@ -68,13 +68,30 @@ $student_id = $_SESSION['student_id'];
                     <?= $email; ?>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser3">
-                    <li><a class="dropdown-item" href="logout-parent.php    ">Sign out</a></li>
+                    <li><a class="dropdown-item" href="logout-parent.php">Sign out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Content starts here -->
+    
+    <?php
+
+    $excerises_done = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' AND exercise_acknowledge = '1'  LIMIT 10";
+    $run_excercises = mysqli_query($conn,$excerises_done);
+
+    $row4 = mysqli_num_rows($run_excercises);
+    //pwede mo na tong hindi ilagay
+
+
+    if($row4 == 10){
+        echo "<script>alert('Daily Task is done') </script>";
+    }else{
+
+    } 
+
+    ?>
     <main class="content">
         <div class="container-fluid" style="height: 100%;">
             <div class="row mb-5 gy-3" style="height: 70vh;">
@@ -87,13 +104,17 @@ $student_id = $_SESSION['student_id'];
                                     <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
                                     </svg>
                                     <h1 class="h4 bold" style="padding: 0 0 0 3px;">Daily Task</h1> 
+                                    
                                 </span>
                             </div>    
                             <hr class="featurette-divider">
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <?php echo "Total Acknowledge: " .$row4 . " "  ?>
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
                                 <p>Note: Must do every other day.</p>
+                                <br>
+                               
                             </div>
 
                            <?php
@@ -153,6 +174,21 @@ $student_id = $_SESSION['student_id'];
                         </div>   
                     </div>     
                 </div>
+
+                <?php
+
+                $food_done = "SELECT food_acknowledge FROM program_records WHERE student_id = '$student_id' AND food_acknowledge = '1'";
+                $run_food = mysqli_query($conn,$food_done);
+                $row5 = mysqli_num_rows($run_food);
+
+               
+                if($row5 == 30){
+                    echo "<script>alert('Daily Meal is done') </script>";
+                }else{
+
+                }
+
+                ?>
                 <div class="col-lg-8">
                     <div class="card" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
@@ -168,6 +204,8 @@ $student_id = $_SESSION['student_id'];
                             <hr class="featurette-divider">
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
                             <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                <?php echo "Total acknowledge is:" . $row5 . " " ?> 
+                                <br>
                                 <p>Note: Must do every day.</p>
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
                             </div>
@@ -245,8 +283,59 @@ $student_id = $_SESSION['student_id'];
     <footer class="footer bg-white p-2 w-100">
         <p class="text-center text-muted">PFNMPS@2022</p>
     </footer>
+    <?php
+
+    if($row4 == 10 && $row5 == 30){
+        echo "<script>alert('Wait for the next health evaluation') </script>";
+    }
+
+    ?>
 </main>
 </div>
+
+
+<!-----notification-- ikaw na bahala mag design dito riri--->
+
+
+<?php
+
+
+
+?>
+
+
+
+<!-- 
+
+// if($row4 == 10){
+//     echo "<script>alert('Daily Task is done') </script>";
+// }else{
+//     echo "Pending";
+// } -->
+
+
+
+
+
+<!-- // $food_done = "SELECT food_acknowledge FROM program_records WHERE student_id = '$student_id'";
+// $run_food = mysqli_query($conn,$food_done);
+
+// $row5 = mysqli_num_rows($run_food);
+
+// echo "Total acknowledge is food:" . $row5 . " ";
+
+// if($row5 == 30){
+//     echo "<script>alert('Daily Meal is done') </script>";
+// }else{
+//     echo "Pending";
+// } -->
+
+
+?>
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- <script src="../src/styles/custom/sidenav.js"></script> -->
 <script src="../admin-template/js/app.js"></script>

@@ -101,19 +101,19 @@ include('security-admin.php');
                                 <h2>Name of Guardian</h2>
                                 <br>
                                 <label for="">First Name</label>
-                                <input type="text" class="form-control" name="guardian_first_name">
+                                <input type="text" class="form-control" name="guardian_first_name" required>
                                 <br>
 
                                 <label for="">Middle Name</label>
-                                <input type="text" class="form-control" name="guardian_middle_name">
+                                <input type="text" class="form-control" name="guardian_middle_name" required>
 
                                 <br>
                                 <label for="">Last Name</label>
-                                <input type="text" class="form-control" name="guardian_last_name">
+                                <input type="text" class="form-control" name="guardian_last_name" required>
                                 
                                 <br>
                                 <label for="">Email</label>
-                                <input type="email" class="form-control" name="email">
+                                <input type="email" class="form-control" name="email" required>
 
 
                                 <!-----ADDRESS---->
@@ -121,92 +121,92 @@ include('security-admin.php');
                                 <br>
                                 <label for="">Address</label>
                                 <label for="">Room / Floor / Unit No. & Building Name</label>
-                                <input type="text" class="form-control" name="room">
+                                <input type="text" class="form-control" name="room" required>
 
                                 <br>
                                 <label for="">House / Lot & Block No.</label>
-                                <input type="text" class="form-control" ="house">
+                                <input type="text" class="form-control" name="house" required>
 
                                 <br>
                                 <label for="">Street</label>
-                                <input type="text" class="form-control" name="street">
+                                <input type="text" class="form-control" name="street" required>
 
                                 <br>
                                 <label for="">Subdivision</label>
-                                <input type="text" class="form-control" name="subdivision">
+                                <input type="text" class="form-control" name="subdivision" required>
 
 
                                 <br>
                                 <label for="">Barangay</label>
-                                <input type="text" class="form-control" name="barangay">
+                                <input type="text" class="form-control" name="barangay" required>
 
 
                                 <br>
                                 <label for="">City</label>
-                                <input type="text" class="form-control" name="city">
+                                <input type="text" class="form-control" name="city" required>
 
                                 
                                 <br>
                                 <label for="">Zip Code</label>
-                                <input type="number" class="form-control" name="zip_code"> 
+                                <input type="number" class="form-control" name="zip_code" required> 
 
                                 <br>
 
                                 <label for="">Gender</label>
                                 <br>
                                 <label for="">Male</label>
-                                <input type="radio" name="guardian_gender" value="Male">
+                                <input type="radio" name="guardian_gender" value="Male" required>
                                 <label for="">Female</label>
-                                <input type="radio" name="guardian_gender" value="Female">
+                                <input type="radio" name="guardian_gender" value="Female" required >
 
                                 <br>
                                 <label for="">Image</label>
-                                <input type="file" class="form-control" name="guardian_image">
+                                <input type="file" class="form-control" name="guardian_image" required>
                                
                             </div>
                             <div class="col-lg-4">
                             <h2>Name of Patient</h2>
                             <label for="">Student ID</label>
-                                <input type="text" class="form-control" name="student_id">
+                                <input type="text" class="form-control" name="student_id" required>
 
                                 <br>
 
                                 <label for="">First Name</label>
-                                <input type="text" class="form-control" name="first_name">
+                                <input type="text" class="form-control" name="first_name" required>
                                 <br>
 
                                 <label for="">Middle Name</label>
-                                <input type="text" class="form-control" name="middle_name">
+                                <input type="text" class="form-control" name="middle_name" required>
 
                                 <br>
                                 <label for="">Last Name</label>
-                                <input type="text" class="form-control" name="last_name">
+                                <input type="text" class="form-control" name="last_name" required>
 
 
 
                                 <br>
                                 <label for="">Date of Birth</label>
-                                <input type="date" class="form-control" name="date_of_birth">
+                                <input type="date" class="form-control" name="date_of_birth" required>
                                 
                                 <br>
                                 <label for="">Age</label>
-                                <input type="text" class="form-control" name="age" placeholder="Age">
+                                <input type="text" class="form-control" name="age" placeholder="Age" required>
                                 <br>
                                 <label for="">Gender</label>
                                 <br>
                                 <label for="">Male</label>
-                                <input type="radio" name="gender" value="Male">
+                                <input type="radio" name="gender" value="Male" required>
                                 <label for="">Female</label>
-                                <input type="radio" name="gender" value="Female">
+                                <input type="radio" name="gender" value="Female" required>
 
                                 <br>
                                 <label for="">Image</label>
-                                <input type="file" class="form-control" name="image">
+                                <input type="file" class="form-control" name="image" required>
 
                                 <br>
 
                                 <label for="">Grade</label>
-                                <select name="grade" class="form-select" id="">
+                                <select name="grade" class="form-select" id="" required>
                                     <option value="Grade 1">Grade 1</option>
                                     <option value="Grade 2">Grade 2</option>
                                     <option value="Grade 3">Grade 3</option>
@@ -217,21 +217,21 @@ include('security-admin.php');
 
                                 <br>
                                 <label for="">Section</label>
-                                <input type="text" class="form-control" name="section">
+                                <input type="text" class="form-control" name="section" required>
                             </div>
                             <div class="col-lg-4">
                                     <h2>Health Info</h2>
                                     <!----dito health info nya naman---BMI-->
                                     <label for="">Height</label>
-                                    <input type="number" class="form-control" name="height" min="30" max="95">
+                                    <input type="number" class="form-control" name="height" placeholder="Weight (kg)" required>
                                     <br>
 
                                     <label for="">Weight</label>
-                                    <input type="number" class="form-control" name="weight" min="30" max="95">
+                                    <input type="number" class="form-control" name="weight" placeholder="Height (cm)" required>
 
                                     <br>
 
-                                    <select name="actlevel" class="form-select" id="">
+                                    <select name="actlevel" class="form-select" id="" required>
                                     <option value="1">Sedentary</option>
                                     <option value="2">Low Active</option>
                                     <option value="3">Active</option>
@@ -240,7 +240,7 @@ include('security-admin.php');
 
                                     <br>
                                     <label for="">Health History</label>
-                                    <input type="text" class="form-control" name="health_history">
+                                    <input type="text" class="form-control" name="health_history" required>
 
                                     <!-----riri ikaw na bahala mag adjust sa stepper--->
                                     <br>
@@ -325,79 +325,97 @@ if(isset($_POST['add_patient'])){
     }else if($actlevel == 4){
         $actLevel_ = number_format(rand(1.9*10,2.5*10)/10,2);
     }else{
-        echo "Invalid Input";
+        echo "<script>alert('Input Valid Number') </script>";
     }
     
     if($gender == 'Male' && $age >= 3 && $age <= 8){ // Boys 3-8 Years old
-        $eer = 88.5;
-        $weight_ = 26.7 * $weight;
-        $height_ = 903 * $height;
-        $height_and_weight_ = $weight_ + $height_;
-        $PAL_and_HW = $actLevel_ * $height_and_weight_;
-        $age_ = 61.9 * $age;
-        $PAL_HW = $PAL_and_HW + 20;
-        $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
-        $rootHeight = $height * $height;
-        $bmi = number_format(($weight / $rootHeight),3);
+        $compute_height =  $height / 100;
+        $total_height = $compute_height * $compute_height;
+        $compute_BMI = $weight / $total_height;
+
+        // $height_and_weight_ = $weight_ + $height_;
+        // $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        // $age_ = 61.9 * $age;
+        // $PAL_HW = $PAL_and_HW + 20;
+        // $age_PAL_HW = $age_ + $PAL_HW;
+        // $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        // $rootHeight = $height * $height;
+    
         
     }else if($gender == 'Male' && $age >= 9 && $age <= 18){ // Boys 9-18 Years old
-        $eer = 88.5;
-        $weight_ = 26.7 * $weight;
-        $height_ = 903 * $height;
-        $height_and_weight_ = $weight_ + $height_;
-        $PAL_and_HW = $actLevel_ * $height_and_weight_;
-        $age_ = 61.9 * $age;
-        $PAL_HW = $PAL_and_HW + 25;
-        $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
-        $rootHeight = $height * $height;
-        $bmi = number_format(($weight / $rootHeight),3);
+        $compute_height =  $height / 100;
+        $total_height = $compute_height * $compute_height;
+        $compute_BMI = $weight / $total_height;
+        // $height_and_weight_ = $weight_ + $height_;
+        // $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        // $age_ = 61.9 * $age;
+        // $PAL_HW = $PAL_and_HW + 20;
+        // $age_PAL_HW = $age_ + $PAL_HW;
+        // $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        // $rootHeight = $height * $height;
+        // $eer = 88.5;
+        // $weight_ = 26.7 * $weight;
+        // $height_ = 903 * $height;
+        // $height_and_weight_ = $weight_ + $height_;
+        // $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        // $age_ = 61.9 * $age;
+        // $PAL_HW = $PAL_and_HW + 25;
+        // $age_PAL_HW = $age_ + $PAL_HW;
+        // $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        // $rootHeight = $height * $height;
+        // $bmi = number_format(($weight / $rootHeight),3);
     }else if($gender == 'Female' && $age >= 3 && $age <= 8){ // Girls 3-8 Years old
-        $eer = 135.3;
-        $weight_ = 10.0 * $weight;
-        $height_ = 934 * $height;
-        $height_and_weight_ = $weight_ + $height_;
-        $PAL_and_HW = $actLevel_ * $height_and_weight_;
-        $age_ = 30.8 * $age;
-        $PAL_HW = $PAL_and_HW + 20;
-        $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format(($age_PAL_HW - $eer)/1.5,4);
-        $rootHeight = $height * $height;
-        $bmi = number_format(($weight / $rootHeight),3);
+        $compute_height =  $height / 100;
+        $total_height = $compute_height * $compute_height;
+        $compute_BMI = $weight / $total_height;
+        // $eer = 135.3;
+        // $weight_ = 10.0 * $weight;
+        // $height_ = 934 * $height;
+        // $height_and_weight_ = $weight_ + $height_;
+        // $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        // $age_ = 30.8 * $age;
+        // $PAL_HW = $PAL_and_HW + 20;
+        // $age_PAL_HW = $age_ + $PAL_HW;
+        // $total = number_format(($age_PAL_HW - $eer)/1.5,4);
+        // $rootHeight = $height * $height;
+        // $bmi = number_format(($weight / $rootHeight),3);
     }else if($gender == 'Female' && $age >= 9 && $age <= 18){ // Girls 9-18 Years old
-        $eer = 135.3;
-        $weight_ = 10.0 * $weight;
-        $height_ = 934 * $height;
-        $height_and_weight_ = $weight_ + $height_;
-        $PAL_and_HW = $actLevel_ * $height_and_weight_;
-        $age_ = 30.8 * $age;
-        $PAL_HW = $PAL_and_HW + 25;
-        $age_PAL_HW = $age_ + $PAL_HW;
-        $total = number_format(($age_PAL_HW - $eer)/2.5,4);
-        $rootHeight = $height * $height;
-        $bmi = number_format(($weight / $rootHeight),3);
+
+        $compute_height =  $height / 100;
+        $total_height = $compute_height * $compute_height;
+        $compute_BMI = $weight / $total_height;
+        // $eer = 135.3;
+        // $weight_ = 10.0 * $weight;
+        // $height_ = 934 * $height;
+        // $height_and_weight_ = $weight_ + $height_;
+        // $PAL_and_HW = $actLevel_ * $height_and_weight_;
+        // $age_ = 30.8 * $age;
+        // $PAL_HW = $PAL_and_HW + 25;
+        // $age_PAL_HW = $age_ + $PAL_HW;
+        // $total = number_format(($age_PAL_HW - $eer)/2.5,4);
+        // $rootHeight = $height * $height;
+        // $bmi = number_format(($weight / $rootHeight),3);
     }else{
         echo "invalid age input <br>";
         exit();
     }
 
-    if($bmi <= 18.5){
+    if($compute_BMI <= 18.5){
         echo "Under Weight <br>";
         $status = "Under Weight";
-    }else if($bmi >= 18.5 || $bmi <= 24.9){
+    }else if($compute_BMI >= 18.5 || $compute_BMI <= 24.9){
         echo "Healthy Weight <br>";
         $status = "Healthy Weight";
-    }else if($bmi >= 25 || $bmi <= 29.9){
+    }else if($compute_BMI >= 25 || $compute_BMI <= 29.9){
         echo "Over Weight <br>";
         $status = "Over Weight";
-    }else if($bmi == 30 || $bmi <= 34.9){
+    }else if($compute_BMI == 30 || $compute_BMI <= 34.9){
         echo "Obese Class 1 <br>";
         $status = "Obese Class 1";
-    }else if($bmi == 35 || $bmi <= 39.9){
+    }else if($compute_BMI == 35 || $compute_BMI <= 39.9){
         echo "Obese Class 2 <br>";
         $status = "Obese Class 2";
-    }else if($bmi >= 40){
+    }else if($compute_BMI >= 40){
         echo "Obese Class 3 <br>";
         $status = "Obese Class 3";
     }
@@ -420,14 +438,14 @@ if(isset($_POST['add_patient'])){
         echo "<script>alert('Student Already Added') </script>";
         exit();
     }
-  
+    
 
     //query ni student info
     if(!in_array($file_extension, $allowed_extension)){
         echo "image not added"  ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date $time' , '$date $time')";
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date','$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
         move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
 
@@ -494,7 +512,7 @@ if(isset($_POST['add_patient'])){
         exit();
     }else{
     $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`)
-    VALUES ('$student_id', '$height_', '$weight_', '$bmi', '$status', '$actlevel', '$health_history', '$date $time')";
+    VALUES ('$student_id', '$height', '$weight', '$compute_BMI', '$status', '$actlevel', '$health_history', '$date $time')";
     $query_bmi = mysqli_query($conn, $insert_bmi);
     if($query_bmi == true){
         echo "added to database insert_health_info" . '<br>';
