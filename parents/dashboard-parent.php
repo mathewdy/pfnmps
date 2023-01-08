@@ -147,11 +147,13 @@ $student_id = $_SESSION['student_id'];
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <p class="text-muted p-0 m-0">Date Started</p>
-                                        <p class="p-0 m-0"><?php echo $row3['date_started']?></p>
+                                        <?php $start = date("F d, Y", strtotime($row3['date_started']))?>
+                                        <p class="p-0 m-0"><?php echo $start ?></p>
                                     </div>
                                     <div class="col-lg-6">
                                         <p class="text-muted p-0 m-0">End Date</p>
-                                        <p class="p-0 m-0"><?php echo $row3['ended_day']?></p>
+                                        <?php $end = date("F d, Y", strtotime($row3['ended_day']))?>
+                                        <p class="p-0 m-0"><?php echo $end ?></p>
                                     </div>
                                     <div class="col-lg-12 mt-4">
                                         <p class="text-muted p-0 m-0">Status</p>

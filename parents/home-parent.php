@@ -110,10 +110,14 @@ $student_id = $_SESSION['student_id'];
 
                                         
                                      
-                                        <label for="">Acitivies:</label>
-                                        <p><?php echo $row2['exercises'] ?></p>
-                                        <label for="">Duration:</label>
-                                        <p>30 min.</p>
+                                        <!-- <label for="">Acitivies:</label> -->
+                                        <span class="d-flex justify-content-between align-items-start mb-4">
+                                            <span>
+                                                <p class="p-0 m-0"><?php echo $row2['exercises'] ?></p>
+                                                <small><p class="text-muted p-0 m-0">Duration: 30 mins.</p></small>
+                                                <small><p class="text-muted p-0 m-0"></p></small>
+                                            </span>
+                                        
                                         <form action="acknowledge.php" method="POST">
                                             
 
@@ -125,7 +129,7 @@ $student_id = $_SESSION['student_id'];
                                                 <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
                                                 <input type="hidden" name="id" value="<?php echo $row2['id']?>">
                                                 <input type="hidden" name="daily_task" value="1">
-                                                <input type="submit" name="acknowledge_task" value="Acknowledge">
+                                                <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_task" value="Acknowledge">
                                         
 
                                                 <?php
@@ -136,6 +140,9 @@ $student_id = $_SESSION['student_id'];
                                         ?>
                                         
                                         </form>
+                                        </span>
+                                       
+                                        <hr>
                                         
                                     <?php
                                 }
@@ -164,7 +171,7 @@ $student_id = $_SESSION['student_id'];
                                 <p>Note: Must do every day.</p>
                                 <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
                             </div>
-
+            
                             <?php
 
 
@@ -181,7 +188,7 @@ $student_id = $_SESSION['student_id'];
                                                 <?php $new_format = date("Y-M-d", strtotime($row['date_started']))?>
                                                 <?php echo $new_format?>
                                             </p>
-
+                                            <hr>
                                         <?php
                                     }
                                 }
@@ -198,30 +205,32 @@ $student_id = $_SESSION['student_id'];
                                     foreach($run_program_records as $row1){
                                         ?>
 
+                                            <p class="lead text-muted">Day <?php echo $row1['day']?> </p>
+                                            <!-- <p></p> -->
+                                            <label for="">Foods :</label>
+                                            <span class="d-flex justify-content-between align-items-end">
+                                                <p><?php echo $row1['foods']?></p>
+                                                <form action="acknowledge.php" method="POST">
+                                                <p>
+                                                    <?php
 
-                                            <label for="">Day: </label>
-                                            <p><?php echo $row1['day']?></p>
-                                            <label for="">Foods:</label>
-                                            <p><?php echo $row1['foods']?></p>
-                                            <form action="acknowledge.php" method="POST">
-                                            <p>
-                                                <?php
+                                                        if($row1['food_acknowledge'] == 0){
+                                                            ?>      
+                                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                                <input type="hidden" name="id" value="<?php echo $row1['id']?>">
+                                                                <input type="hidden" name="daily_meal" value="1">
+                                                                <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_meal" value="Acknowledge">
+                                                            <?php
+                                                        }else{
+                                                            echo "<div style='color: green;'>Acknowledged </div> ";
+                                                        }
+                                                
+                                                    ?>
+                                                </p>
+                                                </form>
 
-                                                    if($row1['food_acknowledge'] == 0){
-                                                        ?>      
-                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                                            <input type="hidden" name="id" value="<?php echo $row1['id']?>">
-                                                            <input type="hidden" name="daily_meal" value="1">
-                                                            <input type="submit" name="acknowledge_meal" value="Acknowledge">
-                                                        <?php
-                                                    }else{
-                                                        echo "<div style='color: green;'>Acknowledged </div> ";
-                                                    }
-                                            
-                                                ?>
-                                            </p>
-                                            </form>
-
+                                            </span>
+                                            <hr>
                                         <?php
                                     }
                                 }
