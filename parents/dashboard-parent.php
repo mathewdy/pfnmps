@@ -142,6 +142,11 @@ $student_id = $_SESSION['student_id'];
                     ?>
                 </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="card shadow p-5" style="border-radius: 0; border: none">
+                        <!-- date dito -->
+                    </div>
+                </div>
             </div>
         </div>
     </main>
