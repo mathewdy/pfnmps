@@ -257,12 +257,43 @@ ob_start();
 
                                             <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>"readonly>
 
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="BMI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="">
+                                                <div class="modal-body">
+                                                    <label for="">Current BMI:</label>
+                                                    <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" >
+                                                    <label for="">Current Height:</label>
+                                                    <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>">
+                                                    <label for="">Current Weight:</label>
+                                                    <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" >
+
+                                                    <label for="">Current Status:</label>
+                                                    <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" >
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                            </div>
                                             <br>
+                                            <span>
                                             <a href="view-students.php" class="btn btn-danger">Back</a>
+                                            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#BMI">Edit BMI</a>
                                             <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
                                             <input type="submit" class="btn btn-primary" name="update" value="Update">
                                             <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
-
+                                            </span>
 
                                         </form>
 
