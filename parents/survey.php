@@ -94,7 +94,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                                             </span> 
                                         </span>
                                         <br>
-                                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                                            <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -104,7 +104,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
             </div>
         </div>
     </main>
-<script src="opacity.js"> </script>
+    <script src="src/styles/custom/app.js"></script>
 
 </body>
 </html>
