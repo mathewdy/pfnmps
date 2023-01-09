@@ -3,7 +3,6 @@ include('connection.php');
 require_once __DIR__.'/vendor/autoload.php';
 session_start();
 ob_start();
-include('opacity.js');
 
 ?>
 
@@ -64,6 +63,7 @@ include('opacity.js');
             </div>
         </div>
     </main>
+    <script src="src/styles/custom/app.js"></script>
 </body>
 </html>
 
