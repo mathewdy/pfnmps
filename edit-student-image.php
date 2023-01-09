@@ -134,6 +134,8 @@ include('opacity.js');
                     }
 
                     ?>
+                    <script src="opacity.js"> </script>
+
                     </body>
                     </html>
 

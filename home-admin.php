@@ -3,7 +3,6 @@ ob_start();
 session_start();
 include('connection.php');
 include('security-admin.php');
-include('opacity.js');
 $_SESSION['user_id'];
 
 // echo $_SESSION['username'];
@@ -208,7 +207,9 @@ $_SESSION['user_id'];
 		</div>
 	</div>
 <!-- Bootstrap js -->
+<script src="opacity.js"> </script>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
+
 </body>
 </html>

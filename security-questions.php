@@ -2,8 +2,7 @@
 include('connection.php');
 session_start();
 ob_start();
-
- $_SESSION['student_id'];
+$_SESSION['student_id'];
 
 
 ?>
@@ -54,6 +53,8 @@ ob_start();
         </div>
     </form>
 </div>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

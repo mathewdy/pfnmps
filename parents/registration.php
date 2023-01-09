@@ -2,7 +2,6 @@
 ob_start();
 include('../connection.php');
 session_start();
-include('opacity.js');
 
 
 //Ryan, pakilagyan dito ng stepper dito, after ng name ng student
@@ -201,6 +200,8 @@ include('opacity.js');
 	</div>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

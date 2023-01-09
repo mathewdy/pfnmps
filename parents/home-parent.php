@@ -3,7 +3,6 @@ include('../connection.php');
 session_start();
 include('security-parent.php');
 $email = $_SESSION['email'];
-include('opacity.js');
 
 $student_id = $_SESSION['student_id'];
 ?>
@@ -345,5 +344,7 @@ $student_id = $_SESSION['student_id'];
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- <script src="../src/styles/custom/sidenav.js"></script> -->
 <script src="../admin-template/js/app.js"></script>
+<script src="opacity.js"> </script>
+
 </body>
 </html>

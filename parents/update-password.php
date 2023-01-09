@@ -4,7 +4,7 @@ include('../connection.php');
 session_start();
 ob_start();
 $_SESSION['student_id'];
-include('opacity.js');
+
 
 ?>
 
@@ -36,6 +36,9 @@ include('opacity.js');
         </div>
     </form>
 </div>
+
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

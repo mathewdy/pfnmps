@@ -1,6 +1,5 @@
 <?php
 ob_start();
-include('opacity.js');
 
 include('../connection.php');
 session_start();
@@ -108,6 +107,7 @@ session_start();
         }
 
     ?>
+<script src="opacity.js"> </script>
     
 </body>
 </html>

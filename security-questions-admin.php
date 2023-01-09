@@ -3,7 +3,6 @@
 include('connection.php');
 session_start();
 ob_start();
-include('opacity.js');
 
 $_SESSION['user_id'];
 
@@ -55,6 +54,8 @@ $_SESSION['user_id'];
         </div>
     </form>
 </div>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

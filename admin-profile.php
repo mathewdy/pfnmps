@@ -5,7 +5,7 @@ session_start();
 ob_start();
 $user_id = $_SESSION['user_id'];
  $user_id;
-include('opacity.js');
+
 
 ?>
 <!DOCTYPE html>
@@ -220,6 +220,8 @@ include('opacity.js');
 <!-- Bootstrap js -->
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 <?php

@@ -3,8 +3,6 @@ include('connection.php');
 session_start();
 ob_start();
 
-include('opacity.js');
-
 
 ?>
 
@@ -443,6 +441,8 @@ include('opacity.js');
 
 <script src="./admin-template/js/app.js"></script>
 <script src="./styles/bootstrap/js/bootstrap.js"></script>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

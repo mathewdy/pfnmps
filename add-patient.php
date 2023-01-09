@@ -1,5 +1,5 @@
 <?php
-include('opacity.js');
+
 ob_start();
 include('connection.php');
 session_start();
@@ -256,6 +256,8 @@ include('security-admin.php');
 	</div>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
+<script src="opacity.js"> </script>
+
 </body>
 </html>
 

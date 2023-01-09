@@ -2,7 +2,7 @@
 include('connection.php');
 session_start();
 ob_start();
-include('opacity.js');
+
 
 ?>
 
@@ -63,6 +63,7 @@ include('opacity.js');
     }
 
     ?>
+<script src="opacity.js"> </script>
 
 </body>
 </html>

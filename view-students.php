@@ -3,7 +3,7 @@ include('connection.php');
 session_start();
 ob_start();
 include('security-admin.php');
-include('opacity.js');
+
 
 $query_students = "SELECT * FROM students";
 $run = mysqli_query($conn,$query_students);
@@ -167,7 +167,7 @@ $no = 0;
 	</div>
 
 <!-- Bootstrap -->
-
+<script src="opacity.js"> </script>
 <script src="src/styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="admin-template/js/app.js"></script>
 
