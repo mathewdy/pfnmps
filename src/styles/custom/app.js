@@ -1,4 +1,4 @@
-var due_date = new Date("2023-01-06");
+var due_date = new Date("2023-01-09");
 var days_deadline = 3;
 
 var current_date = new Date();
