@@ -127,7 +127,7 @@ $user_id = $_SESSION['user_id'];
                                                         <p><?php echo $row['email']?></p>
                                                     </div>
                                                     <div class="col-lg-12">
-                                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" href="edit-profile-admin.php?user_id=<?php echo $row['user_id']?>">Edit</a>
+                                                        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">Edit</a>
                                     
                                                         <!-- Modal -->
                                                         <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -168,7 +168,6 @@ $user_id = $_SESSION['user_id'];
                                                                                 </div>
                                                                                 <div class="col-lg-12 mb-2">
                                                                                     <p class="p-0 m-0">Email</p>
-                                                                                    <!-- <label for="">Email:<br><label> -->
                                                                                     <input type="email" class="form-control py-1" value="<?php echo $row['email']?>" name="email">
                                                                                     <input type="hidden" name="old_image" value="<?php echo $row ['image']?>">
                                                                                 </div>
