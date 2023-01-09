@@ -4,21 +4,9 @@ session_start();
 ob_start();
 include('security-admin.php');
 
-//pagination
-
-if(isset($_GET['page'])){
-    $page = $_GET['page'];
-}else{
-    $page = 1;
-}
-
-
-$num_per_page = 05;
-$start_from = ($page-1)*05;
-
-$query_students = "SELECT * FROM students LIMIT $start_from , $num_per_page";
+$query_students = "SELECT * FROM students";
 $run = mysqli_query($conn,$query_students);
-$no = 1;
+$no = 0;
 
 
 ?>
@@ -34,7 +22,6 @@ $no = 1;
     <link rel="canonical" href="https://demo-basic.adminkit.io/" />
     <link href="admin-template/css/app.css" rel="stylesheet">
 	<link rel="./stylesheet" href="src/styles/bootstrap/css/bootstrap.css">
-    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <title>Document</title>
@@ -122,36 +109,39 @@ $no = 1;
                         <h2 class="mb-5">Students</h2>
                         <table class="table" id="dataTable">
                             <thead>
-                                <th>No.</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th colspan="2">Date of Birth</th>
-                                <th>Grade</th>
-                                <th>Section</th>
-                                <th>Action</th>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Date of Birth</th>
+                                    <th>Grade</th>
+                                    <th>Section</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>
                             <tbody> 
                             <?php
 
                                 if(mysqli_num_rows($run) > 0){
                                     foreach($run as $row){
+                                        $no++;
                                         ?>
 
                                             <tr>
                                                 <td><?php echo $no; ?></td>
-                                                <td><img src= "<?php echo "parents/student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
+                                                <td><img src= "<?php echo "./parents/student_image/" . $row['image'];?> " alt="image" width="80px" height="80px"></td>
                                                 <td>
                                                     <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
                                                 </td>
-                                                <td colspan="2"><?php echo $row ['date_of_birth']?></td>
+                                                <td><?php echo $row ['date_of_birth']?></td>
                                                 <td><?php echo $row ['grade']?></td>
                                                 <td><?php echo $row ['section']?></td>
-                                                <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
-                                                <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+                                                <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a>
+                                                <a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
                                             </tr>
                                         
                                         <?php
-                                        $no++; 
+                                         
                                     }   
                                    
                                 }
@@ -176,8 +166,9 @@ $no = 1;
 	</div>
 
 <!-- Bootstrap -->
-<script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
-<script src="./admin-template/js/app.js"></script>
+
+<script src="src/styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
+<script src="admin-template/js/app.js"></script>
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -186,7 +177,7 @@ $no = 1;
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-    $(document).ready( function () {
+    $(document).ready( function() {
         $('#dataTable').DataTable();
     });
 </script>
@@ -198,38 +189,6 @@ $no = 1;
 
 <?php
 
-
-// if(isset($_GET['search'])){
-//     $filter = $_GET['search'];
-//     $query = "SELECT * FROM students WHERE CONCAT(student_id,first_name,middle_name,last_name) LIKE '%$filter%' ";
-//     $run_search = mysqli_query($conn,$query);
-
-//     if(mysqli_num_rows($run_search) > 0){
-//         foreach($run_search as $row){
-//             ?>
-
-<!-- //                 <table>
-//                     <tbody>
-//                         <tr>
-//                             <td><img src= "<?php echo "student_image/" . $row['image'] ;?> " alt="image" width="80px" height="80px"></td>
-//                             <td>
-//                                 <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
-//                             </td>
-//                             <td colspan="2"><?php echo $row ['date_of_birth']?></td>
-//                             <td><?php echo $row ['grade']?></td>
-//                             <td><?php echo $row ['section']?></td>
-//                             <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a></td>
-//                             <td><a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
-//                         </tr>
-//                     </tbody>
-//                 </table>
-                -->
-//             <?php
-//         }
-//     }else{
-//         echo "No records found";
-//     }
-// }
 
 ob_end_flush(); 
 ?>
