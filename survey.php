@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include ("connection.php");
 session_start();
 if(isset($_GET['id'])){
@@ -209,4 +210,6 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
             echo $conn->error;
         }
 }
+
+ob_end_flush();
 ?>

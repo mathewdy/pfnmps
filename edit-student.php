@@ -264,7 +264,7 @@ ob_start();
                                                 <div class="modal-header">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <form action="">
+                                                <form action="" method="POST">
                                                 <div class="modal-body">
                                                     <label for="">Current BMI:</label>
                                                     <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" >
@@ -272,15 +272,10 @@ ob_start();
                                                     <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>">
                                                     <label for="">Current Weight:</label>
                                                     <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" >
-
-                                                    <label for="">Current Status:</label>
-                                                    <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" >
-
                                                 </div>
                                                 <div class="modal-footer">
-                                                    
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                    <input type="submit" name="edit_health_infos" class="btn btn-primary" value="Save Changes">
                                                 </div>
                                                 </form>
                                                 </div>
@@ -600,7 +595,7 @@ if(isset($_POST['edit_health_infos'])){
     $query_update_health_infos = "UPDATE health_infos SET height = '$height', weight='$weight' ,bmi ='$compute_BMI' , status = '$status' WHERE student_id = '$student_id'";
     $sql_update_health_infos = mysqli_query($conn,$query_update_health_infos);
 
-    if($sql_update_health_infos == TRUE){
+    if($sql_update_health_infos){
         echo "<script> window.location.href='edit-student.php?student_id=$student_id' </script>";
     }
     
