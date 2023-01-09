@@ -274,7 +274,7 @@ if(isset($_POST['add_patient'])){
 
 
     //info ni patient or student
-    $student_id = ($_POST['student_id']);
+    $student_id = $_POST['student_id'];
     $first_name = ucfirst($_POST['first_name']);
     $middle_name = ucfirst($_POST['middle_name']);
     $last_name = ucfirst($_POST['last_name']); 
@@ -442,12 +442,12 @@ if(isset($_POST['add_patient'])){
 
     //query ni student info
     if(!in_array($file_extension, $allowed_extension)){
-        echo "<script>alert('Image not added') </script>"  ;
+        echo "<script>alert('Image not added') </script>" ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date','$date $time' , '$date $time')";
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,`image`,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date','$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
-        move_uploaded_file($_FILES["image"]["tmp_name"], "parents/student_image" . $_FILES["image"] ["name"]);
+        move_uploaded_file($_FILES["image"]["tmp_name"], "parents/student_image/" . $_FILES["image"]["name"]);
 
         if($run_insert_student){
 
