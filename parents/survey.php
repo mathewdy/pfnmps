@@ -104,7 +104,8 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
             </div>
         </div>
     </main>
-    <script src="src/styles/custom/app.js"></script>
+    <script src="../src/styles/custom/app.js"></script>
+
 
 </body>
 </html>

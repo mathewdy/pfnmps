@@ -107,7 +107,8 @@ session_start();
         }
 
     ?>
-    <script src="src/styles/custom/app.js"></script>
+        <script src="../src/styles/custom/app.js"></script>
+
 
     
 </body>

@@ -37,7 +37,8 @@ $_SESSION['student_id'];
     </form>
 </div>
 
-<script src="src/styles/custom/app.js"></script>
+<script src="../src/styles/custom/app.js"></script>
+
 
 
 </body>

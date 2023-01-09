@@ -344,7 +344,8 @@ $student_id = $_SESSION['student_id'];
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- <script src="../src/styles/custom/sidenav.js"></script> -->
 <script src="../admin-template/js/app.js"></script>
-<script src="src/styles/custom/app.js"></script>
+<script src="../src/styles/custom/app.js"></script>
+
 
 </body>
 </html>

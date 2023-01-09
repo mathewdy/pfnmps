@@ -58,7 +58,7 @@ ob_start();
             </div>
         </div>
     </main>
-    <script src="src/styles/custom/app.js"></script>
+    <script src="../src/styles/custom/app.js"></script>
 
 
 </body>
