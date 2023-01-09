@@ -1,5 +1,7 @@
 <?php
 ob_start();
+include('opacity.js');
+
 include('../connection.php');
 session_start();
 

@@ -3,6 +3,7 @@ include('connection.php');
 session_start();
 ob_start();
 include('security-admin.php');
+include('opacity.js');
 
 $query_students = "SELECT * FROM students";
 $run = mysqli_query($conn,$query_students);

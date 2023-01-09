@@ -4,6 +4,7 @@ session_start();
 ob_start();
 include('security-admin.php');
 
+include('opacity.js');
 
 ?>
 <!DOCTYPE html>

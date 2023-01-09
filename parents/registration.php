@@ -2,6 +2,8 @@
 ob_start();
 include('../connection.php');
 session_start();
+include('opacity.js');
+
 
 //Ryan, pakilagyan dito ng stepper dito, after ng name ng student
 //mareredirect dapat sa magulang nya naman

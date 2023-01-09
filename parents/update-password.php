@@ -4,6 +4,7 @@ include('../connection.php');
 session_start();
 ob_start();
 $_SESSION['student_id'];
+include('opacity.js');
 
 ?>
 

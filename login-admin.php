@@ -3,6 +3,7 @@ include('connection.php');
 require_once __DIR__.'/vendor/autoload.php';
 session_start();
 ob_start();
+include('opacity.js');
 
 ?>
 

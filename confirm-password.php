@@ -2,6 +2,9 @@
 include('connection.php');
 session_start();
 
+include('opacity.js');
+
+ob_start();
 ?>
 
 <!DOCTYPE html>
@@ -69,5 +72,6 @@ if(isset($_POST['reset'])){
     //     echo "<script>window.location.href='login-admin.php' </script>";
     // }
 }
+ob_end_flush();
 
 ?>

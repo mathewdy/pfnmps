@@ -1,4 +1,5 @@
 <?php
+include('opacity.js');
 
 include('../connection.php');
 

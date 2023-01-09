@@ -1,5 +1,7 @@
 <?php
 include('../connection.php');
+include('opacity.js');
+
 session_start();
 include('security-parent.php');
 $student_id = $_SESSION['student_id'];

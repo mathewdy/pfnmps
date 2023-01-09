@@ -3,6 +3,7 @@ include('../connection.php');
 session_start();
 include('security-parent.php');
 $email = $_SESSION['email'];
+include('opacity.js');
 
 $student_id = $_SESSION['student_id'];
 ?>

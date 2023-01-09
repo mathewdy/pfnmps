@@ -3,7 +3,8 @@ ob_start();
 session_start();
 include('connection.php');
 include('security-admin.php');
- $_SESSION['user_id'];
+include('opacity.js');
+$_SESSION['user_id'];
 
 // echo $_SESSION['username'];
 ?>

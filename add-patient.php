@@ -1,4 +1,5 @@
 <?php
+include('opacity.js');
 ob_start();
 include('connection.php');
 session_start();
@@ -516,6 +517,7 @@ if(isset($_POST['add_patient'])){
     $query_bmi = mysqli_query($conn, $insert_bmi);
     if($query_bmi == true){
         echo "added to database insert_health_info" . '<br>';
+        $_SESSION['student_id'] = $student_id;
         header("location:survey.php?id=$encryption");
         exit();
     }else{

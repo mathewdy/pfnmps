@@ -1,4 +1,6 @@
 <?php
+include('opacity.js');
+
 include('../connection.php');
 session_start();
 include('security-parent.php');
