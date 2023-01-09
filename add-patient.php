@@ -511,8 +511,8 @@ if(isset($_POST['add_patient'])){
         echo "Request Failed, Your health info is already inserted. <br>";
         exit();
     }else{
-    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`)
-    VALUES ('$student_id', '$height', '$weight', '$compute_BMI', '$status', '$actlevel', '$health_history', '$date $time')";
+    $insert_bmi = "INSERT INTO `health_infos` (`student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created` , `date_time_updated`)
+    VALUES ('$student_id', '$height', '$weight', '$compute_BMI', '$status', '$actlevel', '$health_history', '$date $time' , '$date $time')";
     $query_bmi = mysqli_query($conn, $insert_bmi);
     if($query_bmi == true){
         echo "added to database insert_health_info" . '<br>';
