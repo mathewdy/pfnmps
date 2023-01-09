@@ -177,7 +177,10 @@ $student_id = $_SESSION['student_id'];
 
                         ?>
 
-                        <?php
+                        
+                    </div>
+                    <div class="card shadow mt-5 p-5" style="border-radius: 0; border: none">
+                    <?php
 
 
                         $query_bmi = "SELECT * FROM health_infos WHERE student_id = '$student_id'";
@@ -202,7 +205,7 @@ $student_id = $_SESSION['student_id'];
 
                             }
                         }
-                        
+
 
                         ?>
                     </div>

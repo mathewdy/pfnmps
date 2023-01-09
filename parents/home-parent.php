@@ -94,7 +94,7 @@ $student_id = $_SESSION['student_id'];
     ?>
     <main class="content">
         <div class="container-fluid" style="height: 100%;">
-            <div class="row mb-5 gy-3" style="height: 70vh;">
+            <div class="row mb-5 gy-3">
                 <div class="col-lg-4">
                     <div class="card" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
@@ -109,12 +109,14 @@ $student_id = $_SESSION['student_id'];
                             </div>    
                             <hr class="featurette-divider">
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                <?php echo "Total Acknowledge: " .$row4 . " "  ?>
-                                <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
-                                <p>Note: Must do every other day.</p>
-                                <br>
-                               
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="small text-muted">Note: Must do every other day.</p>
+                                </div>
+                                <div class="col-lg-6 text-end">
+                                    <?php echo "Total Acknowledge: " .$row4 . " "  ?>
+
+                                </div>
                             </div>
 
                            <?php
@@ -203,13 +205,16 @@ $student_id = $_SESSION['student_id'];
                             </div>    
                             <hr class="featurette-divider">
                             <!-----so dito , dapat nakalagy na yung daily task ni student---->
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
-                                <?php echo "Total acknowledge is:" . $row5 . " " ?> 
-                                <br>
-                                <p>Note: Must do every day.</p>
-                                <i class='bx bx-info-circle bx-sm' style='color:crimson'></i>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="small text-muted">Note: Must do every day.</p>
+                                </div>
+                                <div class="col-lg-6 text-end">
+                                    <?php echo "Total Acknowledge: " .$row5 . " "  ?>
+
+                                </div>
                             </div>
-            
+
                             <?php
 
 

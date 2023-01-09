@@ -242,9 +242,9 @@ ob_start();
                                             <br>
                                             <label for="">Section:</label>
                                             <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
-
                                             <!---gagawin tong modal---->
                                             <br>
+                                            <hr class="featurette-divider">
                                             <label for="">Current BMI:</label>
                                             <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" readonly>
                                             <label for="">Current Height:</label>
