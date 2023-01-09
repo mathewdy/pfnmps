@@ -200,7 +200,7 @@ session_start();
 	</div>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-<script src="opacity.js"> </script>
+<script src="src/styles/custom/app.js"></script>
 
 </body>
 </html>

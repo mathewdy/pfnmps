@@ -58,7 +58,8 @@ ob_start();
             </div>
         </div>
     </main>
-<script src="opacity.js"> </script>
+    <script src="src/styles/custom/app.js"></script>
+
 
 </body>
 </html>

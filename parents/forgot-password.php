@@ -54,7 +54,8 @@ ob_start();
         </div>
     </form>
 </div>
-<script src="opacity.js"> </script>
+<script src="src/styles/custom/app.js"></script>
+
 
 </body>
 </html>

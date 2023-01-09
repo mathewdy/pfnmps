@@ -441,7 +441,7 @@ ob_start();
 
 <script src="./admin-template/js/app.js"></script>
 <script src="./styles/bootstrap/js/bootstrap.js"></script>
-<script src="opacity.js"> </script>
+<script src="src/styles/custom/app.js"></script>
 
 </body>
 </html>

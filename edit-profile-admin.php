@@ -63,7 +63,7 @@ ob_start();
     }
 
     ?>
-<script src="opacity.js"> </script>
+    <script src="src/styles/custom/app.js"></script>
 
 </body>
 </html>
