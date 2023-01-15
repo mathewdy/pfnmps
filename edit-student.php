@@ -153,7 +153,7 @@ ob_start();
 
                             
 
-                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip , users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id , health_infos.bmi AS health_infos_bmi, health_infos.height AS health_infos_height, health_infos.weight AS health_infos_weight, health_infos.status AS health_infos_status FROM students LEFT JOIN users
+                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip ,users.email  AS user_email, users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id , health_infos.bmi AS health_infos_bmi, health_infos.height AS health_infos_height, health_infos.weight AS health_infos_weight, health_infos.status AS health_infos_status FROM students LEFT JOIN users
                             ON students.student_id = users.student_id 
                             LEFT JOIN health_infos ON students.student_id = health_infos.student_id
                             WHERE students.student_id = '$student_id'";
@@ -184,6 +184,9 @@ ob_start();
                                             <br>
 
                                             <br>
+
+                                            <label for="">Emaill Address:</label>
+                                            <input type="email" class="form-control" name="email" value="<?php echo $row['user_email']?>">
 
                                             <hr class="featurette-divider">
                                             <h2>Address</h2>
@@ -285,9 +288,13 @@ ob_start();
                                             <a href="view-students.php" class="btn btn-danger">Back</a>
                                             <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#BMI">Edit BMI</a>
                                             <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
+                                            <a class="btn btn-success" href="history.php?student_id=<?php echo $row['student_student_id']?>">History</a>
                                             <input type="submit" class="btn btn-primary" name="update" value="Update">
                                             <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
+
                                             </span>
+                                            <!--riri ikaw na bahala sa edit-student- history chrurut---->
+
 
                                         </form>
 
@@ -437,6 +444,8 @@ ob_start();
 
 
 
+
+
     
 
 <script src="./admin-template/js/app.js"></script>
@@ -458,6 +467,7 @@ if(isset($_POST['update'])){
     $first_name = ucfirst($_POST['first_name']);
     $middle_name = ucfirst($_POST['middle_name']);
     $last_name = ucfirst($_POST['last_name']); 
+    $email = $_POST['email'];
     $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
     $grade = $_POST['grade'];
     $section = $_POST['section'];
@@ -490,7 +500,14 @@ if(isset($_POST['update'])){
         $run_update = mysqli_query($conn,$query_update);
 
         if($run_update){
-            echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
+            //updated na lang yung echo neto
+            $query_update_email = "UPDATE users SET email = '$email' WHERE student_id= '$student_id'";
+            $run_update_email = mysqli_query($conn,$run_update_email);
+
+            if($run_update_email){
+                echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
+            }
+            
         }else{
             echo "error" . $conn->error;
         }
@@ -513,6 +530,7 @@ if(isset($_POST['acknowledge_task'])){
         echo "error" . $conn->error;
     }
 }
+
 
 
 

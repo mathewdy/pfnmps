@@ -91,6 +91,26 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                                                 <label for="no">No</label>
                                             </span> 
                                         </span>
+
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">6. Do you have phone ?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[5]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[5]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
+
+                                        <span class="d-flex align-items-center justify-content-between">
+                                            <p class="lead m-0 p-0">6. Do you have internet connection?</p>   
+                                            <span>
+                                                <input type="radio" name="surveyAnswer[6]" value="1">
+                                                <label for="yes">Yes</label>
+                                                <input type="radio" name="surveyAnswer[6]" value="0">
+                                                <label for="no">No</label>
+                                            </span> 
+                                        </span>
                                         <br>
                                             <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                                     </form>
@@ -115,7 +135,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
     $acknowledge = 0;
         
     // Survey
-    $question = array(1, 2, 3, 4, 5);
+    $question = array(0,1, 2, 3, 4, 5,6);
     $surveyAnswer = $_POST['surveyAnswer'];
     if(empty($_POST['surveyAnswer'])){
         echo "Please answer the survey form.";

@@ -35,7 +35,7 @@ session_start();
                         
                         <h2>Name of Patient</h2>
                         <form action="registration.php" method="POST" enctype="multipart/form-data">
-                            <label for="">Student ID</label>
+                            <label for="">LRN </label>
                             <input type="text" class="form-control py-1" name="student_id" required>
 
                             <br>
@@ -76,12 +76,12 @@ session_start();
 
                             <label for="">Grade</label>
                             <select name="grade" class="form-select py-1" id="" required>
+                                <option value="Kinder">Kinder</option>
                                 <option value="Grade 1">Grade 1</option>
                                 <option value="Grade 2">Grade 2</option>
                                 <option value="Grade 3">Grade 3</option>
                                 <option value="Grade 4">Grade 4</option>
                                 <option value="Grade 5">Grade 5</option>
-                                <option value="Grade 6">Grade 6</option>
                             </select>
 
                             <br>

@@ -166,8 +166,8 @@ include('security-admin.php');
                                
                             </div>
                             <div class="col-lg-4">
-                            <h2>Name of Patient</h2>
-                            <label for="">Student ID</label>
+                            <h2>Name of Student</h2>
+                            <label for="">LRN</label>
                                 <input type="text" class="form-control" name="student_id" required>
 
                                 <br>
@@ -208,12 +208,12 @@ include('security-admin.php');
 
                                 <label for="">Grade</label>
                                 <select name="grade" class="form-select" id="" required>
+                                    <option value="Kinder">Kinder</option>
                                     <option value="Grade 1">Grade 1</option>
                                     <option value="Grade 2">Grade 2</option>
                                     <option value="Grade 3">Grade 3</option>
                                     <option value="Grade 4">Grade 4</option>
                                     <option value="Grade 5">Grade 5</option>
-                                    <option value="Grade 6">Grade 6</option>
                                 </select>
 
                                 <br>
@@ -309,6 +309,9 @@ if(isset($_POST['add_patient'])){
 
     $grade = $_POST['grade'];
     $section = $_POST['section'];
+
+    //SA HISTORY ____ 
+    $program_id = 0;
     
 
     //HEALTH INFO
@@ -477,6 +480,17 @@ if(isset($_POST['add_patient'])){
         echo "insert into database insert_user" . '<br>';
     }
 
+    }
+
+    // papasok na to sa history
+
+    $query_history = "INSERT INTO history (student_id,program_id,bmi,date_time_created,date_time_updated) VALUES ('$student_id','$program_id','$compute_BMI', '$date' , '$date $time' ) ";
+    $run_history = mysqli_query($conn,$query_history);
+
+    if($run_history) {
+        echo "added";
+    }else{
+        echo "error";
     }
 
     //DITO NA ATA YUNG SA STEPPER RIRI
