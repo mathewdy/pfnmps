@@ -116,6 +116,9 @@ include('security-admin.php');
                                 <label for="">Email</label>
                                 <input type="email" class="form-control" name="email" required>
 
+                                <label for="">Contact Number</label>
+                                <input type="text" class="form-control" name="contact_number" placeholder="+63**********" required>
+
 
                                 <!-----ADDRESS---->
 
@@ -236,6 +239,7 @@ include('security-admin.php');
 
                                     <br>
 
+                                    <label for="">Activity Level</label>
                                     <select name="actlevel" class="form-select" id="" required>
                                     <option value="1">Sedentary</option>
                                     <option value="2">Low Active</option>
@@ -300,6 +304,9 @@ if(isset($_POST['add_patient'])){
     $city = strtoupper($_POST['city']);
     $zip_code = strtoupper($_POST['zip_code']);
 
+    //contact info
+    $contact_number = $_POST['contact_number'];
+
 
     $image = $_FILES['image']['name'];
     $allowed_extension = array('gif' , 'png' , 'jpeg', 'jpg' , 'PNG' , 'JPEG' , 'JPG' , 'GIF');
@@ -320,7 +327,7 @@ if(isset($_POST['add_patient'])){
     $four_ps = $_POST['four_ps'];
 
     //HEALTH INFO
-    $age = date_diff(date_create($date_of_birth),date_create($date));
+    $age = date_diff(date_create($date_of_birth),date_create($date))->y;
     $gender = $_POST['gender'];
     $height = $_POST['height'];
     $weight = $_POST['weight'];
@@ -477,7 +484,7 @@ if(isset($_POST['add_patient'])){
        exit();
     }else{
 
-    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,room,house,street,subdivision,barangay,city,zip,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' , '$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
+    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,contact_number,room,house,street,subdivision,barangay,city,zip,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' ,'$contact_number', '$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
     $run_insert_user = mysqli_query($conn,$query_insert_user);
     move_uploaded_file($_FILES["guardian_image"]["tmp_name"], "parents/guardian_image/" . $_FILES["guardian_image"] ["name"]);
 
@@ -489,7 +496,7 @@ if(isset($_POST['add_patient'])){
 
     // papasok na to sa history
 
-    $query_history = "INSERT INTO history (student_id,program_id,bmi,date_time_created,date_time_updated) VALUES ('$student_id','$program_id','$compute_BMI', '$date' , '$date $time' ) ";
+    $query_history = "INSERT INTO history (student_id,program_id,bmi,date_created,date_time_updated) VALUES ('$student_id','$program_id','$compute_BMI', '$date' , '$date $time' ) ";
     $run_history = mysqli_query($conn,$query_history);
 
     if($run_history) {

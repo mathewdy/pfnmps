@@ -153,7 +153,7 @@ ob_start();
 
                             
 
-                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip ,users.email  AS user_email, users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id , health_infos.bmi AS health_infos_bmi, health_infos.height AS health_infos_height, health_infos.weight AS health_infos_weight, health_infos.status AS health_infos_status FROM students LEFT JOIN users
+                            $query = "SELECT students.student_id AS student_student_id, students.first_name AS student_first_name, students.last_name AS student_last_name ,students.middle_name AS student_middle_name, students.date_of_birth AS student_date_of_birth, students.gender AS student_gender ,students.room AS student_room,students.house AS student_house,students.street AS student_street,students.subdivision AS student_subdivison,students.barangay AS student_barangay,students.city AS student_city,students.zip AS student_zip,students.grade AS student_grade,students.section AS student_section,students.date_time_created AS student_date_time_created,students.four_ps AS student_four_ps,users.first_name AS user_first_name , users.middle_name AS user_middle_name , users.last_name AS user_last_name, users.room AS user_room, users.house AS user_house , users.street AS user_street, users.subdivision AS user_subdivision, users.barangay AS user_barangay, users.city AS user_city , users.zip AS user_zip ,users.email  AS user_email, users.image AS user_image , users.student_id AS user_student_id, users.user_id AS user_user_id , health_infos.bmi AS health_infos_bmi, health_infos.height AS health_infos_height, health_infos.weight AS health_infos_weight, health_infos.status AS health_infos_status FROM students LEFT JOIN users
                             ON students.student_id = users.student_id 
                             LEFT JOIN health_infos ON students.student_id = health_infos.student_id
                             WHERE students.student_id = '$student_id'";
@@ -221,9 +221,7 @@ ob_start();
                                             <input type="number" class="form-control" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
                                             <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
-                                            <br>
                                             
-
                                             <br>
 
                                             <label for="">Grade:</label>
@@ -245,6 +243,19 @@ ob_start();
                                             <label for="">Section:</label>
                                             <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
                                             <!---gagawin tong modal---->
+                                            <br>
+
+                                            <label for="">4PS Member</label>
+                                            <p>
+                                                <?php 
+                                                    if($row['student_four_ps'] == '0'){
+                                                        echo "<b><span style='color: Green; font-size:16px;'> No <span></b>";
+                                                    }else{
+                                                        echo "<b><span style='color: Yellow; font-size:16px;'> Yes <span></b>";
+                                                    }
+                                                ?>
+                                            </p>
+
                                             <br>
                                             <hr class="featurette-divider">
                                             <label for="">Current BMI:</label>

@@ -7,7 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
+
+<table>
         <thead>
             <tr>
                 <th>Name</th>
@@ -25,11 +26,53 @@
                 <th>BMI</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td><?=$row['student_first_name']?></td>
-            </tr>
-        </tbody>
+
+<?php
+
+$query_students = "SELECT students.first_name AS student_first_name,students.middle_name AS student_middle_name,students.last_name AS student_last_name,students.grade AS student_grade,students.section AS student_section,students.date_of_birth AS student_date_of_birth,students.age AS student_age ,students.four_ps AS student_four_ps,students.room AS student_room,students.house AS student_house,students.student_id AS student_student_id, students.street AS student_street ,students.subdivision AS student_subdivision ,students.barangay AS student_barangay,students.city AS student_city, users.first_name AS user_first_name, users.middle_name AS user_middle_name,users.last_name AS user_last_name, users.contact_number AS user_contact_number,
+health_infos.height AS health_infos_height,health_infos.weight AS health_infos_weight,health_infos.bmi AS health_infos_bmi
+FROM students
+LEFT JOIN users 
+ON students.student_id = users.student_id
+LEFT JOIN health_infos 
+ON students.student_id = health_infos.student_id ";
+$run_students = mysqli_query($conn,$query_students);
+if(mysqli_num_rows($run_students) > 0){
+    foreach($run_students as $row){
+        ?>
+
+            <tbody>
+                <tr>
+                    <td><?=$row['student_first_name']. " " . $row['student_middle_name'] . " " . $row['student_last_name']?></td>
+                    <td><?=$row['student_grade']?></td>
+                    <td><?=$row['student_section']?></td>
+                    <td><?=$row['student_date_of_birth']?></td>
+                    <td><?=$row['student_age'] ?></td>
+                    <td><?php
+                        if($row['student_four_ps'] == '0'){
+                            echo "<b> No <span></b>";
+                        }else{
+                            echo "<b> Yes <span></b>";
+                        }
+                    ?>
+                    </td>
+                    <td>
+                        <?=$row['student_room']." ". $row['student_house'] . " " . $row['student_street'] . " " . $row['student_subdivision'] . " " . $row['student_barangay'] . " " . $row['student_city']?>
+                    </td>
+                    <td>
+                        <?=$row['user_first_name'] . " " . $row['user_middle_name'] . " " . $row['user_last_name']?>
+                    </td>
+                    <td><?=$row['user_contact_number']?></td>
+                    <td><?=$row['student_student_id'] ?></td>
+                    <td><?=$row['health_infos_height']?></td>
+                    <td><?=$row['health_infos_weight']?></td>
+                    <td><?=$row['health_infos_bmi']?></td>
+                </tr>
+            </tbody>
+        <?php
+    }
+}
+?>
     </table>
 </body>
 </html>

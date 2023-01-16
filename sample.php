@@ -24,9 +24,12 @@ if(isset($_POST['submit'])){
 
     $date_of_birth = $_POST['date_of_birth'];
 
-    $age = date_diff(date_create($date_of_birth),date_create($date));
+    $age = date_diff(date_create($date_of_birth),date_create($date))->y;
+    echo $age;
 
-    echo $age->format("%y");
+
+    //may error sa add-patient
+    // may error sa registartion ng parents
 }
 
 

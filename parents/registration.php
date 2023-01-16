@@ -64,7 +64,7 @@ session_start();
                             <label for="">Male</label>
                             <input type="radio" name="gender" value="Male" required>
                             <label for="">Female</label>
-                            <input type="radio" name="gender" value="Female" required>
+                            <input type="radio" name="gender" value="Female"required>
 
                             <br>
                             <label for="">Image</label>
@@ -82,11 +82,11 @@ session_start();
                                 <option value="Grade 5">Grade 5</option>
                             </select>
 
-                            <label for="">4PS Member?</label>
+                            <label for="" class="form-control">4PS Member?</label>
                                 <label for="">Yes</label>
                                 <input type="radio" name="four_ps" value="1" required>
                                 <label for="">No</label>
-                                <input type="radio" name="four_ps" value="0" required>
+                                <input type="radio" name="four_ps" value="0"required>
                             <br>
 
                             <label for="">Section</label>
@@ -111,6 +111,11 @@ session_start();
                             <br>
                             <label for="">Email</label>
                             <input type="email" class="form-control py-1" name="email"required>
+
+                            <br>
+                            <label for="">Contact Number</label>
+                            <input type="text" class="form-control py-1" name="contact_number" placeholder="+63**********" required>
+                            <br>
 
                             <label for="">Password</label>
                             <input type="password" class="form-control py-1" name="password"required>
@@ -178,6 +183,7 @@ session_start();
                                 <input type="number" required class="form-control w-50 py-1" name="weight" placeholder="Weight (kg)">
 
                                 <br>
+                                <label for="">Activity Level</label>
 
                                 <select name="actlevel" class="form-select w-50 py-1" id="" required>
                                 <option value="1">Sedentary</option>
@@ -244,6 +250,7 @@ if(isset($_POST['add_patient'])){
     $barangay = strtoupper($_POST['barangay']);
     $city = strtoupper($_POST['city']);
     $zip_code = strtoupper($_POST['zip_code']);
+    $contact_number = $_POST['contact_number'];
 
 
     $image = $_FILES['image']['name'];
@@ -261,7 +268,7 @@ if(isset($_POST['add_patient'])){
     
     $four_ps = $_POST['four_ps'];
     //HEALTH INFO
-    $age = date_diff(date_create($date_of_birth),date_create($date));
+    $age = date_diff(date_create($date_of_birth),date_create($date))->y;
     $gender = $_POST['gender'];
     $height = $_POST['height'];
     $weight = $_POST['weight'];
@@ -415,7 +422,7 @@ if(isset($_POST['add_patient'])){
        exit();
     }else{
 
-    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,room,house,street,subdivision,barangay,city,zip,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' , '$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
+    $query_insert_user = "INSERT INTO users (user_id,email,password,first_name,middle_name,last_name,contact_number,room,house,street,subdivision,barangay,city,zip,gender,user_type,image,student_id,date_time_created,date_time_updated) VALUES('$user_id', '$email','$default_password', '$guardian_first_name', '$guardian_middle_name' , '$guardian_last_name' ,'$contact_number', '$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$guardian_gender', '$user_type', '$guardian_image', '$student_id', '$date $time' , '$date $time' )";
     $run_insert_user = mysqli_query($conn,$query_insert_user);
     move_uploaded_file($_FILES["guardian_image"]["tmp_name"], "guardian_image/" . $_FILES["guardian_image"] ["name"]);
 
