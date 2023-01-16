@@ -57,9 +57,7 @@ session_start();
                             <label for="">Date of Birth</label>
                             <input type="date" class="form-control py-1" name="date_of_birth" required>
                             
-                            <br>
-                            <label for="">Age</label>
-                            <input type="number" class="form-control py-1" name="age" placeholder="Age" required>
+                            
                             <br>
                             <label for="">Gender</label>
                             <br>
@@ -84,7 +82,13 @@ session_start();
                                 <option value="Grade 5">Grade 5</option>
                             </select>
 
+                            <label for="">4PS Member?</label>
+                                <label for="">Yes</label>
+                                <input type="radio" name="four_ps" value="1" required>
+                                <label for="">No</label>
+                                <input type="radio" name="four_ps" value="0" required>
                             <br>
+
                             <label for="">Section</label>
                             <input type="text" class="form-control py-1"name="section" required> 
                             </div>
@@ -255,9 +259,9 @@ if(isset($_POST['add_patient'])){
     $grade = $_POST['grade'];
     $section = $_POST['section'];
     
-
+    $four_ps = $_POST['four_ps'];
     //HEALTH INFO
-    $age = $_POST['age'];
+    $age = date_diff(date_create($date_of_birth),date_create($date));
     $gender = $_POST['gender'];
     $height = $_POST['height'];
     $weight = $_POST['weight'];
@@ -390,7 +394,7 @@ if(isset($_POST['add_patient'])){
         echo "image not added"  ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date', '$date $time' , '$date $time')";
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,age,gender,room,house,street,subdivision,barangay,city,zip,image,grade,section,four_ps,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$age','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date', '$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
         move_uploaded_file($_FILES["image"]["tmp_name"], "student_image/" . $_FILES["image"] ["name"]);
 

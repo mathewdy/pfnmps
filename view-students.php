@@ -147,9 +147,9 @@ $no = 0;
                                    
                                 }
                             ?>
-
                             </tbody>
                         </table>
+                        <a href="pdf.php" >View All lists</a>
                     </div>
 				</div>
 
@@ -165,6 +165,7 @@ $no = 0;
 			</main>
 		</div>
 	</div>
+    
 
 <!-- Bootstrap -->
 <script src="src/styles/custom/app.js"></script>

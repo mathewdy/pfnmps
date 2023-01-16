@@ -190,9 +190,6 @@ include('security-admin.php');
                                 <input type="date" class="form-control" name="date_of_birth" required>
                                 
                                 <br>
-                                <label for="">Age</label>
-                                <input type="text" class="form-control" name="age" placeholder="Age" required>
-                                <br>
                                 <label for="">Gender</label>
                                 <br>
                                 <label for="">Male</label>
@@ -215,6 +212,13 @@ include('security-admin.php');
                                     <option value="Grade 4">Grade 4</option>
                                     <option value="Grade 5">Grade 5</option>
                                 </select>
+
+
+                                <label for="">4PS Member?</label>
+                                <label for="">Yes</label>
+                                <input type="radio" name="four_ps" value="1" required>
+                                <label for="">No</label>
+                                <input type="radio" name="four_ps" value="0" required>
 
                                 <br>
                                 <label for="">Section</label>
@@ -284,7 +288,7 @@ if(isset($_POST['add_patient'])){
 
     $email = $_POST['email'];
     $default_password = "Welcome@12345";
-    $date_of_birth = date('Y-m-d',strtotime($_POST['date_of_birth']));
+    $date_of_birth = ($_POST['date_of_birth']);
     
 
     //address nya naman to 
@@ -313,9 +317,10 @@ if(isset($_POST['add_patient'])){
     //SA HISTORY ____ 
     $program_id = 0;
     
+    $four_ps = $_POST['four_ps'];
 
     //HEALTH INFO
-    $age = $_POST['age'];
+    $age = date_diff(date_create($date_of_birth),date_create($date));
     $gender = $_POST['gender'];
     $height = $_POST['height'];
     $weight = $_POST['weight'];
@@ -451,7 +456,7 @@ if(isset($_POST['add_patient'])){
         echo "<script>alert('Image not added') </script>" ;
        exit();
     }else{
-        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,gender,room,house,street,subdivision,barangay,city,zip,`image`,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date','$date $time' , '$date $time')";
+        $query_insert_student = "INSERT INTO students (student_id,first_name,middle_name,last_name,date_of_birth,age,gender,room,house,street,subdivision,barangay,city,zip,`image`,grade,section,date_created, date_time_created,date_time_updated) VALUES ('$student_id', '$first_name', '$middle_name', '$last_name', '$date_of_birth','$age','$gender','$room', '$house' ,'$street' ,'$subdivision' ,'$barangay', '$city', '$zip_code', '$image', '$grade', '$section', '$date','$date $time' , '$date $time')";
         $run_insert_student = mysqli_query($conn,$query_insert_student);
         move_uploaded_file($_FILES["image"]["tmp_name"], "parents/student_image/" . $_FILES["image"]["name"]);
 
