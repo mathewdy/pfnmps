@@ -53,7 +53,8 @@ $_SESSION['student_id'];
         </div>
     </form>
 </div>
-<script src="src/styles/custom/app.js"></script>
+
+
 
 
 </body>
@@ -85,8 +86,8 @@ if(isset($_POST['add_security'])){
         $run = mysqli_query($conn,$sql);
     
         if($run){
-            echo "<script>alert('Registration Successful'); </script>";
-            echo "<script>window.location.href= 'home-admin.php' </script>";
+            // echo "<script>alert('Registration Successful'); </script>";
+            echo "<script>window.location.href= 'home-admin.php?m=1' </script>";
         }else{
             echo "error" . $conn->error;
         }

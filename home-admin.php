@@ -206,10 +206,26 @@ $_SESSION['user_id'];
 			</main>
 		</div>
 	</div>
+	<?php if(isset($_GET['m'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
+    <?php }?>
 <!-- Bootstrap js -->
 <script src="src/styles/custom/app.js"></script>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            text: 'A new record has been added!',
+            showConfirmButton: true
+        })
+    }
+</script>
 </body>
 </html>

@@ -91,7 +91,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                                                 <label for="no">No</label>
                                             </span> 
                                         </span>
-
+                                        <br>
                                         <span class="d-flex align-items-center justify-content-between">
                                             <p class="lead m-0 p-0">6. Do you have phone ?</p>   
                                             <span>
@@ -101,7 +101,7 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                                                 <label for="no">No</label>
                                             </span> 
                                         </span>
-
+                                        <br>
                                         <span class="d-flex align-items-center justify-content-between">
                                             <p class="lead m-0 p-0">6. Do you have internet connection?</p>   
                                             <span>

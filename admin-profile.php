@@ -217,10 +217,27 @@ $user_id = $_SESSION['user_id'];
 			</main>
 		</div>
 	</div>
+    <?php if(isset($_GET['m'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
+    <?php }?>
 <!-- Bootstrap js -->
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
-<script src="src/styles/custom/app.js"></script>
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'A record has been updated!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
+</script>
 
 
 </body>
@@ -250,7 +267,9 @@ if(isset($_POST['update'])){
         $query_update_1 = "UPDATE admins SET first_name = '$first_name' , last_name = '$last_name', address='$address', email = '$email', password='$password' WHERE user_id = '$user_id'";
         $run_1 = mysqli_query($conn,$query_update_1);
         if($run_1){
-            echo  "<script>window.location.href='admin-profile.php' </script>";
+            // echo  "<script>window.location.href='admin-profile.php' </script>";
+            header('location: admin-profile.php?m=1');
+
         }else{
             echo "error update_1" . $conn->error; 
         }
@@ -270,7 +289,8 @@ if(isset($_POST['update'])){
         if($run_update){
             move_uploaded_file($_FILES["image"]["tmp_name"], "admin_image/".$_FILES["image"]["name"]);
             unlink("admin_image/". $old_image);
-            echo "<script>window.location.href='admin-profile.php' </script>";
+            // echo "<script>window.location.href='admin-profile.php' </script>";
+            header('location: admin-profile.php?m=1');
 
         }else{
             echo "error";

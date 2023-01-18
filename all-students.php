@@ -6,7 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    *{
+        box-sizing:border-box;
+        margin:0;
+        padding:0;
+    } 
+    body{
+        font-size: 11pt;
+    }
+    .wrapper{
+        padding: 1em 2em 5em 2em;
+    }
+    table, th, td{
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td{
+        padding: 0px 12px;
+    }
+</style>
 <body>
+<span style="text-align: center; padding-top: 4em; margin-bottom: 2em;">
+<h1>Bucal Elementary School</h1>
+<p style="opacity: 60%;">El pueblo condo, King Christian St., Kingspoint Subdivision Brgy. Bagbag, Novaliches,QC</p>
+</span>
+<hr style="opacity: 65%;">
+<div class="wrapper">
 
 <table>
         <thead>
@@ -48,7 +74,7 @@ if(mysqli_num_rows($run_students) > 0){
                     <td><?=$row['student_section']?></td>
                     <td><?=$row['student_date_of_birth']?></td>
                     <td><?=$row['student_age'] ?></td>
-                    <td><?php
+                    <td style="text-align: center;"><?php
                         if($row['student_four_ps'] == '0'){
                             echo "<b> No <span></b>";
                         }else{
@@ -74,5 +100,6 @@ if(mysqli_num_rows($run_students) > 0){
 }
 ?>
     </table>
+</div>
 </body>
 </html>

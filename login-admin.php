@@ -63,7 +63,23 @@ ob_start();
             </div>
         </div>
     </main>
-    <script src="src/styles/custom/app.js"></script>
+    <?php if(isset($_GET['p?'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['p?']; ?>"></div> 
+    <?php }?>
+    <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'error',
+            title: 'Log In Failed!',
+            text: 'Your Username or Password is incorrect!',
+            showConfirmButton: true
+        })
+    }
+</script>
 </body>
 </html>
 
@@ -86,7 +102,7 @@ if(isset($_POST['login'])){
             }
             
         }else{
-            echo "User not found" . $conn->error;
+            header("Location: login-admin.php?p?=1");
         }
     }
 

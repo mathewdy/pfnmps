@@ -254,13 +254,29 @@ $email = $_SESSION['email'];
     </footer>
 </main>
 </div>
+<?php if(isset($_GET['m'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
+    <?php }?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script> -->
 <!-- <script src="../src/styles/custom/sidenav.js"></script> -->
 <script src="../admin-template/js/app.js"></script>
 <script src="../src/styles/custom/app.js"></script>
-
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'success',
+            title: 'Profile Updated!',
+            text: 'Your Profile has been updated!',
+            showConfirmButton: true
+        })
+    }
+</script>
 
 
 </body>
@@ -295,7 +311,8 @@ if(isset($_POST['update_guardian'])){
         $query_update_1 = "UPDATE users SET first_name = '$first_name', middle_name = '$middle_name', last_name = '$last_name', contact_number=  '$contact_number', room = '$room' , house = '$house', street = '$street' , subdivision = '$subdivision',  barangay = '$barangay', city = '$city', zip = '$zip' WHERE user_id = '$user_id' ";
         $run_1 = mysqli_query($conn,$query_update_1);
         if($run_1){
-            echo "<script>window.location.href='profile-parent.php' </script>";
+            echo "<script>window.location.href='profile-parent.php?m=1' </script>";
+            // header('location: profile-parent.php?saved=1');
         }else{
             echo "error update_1" . $conn->error; 
         }
@@ -324,7 +341,8 @@ if(isset($_POST['update_guardian'])){
             move_uploaded_file($_FILES["image"]["tmp_name"], "guardian_image/".$_FILES["image"]["name"]);
             unlink("guardian_image/". $old_image);
             echo "<script>alert('Profile updated!') </script>";
-            echo "<script>window.location.href='profile-parent.php' </script>";
+            header('location: profile-parent.php?m=1');
+            // echo "<script>window.location.href='profile-parent.php?saved=1' </script>";
             // echo "<script>window.location.href='Units.php' </script>";
         }else{
             echo "error_2" . $conn->error;

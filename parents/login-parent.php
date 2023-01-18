@@ -59,7 +59,23 @@ ob_start();
         </div>
     </main>
 
-
+    <?php if(isset($_GET['p?'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['p?']; ?>"></div> 
+    <?php }?>
+    <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'error',
+            title: 'Log In Failed!',
+            text: 'Your Username or Password is incorrect!',
+            showConfirmButton: true
+        })
+    }
+</script>
 </body>
 </html>
 
@@ -86,7 +102,7 @@ if(isset($_POST['login']))
 
       
     }else{
-        echo "wrong email or password";
+        header("Location: login-parent.php?p?=1");
     }
 }
 
