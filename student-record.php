@@ -73,6 +73,7 @@
     <span style="text-align: center;">
         <h2>Activities & Meals (Day 1-7)</h2>
     </span>
+    <hr>
     <table>
         <tr>
             <th>Activities</th>
@@ -103,7 +104,7 @@
     </td>
     <td>
     <?php
-    $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$id'";
+    $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$id' LIMIT 7";
     $run_program_records = mysqli_query($conn,$sql_program_records);
 
     if (mysqli_num_rows($run_program_records) > 0) {
