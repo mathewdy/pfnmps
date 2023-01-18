@@ -19,6 +19,7 @@
     }
 </style>
 <body>
+    <hr>
     <span style="text-align: center;">
         <h2>Student Personal Information</h2>
     </span>
