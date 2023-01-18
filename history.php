@@ -114,7 +114,7 @@ ob_start();
                                     foreach($run_bmi as $row1){
                                         ?>
                                             <p>Previous BMI: <?php echo $row1['bmi']?></p>  
-                                            <p>Date: <?php $date = date("M-d-Y", strtotime($row1['date_created'])); 
+                                            <p>Date Started: <?php $date = date("F/d/Y", strtotime($row1['date_created'])); 
                                             echo $date;?></p>
 
 
@@ -130,15 +130,20 @@ ob_start();
 
                                 if(mysqli_num_rows($run) > 0){
                                     ?>
+                                    <div class="row">
+
+                                        
                                     <?php
 
                                     foreach($run as $row){
                                         ?>
-                                        <label for="">Date Started</label>
-                                        <p><?php echo $row['date_started']?></p>
-                                        <label for="">Day</label>
-                                        <p><?php echo $row ['day']?></p>
-                                        <label for="">Daily Meals</label>
+                                        <div class="col-lg-3">
+                                        <div class="card shadow p-4" style="width: 18rem; min-height: 20rem;">
+
+                                        <!-- <label for="">Date Started</label>
+                                        <p><?php echo $row['date_started']?></p> -->
+                                        <p>Day <?php echo $row ['day']?></p>
+                                        <p for="">Daily Meals</p>
                                         <p><?php echo $row['foods']?></p>
 
                                         <label for="">Status</label>
@@ -170,6 +175,8 @@ ob_start();
                                             
                                             ?>
                                         </p>
+                                        </div>
+                                        </div>
 
                                         <?php
                                     }
@@ -181,7 +188,7 @@ ob_start();
 
 
                             ?>
-
+                                    </div>
                             
                         </div>
                     </div>
