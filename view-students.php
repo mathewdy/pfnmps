@@ -107,7 +107,14 @@ $no = 0;
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="card p-5">
-                        <h2 class="mb-5">Students</h2>
+                        <span class="d-flex justify-content-between">
+                            <h2 class="mb-5">Students</h2>
+                            <a href="pdf.php" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+                            </svg></a>
+                        </span>
+                        
                         <table class="table" id="dataTable">
                             <thead>
                                 <tr>
@@ -138,7 +145,7 @@ $no = 0;
                                                 <td><?php echo $row ['grade']?></td>
                                                 <td><?php echo $row ['section']?></td>
                                                 <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a>
-                                                <a href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+                                                <a class="deleteBtn" href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
                                             </tr>
                                         
                                         <?php
@@ -149,7 +156,7 @@ $no = 0;
                             ?>
                             </tbody>
                         </table>
-                        <a href="pdf.php" >View All lists</a>
+                        
                     </div>
 				</div>
 
@@ -165,7 +172,9 @@ $no = 0;
 			</main>
 		</div>
 	</div>
-    
+    <?php if(isset($_GET['m'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
+    <?php }?>
 
 <!-- Bootstrap -->
 <script src="src/styles/custom/app.js"></script>
@@ -174,14 +183,66 @@ $no = 0;
 
 <!-- jQuery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Datatables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 <script>
     $(document).ready( function() {
         $('#dataTable').DataTable();
+        // $('.deleteBtn').each(function(){ 
+
+        // // const deleteBtn = $('#deleteBtn');
+        //     $(".deleteBtn").on('click', function(event){
+        //        event.preventDefault();
+        //        sweetAlert();
+        //     })
+        // })
+        
     });
+    $(".deleteBtn").on('click', function(e){
+        e.preventDefault();
+        const link = $(this).attr('href')
+        Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirm Deletion'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                   document.location.href = link;
+                }
+        })
+    })
+    // function sweetAlert(){
+    //     Swal.fire({
+    //             title: 'Are you sure?',
+    //             text: "You won't be able to revert this!",
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#3085d6',
+    //             cancelButtonColor: '#d33',
+    //             confirmButtonText: 'Confirm Deletion'
+    //             }).then((result) => {
+    //             if (result.isConfirmed) {
+    //                 console.log($(".deleteBtn").data("id"))
+    //                 // window.location.href = ;
+    //             }
+    //     })
+    // }
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'A record has been deleted!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
 </script>
 
 

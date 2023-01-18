@@ -10,8 +10,9 @@ if(isset($_GET['student_id'])){
     $run = mysqli_query ($conn,$query);
 
     if($run){
-        echo "<script>alert('deleted info') </script>";
-        echo "<script>window.location.href='view-students.php' </script>";
+        // echo "<script>alert('deleted info') </script>";
+        // echo "<script>window.location.href='view-students.php' </script>";
+        header('location: view-students.php?m=1');
     }else{
         echo "error" . $conn->error;
     }

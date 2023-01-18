@@ -167,8 +167,9 @@ include('security-admin.php');
                                         <br>
                                         <input type="hidden" name="date_time_created" value="<?php echo $row ['user_date_time_created']?>">
                                         <input type="hidden" name="user_id" value="<?php echo $row ['user_user_id']?>">
+                                        <input type="hidden" name="sID" value="<?php echo $student_id?>">
                                         <a class="btn btn-secondary" href="edit-student.php?student_id=<?php echo $row ['student_student_id']?>">Cancel</a>
-                                        <input type="submit" class="btn btn-primary" name="update" value="Update" id="">
+                                        <input type="submit" class="btn btn-primary updateBtn" name="update" value="Update" id="">
                                         <br>
                                        
 
@@ -185,11 +186,27 @@ include('security-admin.php');
 			</main>
 		</div>
 	</div>
-
+    <?php if(isset($_GET['m'])){ ?>
+        <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
+    <?php }?>
 <script src="./admin-template/js/app.js"></script>
 <script src="./styles/bootstrap/js/bootstrap.js"></script>
-<script src="opacity.js"> </script>
 
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const flashdata = $('.flash-data').data('flashdata')
+    if(flashdata){
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'A record has been updated!',
+            showConfirmButton: false,
+            timer: 2000
+        })
+    }
+</script>
 </body>
 </html>
 
@@ -208,6 +225,7 @@ if(isset($_POST['update'])){
     $middle_name = ucfirst($_POST['middle_name']);
     $last_name = ucfirst($_POST['last_name']); 
     $user_id = $_POST['user_id'];
+    $student_id = $_POST['sID'];
 
     //address
     $room = strtoupper($_POST['room']);
@@ -222,7 +240,7 @@ if(isset($_POST['update'])){
     $run_update = mysqli_query($conn,$query_update);
 
     if($run_update){
-        echo "data updated for guardian";
+        header("location: edit-guardian-details.php?student_id=$student_id&m=1");
     }else{
         echo "error" . $conn->error;
     }
