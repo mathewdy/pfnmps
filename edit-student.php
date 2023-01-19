@@ -163,7 +163,7 @@ ob_start();
                                 foreach($run as $row ){
                                     ?>
                                         <hr class="featurette-divider">
-                                        <form action="edit-student.php" method="POST" enctype="multipart/form-data">
+                                        <form action="edit-student.php?student_id=<?php echo $student_id?>" method="POST" enctype="multipart/form-data">
                                             <h2>Personal Info</h2>
                                             <label for="">First Name:</label>
                                             <input type="text" class="form-control" name="first_name" value="<?php echo $row ['student_first_name']?>">
@@ -277,7 +277,6 @@ ob_start();
                                                 <div class="modal-header">
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <form action="" method="POST">
                                                 <div class="modal-body">
                                                     <label for="">Current BMI:</label>
                                                     <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" >
@@ -290,11 +289,13 @@ ob_start();
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <input type="submit" name="edit_health_infos" class="btn btn-primary" value="Save Changes">
                                                 </div>
-                                                </form>
                                                 </div>
                                             </div>
                                             </div>
                                             <br>
+
+
+                                            
                                             <span>
                                             <a href="view-students.php" class="btn btn-danger">Back</a>
                                             <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#BMI">Edit BMI</a>
@@ -514,25 +515,21 @@ if(isset($_POST['update'])){
     //     echo "image not added"  ;
     //    exit();
     // }else
-    {
 
-        $query_update = "UPDATE students SET first_name = '$first_name' , middle_name = '$middle_name', last_name = '$last_name', date_of_birth = '$date_of_birth', gender = '$gender' , room = '$room', house = '$house' , street = '$street' , subdivision = '$subdivision' , barangay = '$barangay' , city ='$city' , zip = '$zip_code'  , grade = '$grade' , section = '$section', date_time_created = '$date_time_created' , date_time_updated = '$date $time' WHERE student_id = '$student_id'";
-        $run_update = mysqli_query($conn,$query_update);
+    $query_update = "UPDATE students SET first_name = '$first_name' , middle_name = '$middle_name', last_name = '$last_name', date_of_birth = '$date_of_birth', gender = '$gender' , room = '$room', house = '$house' , street = '$street' , subdivision = '$subdivision' , barangay = '$barangay' , city ='$city' , zip = '$zip_code'  , grade = '$grade' , section = '$section', date_time_created = '$date_time_created' , date_time_updated = '$date $time' WHERE student_id = '$student_id'";
+    $run_update = mysqli_query($conn,$query_update);
 
-        if($run_update){
-            //updated na lang yung echo neto
-            $query_update_email = "UPDATE users SET email = '$email' WHERE student_id= '$student_id'";
-            $run_update_email = mysqli_query($conn,$run_update_email);
-
-            if($run_update_email){
-                echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
-            }
-            
-        }else{
-            echo "error" . $conn->error;
+    if($run_update){
+        $update_Email = "UPDATE users SET email = '$email' WHERE student_id =  '$student_id'";
+        $run_update_email = mysqli_query($conn,$update_Email);
+        if($run_update_email){
+            echo "<script>window.location.href='edit-student.php?student_id=$student_id' </script>";
         }
-
+        
+    }else{
+        echo "error" . $conn->error;
     }
+
 
 }
 
