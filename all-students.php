@@ -29,7 +29,7 @@
 <body>
 <span style="text-align: center; padding-top: 4em; margin-bottom: 2em;">
 <h1>Bucal Elementary School</h1>
-<p style="opacity: 60%;">El pueblo condo, King Christian St., Kingspoint Subdivision Brgy. Bagbag, Novaliches,QC</p>
+<p style="opacity: 60%;">E Manila S Rd, Calamba, 4027 Laguna</p>
 </span>
 <hr style="opacity: 65%;">
 <div class="wrapper">

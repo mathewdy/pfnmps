@@ -19,7 +19,7 @@ $rows = mysqli_fetch_assoc($query);
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 ob_start();
-require 'student-record.php';
+require 'student-record3.php';
 
 
 $html = ob_get_contents();
@@ -34,6 +34,6 @@ $dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
 
 // Output the generated PDF to Browser
-$dompdf->stream('student-record1.pdf' ,['Attatchment' => false]);
+$dompdf->stream('student-record3.pdf' ,['Attatchment' => false]);
 
 ?>
