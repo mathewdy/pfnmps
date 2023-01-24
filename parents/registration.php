@@ -227,7 +227,7 @@ session_start();
 
     var max_date = year + "-" + month + "-" + t_date;
     document.getElementById("custom_date").setAttribute("max", max_date);
-</script>
+</script>   
 
 
 </body>
