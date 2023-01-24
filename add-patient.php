@@ -44,16 +44,16 @@ include('security-admin.php');
                          </a>
 					</li>
 
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="view-students.php">
-                            <i class="align-middle" data-feather="user"></i> <span class="align-middle">Students</span>
+                            <i class="align-middle text-dark" data-feather="user"></i> <span class="align-middle">Students</span>
                         </a>
 					</li>
 
 					
-					<li class="sidebar-item active">
-						<a class="sidebar-link" href="add-patient.php">
-                            <i class="align-middle text-dark" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="view-history.php">
+                            <i class="align-middle " data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
 				
@@ -253,6 +253,7 @@ include('security-admin.php');
 
                                     <!-----riri ikaw na bahala mag adjust sa stepper--->
                                     <br>
+                                    <a href="view-students.php" class="btn btn-danger">Cancel</a>
                                     <input type="submit" class="btn btn-primary" name="add_patient" value="Next">
                                 </form>
                             </div>

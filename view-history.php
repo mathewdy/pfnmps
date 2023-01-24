@@ -47,17 +47,17 @@ $no = 0;
                          </a>
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item ">
 						<a class="sidebar-link" href="view-students.php">
-                            <i class="align-middle text-dark" data-feather="user"></i> <span class="align-middle">Students</span>
+                            <i class="align-middle " data-feather="user"></i> <span class="align-middle">Students</span>
                         </a>
 					</li>
 
 					
 
-					<li class="sidebar-item">
+					<li class="sidebar-item active">
 						<a class="sidebar-link" href="view-history.php">
-                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">History</span>
+                            <i class="align-middle text-dark" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
 				
@@ -114,9 +114,7 @@ $no = 0;
                             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                             </svg></a>
                         </span>
-                        <span>
-                            <a href="add-patient.php" class="btn btn-primary rounded-circle mb-4" style="padding: 8px 12px;"><i class="align-middle" data-feather="plus"></i></a>
-                        </span>
+                        
                         <table class="table" id="dataTable">
                             <thead>
                                 <tr>
@@ -146,7 +144,7 @@ $no = 0;
                                                 <td><?php echo $row ['date_of_birth']?></td>
                                                 <td><?php echo $row ['grade']?></td>
                                                 <td><?php echo $row ['section']?></td>
-                                                <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a>
+                                                <td><a class="btn btn-success" href="history.php?student_id=<?php echo $row['student_id']?>">View</a>
                                                 <a class="deleteBtn" href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
                                             </tr>
                                         

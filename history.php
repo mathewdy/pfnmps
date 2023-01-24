@@ -41,16 +41,16 @@ ob_start();
                          </a>
 					</li>
 
-					<li class="sidebar-item active">
+					<li class="sidebar-item ">
 						<a class="sidebar-link" href="view-students.php">
-                            <i class="align-middle text-dark" data-feather="user"></i> <span class="align-middle">Students</span>
+                            <i class="align-middle " data-feather="user"></i> <span class="align-middle">Students</span>
                         </a>
 					</li>
 
 
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="add-patient.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="view-history.php">
+                            <i class="align-middle text-dark" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
 				
@@ -97,9 +97,12 @@ ob_start();
                     <div class="col-lg-12">
 
                    
-                        <div class="card p-5">
+                        <div class="card p-5 pt-0">
+                            <span class="mt-4">
+                                <a href="view-students.php" class="btn btn-md btn-danger"><i class="align-middle" data-feather="corner-down-left"></i> Go Back</a>
+                            </span>
                          
-                        <h2>History of Records</h2>
+                        <h2 class="mt-4">History of Records</h2>
 
 
                         <?php
@@ -113,49 +116,14 @@ ob_start();
                             if(isset($_GET['student_id'])){
                                 $student_id = $_GET['student_id'];
 
-                                $query_remarks = "SELECT exercise_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.exercise_acknowledge = '1'";
-                                $run_remarks = mysqli_query($conn,$query_remarks);
-                                $row_remarks = mysqli_num_rows($run_remarks);
-
-                                echo "<span style='color:blue;'>Exercise Remarks:" . $row_remarks . '<br> </span>';
-                                
-                                if($row_remarks == 10 || $row_remarks >= 10){
-                                    echo "<span style='color:green;'>Exercises Completed" . "<br></span>";
-                                }else{
-                                    echo "<span style='color:red;'>Exercises Incomplete" . "<br> </span>";
-                                }
-
-                                $query_remarks_food = "SELECT food_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.food_acknowledge = '1'";
-                                $run_remarks_food = mysqli_query($conn,$query_remarks_food);
-                                $row_remarks_food = mysqli_num_rows($run_remarks_food);
-
-                                echo "<span style='color:blue;'>Food Remarks:" . $row_remarks_food . "<br></span>";
-
-                                if($row_remarks_food == 30){
-                                    echo "<span style='color:green;'>Foods Completed" . "<br></span>";
-                                }else{
-                                    echo "<span style='color:red;'>Foods Incomplete" . "<br></span>";
-                                }
-
-                                if($row_remarks >= 8 && $row_remarks_food == 30){
-                                    echo "<span style='color: green;'>Final Remarks: Success" . "<br> </span>";
-                                }else{
-                                    echo "<span style='color: red;'>Final Remarks: Failed ". "<br> </span>";
-                                }
-
-
-
-
-
-                                
                                 $query_bmi = "SELECT bmi , date_created FROM history WHERE student_id = '$student_id'";
                                 $run_bmi = mysqli_query($conn,$query_bmi);
 
                                 if(mysqli_num_rows($run_bmi) > 0){
                                     foreach($run_bmi as $row1){
                                         ?>
-                                            <strong>Previous BMI: <?php echo $row1['bmi']?></strong>  
-                                            <p>Date Started: <?php $date = date("F/d/Y", strtotime($row1['date_created'])); 
+                                            <p class="m-0 p-0">Previous BMI: <strong><?php echo $row1['bmi']?></strong></p>
+                                            <p class="m-0 p-0">Date Started: <?php $date = date("F d, Y", strtotime($row1['date_created'])); 
                                             echo $date;?></p>
 
 
@@ -173,49 +141,57 @@ ob_start();
                                     ?>
                                     <div class="row">
 
-                                        
+                                        <hr class="mt-4">
                                     <?php
 
                                     foreach($run as $row){
                                         ?>
+                                        
                                         <div class="col-lg-3">
-                                        <div class="card shadow p-4" style="width: 18rem; min-height: 20rem;">
+                                        <div class="card border border-light rounded-0 shadow p-4" style="width: 15rem; min-height: 16rem;">
 
                                         <!-- <label for="">Date Started</label>
                                         <p><?php echo $row['date_started']?></p> -->
-                                        <p  style="font-size:18px;">Day <?php echo $row ['day']?></p>
-                                        <p for="" style="font-size:16.7px;">Daily Meals</p>
-                                        <p><?php echo $row['foods']?></p>
-
-                                        <label for="" style="font-size: 18px;">Status</label>
-                                        <p>
-                                            <?php 
+                                        <p class="m-0 p-0" style="font-size:18px;">Day <?php echo $row ['day']?></p>
+                                        <hr class="featurette-divider">
+                                        <span class="d-flex flex-row justify-content-between align-items-center">
+                                        <p class="m-0 p-0"  style="font-size:16.7px;">Meals</p>
+                                        <?php 
                                             //kulay green kapag na acknowledge
                                             // red kapag hindi
 
                                             if($row['food_acknowledge'] == '1'){
-                                                echo "<div style='color: #228b22;'>Done </div>";
+                                                echo "<span class='badge bg-success'>Done</span>";
                                             }else{
-                                                echo "<div style='color:red;'>Unfinished </div>";
+                                                echo "<span class='badge bg-danger'>Unfinished</span>";
                                             }
 
                                             ?>
-                                            
-                                        </p>
-
-
-                                        <label for=""style="font-size:16.7px;">Daily Activities</label>
-                                        <p><?php echo $row['exercises']?></p>
-                                        <label for="" style="font-size: 18px;">Status</label>
+                                        </span>
+                                        <p class="m-0 p-0"><?php echo $row['foods']?></p>
+                                        <!-- <p class="m-0 p-0" style="font-size: 18px;">Status</p> -->
                                         <p>
+                                           
+                                        </p>
+                                          
+                                        <span class="d-flex justify-content-between align-items-center">
+                                            <p class="m-0 p-0" style="font-size:16.7px;">Activities</p>
+
                                             <?php if($row ['exercise_acknowledge']== '1'){
-                                                echo "<div style='color: #228b22;'>Done </div>";
+                                                echo "<span class='badge bg-success'>Done</span>";
                                             }else{
-                                                echo "<div style='color: red;'>Unfinished </div>";
+                                                echo "<span class='badge bg-danger'>Unfinished</span>";
                                             }
                                             
                                             ?>
+                                        </span>
+                                        <p class="m-0 p-0"> <?php echo $row['exercises']?></p>
+
+                                        <!-- <p class="m-0 p-0" style="font-size: 18px;">Status</p> -->
+                                        <p class="m-0 p-0">
+                                            
                                         </p>
+                                        
                                         </div>
                                         </div>
 
@@ -224,7 +200,51 @@ ob_start();
                                 }
 
 
+                                ?>
+                                <?php
+                                $query_remarks = "SELECT exercise_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.exercise_acknowledge = '1'";
+                                $run_remarks = mysqli_query($conn,$query_remarks);
+                                $row_remarks = mysqli_num_rows($run_remarks);
+                                ?>
+                                <span class="d-flex justify-content-between align-items-center">
+                                <?php
+                                echo "<span class='h4' style='color:blue;'>Completed Exercises:" . ' ' . $row_remarks . '<br> </span>';
+                                
+                                if($row_remarks == 10 || $row_remarks >= 10){
+                                    echo "<span class='badge bg-success'>Completed" . "<br></span>";
+                                }else{
+                                    echo "<span class='badge bg-danger'>Incomplete" . "<br> </span>";
+                                }
+                                ?>
+                                </span>
+                                <?php
+                                $query_remarks_food = "SELECT food_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.food_acknowledge = '1'";
+                                $run_remarks_food = mysqli_query($conn,$query_remarks_food);
+                                $row_remarks_food = mysqli_num_rows($run_remarks_food);
+                                ?>
+                                <span class="d-flex w-100 flex-row justify-content-between align-items-center">
+                                <?php
+                                echo "<span class='h4' style='color:blue;'>Completed Meals:" . ' ' . $row_remarks_food . "<br></span>";
 
+                                if($row_remarks_food == 30){
+                                    echo "<span class='badge bg-success'>Completed" . "<br></span>";
+                                }else{
+                                    echo "<span class='badge bg-danger'>Incomplete" . "<br> </span>";
+                                }
+                                ?>
+                                </span>
+                               
+                                <span class="text-end">
+                                <hr>
+                                <?php
+                                 if($row_remarks >= 8 && $row_remarks_food == 30){
+                                    echo "<span class='px-2' style='color: green;'> Success" . "<br> </span>";
+                                }else{
+                                    echo "<span class='px-3' style='color: red;'>Failed ". "<br> </span>";
+                                }
+                                ?>
+                                </span>
+                                <?php
                             }
 
 

@@ -49,8 +49,8 @@ ob_start();
 
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="add-patient.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+						<a class="sidebar-link" href="view-history.php">
+                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
 				
@@ -94,7 +94,7 @@ ob_start();
 				<div class="container-fluid p-0">
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
 
                    
                         <div class="card p-5">
@@ -123,7 +123,6 @@ ob_start();
                             // $query = "SELECT exercises,exercise_acknowledge, id FROM program_records
                             // WHERE student_id = '$student_id' LIMIT $start_from , $num_per_page " ;
                             // $run_page = mysqli_query($conn,$query);
-
                                 $query = "SELECT * FROM students WHERE student_id = '$student_id'";
                                 $run = mysqli_query($conn,$query);
 
@@ -133,17 +132,28 @@ ob_start();
 
 
                                             <form action="" method="POST"  enctype="multipart/form-data">
-
-                                                <label for="">Update Image</label>
-                                                <br>
-                                                <img src="parents/student_image/<?php echo $row ['image']?>" width="200" height="200" alt="student image">
-                                                <br>
-
-                                                <input type="file" class="form-control mt-3"name="image">
-
-                                                <br>
-                                                <input type="submit" class="btn btn-primary mb-5" name="update_image" value="Update">
-                                                <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
+                                                <div class="row">
+                                                    <div class="col-lg-12 mb-4">
+                                                        <span class="d-flex justify-content-between align-items-center">
+                                                            <a href="view-students.php" class="btn btn-md btn-danger"><i class="align-middle" data-feather="corner-down-left"></i> Go Back</a>
+                                                            <button type="button" class="btn btn-md btn-info" data-bs-toggle="modal" data-bs-target="#PDF">Generate PDF <i class="align-middle" data-feather="file-text"></i></button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h2 class="bold">Update Image</h2>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <img class="card-img-top" src="parents/student_image/<?php echo $row ['image']?>" width="200" height="200" alt="student image">
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <input type="file" class="form-control mt-3"name="image">
+                                                        <br>
+                                                        <button type="submit" name="update_image" class="btn btn-md btn-primary"><i class="align-middle" data-feather="save"></i> Save</button>
+                                                        <!-- <input type="submit" class="btn btn-md btn-primary mb-5" name="update_image" value="Update"> -->
+                                                        <input type="hidden" name="student_id" value="<?php echo $row ['student_id']?>">
+                                                    </div>
+                                                    
+                                                </div>
                                             </form>
 
 
@@ -164,112 +174,127 @@ ob_start();
                                     ?>
                                         <hr class="featurette-divider">
                                         <form action="edit-student.php?student_id=<?php echo $student_id?>" method="POST" enctype="multipart/form-data">
-                                            <h2>Personal Info</h2>
-                                            <label for="">First Name:</label>
-                                            <input type="text" class="form-control" name="first_name" value="<?php echo $row ['student_first_name']?>">
+                                            <div class="row">
+                                                <div class="col-lg-12 mb-5">
+                                                    
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <h2>Personal Info</h2>
+                                                    <label for="">First Name:</label>
+                                                    <input type="text" class="form-control" name="first_name" value="<?php echo $row ['student_first_name']?>">
 
-                                            <br>
+                                                    <br>
 
-                                            <label for="">Middle Name:</label>
-                                            <input type="text" class="form-control" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
+                                                    <label for="">Middle Name:</label>
+                                                    <input type="text" class="form-control" name="middle_name" value="<?php echo $row ['student_middle_name']?>">
 
-                                            <br>
+                                                    <br>
 
-                                            <label for="">Last Name:</label>
-                                            <input type="text" class="form-control" name="last_name" value="<?php echo $row ['student_last_name']?>">
-                                            <br>
+                                                    <label for="">Last Name:</label>
+                                                    <input type="text" class="form-control" name="last_name" value="<?php echo $row ['student_last_name']?>">
+                                                    <br>
 
-                                            <label for="">Date of Birth:</label>
-                                            <input type="date" class="form-control" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
-                                            <br>
+                                                    <label for="">Date of Birth:</label>
+                                                    <input type="date" class="form-control" name="date_of_birth" value="<?php echo $row ['student_date_of_birth']?>" id="">
+                                                    <br>
 
-                                            <br>
+                                                    <label for="">Emaill Address:</label>
+                                                    <input type="email" class="form-control" name="email" value="<?php echo $row['user_email']?>">
+                                                    <br>
+                                                    <label for="">4PS Member</label>
+                                                        <p>
+                                                            <?php 
+                                                                if($row['student_four_ps'] == '0'){
+                                                                    echo "<b><span style='color: Green; font-size:16px;'> No <span></b>";
+                                                                }else{
+                                                                    echo "<b><span style='color: Yellow; font-size:16px;'> Yes <span></b>";
+                                                                }
+                                                            ?>
+                                                        </p>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="row">
+                                                        <h2>Address</h2>
+                                                        <div class="col-lg-6">
+                                                            <label for="">Room / Floor / Unit No. & Building Name:</label>
+                                                            <input type="text" class="form-control" name="room" value="<?php echo $row ['student_room'] ?>">
 
-                                            <label for="">Emaill Address:</label>
-                                            <input type="email" class="form-control" name="email" value="<?php echo $row['user_email']?>">
+                                                            <br>
+                                                            <label for="">House / Lot & Block No. :</label>
+                                                            <input type="text" class="form-control" name="house" value="<?php echo $row ['student_house']?>">
 
+                                                            <br>
+                                                            <label for="">Street</label>
+                                                            <input type="text" class="form-control" name="street" value="<?php echo $row ['student_street']?>">
+
+                                                            <br>
+                                                            <label for="">Subdivision:</label>
+                                                            <input type="text" class="form-control" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
+
+
+                                                            <br>
+                                                            <label for="">Barangay:</label>
+                                                            <input type="text" class="form-control" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
+
+
+                                                            <br>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <label for="">City:</label>
+                                                            <input type="text" class="form-control" name="city" value="<?php echo $row ['student_city']?>">
+
+                                                            
+                                                            <br>
+                                                            <label for="">Zip Code:</label>
+                                                            <input type="number" class="form-control" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
+
+                                                            <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
+                                                            
+                                                            <label for="">Grade:</label>
+                                                            <!-- <input type="text" class="form-control" name="grade" value="<?php echo $row ['student_grade']?>" readonly> -->
+                                                            <select name="grade" id="" class="form-control" style="pointer-events: none; border: none; ">
+                                                                <option selected value="<?php echo $row ['student_grade']?>"><?php echo $row ['student_grade']?></option>
+                                                            </select>
+
+                                                            <select name="grade" class="form-select" id="">
+                                                                <option value="Grade 1">Grade 1</option>
+                                                                <option value="Grade 2">Grade 2</option>
+                                                                <option value="Grade 3">Grade 3</option>
+                                                                <option value="Grade 4">Grade 4</option>
+                                                                <option value="Grade 5">Grade 5</option>
+                                                                <option value="Grade 6">Grade 6</option>
+                                                            </select>
+
+                                                            <br>
+                                                            <label for="">Section:</label>
+                                                            <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
+                                                            <!---gagawin tong modal---->
+                                                        </div>
+                                                    </div>                                                   
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <br>
+                                                    <hr class="featurette-divider">
+                                                    <label for="">Current BMI:</label>
+                                                    <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" readonly>
+                                                    <label for="">Current Height:</label>
+                                                    <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>"readonly>
+                                                    <label for="">Current Weight:</label>
+                                                    <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" readonly>
+
+                                                    <label for="">Current Status:</label>
+                                                    <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" readonly>
+
+                                                    <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>"readonly>
+
+                                                    </div>
+                                            </div>
+                                            
                                             <hr class="featurette-divider">
-                                            <h2>Address</h2>
-                                            <label for="">Room / Floor / Unit No. & Building Name:</label>
-                                            <input type="text" class="form-control" name="room" value="<?php echo $row ['student_room'] ?>">
-
-                                            <br>
-                                            <label for="">House / Lot & Block No. :</label>
-                                            <input type="text" class="form-control" name="house" value="<?php echo $row ['student_house']?>">
-
-                                            <br>
-                                            <label for="">Street</label>
-                                            <input type="text" class="form-control" name="street" value="<?php echo $row ['student_street']?>">
-
-                                            <br>
-                                            <label for="">Subdivision:</label>
-                                            <input type="text" class="form-control" name="subdivision" value="<?php echo $row ['student_subdivison']?>">
-
-
-                                            <br>
-                                            <label for="">Barangay:</label>
-                                            <input type="text" class="form-control" name="barangay" value="<?php echo $row ['student_barangay']?>"> 
-
-
-                                            <br>
-                                            <label for="">City:</label>
-                                            <input type="text" class="form-control" name="city" value="<?php echo $row ['student_city']?>">
-
                                             
                                             <br>
-                                            <label for="">Zip Code:</label>
-                                            <input type="number" class="form-control" name="zip_code" value="<?php echo $row ['student_zip']?>"> 
 
-                                            <input type="hidden" name="gender" value="<?php echo $row ['student_gender']?>">
-                                            
-                                            <br>
-
-                                            <label for="">Grade:</label>
-                                            <!-- <input type="text" class="form-control" name="grade" value="<?php echo $row ['student_grade']?>" readonly> -->
-                                            <select name="grade" id="" class="form-control" style="pointer-events: none; border: none; ">
-                                                <option selected value="<?php echo $row ['student_grade']?>"><?php echo $row ['student_grade']?></option>
-                                            </select>
-
-                                            <select name="grade" class="form-select" id="">
-                                                <option value="Grade 1">Grade 1</option>
-                                                <option value="Grade 2">Grade 2</option>
-                                                <option value="Grade 3">Grade 3</option>
-                                                <option value="Grade 4">Grade 4</option>
-                                                <option value="Grade 5">Grade 5</option>
-                                                <option value="Grade 6">Grade 6</option>
-                                            </select>
-
-                                            <br>
-                                            <label for="">Section:</label>
-                                            <input type="text" class="form-control" name="section" value="<?php echo $row ['student_section']?>">
-                                            <!---gagawin tong modal---->
-                                            <br>
-
-                                            <label for="">4PS Member</label>
-                                            <p>
-                                                <?php 
-                                                    if($row['student_four_ps'] == '0'){
-                                                        echo "<b><span style='color: Green; font-size:16px;'> No <span></b>";
-                                                    }else{
-                                                        echo "<b><span style='color: Yellow; font-size:16px;'> Yes <span></b>";
-                                                    }
-                                                ?>
-                                            </p>
-
-                                            <br>
-                                            <hr class="featurette-divider">
-                                            <label for="">Current BMI:</label>
-                                            <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" readonly>
-                                            <label for="">Current Height:</label>
-                                            <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>"readonly>
-                                            <label for="">Current Weight:</label>
-                                            <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" readonly>
-
-                                            <label for="">Current Status:</label>
-                                            <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" readonly>
-
-                                            <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>"readonly>
-
+                                           
                                             <!-- Modal -->
                                             <div class="modal fade" id="BMI" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
@@ -292,27 +317,60 @@ ob_start();
                                                 </div>
                                             </div>
                                             </div>
-                                            <br>
-
-
-                                            
-                                            <span>
-                                            <a href="view-students.php" class="btn btn-danger">Back</a>
-                                            <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#BMI">Edit BMI</a>
-                                            <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>">Edit Guardian Details</a>
-                                            <a class="btn btn-success" href="history.php?student_id=<?php echo $row['student_student_id']?>">History</a>
-                                            <input type="submit" class="btn btn-primary" name="update" value="Update">
-                                            <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
-                                            <a class="btn btn-info" href="student-pdf.php?id=<?= $row['student_student_id']?>">Generate PDF <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-
-                                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                                            </svg></a>
+                                            <div class="modal fade" id="PDF" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body mb-4">
+                                                            <span class="d-flex flex-row justify-content-between border rounded py-2 px-3 align-items-center mb-3">
+                                                                <span class="d-flex align-items-center justify-content-center">
+                                                                    <p class="h5 p-0 m-0"><b>1<sup>st</sup></b> to <b>7<sup>th </sup></b>Day</p>
+                                                                </span>
+                                                                <a href="student-pdf.php?id=<?= $row['student_student_id']?>">
+                                                                    <i class="align-middle" data-feather="download"></i>
+                                                                </a>
+                                                            </span>
+                                                            <span class="d-flex flex-row justify-content-between border rounded py-2 px-3 align-items-center mb-3">
+                                                                <span class="d-flex align-items-center justify-content-center">
+                                                                    <p class="h5 p-0 m-0"> <b>8<sup>th</sup></b> to <b>14<sup>th</sup></b>  Day</p>
+                                                                </span>
+                                                                <a href="student-pdf2.php?id=<?= $row['student_student_id']?>">
+                                                                <i class="align-middle" data-feather="download"></i>
+                                                                </a>
+                                                            </span>
+                                                            <span class="d-flex flex-row justify-content-between border rounded py-2 px-3 align-items-center mb-3">
+                                                                <span class="d-flex align-items-center justify-content-center">
+                                                                    <p class="h5 p-0 m-0"><b>15<sup>th</sup></b> to <b>21<sup>st</sup></b> Day</p>
+                                                                </span>
+                                                                <a href="student-pdf3.php?id=<?= $row['student_student_id']?>">
+                                                                <i class="align-middle" data-feather="download"></i>
+                                                                </a>
+                                                            </span>
+                                                            <span class="d-flex flex-row justify-content-between border rounded py-2 px-3 align-items-center">
+                                                                <span class="d-flex align-items-center justify-content-center">
+                                                                    <p class="h5 p-0 m-0"><b>22<sup>nd</sup></b> to <b>30<sup>th</sup></b> Day</p>
+                                                                </span>
+                                                                <a href="student-pdf4.php?id=<?= $row['student_student_id']?>">
+                                                                <i class="align-middle" data-feather="download"></i>
+                                                                </a>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="d-flex justify-content-between align-items-center">
+                                                <span>
+                                                    <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#BMI"><i class="align-middle" data-feather="edit"></i> Edit BMI</a>
+                                                    <a class="btn btn-secondary" href="edit-guardian-details.php?student_id=<?php echo $row ['student_student_id']?>"><i class="align-middle" data-feather="edit"></i> Edit Guardian Details</a>
+                                                    <!-- <a class="btn btn-success" href="history.php?student_id=<?php echo $row['student_student_id']?>">History</a> -->
+                                                </span>
+                                                <button type="submit" name="update" class="btn btn-primary"><i class="align-middle" data-feather="save"></i> Save</button>
+                                                <input type="hidden" name="student_id" value="<?php echo $row ['student_student_id']?>">
+                                                
+                                                <!-- <input type="submit" class="btn btn-primary" name="update" value="Update"> -->
                                             </span>
-                                            <a href="student-pdf2.php?id=<?= $row['student_student_id']?>">Generate 8-14 Days</a>
-                                            <a href="student-pdf3.php?id=<?= $row['student_student_id']?>">Generate 15-21 Days</a>
-                                            <a href="student-pdf4.php?id=<?= $row['student_student_id']?>">Generate 22-30 Days</a>
-
 
                                             <!--riri ikaw na bahala sa edit-student- history chrurut---->
 
@@ -326,132 +384,152 @@ ob_start();
                             ?>
                         </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="card p-5">
+                                <br>
+                            <?php
 
-                            
-                        <h3>Student Activities</h3>
-                        <br>
+                                $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
+                                $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
 
-                    <?php
-
-                        $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
-                        $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
-
-                        if(mysqli_num_rows($run_program_records_date) > 0){
-                            foreach($run_program_records_date as $row){
-                                ?>
-
-
-                                    <h4>Date Started</h4>
-                                    <p><?php echo $row['date_started']?></p>
-
-                                <?php
-                            }
-                        }
-
-                        //gagawa naman ako ng page ination
-
-                        $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
-                        $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
-
-                        if(mysqli_num_rows($run_daily_activities) > 0){
-                            foreach ($run_daily_activities as $row2){
-                                ?>
-                                
-                                    <label for="">Acitivies:</label>
-                                    <p><?php echo $row2['exercises'] ?></p>
-                                    <label for="">Duration:</label>
-                                    <p>30 min.</p>
-                                    <form action="" method="POST">
-                                        <?php
-
-                                            if($row2['exercise_acknowledge'] == 0){
-                                                ?>
-
-                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                                <input type="hidden" name="id" value="<?php echo $row2['id']?>">
-                                                <input type="hidden" name="daily_task" value="1">
-                                            
-                                                <input type="submit" name="acknowledge_task" value="Acknowledge" class="btn btn-outline-primary py-1">
-                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                        
-
-                                                <?php
-                                            }else{
-                                                echo "<div style='color:green;'>Acknowledged </div>";
-                                            }
+                                if(mysqli_num_rows($run_program_records_date) > 0){
+                                    foreach($run_program_records_date as $row){
+                                        $new_format = date("F d, Y", strtotime($row['date_started']));
 
                                         ?>
-                                        
-                                       
-                                    
-                                    </form>
-                                    
+                                        <span class="d-flex justify-content-between">
+                                            <span>
+                                                <h1 class="text-muted">Student Activities</h1>
+                                            </span>
+                                            <span>
+                                                <h4 class="m-0 p-0">Date Started</h4>
+                                                <p class="m-0 p-0 mb-5"><?php echo $new_format; ?></p>
+                                            </span>
+                                        </span>
+                                            
+                                            
+
+                                        <?php
+                                    }
+                                }
+
+                                //gagawa naman ako ng page ination
+
+                                $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
+                                $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
+                                ?>
+                                <div class="row d-flex flex-row justify-content-between">
+                                    <div class="col-lg-12">
+                                        <h2>Exercises</h2>
+                                    </div>
+                                    <hr class="featurette-divider">
                                 <?php
-                            }
-                        }
+                                if(mysqli_num_rows($run_daily_activities) > 0){
+                                    foreach ($run_daily_activities as $row2){
+                                        ?>
+                                        
+                                        <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
+                                            <span class="d-flex justify-content-between align-items-center">
+                                        
+                                            <!-- <label for="">Activies:</label> -->
+                                                <span>
+                                                    <p class="m-0 p-0"><?php echo $row2['exercises'] ?></p>
+                                                    <small><p class="m-0 p-0 text-muted">Duration: 30 min.</p></small>
+                                                </span>
+                                                <form action="" method="POST">
+                                                    <?php
 
-                    // //pagination continiues
-                    // $pr_query = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
-                    // $pr_result= mysqli_query($conn,$pr_query);
+                                                        if($row2['exercise_acknowledge'] == 0){
+                                                            ?>
 
-                    // $total_records = mysqli_num_rows($pr_result);
-                    // $total_page = ceil($total_records/$num_per_page);
+                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                            <input type="hidden" name="id" value="<?php echo $row2['id']?>">
+                                                            <input type="hidden" name="daily_task" value="1">
+                                                        
+                                                            <input type="submit" name="acknowledge_task" value="Acknowledge" class="btn btn-outline-primary py-1">
+                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                    
 
-                    // for($i=1;$i<$total_page;$i++){
-                    
-                    //    echo "<a href='edit-student.php?page=".$i." class='btn btn-primary'>$i</a>";
+                                                            <?php
+                                                        }else{
+                                                            echo "<div style='color:green;'>Acknowledged </div>";
+                                                        }
 
-                    // }
+                                                    ?>
+                                                </form>
+                                                        
+                                            </span>   
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                            <?php
+                            // //pagination continiues
+                            // $pr_query = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
+                            // $pr_result= mysqli_query($conn,$pr_query);
+
+                            // $total_records = mysqli_num_rows($pr_result);
+                            // $total_page = ceil($total_records/$num_per_page);
+
+                            // for($i=1;$i<$total_page;$i++){
+                            
+                            //    echo "<a href='edit-student.php?page=".$i." class='btn btn-primary'>$i</a>";
+
+                            // }
 
 
-                    //ETO YUNG SA PAG KAIN NYA RIRI
+                            //ETO YUNG SA PAG KAIN NYA RIRI
 
-                    ?>
-                        <br>
-                            <h3>Daily Meal</h3>
-                        <br>
-
-                    <?php
-                    $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
-                    $run_program_records = mysqli_query($conn,$sql_program_records);
-
-                    if(mysqli_num_rows($run_program_records) > 0){
-                        foreach($run_program_records as $row1){
                             ?>
-
-
-                                <label for="">Day: </label>
-                                <p><?php echo $row1['day']?></p>
-                                <label for="">Foods:</label>
-                                <p><?php echo $row1['foods']?></p>
-                                <form action="" method="POST">
-                                <p>
-                                    <?php
-
-                                        if($row1['food_acknowledge'] == 0){
-                                            ?>      
-                                                <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                                <input type="hidden" name="id" value="<?php echo $row1['id']?>">
-                                                <input type="hidden" name="daily_meal" value="1">
-                                                <input type="submit" name="acknowledge_meal" value="Acknowledge" class="btn btn-outline-primary py-1">
-                                            <?php
-                                        }else{
-                                            echo "<div style='color: green;'>Acknowledged </div> ";
-                                        }
-                                
-                                    ?>
-                                </p>
-                                </form>
+                        <div class="row d-flex flex-row justify-content-between">
+                            <div class="col-lg-12">
+                                <h2>Meals</h2>
+                            </div>
+                            <hr class="featurette-divider">
 
                             <?php
+                            $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
+                            $run_program_records = mysqli_query($conn,$sql_program_records);
+
+                            if(mysqli_num_rows($run_program_records) > 0){
+                                foreach($run_program_records as $row1){
+                                    ?>
+                            <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
+                                <span class="d-flex flex-row justify-content-between align-items-center">
+                                    <span>
+                                        <p class="m-0 p-0">Day: <?php echo $row1['day']?></p>
+                                        <p class="m-0 p-0">Foods: <?php echo $row1['foods']?></p>
+                                    </span>
+                                        <form action="" method="POST">
+                                        <p>
+                                            <?php
+
+                                                if($row1['food_acknowledge'] == 0){
+                                                    ?>      
+                                                        <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                        <input type="hidden" name="id" value="<?php echo $row1['id']?>">
+                                                        <input type="hidden" name="daily_meal" value="1">
+                                                        <input type="submit" name="acknowledge_meal" value="Acknowledge" class="btn btn-outline-primary py-1">
+                                                    <?php
+                                                }else{
+                                                    echo "<div style='color: green;'>Acknowledged </div> ";
+                                                }
+                                        
+                                            ?>
+                                        </p>
+                                        </form>
+                                </span>
+                            </div>
+                                    <?php
+                                }
+                            }
+
                         }
-                    }
 
-                }
-
-                ?>
+                        ?>
+                        </div>
                 </div>
 				</div>
                 </div>
