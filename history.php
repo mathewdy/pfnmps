@@ -3,7 +3,7 @@
 include('connection.php');
 session_start();
 ob_start();
-
+$student_id = $_GET['student_id'];
 
 ?>
 <!DOCTYPE html>
@@ -98,11 +98,14 @@ ob_start();
 
                    
                         <div class="card p-5 pt-0">
-                            <span class="mt-4">
+                            
+                         <span class="d-flex flex-row justify-content-between align-items-center mt-4">
+                            <span>
                                 <a href="view-students.php" class="btn btn-md btn-danger"><i class="align-middle" data-feather="corner-down-left"></i> Go Back</a>
                             </span>
-                         
-                        <h2 class="mt-4">History of Records</h2>
+                            <span><a class="btn btn-md btn-primary" href="student-history.php?student_id=<?= $student_id; ?>"><i class="align-middle" data-feather="download"></i> Download PDF</a></span>
+                         </span>
+                         <h2 class="mt-4">History of Records</h2>
 
 
                         <?php

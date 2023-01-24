@@ -110,7 +110,7 @@ $no = 0;
                         <span class="d-flex justify-content-between">
                             <h1 class="mb-5 text-muted">Student History</h1>
                             <span>
-                                <a href="pdf.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
+                                <a href="student-history.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
                             </span>
                         </span>
                         
