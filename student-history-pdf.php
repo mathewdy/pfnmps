@@ -24,6 +24,10 @@
         }
     </style>
     <body>
+
+        <p style="padding: 0; margin: 0; font-size: 20px; text-align:center;">Bucal Elementary School</p>  
+        <p style="padding: 0; margin: 0; font-size: 13px; text-align:center;">Manila S Rd, Calamba, 4027 Laguna</p>  
+        <br>
         <table style="border: none;">
             <tr style="border: none;">
                 <td style="border: none; text-align: start;">
