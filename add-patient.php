@@ -208,7 +208,7 @@ include('security-admin.php');
 
                                         <br>
                                         <label for="">Date of Birth</label>
-                                        <input type="date" class="form-control" name="date_of_birth" required>
+                                        <input type="date" class="form-control" name="date_of_birth" id="custom_date" min="2005-01-01" required>
                                         
                                         <br>
                                         
@@ -325,6 +325,23 @@ include('security-admin.php');
 <script src="./admin-template/js/app.js"></script>
 <script src="src/styles/custom/app.js"></script>
 
+<script>
+    var today_date = new Date();
+    var month = today_date.getMonth() + 1;
+    var year = today_date.getFullYear();
+    var t_date = today_date.getDate();
+
+    if(month < 10){
+        month = "0" + month;
+    }
+
+    if(t_date < 10){
+        t_date = "0" + date;
+    }
+
+    var max_date = year + "-" + month + "-" + t_date;
+    document.getElementById("custom_date").setAttribute("max", max_date);
+</script>
 </body>
 </html>
 
