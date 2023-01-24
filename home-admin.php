@@ -57,7 +57,6 @@ $_SESSION['user_id'];
 				</ul>
 			</div>
 		</nav>
-
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
@@ -91,7 +90,7 @@ $_SESSION['user_id'];
 			</nav>
 
 			<!---Total number of students-->
-
+			<main class="content">
 			<?php
 
 			$sql_total_students = "SELECT id FROM students";
@@ -102,12 +101,14 @@ $_SESSION['user_id'];
 			<div class="container p-5">
 			<div class="row">
 				<div class="col-lg-6">
-					<div class="card p-3">
-						<?= "Total students: " . $row. "";?>
+					<div class="card border border-start border-3 border-bottom-0 border-top-0 border-end-0 border-success p-3 py-4" style="border-radius: 0;">
+						<h4>
+							<?= "Total students: " . $row. "";?>
+						</h4>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="card p-3">
+					<div class="card border border-start border-3 border-bottom-0 border-top-0 border-end-0 border-info p-3 py-4" style="border-radius: 0;">
 
 					
 					<!---total # of new added students--->
@@ -127,10 +128,14 @@ $_SESSION['user_id'];
 					$sql_new_students = "SELECT id FROM students WHERE date_created  = '$date'";
 					$query_new_students = mysqli_query($conn,$sql_new_students);
 					$row1 = mysqli_num_rows($query_new_students);
-
-					echo "New Students: " . $row1 . "";
-
 					?>
+					<h4>
+						<?php
+						echo "New Students: " . $row1 . "";
+
+						?>
+					</h4>
+					
 					</div>
 				</div>
 			</div>
@@ -190,22 +195,34 @@ $_SESSION['user_id'];
 
 
 				?>
-					<tr>
-						<td></td>
-					</tr>
 				</tbody>
 			</table>
 			</div>
 			</div>
-			<main class="content">
-				<div class="container-fluid p-0">
-					<div class="card">
-
+		</main>
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>@PFNMPS</strong></a> 
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<small>Copyright &copy; 2023</small>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
-			</main>
+			</footer>
 		</div>
 	</div>
+		
+	
+	
 	<?php if(isset($_GET['m'])){ ?>
         <div class="flash-data" data-flashdata="<?= $_GET['m']; ?>"></div> 
     <?php }?>

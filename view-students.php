@@ -107,16 +107,17 @@ $no = 0;
 			<main class="content">
 				<div class="container-fluid p-0">
                     <div class="card p-5">
+                        <!-- <h1 class="mb-4 mt-0 text-muted">Students</h1> -->
+
                         <span class="d-flex justify-content-between">
-                            <h2 class="mb-5">Students</h2>
-                            <a href="pdf.php" ><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                            </svg></a>
+                            <span class="text-start">
+                                <a href="add-patient.php" class="btn btn-success rounded-circle mb-4" style="padding: 8px 12px;"><i class="align-middle" data-feather="plus"></i></a>
+                            </span>
+                            <span >
+                                <a href="pdf.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
+                            </span>
                         </span>
-                        <span>
-                            <a href="add-patient.php" class="btn btn-primary rounded-circle mb-4" style="padding: 8px 12px;"><i class="align-middle" data-feather="plus"></i></a>
-                        </span>
+                        
                         <table class="table" id="dataTable">
                             <thead>
                                 <tr>
@@ -146,8 +147,12 @@ $no = 0;
                                                 <td><?php echo $row ['date_of_birth']?></td>
                                                 <td><?php echo $row ['grade']?></td>
                                                 <td><?php echo $row ['section']?></td>
-                                                <td><a href="edit-student.php?student_id=<?php echo $row ['student_id']?>">Edit</a>
-                                                <a class="deleteBtn" href="delete-student.php?student_id=<?php echo $row ['student_id']?>">Delete</a></td>
+                                                <td>
+                                                    <span class="d-flex justify-content-evenly align-items-center">
+                                                        <a class="btn btn-sm btn-primary" href="edit-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="edit"></i> Edit </a>
+                                                        <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="trash-2"></i> Delete</a>
+                                                    </span>
+                                                </td>
                                             </tr>
                                         
                                         <?php
@@ -172,6 +177,24 @@ $no = 0;
                         echo "<a href='view-students.php?page=".$i."' class='btn btn-primary'> $i </a>";
                     } -->
 			</main>
+            <footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>@PFNMPS</strong></a> 
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<small>Copyright &copy; 2023</small>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</div>
     <?php if(isset($_GET['m'])){ ?>

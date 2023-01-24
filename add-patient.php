@@ -96,171 +96,229 @@ include('security-admin.php');
 				<div class="container-fluid p-0">
                     <div class="card p-5">
                         <div class="row">
-                            <div class="col-lg-4">
-                                <form action="add-patient.php" method="POST" enctype="multipart/form-data">
-                                    <!----name of parent--->
-                                <h2>Name of Guardian</h2>
-                                <br>
-                                <label for="">First Name</label>
-                                <input type="text" class="form-control" name="guardian_first_name" required>
-                                <br>
+                            <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                            <div class="col-lg-12">
+                                <h2 class="text-decoration-underline mb-4">Guardian Information</h2>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                              <!----name of parent--->
+                                        <label for="">First Name</label>
+                                        <input type="text" class="form-control" name="guardian_first_name" required>
+                                        <br>
 
-                                <label for="">Middle Name</label>
-                                <input type="text" class="form-control" name="guardian_middle_name" required>
+                                        <label for="">Middle Name</label>
+                                        <input type="text" class="form-control" name="guardian_middle_name" required>
 
-                                <br>
-                                <label for="">Last Name</label>
-                                <input type="text" class="form-control" name="guardian_last_name" required>
-                                
-                                <br>
-                                <label for="">Email</label>
-                                <input type="email" class="form-control" name="email" required>
+                                        <br>
+                                        <label for="">Last Name</label>
+                                        <input type="text" class="form-control" name="guardian_last_name" required>
+                                        
+                                        <br>
+                                        <label for="">Email</label>
+                                        <input type="email" class="form-control" name="email" required>
+                                        <br>
+                                        <label for="">Contact Number</label>
+                                        <input type="text" class="form-control" name="contact_number" placeholder="+63**********" required>
 
-                                <label for="">Contact Number</label>
-                                <input type="text" class="form-control" name="contact_number" placeholder="+63**********" required>
+                                        <!-----ADDRESS---->
 
+                                        <br>
+                                        <!-- <label for="">Address</label> -->
+                                        <label for="">Room / Floor / Unit No. & Building Name</label>
+                                        <input type="text" class="form-control" name="room" required>
+                                        <br>
+                                        <label for="">House / Lot & Block No.</label>
+                                        <input type="text" class="form-control" name="house" required>
 
-                                <!-----ADDRESS---->
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="">Street</label>
+                                        <input type="text" class="form-control" name="street" required>
 
-                                <br>
-                                <label for="">Address</label>
-                                <label for="">Room / Floor / Unit No. & Building Name</label>
-                                <input type="text" class="form-control" name="room" required>
-
-                                <br>
-                                <label for="">House / Lot & Block No.</label>
-                                <input type="text" class="form-control" name="house" required>
-
-                                <br>
-                                <label for="">Street</label>
-                                <input type="text" class="form-control" name="street" required>
-
-                                <br>
-                                <label for="">Subdivision</label>
-                                <input type="text" class="form-control" name="subdivision" required>
-
-
-                                <br>
-                                <label for="">Barangay</label>
-                                <input type="text" class="form-control" name="barangay" required>
+                                        <br>
+                                        <label for="">Subdivision</label>
+                                        <input type="text" class="form-control" name="subdivision" required>
 
 
-                                <br>
-                                <label for="">City</label>
-                                <input type="text" class="form-control" name="city" required>
+                                        <br>
+                                        <label for="">Barangay</label>
+                                        <input type="text" class="form-control" name="barangay" required>
 
-                                
-                                <br>
-                                <label for="">Zip Code</label>
-                                <input type="number" class="form-control" name="zip_code" required> 
 
-                                <br>
+                                        <br>
+                                        <label for="">City</label>
+                                        <input type="text" class="form-control" name="city" required>
 
-                                <label for="">Gender</label>
-                                <br>
-                                <label for="">Male</label>
-                                <input type="radio" name="guardian_gender" value="Male" required>
-                                <label for="">Female</label>
-                                <input type="radio" name="guardian_gender" value="Female" required >
+                                        
+                                        <br>
+                                        <label for="">Zip Code</label>
+                                        <input type="number" class="form-control" name="zip_code" required> 
 
-                                <br>
-                                <label for="">Image</label>
-                                <input type="file" class="form-control" name="guardian_image" required>
-                               
+                                        <br>
+                                        <span class="d-flex flex-column justify-content-between mb-2">
+                                            
+                                            <label for="">Gender</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="guardian_gender" id="flexRadioDefault1" value="Female" required>
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Female
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="guardian_gender" id="flexRadioDefault2" value="Male" required>
+                                                <label class="form-check-label" for="flexRadioDefault2">
+                                                    Male
+                                                </label>
+                                            </div>
+                                            <!-- <span>
+                                                <label for="">Male</label>
+                                                <input type="radio" name="" >
+                                                <label for="">Female</label>
+                                                <input type="radio" name=""  >
+                                            </span> -->
+                                        </span>
+                                        <label for="">Image</label>
+                                        <input type="file" class="form-control" name="guardian_image" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-4">
-                            <h2>Name of Student</h2>
-                            <label for="">LRN</label>
-                                <input type="text" class="form-control" name="student_id" required>
+                            <hr class="featurette-divider">
+                            <div class="col-lg-12 my-4">
+                                <h2 class="text-decoration-underline mb-4">Student Information</h2>
 
-                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="">LRN</label>
+                                        <input type="text" class="form-control" name="student_id" required>
 
-                                <label for="">First Name</label>
-                                <input type="text" class="form-control" name="first_name" required>
-                                <br>
+                                        <br>
 
-                                <label for="">Middle Name</label>
-                                <input type="text" class="form-control" name="middle_name" required>
+                                        <label for="">First Name</label>
+                                        <input type="text" class="form-control" name="first_name" required>
+                                        <br>
 
-                                <br>
-                                <label for="">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" required>
+                                        <label for="">Middle Name</label>
+                                        <input type="text" class="form-control" name="middle_name" required>
 
-
-
-                                <br>
-                                <label for="">Date of Birth</label>
-                                <input type="date" class="form-control" name="date_of_birth" required>
-                                
-                                <br>
-                                <label for="">Gender</label>
-                                <br>
-                                <label for="">Male</label>
-                                <input type="radio" name="gender" value="Male" required>
-                                <label for="">Female</label>
-                                <input type="radio" name="gender" value="Female" required>
-
-                                <br>
-                                <label for="">Image</label>
-                                <input type="file" class="form-control" name="image" required>
-
-                                <br>
-
-                                <label for="">Grade</label>
-                                <select name="grade" class="form-select" id="" required>
-                                    <option value="Kinder">Kinder</option>
-                                    <option value="Grade 1">Grade 1</option>
-                                    <option value="Grade 2">Grade 2</option>
-                                    <option value="Grade 3">Grade 3</option>
-                                    <option value="Grade 4">Grade 4</option>
-                                    <option value="Grade 5">Grade 5</option>
-                                </select>
+                                        <br>
+                                        <label for="">Last Name</label>
+                                        <input type="text" class="form-control" name="last_name" required>
 
 
-                                <label for="">4PS Member?</label>
-                                <label for="">Yes</label>
-                                <input type="radio" name="four_ps" value="1" required>
-                                <label for="">No</label>
-                                <input type="radio" name="four_ps" value="0" required>
 
-                                <br>
-                                <label for="">Section</label>
-                                <input type="text" class="form-control" name="section" required>
+                                        <br>
+                                        <label for="">Date of Birth</label>
+                                        <input type="date" class="form-control" name="date_of_birth" required>
+                                        
+                                        <br>
+                                        
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span>
+                                            <label for="">Gender</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="g1" value="Male" required>
+                                                <label class="form-check-label" for="g1">
+                                                    Male
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="gender" id="g2" value="Female" required>
+                                                <label class="form-check-label" for="g2">
+                                                    Female
+                                                </label>
+                                            </div>
+                                        </span>
+
+                                        <br>
+                                        <label for="">Image</label>
+                                        <input type="file" class="form-control" name="image" required>
+
+                                        <br>
+
+                                        <label for="">Grade</label>
+                                        <select name="grade" class="form-select" id="" required>
+                                            <option value="Kinder">Kinder</option>
+                                            <option value="Grade 1">Grade 1</option>
+                                            <option value="Grade 2">Grade 2</option>
+                                            <option value="Grade 3">Grade 3</option>
+                                            <option value="Grade 4">Grade 4</option>
+                                            <option value="Grade 5">Grade 5</option>
+                                        </select>
+                                        <br>
+                                        <span>
+                                            <label for="">4PS Member?</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="four_ps" id="fps1"value="1" required>
+                                                <label class="form-check-label" for="fps1">
+                                                    Yes
+                                                </label>
+                                                </div>
+                                                <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="four_ps" id="fps2" value="0" required>
+                                                <label class="form-check-label" for="fps2">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </span>
+                                        <label for="">Section</label>
+                                        <input type="text" class="form-control" name="section" required>
+                                    </div>
+                                </div>
+                                <hr class="featurette-divider">
+                                <div class="col-lg-6">
+                                    <h2 class="text-decoration-underline mb-4">Health Info</h2>
+                                        <!----dito health info nya naman---BMI-->
+                                        <label for="">Height</label>
+                                        <input type="number" class="form-control" name="height" placeholder="Weight (kg)" required>
+                                        <br>
+
+                                        <label for="">Weight</label>
+                                        <input type="number" class="form-control" name="weight" placeholder="Height (cm)" required>
+
+                                        <br>
+
+                                        <label for="">Activity Level</label>
+                                        <select name="actlevel" class="form-select" id="" required>
+                                        <option value="1">Sedentary</option>
+                                        <option value="2">Low Active</option>
+                                        <option value="3">Active</option>
+                                        <option value="4">Very Active</option>
+                                        </select>
+
+                                        <br>
+                                        <label for="">Health History</label>
+                                        <input type="text" class="form-control" name="health_history" required>
+
+                                        <!-----riri ikaw na bahala mag adjust sa stepper--->
+                                        <br>
+                                        <a href="view-students.php" class="btn btn-danger">Cancel</a>
+                                        <input type="submit" class="btn btn-primary" name="add_patient" value="Next">
+                                    </div>
                             </div>
-                            <div class="col-lg-4">
-                                    <h2>Health Info</h2>
-                                    <!----dito health info nya naman---BMI-->
-                                    <label for="">Height</label>
-                                    <input type="number" class="form-control" name="height" placeholder="Weight (kg)" required>
-                                    <br>
-
-                                    <label for="">Weight</label>
-                                    <input type="number" class="form-control" name="weight" placeholder="Height (cm)" required>
-
-                                    <br>
-
-                                    <label for="">Activity Level</label>
-                                    <select name="actlevel" class="form-select" id="" required>
-                                    <option value="1">Sedentary</option>
-                                    <option value="2">Low Active</option>
-                                    <option value="3">Active</option>
-                                    <option value="4">Very Active</option>
-                                    </select>
-
-                                    <br>
-                                    <label for="">Health History</label>
-                                    <input type="text" class="form-control" name="health_history" required>
-
-                                    <!-----riri ikaw na bahala mag adjust sa stepper--->
-                                    <br>
-                                    <a href="view-students.php" class="btn btn-danger">Cancel</a>
-                                    <input type="submit" class="btn btn-primary" name="add_patient" value="Next">
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
 				</div>
 			</main>
+            <footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>@PFNMPS</strong></a> 
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<small>Copyright &copy; 2023</small>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
 		</div>
 	</div>
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
