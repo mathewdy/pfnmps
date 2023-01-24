@@ -65,7 +65,7 @@ $_SESSION['user_id'];
         </a>
 		<span class="mt-2">
 			<h4 class="fw-bold">
-				Bucal Elementary School Nutritional Profiling System
+			Personalized Food and Nutritional  Metabolic  Profiling System
 			</h4>
 		</span>
 				<div class="navbar-collapse collapse">

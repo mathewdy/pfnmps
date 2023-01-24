@@ -72,7 +72,7 @@ $no = 0;
                 </a>
                 <span class="mt-2">
                     <h4 class="fw-bold">
-                        Bucal Elementary School Nutritional Profiling System
+                    Personalized Food and Nutritional  Metabolic  Profiling System
                     </h4>
                 </span>
 				<div class="navbar-collapse collapse">
@@ -135,7 +135,7 @@ $no = 0;
                                         $no++;
                                         ?>
 
-                                            <tr>
+                                               <tr>
                                                 <td><?php echo $no; ?></td>
                                                 <td><img src= "<?php echo "./parents/student_image/" . $row['image'];?> " alt="image" width="80px" height="80px"></td>
                                                 <td>
