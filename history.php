@@ -119,7 +119,7 @@ ob_start();
 
                                 echo "<span style='color:blue;'>Exercise Remarks:" . $row_remarks . '<br> </span>';
                                 
-                                if($row_remarks == 31){
+                                if($row_remarks == 10 || $row_remarks >= 10){
                                     echo "<span style='color:green;'>Exercises Completed" . "<br></span>";
                                 }else{
                                     echo "<span style='color:red;'>Exercises Incomplete" . "<br> </span>";
@@ -137,7 +137,7 @@ ob_start();
                                     echo "<span style='color:red;'>Foods Incomplete" . "<br></span>";
                                 }
 
-                                if($row_remarks == 31 && $row_remarks_food == 30){
+                                if($row_remarks >= 8 && $row_remarks_food == 30){
                                     echo "<span style='color: green;'>Final Remarks: Success" . "<br> </span>";
                                 }else{
                                     echo "<span style='color: red;'>Final Remarks: Failed ". "<br> </span>";
