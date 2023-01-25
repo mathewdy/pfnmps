@@ -1,3 +1,6 @@
+
+<?php $student_id = $_GET['student_id'];?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

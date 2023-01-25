@@ -12,7 +12,7 @@ $student_id = $_GET['student_id'];
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 ob_start();
-require 'student-history-pdf.php';
+require 'all-students.php';
 
 
 $html = ob_get_contents();

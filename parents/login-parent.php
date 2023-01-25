@@ -32,8 +32,8 @@ ob_start();
                                         <h1 class="h1" style="font-family: var(--lato-light);">Personalized Food and Nutritional  Metabolic  Profiling System</h1>
                                     </div>
                                     <div class="mb-2">
-                                        <label class="form-label">Email</label>
-                                        <input class="form-control form-control-md" type="email" name="email">
+                                        <label class="form-label">LRN</label>
+                                        <input class="form-control form-control-md" type="text" name="lrn">
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Password</label>
@@ -85,18 +85,19 @@ ob_start();
 <?php
 if(isset($_POST['login']))
 {
-    $email = $_POST['email'];
+    $lrn = $_POST['lrn'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE email='$email' AND password = '$password'";
+    $query = "SELECT * FROM users WHERE student_id='$lrn' AND password = '$password'";
     $run = mysqli_query($conn,$query);
 
     if(mysqli_num_rows($run) > 0){
 
 
         foreach($run as $row){
-            $_SESSION['email'] = $email;
+            $_SESSION['lrn'] = $lrn;
             $_SESSION['student_id'] = $row['student_id'];
+            $_SESSION['email'] = $row['email'];
             echo "<script>window.location.href='home-parent.php' </script>";
         }
 

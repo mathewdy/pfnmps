@@ -109,8 +109,16 @@ $no = 0;
                     <div class="card p-5">
                         <span class="d-flex justify-content-between">
                             <h1 class="mb-5 text-muted">Student History</h1>
+                            <?php
+
+                            $query_lrn = "SELECT student_id FROM users";
+                            $run_lrn = mysqli_query($conn,$query_lrn);
+                            $row_1 = mysqli_fetch_assoc($run_lrn);
+
+
+                            ?>
                             <span>
-                                <a href="student-history.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
+                                <a href="download-all-students.php?student_id=<?php echo $row_1['student_id']?>" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
                             </span>
                         </span>
                         
