@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2023 at 04:39 AM
+-- Generation Time: Jan 26, 2023 at 05:07 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -186,6 +186,13 @@ CREATE TABLE `health_infos` (
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `health_infos`
+--
+
+INSERT INTO `health_infos` (`id`, `student_id`, `height`, `weight`, `bmi`, `status`, `active_level`, `health_history`, `date_time_created`, `date_time_updated`) VALUES
+(93, 'Cameron', 157, 66, '26.77593411', 'Healthy Weight', '3', 'Kieran', '2023-01-26 12:07:07', '2023-01-26 12:07:07');
+
 -- --------------------------------------------------------
 
 --
@@ -206,7 +213,9 @@ CREATE TABLE `history` (
 --
 
 INSERT INTO `history` (`id`, `student_id`, `program_id`, `bmi`, `date_created`, `date_time_updated`) VALUES
-(10, 'Ivana', 0, 22, '2023-01-26', '2023-01-26 11:22:40');
+(10, 'Ivana', 0, 22, '2023-01-26', '2023-01-26 11:22:40'),
+(11, 'Noel', 0, 22, '2023-01-26', '2023-01-26 12:05:47'),
+(12, 'Cameron', 0, 27, '2023-01-26', '2023-01-26 12:07:07');
 
 -- --------------------------------------------------------
 
@@ -228,6 +237,42 @@ CREATE TABLE `program_records` (
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `program_records`
+--
+
+INSERT INTO `program_records` (`id`, `student_id`, `date_started`, `foods`, `exercises`, `day`, `food_acknowledge`, `exercise_acknowledge`, `ended_day`, `date_time_created`, `date_time_updated`) VALUES
+(1693, 'Cameron', '2023-01-26', 'Milk, Cheese, Bell Peppers, Biscuits, Cheese', 'Catching Balls \r\n', '1', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1694, 'Cameron', '2023-01-26', 'Oats, Beef, Eggs, Noodles, Fish', 'Bear Crawl\r\n', '2', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1695, 'Cameron', '2023-01-26', 'Sweet Potato, Beef, Broccoli, Sweet Potato, Crab', 'Catching Balls \r\n', '3', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1696, 'Cameron', '2023-01-26', 'Grains, Cheese, Broccoli, Potato, Fish', 'Bear Crawl\r\n', '4', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1697, 'Cameron', '2023-01-26', 'Oats, Pumpkin Seeds, Saluyot, Potato, Eggs', 'Push-up \r\n', '5', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1698, 'Cameron', '2023-01-26', 'Pasta, Chicken, Bananas, Honey, Eggs', 'Squats And Lunges\r\n', '6', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1699, 'Cameron', '2023-01-26', 'Cheese, Eggs, Apples, Nuts, Pumpkin Seeds', 'Jogging ', '7', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1700, 'Cameron', '2023-01-26', 'Nuts, Beef, Oranges, Eggs, Chicken', 'Sit-ups\r\n', '8', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1701, 'Cameron', '2023-01-26', 'Potato, Crab, Ham & Cheese, Wheats, Pumpkin Seeds', 'Jogging ', '9', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1702, 'Cameron', '2023-01-26', 'Honey, Eggs, Malunggay, Noodles, Cheese', 'Stretching', '10', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1703, 'Cameron', '2023-01-26', 'Cheese, Crab, Coconut Juice, Biscuits, Fish', 'Bear Crawl\r\n', '11', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1704, 'Cameron', '2023-01-26', 'Cereals, Beef, Parsley, Biscuits, Fish', 'Stretching', '12', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1705, 'Cameron', '2023-01-26', 'Milk, Pumpkin Seeds, Potato, Corn, Eggs', 'Catching Balls \r\n', '13', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1706, 'Cameron', '2023-01-26', 'Biscuits, Crab, Corn, Grains, Crab', 'Catching Balls \r\n', '14', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1707, 'Cameron', '2023-01-26', 'Cheese, Eggs, Potato, Grains, Rice', 'Bear Crawl\r\n', '15', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1708, 'Cameron', '2023-01-26', 'Noodles, Chicken, Seaweed, Corn, Pumpkin Seeds', 'Catching Balls \r\n', '16', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1709, 'Cameron', '2023-01-26', 'Honey, Pumpkin Seeds, Chicken, Pasta, Chicken', 'Squats And Lunges\r\n', '17', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1710, 'Cameron', '2023-01-26', 'Pasta, Pumpkin Seeds, Apples, Noodles, Cheese', 'Sit-ups\r\n', '18', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1711, 'Cameron', '2023-01-26', 'Cheese, Chicken, Chicken, Pasta, Rice', 'Squats And Lunges\r\n', '19', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1712, 'Cameron', '2023-01-26', 'Milk, Cheese, Spinach, Corn, Chicken', 'Squats And Lunges\r\n', '20', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1713, 'Cameron', '2023-01-26', 'Corn, Pumpkin Seeds, Apples, Cheese, Fish', 'Jogging ', '21', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1714, 'Cameron', '2023-01-26', 'Potato, Fish, Peanuts, Bread, Cheese', 'Jumping\r\n', '22', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1715, 'Cameron', '2023-01-26', 'Honey, Crab, Eggs, Corn, Eggs', 'Bear Crawl\r\n', '23', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1716, 'Cameron', '2023-01-26', 'Milk, Cheese, Bell Peppers, Pasta, Crab', 'Squats And Lunges\r\n', '24', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1717, 'Cameron', '2023-01-26', 'Wheats, Fish, Bananas, Cereals, Eggs', 'Squats And Lunges\r\n', '25', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1718, 'Cameron', '2023-01-26', 'Pasta, Pumpkin Seeds, Potato, Honey, Cheese', 'Sit-ups\r\n', '26', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1719, 'Cameron', '2023-01-26', 'Potato, Crab, Seaweed, Corn, Chicken', 'Bear Crawl\r\n', '27', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1720, 'Cameron', '2023-01-26', 'Potato, Crab, Ham & Cheese, Corn, Pumpkin Seeds', 'Jumping\r\n', '28', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1721, 'Cameron', '2023-01-26', 'Corn, Beef, Saluyot, Corn, Crab', 'Stretching', '29', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(1722, 'Cameron', '2023-01-26', 'Grains, Eggs, Broccoli, Wheats, Eggs', 'Push-up \r\n', '30', 0, 0, '2023-02-25', '2023-01-26 12:07:10', '2023-01-26 12:07:10');
+
 -- --------------------------------------------------------
 
 --
@@ -241,6 +286,42 @@ CREATE TABLE `program_records_2` (
   `date_created` date NOT NULL,
   `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `program_records_2`
+--
+
+INSERT INTO `program_records_2` (`id`, `student_id`, `date_started`, `date_created`, `date_updated`) VALUES
+(2, 'Cameron', '2023-01-27', '2023-01-26', '2023-01-26'),
+(3, 'Cameron', '2023-01-28', '2023-01-26', '2023-01-26'),
+(4, 'Cameron', '2023-01-29', '2023-01-26', '2023-01-26'),
+(5, 'Cameron', '2023-01-30', '2023-01-26', '2023-01-26'),
+(6, 'Cameron', '2023-01-31', '2023-01-26', '2023-01-26'),
+(7, 'Cameron', '2023-02-01', '2023-01-26', '2023-01-26'),
+(8, 'Cameron', '2023-02-02', '2023-01-26', '2023-01-26'),
+(9, 'Cameron', '2023-02-03', '2023-01-26', '2023-01-26'),
+(10, 'Cameron', '2023-02-04', '2023-01-26', '2023-01-26'),
+(11, 'Cameron', '2023-02-05', '2023-01-26', '2023-01-26'),
+(12, 'Cameron', '2023-02-06', '2023-01-26', '2023-01-26'),
+(13, 'Cameron', '2023-02-07', '2023-01-26', '2023-01-26'),
+(14, 'Cameron', '2023-02-08', '2023-01-26', '2023-01-26'),
+(15, 'Cameron', '2023-02-09', '2023-01-26', '2023-01-26'),
+(16, 'Cameron', '2023-02-10', '2023-01-26', '2023-01-26'),
+(17, 'Cameron', '2023-02-11', '2023-01-26', '2023-01-26'),
+(18, 'Cameron', '2023-02-12', '2023-01-26', '2023-01-26'),
+(19, 'Cameron', '2023-02-13', '2023-01-26', '2023-01-26'),
+(20, 'Cameron', '2023-02-14', '2023-01-26', '2023-01-26'),
+(21, 'Cameron', '2023-02-15', '2023-01-26', '2023-01-26'),
+(22, 'Cameron', '2023-02-16', '2023-01-26', '2023-01-26'),
+(23, 'Cameron', '2023-02-17', '2023-01-26', '2023-01-26'),
+(24, 'Cameron', '2023-02-18', '2023-01-26', '2023-01-26'),
+(25, 'Cameron', '2023-02-19', '2023-01-26', '2023-01-26'),
+(26, 'Cameron', '2023-02-20', '2023-01-26', '2023-01-26'),
+(27, 'Cameron', '2023-02-21', '2023-01-26', '2023-01-26'),
+(28, 'Cameron', '2023-02-22', '2023-01-26', '2023-01-26'),
+(29, 'Cameron', '2023-02-23', '2023-01-26', '2023-01-26'),
+(30, 'Cameron', '2023-02-24', '2023-01-26', '2023-01-26'),
+(31, 'Cameron', '2023-02-25', '2023-01-26', '2023-01-26');
 
 -- --------------------------------------------------------
 
@@ -268,7 +349,8 @@ CREATE TABLE `questions` (
 INSERT INTO `questions` (`id`, `user_type`, `student_id`, `user_id`, `question_1`, `answer_1`, `question_2`, `answer_2`, `date_time_created`, `date_time_updated`) VALUES
 (10, 2, 'Inez', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '1234', '2023-01-25 09:53:19', '2023-01-25 09:53:19'),
 (11, 1, '0', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '14', '2023-01-25 09:57:12', '2023-01-25 09:57:12'),
-(12, 2, 'Ivana', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '1', '2023-01-26 11:22:49', '2023-01-26 11:22:49');
+(12, 2, 'Ivana', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '1', '2023-01-26 11:22:49', '2023-01-26 11:22:49'),
+(13, 2, 'Cameron', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '12', '2023-01-26 12:07:15', '2023-01-26 12:07:15');
 
 -- --------------------------------------------------------
 
@@ -301,6 +383,13 @@ CREATE TABLE `students` (
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `student_id`, `first_name`, `middle_name`, `last_name`, `date_of_birth`, `age`, `gender`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `image`, `grade`, `section`, `four_ps`, `date_created`, `date_time_created`, `date_time_updated`) VALUES
+(98, 'Cameron', 'Gail', 'Jane', 'Benjamin', '2005-01-25', '18', 'Female', 'JOEL', 'SHELLY', 'GRIFFIN', 'KYLYNN', 'EDAN', 'HEIDI', '795', 0x3332333632333736325f3534303737383131313331323439375f353131363739303730373431363239353634345f6e202831292e6a7067, 'Grade 4', 'Elijah', 0, '2023-01-26', '2023-01-26 12:07:07', '2023-01-26 12:07:07');
+
 -- --------------------------------------------------------
 
 --
@@ -315,6 +404,19 @@ CREATE TABLE `students_survery_answers` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students_survery_answers`
+--
+
+INSERT INTO `students_survery_answers` (`id`, `student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) VALUES
+(406, 'Cameron', 0, 1, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(407, 'Cameron', 1, 0, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(408, 'Cameron', 2, 0, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(409, 'Cameron', 3, 0, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(410, 'Cameron', 4, 1, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(411, 'Cameron', 5, 1, '2023-01-26 12:07:10', '2023-01-26 12:07:10'),
+(412, 'Cameron', 6, 0, '2023-01-26 12:07:10', '2023-01-26 12:07:10');
 
 -- --------------------------------------------------------
 
@@ -345,6 +447,13 @@ CREATE TABLE `users` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `contact_number`, `room`, `house`, `street`, `subdivision`, `barangay`, `city`, `zip`, `gender`, `user_type`, `image`, `student_id`, `date_time_created`, `date_time_updated`) VALUES
+(90, '202289415', 'lefakajy@mailinator.com', 'Welcome@12345', 'Hyatt', 'Daniel', 'Mary', 'Levi', 'JOEL', 'SHELLY', 'GRIFFIN', 'KYLYNN', 'EDAN', 'HEIDI', '795', 'Male', 2, 0x3330383932393836395f353337353638343333323535333837345f383032363536353732373638323230383438315f6e2e6a7067, 'Cameron', '2023-01-26 12:07:07', '2023-01-26 12:07:07');
 
 -- --------------------------------------------------------
 
@@ -493,49 +602,49 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1693;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1723;
 
 --
 -- AUTO_INCREMENT for table `program_records_2`
 --
 ALTER TABLE `program_records_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=399;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `user_types`
@@ -570,12 +679,6 @@ ALTER TABLE `health_infos`
 --
 ALTER TABLE `program_records`
   ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `program_records_2`
---
-ALTER TABLE `program_records_2`
-  ADD CONSTRAINT `program_records_2_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `program_records` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students_survery_answers`
