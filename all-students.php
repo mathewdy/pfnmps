@@ -47,6 +47,7 @@
 <table>
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Name</th>
                 <th>Level</th>
                 <th>Section</th>
@@ -75,11 +76,13 @@ LEFT JOIN health_infos
 ON students.student_id = health_infos.student_id ";
 $run_students = mysqli_query($conn,$query_students);
 if(mysqli_num_rows($run_students) > 0){
+    $no = 1;
     foreach($run_students as $row){
         $new_date = date('F d, Y', strtotime($row['student_date_of_birth']));
         ?>
 
                 <tr>
+                    <td style="text-align: center;"><?=$no++;?></td>
                     <td style="text-align: center;"><?=$row['student_first_name']. " " . $row['student_middle_name'] . " " . $row['student_last_name']?></td>
                     <td style="text-align: center;"><?=$row['student_grade']?></td>
                     <td style="text-align: center;"><?=$row['student_section']?></td>
