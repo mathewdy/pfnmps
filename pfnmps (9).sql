@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2023 at 10:51 PM
+-- Generation Time: Jan 26, 2023 at 04:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,6 +67,13 @@ CREATE TABLE `admins` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `user_type`, `image`, `date_time_created`, `date_time_updated`) VALUES
+(14, '202286384', 'fumejem@mailinator.com', '123', 'Lila', 'Yuli', 'Uriel', 2, 'Colt', 1, 0x3332363532353238325f323135323139393436383331383331375f373639373735303836333034313531323134305f6e2e6a7067, '2023-01-25 09:57:07', '2023-01-25 09:57:07');
 
 -- --------------------------------------------------------
 
@@ -194,6 +201,13 @@ CREATE TABLE `history` (
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `student_id`, `program_id`, `bmi`, `date_created`, `date_time_updated`) VALUES
+(10, 'Ivana', 0, 22, '2023-01-26', '2023-01-26 11:22:40');
+
 -- --------------------------------------------------------
 
 --
@@ -217,6 +231,20 @@ CREATE TABLE `program_records` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `program_records_2`
+--
+
+CREATE TABLE `program_records_2` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `date_started` date NOT NULL,
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `questions`
 --
 
@@ -232,6 +260,15 @@ CREATE TABLE `questions` (
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `user_type`, `student_id`, `user_id`, `question_1`, `answer_1`, `question_2`, `answer_2`, `date_time_created`, `date_time_updated`) VALUES
+(10, 2, 'Inez', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '1234', '2023-01-25 09:53:19', '2023-01-25 09:53:19'),
+(11, 1, '0', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '14', '2023-01-25 09:57:12', '2023-01-25 09:57:12'),
+(12, 2, 'Ivana', 0, 'What was your favorite food as a child?', '123', 'What is the name of your first pet?', '1', '2023-01-26 11:22:49', '2023-01-26 11:22:49');
 
 -- --------------------------------------------------------
 
@@ -382,6 +419,13 @@ ALTER TABLE `program_records`
   ADD KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `program_records_2`
+--
+ALTER TABLE `program_records_2`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `student_id` (`student_id`);
+
+--
 -- Indexes for table `questions`
 --
 ALTER TABLE `questions`
@@ -431,7 +475,7 @@ ALTER TABLE `activities`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -449,43 +493,49 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1630;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1693;
+
+--
+-- AUTO_INCREMENT for table `program_records_2`
+--
+ALTER TABLE `program_records_2`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=378;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=399;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `user_types`
@@ -520,6 +570,12 @@ ALTER TABLE `health_infos`
 --
 ALTER TABLE `program_records`
   ADD CONSTRAINT `program_records_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `program_records_2`
+--
+ALTER TABLE `program_records_2`
+  ADD CONSTRAINT `program_records_2_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `program_records` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students_survery_answers`

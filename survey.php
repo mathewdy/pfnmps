@@ -128,6 +128,8 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
 </html>
 <?php
     if(isset($_POST['submit'])){
+
+
     date_default_timezone_set("Asia/Manila");
     $date_time_created = date("Y-m-d h:i:s");
     $date = date("Y-m-d");
@@ -170,6 +172,34 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
         }
     }
     
+
+
+    // $end = '2020-05-05';
+    // $date = date('Y-m-d', strtotime($_POST['date']));
+    $end = date('Y-m-d',strtotime($final_date. '+30 days'));
+
+
+    $day_count = 0;
+    while(0==0){
+        $day_count++;
+
+        echo "<br>";
+
+        $final_date = date('Y-m-d',strtotime($final_date. "+1 days"));
+        if($day_count==31){
+
+            
+            break;
+        }
+        $insert = "INSERT INTO program_records_2 (student_id,date_started,date_created,date_updated) VALUES ('$student_id', '$final_date','$date', '$date') ";
+        $run = mysqli_query($conn,$insert);
+
+        if($run){
+            echo "added";
+        }else{
+            echo "error" . $conn->error;
+        }
+    }
 
         // Foods
         $days = array(1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30);
