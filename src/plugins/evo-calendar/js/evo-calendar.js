@@ -722,7 +722,7 @@
                                 markup += '<td class="'+dayClass+'">';
 
                                 var thisDay = _.formatDate(_.$label.months[_.$active.month]+' '+day+' '+_.$active.year, _.options.format);
-                                markup += '<div class="day" role="button" data-date-val="'+thisDay+'">'+day+'</div>';
+                                markup += '<div class="day" data-bs-toggle="modal" data-bs-target="#topicModal" data-id="'+thisDay+'" role="button"  data-date-val="'+thisDay+'">'+day+'</div>';
                                 day++;
                             } else {
                                 markup += '<td>';

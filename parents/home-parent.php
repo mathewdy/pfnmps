@@ -26,7 +26,7 @@ $student_id = $_SESSION['student_id'];
 <div class="outer-container d-flex flex-row">
 
 <!-- Sidebar -->
-  <div class="sticky-nav bg-white vh-100 shadow">
+  <div class="sticky-nav bg-white vh-100 shadow"style="z-index: 0;">
     <a href="#" class="brand p-3 link-dark text-decoration-none bg-white text-center" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
         <img src="../logo.jpg" alt="" class="card-img-top" style="border-radius: 50px;">
     </a>
@@ -59,10 +59,10 @@ $student_id = $_SESSION['student_id'];
       </li>
     </ul>
   </div>
-
+<p class="student-id d-none" data-id="<?= $student_id; ?>"></p>
   <!-- Content container -->
 <main class="main-container container-fluid-lg bg-light" style="width: 100%; position: relative;">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white p-0" style="box-shadow: none;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white p-0" style="box-shadow: none; ">
         <div class="container-fluid justify-content-end">
             <div class="dropdown border-top">
                 <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -231,67 +231,9 @@ $student_id = $_SESSION['student_id'];
                                 if(mysqli_num_rows($run_program_records_date) > 0){
                                     foreach($run_program_records_date as $row){
                                         $new_format = date("F/d/Y", strtotime($row['date_started']));
-                                        $day2 = date("F/d/Y", strtotime("$row[date_started] +1 day"));
-                                        $day3 = date("F/d/Y", strtotime("$row[date_started] +2 day"));
-                                        $day4 = date("F/d/Y", strtotime("$row[date_started] +3 day"));
-                                        $day5 = date("F/d/Y", strtotime("$row[date_started] +4 day"));
-                                        $day6 = date("F/d/Y", strtotime("$row[date_started] +5 day"));
-                                        $day7 = date("F/d/Y", strtotime("$row[date_started] +6 day"));
-                                        $day8 = date("F/d/Y", strtotime("$row[date_started] +7 day"));
-                                        $day9 = date("F/d/Y", strtotime("$row[date_started] +8 day"));
-                                        $day10 = date("F/d/Y", strtotime("$row[date_started] +9 day"));
-                                        $day11 = date("F/d/Y", strtotime("$row[date_started] +10 day"));
-                                        $day12 = date("F/d/Y", strtotime("$row[date_started] +11 day"));
-                                        $day13 = date("F/d/Y", strtotime("$row[date_started] +12 day"));
-                                        $day14 = date("F/d/Y", strtotime("$row[date_started] +13 day"));
-                                        $day15 = date("F/d/Y", strtotime("$row[date_started] +14 day"));
-                                        $day16 = date("F/d/Y", strtotime("$row[date_started] +15 day"));
-                                        $day17 = date("F/d/Y", strtotime("$row[date_started] +16 day"));
-                                        $day18 = date("F/d/Y", strtotime("$row[date_started] +17 day"));
-                                        $day19 = date("F/d/Y", strtotime("$row[date_started] +18 day"));
-                                        $day20 = date("F/d/Y", strtotime("$row[date_started] +19 day"));
-                                        $day21 = date("F/d/Y", strtotime("$row[date_started] +20 day"));
-                                        $day22 = date("F/d/Y", strtotime("$row[date_started] +21 day"));
-                                        $day23 = date("F/d/Y", strtotime("$row[date_started] +22 day"));
-                                        $day24 = date("F/d/Y", strtotime("$row[date_started] +23 day"));
-                                        $day25 = date("F/d/Y", strtotime("$row[date_started] +24 day"));
-                                        $day26 = date("F/d/Y", strtotime("$row[date_started] +25 day"));
-                                        $day27 = date("F/d/Y", strtotime("$row[date_started] +26 day"));
-                                        $day28 = date("F/d/Y", strtotime("$row[date_started] +27 day"));
-                                        $day29 = date("F/d/Y", strtotime("$row[date_started] +28 day"));
-                                        $day30 = date("F/d/Y", strtotime("$row[date_started] +29 day"));
                                         ?>
                                             <label for="">Date Started:</label>
                                             <p class="dateStart"><?php echo $new_format?></p>
-                                            <p class="day2 d-none"><?php echo $day2;?></p>
-                                            <p class="day3 d-none"><?php echo $day3;?></p>
-                                            <p class="day4 d-none"><?php echo $day4;?></p>
-                                            <p class="day5 d-none"><?php echo $day5;?></p>
-                                            <p class="day6 d-none"><?php echo $day6;?></p>
-                                            <p class="day7 d-none"><?php echo $day7;?></p>
-                                            <p class="day8 d-none"><?php echo $day8;?></p>
-                                            <p class="day9 d-none"><?php echo $day9;?></p>
-                                            <p class="day10 d-none"><?php echo $day10;?></p>
-                                            <p class="day11 d-none"><?php echo $day11;?></p>
-                                            <p class="day12 d-none"><?php echo $day12;?></p>
-                                            <p class="day13 d-none"><?php echo $day13;?></p>
-                                            <p class="day14 d-none"><?php echo $day14;?></p>
-                                            <p class="day15 d-none"><?php echo $day15;?></p>
-                                            <p class="day16 d-none"><?php echo $day16;?></p>
-                                            <p class="day17 d-none"><?php echo $day17;?></p>
-                                            <p class="day18 d-none"><?php echo $day18;?></p>
-                                            <p class="day19 d-none"><?php echo $day19;?></p>
-                                            <p class="day20 d-none"><?php echo $day20;?></p>
-                                            <p class="day21 d-none"><?php echo $day21;?></p>
-                                            <p class="day22 d-none"><?php echo $day22;?></p>
-                                            <p class="day23 d-none"><?php echo $day23;?></p>
-                                            <p class="day24 d-none"><?php echo $day24;?></p>
-                                            <p class="day25 d-none"><?php echo $day25;?></p>
-                                            <p class="day26 d-none"><?php echo $day26;?></p>
-                                            <p class="day27 d-none"><?php echo $day27;?></p>
-                                            <p class="day28 d-none"><?php echo $day28;?></p>
-                                            <p class="day29 d-none"><?php echo $day29;?></p>
-                                            <p class="day30 d-none"><?php echo $day30;?></p>
                                             <hr>
                                         <?php
                                     }
@@ -307,15 +249,13 @@ $student_id = $_SESSION['student_id'];
 
                                 if(mysqli_num_rows($run_program_records) > 0){
                                     foreach($run_program_records as $row1){
-                                        // $acknowledged = count($row1['food_acknowledge']);
-                                        // echo $acknowledged;
                                         if($row1['food_acknowledge'] == '1'){
                                             echo $row1['food_acknowledge'];
                                         }
                                         ?>
-
                                             <p class="lead text-muted">Day <?php echo $row1['day']?> </p>
                                             <!-- <p></p> -->
+                                            
                                             <label for="">Foods :</label>
                                             <span class="d-flex justify-content-between align-items-end">
                                                 <p><?php echo $row1['foods']?></p>
@@ -365,7 +305,21 @@ $student_id = $_SESSION['student_id'];
     ?>
 </main>
 </div>
-
+<!-- Modal -->
+<div class="modal fade" id="topicModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content card">
+        <div class="modal-header" style="border:none;">
+            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer" style="border:none;">
+        </div>
+        </form>  
+        </div>
+    </div>
+</div>
 
 <!-----notification-- ikaw na bahala mag design dito riri--->
 
@@ -415,7 +369,29 @@ $student_id = $_SESSION['student_id'];
 <script src="../admin-template/js/app.js"></script>
 <script src="../src/styles/custom/app.js"></script>
 <script src="../src/plugins/evo-calendar/js/evo-calendar.js"></script>
-<script src="../src/plugins/evo-calendar/js/evo-calendar.config.js"></script>
+<!-- <script src="../src/plugins/evo-calendar/js/evo-calendar.config.js"></script> -->
+<script>
+    $('#calendar').evoCalendar({
+        language: 'en',
+        eventListToggler:false,
+        eventDisplayDefault:false,
+       
+    })
+    $('.day').on('click', function(){
+        $.ajax({
+                url: 'calendar-record.php',
+                type: 'get',
+                data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
+                success: function(response){
+                    $('.modal-body').html(response);
+                    $('#topicModal').modal('show');
+                    console.log($('.calendar-active').data('id'))
+                }
+            });
+        // alert($('.calendar-active').data('id'))
+
+    })
+</script>
 
 </body>
 </html>

@@ -22,7 +22,7 @@ $email = $_SESSION['email'];
 <div class="outer-container d-flex">
 
 <!-- Sidebar -->
-  <div class="sticky-nav bg-white vh-100 shadow" style="height: 100%;">
+  <div class="sticky-nav bg-white vh-100 shadow" style="height: 100%; z-index:0;">
     <a href="#" class="brand p-3 link-dark text-decoration-none bg-white text-center" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
         <img src="../logo.jpg" alt="" class="card-img-top" style="border-radius: 50px;">
     </a>
