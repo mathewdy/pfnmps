@@ -50,8 +50,8 @@ $user_id = $_SESSION['user_id'];
 					
 
 					<li class="sidebar-item">
-						<a class="sidebar-link" href="add-patient.php">
-                            <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Add Patient</span>
+						<a class="sidebar-link" href="history.php">
+                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
 

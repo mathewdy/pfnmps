@@ -113,9 +113,9 @@ $no = 0;
                             <span class="text-start">
                                 <a href="add-patient.php" class="btn btn-success rounded-circle mb-4" style="padding: 8px 12px;"><i class="align-middle" data-feather="plus"></i></a>
                             </span>
-                            <span >
+                            <!-- <span >
                                 <a href="pdf.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
-                            </span>
+                            </span> -->
                         </span>
                         
                         <table class="table" id="dataTable">

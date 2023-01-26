@@ -27,16 +27,23 @@
     }
     th, td{
         padding: 0px 12px;
+        font-size: 14px;
     }
 </style>
 <body>
-<span style="text-align: center; padding-top: 4em; margin-bottom: 2em;">
+<br>
+<br>
+<span style="text-align: center; margin-top: 20em; margin-bottom: 500px;">
 <h1>Bucal Elementary School</h1>
 <p style="opacity: 60%;">E Manila S Rd, Calamba, 4027 Laguna</p>
 </span>
-<hr style="opacity: 65%;">
+<br>
+<br>
+<hr style="width:95%; margin-left:2.5% !important; margin-right:2.5% !important;" />
+<!-- <hr style="opacity: 65%; width: 100%; margin: 60px 400px;"> -->
 <div class="wrapper">
-
+<br>
+<br>
 <table>
         <thead>
             <tr>
@@ -55,6 +62,7 @@
                 <th>BMI</th>
             </tr>
         </thead>
+        <tbody>
 
 <?php
 
@@ -68,15 +76,15 @@ ON students.student_id = health_infos.student_id ";
 $run_students = mysqli_query($conn,$query_students);
 if(mysqli_num_rows($run_students) > 0){
     foreach($run_students as $row){
+        $new_date = date('F d, Y', strtotime($row['student_date_of_birth']));
         ?>
 
-            <tbody>
                 <tr>
-                    <td><?=$row['student_first_name']. " " . $row['student_middle_name'] . " " . $row['student_last_name']?></td>
-                    <td><?=$row['student_grade']?></td>
-                    <td><?=$row['student_section']?></td>
-                    <td><?=$row['student_date_of_birth']?></td>
-                    <td><?=$row['student_age'] ?></td>
+                    <td style="text-align: center;"><?=$row['student_first_name']. " " . $row['student_middle_name'] . " " . $row['student_last_name']?></td>
+                    <td style="text-align: center;"><?=$row['student_grade']?></td>
+                    <td style="text-align: center;"><?=$row['student_section']?></td>
+                    <td style="text-align: center;"><?=$new_date?></td>
+                    <td style="text-align: center;"><?=$row['student_age'] ?></td>
                     <td style="text-align: center;"><?php
                         if($row['student_four_ps'] == '0'){
                             echo "<b> No <span></b>";
@@ -85,23 +93,23 @@ if(mysqli_num_rows($run_students) > 0){
                         }
                     ?>
                     </td>
-                    <td>
+                    <td style="width: 75%;">
                         <?=$row['student_room']." ". $row['student_house'] . " " . $row['student_street'] . " " . $row['student_subdivision'] . " " . $row['student_barangay'] . " " . $row['student_city']?>
                     </td>
-                    <td>
+                    <td style="text-align: center;">
                         <?=$row['user_first_name'] . " " . $row['user_middle_name'] . " " . $row['user_last_name']?>
                     </td>
-                    <td><?=$row['user_contact_number']?></td>
-                    <td><?=$row['student_student_id'] ?></td>
-                    <td><?=$row['health_infos_height']?></td>
-                    <td><?=$row['health_infos_weight']?></td>
-                    <td><?=$row['health_infos_bmi']?></td>
+                    <td style="text-align: center;"><?=$row['user_contact_number']?></td>
+                    <td style="text-align: center;"><?=$row['student_student_id'] ?></td>
+                    <td style="text-align: center;"><?=$row['health_infos_height']?></td>
+                    <td style="text-align: center;"><?=$row['health_infos_weight']?></td>
+                    <td style="text-align: center;"><?=$row['health_infos_bmi']?></td>
                 </tr>
-            </tbody>
         <?php
     }
 }
 ?>
+        </tbody>
     </table>
 </div>
 </body>
