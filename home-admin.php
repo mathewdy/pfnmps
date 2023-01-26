@@ -156,6 +156,7 @@ $_SESSION['user_id'];
 				<?php
 
 
+
 					$query_name_year_status = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day
 					FROM students 
 					LEFT JOIN program_records

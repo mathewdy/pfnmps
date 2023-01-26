@@ -129,10 +129,30 @@ $student_id = $_GET['student_id'];
                                             <p class="m-0 p-0">Date Started: <?php $date = date("F d, Y", strtotime($row1['date_created'])); 
                                             echo $date;?></p>
 
+                                           
 
                                         <?php
                                     }
                                 }
+
+                                $query_end_day = "SELECT DISTINCT ended_day FROM program_records WHERE student_id = '$student_id'";
+                                $run_end_day = mysqli_query($conn,$query_end_day);
+                                
+                                if(mysqli_num_rows($run_end_day) > 0){
+                                    foreach($run_end_day as $row_end){
+                                        ?>
+
+                                            <p class="m-0 p-0">Date Ended: <?php $date = date("F d, Y", strtotime($row_end['ended_day'])); 
+                                            echo $date;?></p>
+
+
+                                        <?php
+                                    }
+                                }
+
+                                
+
+                                
 
 
 

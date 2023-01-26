@@ -281,13 +281,14 @@ ob_start();
                                                     <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>"readonly>
                                                     <label for="">Current Weight:</label>
                                                     <input type="number" name="weight" class="form-control" value="<?php echo $row['health_infos_weight']?>" readonly>
-
                                                     <label for="">Current Status:</label>
                                                     <input type="text" name="status" class="form-control" value="<?php echo $row['health_infos_status']?>" readonly>
-
                                                     <input type="hidden" name="date_time_created" value="<?php echo $row ['student_date_time_created']?>"readonly>
+                                                </div>
 
-                                                    </div>
+                                                
+                                                
+
                                             </div>
                                             
                                             <hr class="featurette-divider">
