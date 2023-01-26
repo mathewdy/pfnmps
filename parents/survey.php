@@ -151,6 +151,34 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                 }
         }
     }
+
+       // $end = '2020-05-05';
+    // $date = date('Y-m-d', strtotime($_POST['date']));
+    $end = date('Y-m-d',strtotime($final_date. '+30 days'));
+
+
+    $day_count = 0;
+    while(0==0){
+        $day_count++;
+
+        echo "<br>";
+
+        $final_date = date('Y-m-d',strtotime($final_date. "+1 days"));
+        if($day_count==31){
+
+            
+            break;
+        }
+        $insert = "INSERT INTO program_records_2 (student_id,date_started,date_created,date_updated) VALUES ('$student_id', '$final_date','$date', '$date') ";
+        $run = mysqli_query($conn,$insert);
+
+        if($run){
+            echo "added";
+        }else{
+            echo "error" . $conn->error;
+        }
+    }
+
     
        
         // Foods
