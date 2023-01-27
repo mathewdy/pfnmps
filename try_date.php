@@ -20,14 +20,16 @@
 <?php
 
 
-include('connection.php');
 
 
 // if(isset($_POST['enter'])){
 
     $name = "mathew";
 
-    $begin = '2020-05-01';
+    date_default_timezone_set("Asia/Manila");
+    $date = date("Y-m-d");
+
+    $begin = $date;
     // $end = '2020-05-05';
     // $date = date('Y-m-d', strtotime($_POST['date']));
     $end = date('Y-m-d',strtotime($begin . '+30 days'));
@@ -45,14 +47,14 @@ include('connection.php');
             
             break;
         }
-        $insert = "INSERT INTO try (date) VALUES ('$begin')";
-        $run = mysqli_query($conn,$insert);
+        // $insert = "INSERT INTO try (date) VALUES ('$begin')";
+        // $run = mysqli_query($conn,$insert);
 
-        if($run){
-            echo "added";
-        }else{
-            echo "error" . $conn->error;
-        }
+        // if($run){
+        //     echo "added";
+        // }else{
+        //     echo "error" . $conn->error;
+        // }
     }
 
 

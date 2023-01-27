@@ -89,6 +89,23 @@ $_SESSION['user_id'];
 				</div>
 			</nav>
 
+			<?php
+
+			$query_lrn = "SELECT student_id FROM users";
+			$run_lrn = mysqli_query($conn,$query_lrn);
+			$row_1 = mysqli_fetch_assoc($run_lrn);
+
+
+			?>
+			<span>
+				<a href="download-all-students.php?student_id=<?php echo $row_1['student_id']?>" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
+			</span>
+
+			<form action="" method="POST">
+				<input type="date" name="date_filter">
+				<input type="submit" name="enter_date" value="Search">
+			</form>
+
 			<!---Total number of students-->
 			<main class="content">
 			<?php
@@ -247,3 +264,57 @@ $_SESSION['user_id'];
 </script>
 </body>
 </html>
+
+
+<?php
+
+if(isset($_POST['enter_date'])){
+
+	$date_filter = $_POST['date_filter'];
+
+	$query_date = "SELECT * FROM students WHERE date_created =  '$date_filter'";
+	$run_date = mysqli_query($conn,$query_date);
+
+	if(mysqli_num_rows($run_date)> 0){
+		foreach($run_date as $row_date){
+			?>
+
+
+			<div class="card">
+				<!-----table recent view--->
+				<table class="table">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Student's Name</th>
+							<th>Grade / Level</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><?php echo $no?></td>
+							<td><?php echo $row_date['first_name'] . " " . $row_date['middle_name'] . " " . $row_date['last_name']?></td>
+							<td>
+								<?php echo $row_date['grade']?>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			<?php
+		$no++;
+		}
+	}else{
+		echo "Results not found";
+	}
+
+
+}
+
+
+
+
+ob_end_flush();
+
+
+
+?>
