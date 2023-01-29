@@ -97,17 +97,16 @@ $_SESSION['user_id'];
 
 
 			?>
-			<span>
-				<a href="download-all-students.php?student_id=<?php echo $row_1['student_id']?>" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
-			</span>
-
-			<form action="" method="POST">
-				<input type="date" name="date_filter">
-				<input type="submit" name="enter_date" value="Search">
-			</form>
 
 			<!---Total number of students-->
 			<main class="content">
+			<span>
+				<span class="d-flex justify-content-end">
+					<a href="download-all-students.php?student_id=<?php echo $row_1['student_id']?>" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
+				</span>
+			</span>
+			
+
 			<?php
 
 			$sql_total_students = "SELECT id FROM students";
@@ -158,6 +157,13 @@ $_SESSION['user_id'];
 			</div>
 
 			<div class="card">
+			<form action="" method="POST">
+				<span class="d-flex justify-content-end py-4 px-3">
+				<input type="date" class="form-control w-25" name="date_filter">
+					<input type="submit" class="btn btn-secondary btn-md" name="enter_date" value="Search">
+				</span>
+					
+				</form>
 			<!-----table recent view--->
 			<table class="table">
 				<thead>
@@ -171,9 +177,48 @@ $_SESSION['user_id'];
 				<tbody>
 
 				<?php
+				if(isset($_POST['enter_date'])){
 
+					$date_filter = $_POST['date_filter'];
+				
+					$query_date = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day FROM students LEFT JOIN program_records
+					ON students.student_id = program_records.student_id WHERE date_created =  '$date_filter'";
+					$run_date = mysqli_query($conn,$query_date);
+					// date_default_timezone_set("Asia/Manila");
+					// $time= date("h:i:s", time());
+					// $date = date('Y-m-d');
+					// $total_date_time = $date ." ". $time;				
+					if(mysqli_num_rows($run_date)> 0){
+						foreach($run_date as $row_date){
+						$no = 1;
 
-
+							?>
+				
+										<tr>
+											<td><?php echo $no++?></td>
+											<td><?php echo $row_date['first_name'] . " " . $row_date['middle_name'] . " " . $row_date['last_name']?></td>
+											<td>
+												<?php echo $row_date['grade']?>
+											</td>
+											<td>
+												<?php
+													if($total_date_time == $row_date['ended_day']){
+														echo "<span style='color:green;'>Ended <span>"; //gawin mong green
+													}else{
+														echo "<span style='color: red;'> On going <span>"; // gawin mong yellow;
+													}
+												?> 		
+											</td>
+										</tr>
+							<?php
+						$no++;
+						}
+					}else{
+						echo "Results not found";
+					}
+				
+				
+				}else{
 					$query_name_year_status = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day
 					FROM students 
 					LEFT JOIN program_records
@@ -186,7 +231,7 @@ $_SESSION['user_id'];
 							?>
 
 							<tr>
-								<td><?php echo $no?></td>
+								<td><?php echo $no++;?></td>
 								<td><?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?></td>
 								<td>
 									<?php echo $row2['grade']?>
@@ -212,9 +257,17 @@ $_SESSION['user_id'];
 					}
 
 
+				
+				}
 				?>
+
+					
 				</tbody>
 			</table>
+			<?php 
+			
+			
+			?>
 			</div>
 			</div>
 		</main>
@@ -267,50 +320,6 @@ $_SESSION['user_id'];
 
 
 <?php
-
-if(isset($_POST['enter_date'])){
-
-	$date_filter = $_POST['date_filter'];
-
-	$query_date = "SELECT * FROM students WHERE date_created =  '$date_filter'";
-	$run_date = mysqli_query($conn,$query_date);
-
-	if(mysqli_num_rows($run_date)> 0){
-		foreach($run_date as $row_date){
-			?>
-
-
-			<div class="card">
-				<!-----table recent view--->
-				<table class="table">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Student's Name</th>
-							<th>Grade / Level</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><?php echo $no?></td>
-							<td><?php echo $row_date['first_name'] . " " . $row_date['middle_name'] . " " . $row_date['last_name']?></td>
-							<td>
-								<?php echo $row_date['grade']?>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			<?php
-		$no++;
-		}
-	}else{
-		echo "Results not found";
-	}
-
-
-}
-
-
 
 
 ob_end_flush();
