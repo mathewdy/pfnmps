@@ -225,16 +225,20 @@ $student_id = $_SESSION['student_id'];
                             <?php
 
 
-                                $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
+                                $sql_program_records_date = "SELECT date_started, ended_day FROM program_records WHERE student_id = '$student_id' LIMIT 1";
                                 $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
 
                                 if(mysqli_num_rows($run_program_records_date) > 0){
                                     foreach($run_program_records_date as $row){
                                         $new_format = date("F/d/Y", strtotime($row['date_started']));
+                                        $end = date("F/d/Y", strtotime($row['ended_day']));
                                         ?>
                                             <label for="">Date Started:</label>
-                                            <p class="dateStart"><?php echo $new_format?></p>
+                                            <p class="dateStart" data-id="<?= $new_format; ?>"><?php echo $new_format?></p>
+                                            <label for="">End date:</label>
+                                            <p class="dateEnd" data-id="<?= $end; ?>"><?php echo $end ?></p>
                                             <hr>
+
                                         <?php
                                     }
                                 }
@@ -310,6 +314,7 @@ $student_id = $_SESSION['student_id'];
     <div class="modal-dialog">
         <div class="modal-content card">
         <div class="modal-header" style="border:none;">
+            <h1><?= "<script>$('.calendar-active').data('id')</script>";?></h1>
             <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -371,25 +376,43 @@ $student_id = $_SESSION['student_id'];
 <script src="../src/plugins/evo-calendar/js/evo-calendar.js"></script>
 <!-- <script src="../src/plugins/evo-calendar/js/evo-calendar.config.js"></script> -->
 <script>
-    $('#calendar').evoCalendar({
-        language: 'en',
-        eventListToggler:false,
-        eventDisplayDefault:false,
-       
-    })
-    $('.day').on('click', function(){
-        $.ajax({
-                url: 'calendar-record.php',
-                type: 'get',
-                data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
-                success: function(response){
-                    $('.modal-body').html(response);
-                    $('#topicModal').modal('show');
-                    console.log($('.calendar-active').data('id'))
-                }
-            });
-        // alert($('.calendar-active').data('id'))
+    $(document).ready(function(){
+        let start = $('.dateStart').data('id')
+        let end = $('.dateEnd').attr('data-id')
+        $('#calendar').evoCalendar({
+            language: 'en',
+            eventListToggler:false,
+            eventDisplayDefault:false,
+            // calendarEvents: [{
+            //     date: [start, end],
+            //     color: '#00bbcc'
+            // },
+            // {
+            //     id: '1',
+            //     // name: "Daily Meal",
+            //     // badge: food,
+            //     date: [start, end],
+            //     // type: "event",
+            //     color: '#00bbcc'
+            // }
+            // ]
+        })
+        console.log(start)
+        $('.day').on('click', function(){
+            console.log('clicked')
+            $.ajax({
+                    url: 'calendar-record.php',
+                    type: 'post',
+                    data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
+                    success: function(response){
+                        $('.modal-body').html(response);
+                        $('#topicModal').modal('show');
+                        // console.log($('.calendar-active').data('id'))
+                    }
+                });
+            // alert($('.calendar-active').data('id'))
 
+        })
     })
 </script>
 
