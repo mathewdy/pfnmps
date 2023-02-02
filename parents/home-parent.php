@@ -120,8 +120,6 @@ $student_id = $_SESSION['student_id'];
                                     <p class="small text-muted">Note: Must do every other day.</p>
                                 </div>
                                 <div class="col-lg-6 text-end">
-                                    <?php echo "Total Acknowledge: " .$row4 . " "  ?>
-
                                 </div>
                             </div>
 
@@ -306,7 +304,54 @@ $student_id = $_SESSION['student_id'];
         echo "<script>alert('Wait for the next health evaluation') </script>";
     }
 
+
+    $solution = $row4 + $row5;
+    if($solution == '40'){
+        date_default_timezone_set("Asia/Manila");
+        $date = date('y-m-d');
+        $success = "success";
+        $insert_to_status = "INSERT INTO status (student_id,output,date_created,date_updated) VALUES ('$student_id', '$success' ,'$date', '$date')";
+        $run_status = mysqli_query($conn,$insert_to_status);
+
+        if($run_status){
+            echo "<script>alert('All activities are done') </script>";
+        }else{
+            
+            echo "error" . $conn->error;
+
+        }
+    }else{
+        if($solution < '40'){
+            date_default_timezone_set("Asia/Manila");
+            $date = date('y-m-d');
+            $success = "failed";
+            
+            //validation 
+            $query_validate = "SELECT * FROM failed WHERE student_id  = '$student_id'";
+            $run_validate = mysqli_query($conn,$query_validate);
+            if($run_validate){
+                echo "";
+            }else{
+                $insert_to_status = "INSERT INTO failed (student_id,output,date_created,date_updated) VALUES ('$student_id', '$success' ,'$date', '$date')";
+                $run_status = mysqli_query($conn,$insert_to_status);
+        
+                if($run_status){
+                    echo "";
+                }else{
+                    
+                    echo "error" . $conn->error;
+        
+                }
+            }
+            
+        }
+    }
+
+    
+    
+
     ?>
+
 </main>
 </div>
 <!-- Modal -->
@@ -325,16 +370,6 @@ $student_id = $_SESSION['student_id'];
         </div>
     </div>
 </div>
-
-<!-----notification-- ikaw na bahala mag design dito riri--->
-
-
-<?php
-
-
-
-?>
-
 
 
 <!-- 

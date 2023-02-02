@@ -60,6 +60,13 @@ $no = 0;
                             <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
+
+
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="bmi-records.php">
+                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">BMI of Students</span>
+                        </a>
+					</li>
 				
 				</ul>
 			</div>

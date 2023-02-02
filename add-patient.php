@@ -581,6 +581,15 @@ if(isset($_POST['add_patient'])){
         echo "error";
     }
 
+    $query_history = "INSERT INTO history_bmi (student_id,program_id,bmi,date_created,date_updated) VALUES ('$student_id','$program_id','$compute_BMI', '$date' , '$date' ) ";
+    $run_history = mysqli_query($conn,$query_history);
+
+    if($run_history) {
+        echo "added";
+    }else{
+        echo "error";
+    }
+
     //DITO NA ATA YUNG SA STEPPER RIRI
     //HEALTH INFO
     // dito mamaya yung BMI chururut nya

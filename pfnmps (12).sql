@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2023 at 01:31 PM
+-- Generation Time: Feb 02, 2023 at 08:25 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -66,6 +66,27 @@ CREATE TABLE `admins` (
   `image` blob NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `user_id`, `email`, `password`, `first_name`, `middle_name`, `last_name`, `gender`, `address`, `user_type`, `image`, `date_time_created`, `date_time_updated`) VALUES
+(1, '202226885', 'kere@mailinator.com', '123', 'Maia', 'Lev', 'Chase', 2, 'Moses', 1, 0x636d2e706e67, '2023-02-02 12:59:33', '2023-02-02 12:59:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed`
+--
+
+CREATE TABLE `failed` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `output` varchar(50) NOT NULL,
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -197,6 +218,21 @@ CREATE TABLE `history` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `history_bmi`
+--
+
+CREATE TABLE `history_bmi` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `program_id` varchar(50) NOT NULL,
+  `bmi` varchar(50) NOT NULL,
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `program_records`
 --
 
@@ -246,6 +282,20 @@ CREATE TABLE `questions` (
   `answer_2` varchar(50) NOT NULL,
   `date_time_created` datetime NOT NULL,
   `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `output` varchar(50) NOT NULL,
+  `date_created` date NOT NULL,
+  `date_updated` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -363,6 +413,12 @@ ALTER TABLE `admins`
   ADD KEY `user_type` (`user_type`);
 
 --
+-- Indexes for table `failed`
+--
+ALTER TABLE `failed`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `foods`
 --
 ALTER TABLE `foods`
@@ -389,6 +445,12 @@ ALTER TABLE `history`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `history_bmi`
+--
+ALTER TABLE `history_bmi`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `program_records`
 --
 ALTER TABLE `program_records`
@@ -410,6 +472,12 @@ ALTER TABLE `program_records_2`
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `student_id` (`student_id`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `students`
@@ -454,7 +522,13 @@ ALTER TABLE `activities`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `failed`
+--
+ALTER TABLE `failed`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -472,13 +546,19 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `history_bmi`
+--
+ALTER TABLE `history_bmi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `program_records`
@@ -490,31 +570,37 @@ ALTER TABLE `program_records`
 -- AUTO_INCREMENT for table `program_records_2`
 --
 ALTER TABLE `program_records_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_types`
