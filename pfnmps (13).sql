@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2023 at 08:25 AM
+-- Generation Time: Feb 05, 2023 at 07:26 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -233,6 +233,27 @@ CREATE TABLE `history_bmi` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `history_program_records`
+--
+
+CREATE TABLE `history_program_records` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `date_started` date NOT NULL,
+  `predicted_date` varchar(50) NOT NULL,
+  `foods` varchar(50) NOT NULL,
+  `excercises` varchar(50) NOT NULL,
+  `day` varchar(50) NOT NULL,
+  `food_acknowledge` int(11) NOT NULL,
+  `exercise_acknowledge` int(11) NOT NULL,
+  `ended_day` date NOT NULL,
+  `date_time_created` datetime NOT NULL,
+  `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `program_records`
 --
 
@@ -336,6 +357,21 @@ CREATE TABLE `students` (
 --
 
 CREATE TABLE `students_survery_answers` (
+  `id` int(11) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
+  `question` int(11) NOT NULL,
+  `answer` int(11) NOT NULL,
+  `date_time_created` datetime NOT NULL,
+  `date_time_updated` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `students_survey_answers_history`
+--
+
+CREATE TABLE `students_survey_answers_history` (
   `id` int(11) NOT NULL,
   `student_id` varchar(50) NOT NULL,
   `question` int(11) NOT NULL,
@@ -451,6 +487,12 @@ ALTER TABLE `history_bmi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `history_program_records`
+--
+ALTER TABLE `history_program_records`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `program_records`
 --
 ALTER TABLE `program_records`
@@ -494,6 +536,12 @@ ALTER TABLE `students_survery_answers`
   ADD KEY `student_id` (`student_id`);
 
 --
+-- Indexes for table `students_survey_answers_history`
+--
+ALTER TABLE `students_survey_answers_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -528,7 +576,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `failed`
 --
 ALTER TABLE `failed`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `foods`
@@ -546,37 +594,43 @@ ALTER TABLE `food_type`
 -- AUTO_INCREMENT for table `health_infos`
 --
 ALTER TABLE `health_infos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `history_bmi`
 --
 ALTER TABLE `history_bmi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `history_program_records`
+--
+ALTER TABLE `history_program_records`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `program_records`
 --
 ALTER TABLE `program_records`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `program_records_2`
 --
 ALTER TABLE `program_records_2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=211;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -588,19 +642,25 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `students_survery_answers`
 --
 ALTER TABLE `students_survery_answers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
+--
+-- AUTO_INCREMENT for table `students_survey_answers_history`
+--
+ALTER TABLE `students_survey_answers_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_types`

@@ -305,7 +305,26 @@ $student_id = $_SESSION['student_id'];
     }
 
 
-    $solution = $row4 + $row5;
+
+    // dating row 4
+    $excerises_done_1 = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' AND exercise_acknowledge = '1'  LIMIT 10";
+    $run_excercises_1 = mysqli_query($conn,$excerises_done_1);
+
+    $row_excercise = mysqli_num_rows($run_excercises_1);
+    
+
+    //dating row 5
+
+    
+    $food_done_1 = "SELECT food_acknowledge FROM program_records WHERE student_id = '$student_id' AND food_acknowledge = '1'";
+    $run_food_1 = mysqli_query($conn,$food_done_1);
+    $row_food = mysqli_num_rows($run_food_1);
+    // echo $row_food; 
+    // echo $row_excercise;
+
+
+    
+    $solution = $row_excercise + $row_food;
     if($solution == '40'){
         date_default_timezone_set("Asia/Manila");
         $date = date('y-m-d');
@@ -320,17 +339,22 @@ $student_id = $_SESSION['student_id'];
             echo "error" . $conn->error;
 
         }
-    }else{
-        if($solution < '40'){
+    }
+
+
+
+    $solution_2 = $row_excercise + $row_food;
+        if( 40 > $solution_2){
             date_default_timezone_set("Asia/Manila");
             $date = date('y-m-d');
             $success = "failed";
             
             //validation 
-            $query_validate = "SELECT * FROM failed WHERE student_id  = '$student_id'";
+            $query_validate = "SELECT * FROM failed WHERE student_id  = '$student_id' LIMIT 1";
             $run_validate = mysqli_query($conn,$query_validate);
-            if($run_validate){
+            if(mysqli_num_rows($run_validate) > 0){
                 echo "";
+                exit();
             }else{
                 $insert_to_status = "INSERT INTO failed (student_id,output,date_created,date_updated) VALUES ('$student_id', '$success' ,'$date', '$date')";
                 $run_status = mysqli_query($conn,$insert_to_status);
@@ -345,7 +369,7 @@ $student_id = $_SESSION['student_id'];
             }
             
         }
-    }
+    
 
     
     

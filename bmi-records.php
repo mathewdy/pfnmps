@@ -114,7 +114,7 @@ $row_failed1 = mysqli_num_rows($run_failed1);
                         ?>
                             <tr>
                                 <td><?php echo $row_failed['first_name'] . " ".  $row_failed['middle_name'] . " " . $row_failed['last_name']?> </td>
-                                <td><a href="previous-bmi.php?student_id=<?php echo $row['student_id']?>">Previous BMI</a></td>
+                                <td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Previous BMI</a></td>
                             
                             </tr>
 

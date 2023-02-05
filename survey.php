@@ -171,6 +171,44 @@ $student_id=openssl_decrypt ($student_id, $ciphering,
                 }
         }
     }
+
+    //papasok sa history to ng survey chrurut
+
+    // Survey
+    $question = array(0,1, 2, 3, 4, 5,6);
+    $surveyAnswer = $_POST['surveyAnswer'];
+    if(empty($_POST['surveyAnswer'])){
+        echo "Please answer the survey form.";
+    }else{
+        $check_stdnt_srvey = "SELECT * FROM `students_survey_answers_history` WHERE `student_id` = '$student_id'"; //naka default id pa yan kasi di ko alam kung i sesesion ba to or hindi
+        $query_check_stdnt_srvey = mysqli_query($conn, $check_stdnt_srvey);
+        if(mysqli_num_rows($query_check_stdnt_srvey) > 0){
+            echo "You already submitted your information <br>";
+            exit();
+        }else{
+            for($i=0;$i<count($question);$i++){
+                $sql = "INSERT INTO `students_survey_answers_history` (`student_id`, `question`, `answer`, `date_time_created`, `date_time_updated`) 
+                VALUES ('$student_id','".$question[$i]."','".$surveyAnswer[$i]."', '".$date_time_created."', '".$date_time_created."')";
+                $sql_query = mysqli_query($conn, $sql);
+                }
+                if($sql_query == true){
+                    $surveyResult = "SELECT COUNT(answer) AS 'yes_answer' FROM students_survey_answers_history 
+                    WHERE student_id = '$student_id' AND answer = 1";
+                    $querysurveyResult = mysqli_query($conn, $surveyResult);
+                    $rows = mysqli_fetch_array($querysurveyResult);
+        
+                    if($rows['yes_answer'] <= 1){
+                        echo "Survey Result: Bad <br>";
+                    }else if($rows['yes_answer'] >= 4){
+                        echo "Survey Result: Good <br>";
+                    }else if($rows['yes_answer'] == 2 || $rows['yes_answer'] == 3){
+                        echo "Survey Result: Neutral <br>";
+                    }
+                }else{
+                    echo $conn->error;
+                }
+        }
+    }
     
 
 

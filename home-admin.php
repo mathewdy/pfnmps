@@ -237,7 +237,7 @@ $_SESSION['user_id'];
 							?>
 
 							<tr>
-								<td><?php echo $no++;?></td>
+								<td><?php echo $no?></td>
 								<td><?php echo $row2['first_name'] . " " . $row2['middle_name'] . " " . $row2['last_name']?></td>
 								<td>
 									<?php echo $row2['grade']?>
