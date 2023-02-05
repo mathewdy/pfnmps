@@ -56,7 +56,7 @@ $_SESSION['user_id'];
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="bmi-records.php">
-                            <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">BMI of Students</span>
+                            <i class="align-middle" data-feather="heart"></i> <span class="align-middle">BMI of Students</span>
                         </a>
 					</li>
 
