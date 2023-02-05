@@ -116,7 +116,7 @@ ob_start();
 				?>
 				<div class="container p-5">
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-12">
 					<?php
 						$query_success = "SELECT * FROM status";
 						$run_success = mysqli_query($conn,$query_success);
@@ -127,7 +127,7 @@ ob_start();
 
 							<p>Successful Record: <?php echo $row_success?></p>  
 
-							<table>
+							<table class="table">
 								<thead>
 									<tr>
 										<th>Name</th>
@@ -179,7 +179,7 @@ ob_start();
 						?>
 							<p>Unsuccessful Record: <?php echo $row_failed1?></p>
 
-						<table>
+						<table class="table">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -203,7 +203,6 @@ ob_start();
 												<tr>
 													<td><?php echo $row_failed['first_name'] . " ".  $row_failed['middle_name'] . " " . $row_failed['last_name']?> </td>
 													<td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Previous BMI</a></td>
-												
 												</tr>
 
 											<?php
