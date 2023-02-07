@@ -32,7 +32,7 @@ ob_start();
                                 <div class="m-sm-4">
                                     <form action="login-admin.php" method="POST">
                                     <div class="text-center mb-5">
-                                        <h1 class="h1" style="font-family: var(--lato-light);">Personalized Food and Nutritional  Metabolic  Profiling System</h1>
+                                        <h1 class="h1" style="font-family: var(--lato-light);">Bucal Elementary School</h1>
                                     </div>
                                     <div class="mb-2">
                                         <label class="form-label">Email</label>
