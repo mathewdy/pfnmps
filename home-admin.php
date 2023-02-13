@@ -165,7 +165,7 @@ $_SESSION['user_id'];
 			<div class="card">
 			<form action="" method="POST">
 				<span class="d-flex justify-content-end py-4 px-3">
-				<input type="date" class="form-control w-25" name="date_filter">
+					<input type="text" class="form-control w-25" name="name_lrn">
 					<input type="submit" class="btn btn-secondary btn-md" name="enter_date" value="Search">
 				</span>
 					
@@ -185,10 +185,10 @@ $_SESSION['user_id'];
 				<?php
 				if(isset($_POST['enter_date'])){
 
-					$date_filter = $_POST['date_filter'];
+					$name_lrn = $_POST['name_lrn'];
 				
-					$query_date = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day FROM students LEFT JOIN program_records
-					ON students.student_id = program_records.student_id WHERE date_created =  '$date_filter'";
+					$query_date = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, students.date_created ,program_records.ended_day FROM students LEFT JOIN program_records
+					ON students.student_id = program_records.student_id WHERE students.first_name =  '$name_lrn' OR students.last_name = '$name_lrn' OR students.middle_name = '$name_lrn' OR students.student_id ='$name_lrn'";
 					$run_date = mysqli_query($conn,$query_date);
 					// date_default_timezone_set("Asia/Manila");
 					// $time= date("h:i:s", time());
@@ -200,7 +200,7 @@ $_SESSION['user_id'];
 
 							?>
 				
-										<tr>
+										<tr>	
 											<td><?php echo $no++?></td>
 											<td><?php echo $row_date['first_name'] . " " . $row_date['middle_name'] . " " . $row_date['last_name']?></td>
 											<td>
@@ -208,24 +208,32 @@ $_SESSION['user_id'];
 											</td>
 											<td>
 												<?php
-													if($total_date_time == $row_date['ended_day']){
-														echo "<span style='color:green;'>Ended <span>"; //gawin mong green
+													if($row_date['ended_day'] < $date){
+														echo "Inactive";
 													}else{
-														echo "<span style='color: red;'> On going <span>"; // gawin mong yellow;
+														echo "Active";
 													}
 												?> 		
+											</td>
+											<td>
+												<?php if($row_date['date_created'] < $date){
+													echo "";
+												}else{
+													echo "<span>Recently Added</span>";
+												}
+													?>
 											</td>
 										</tr>
 							<?php
 						$no++;
 						}
 					}else{
-						echo "Results not found";
+						echo "<span style='color: red;'>Results not found<span>";
 					}
 				
 				
 				}else{
-					$query_name_year_status = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, program_records.ended_day
+					$query_name_year_status = "SELECT DISTINCT students.first_name , students.middle_name , students.last_name , students.grade, students.date_created, program_records.ended_day
 					FROM students 
 					LEFT JOIN program_records
 					ON students.student_id = program_records.student_id ";
@@ -244,13 +252,29 @@ $_SESSION['user_id'];
 								</td>
 								<td>
 									<?php
-									if($total_date_time == $row2['ended_day']){
-										echo "<span style='color:green;'>Ended <span>"; //gawin mong green
-									}else{
-										echo "<span style='color: red;'> On going <span>"; // gawin mong yellow;
-									}
+
+										if($row2['ended_day'] < $date){
+											echo "Inactive";
+										}else{
+											echo "Active";
+										}
+									
+									
 									?>
 									
+								</td>
+								<td>
+									<!----check muna kung lagpas sya sa date---->
+									<?php
+
+																					
+										if($row2['date_created'] < $date){
+												echo "";
+										}else{
+											echo "<span>Recently Added </span>";
+										}
+
+									?>
 								</td>
 							</tr>
 

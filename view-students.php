@@ -3,9 +3,15 @@ include('connection.php');
 session_start();
 ob_start();
 include('security-admin.php');
+//year month date
+date_default_timezone_set("Asia/Manila");
+$time= date("h:i:s", time());
+$date = date('Y-m-d');
+$total_date_time = $date ." ". $time;
 
 
-$query_students = "SELECT * FROM students";
+$query_students = "SELECT DISTINCT students.image, students.first_name,students.middle_name,students.last_name,students.student_id,students.grade,students.section, program_records.ended_day FROM students LEFT JOIN
+program_records ON students.student_id = program_records.student_id ";
 $run = mysqli_query($conn,$query_students);
 $no = 0;
 
@@ -131,7 +137,6 @@ $no = 0;
                                     <th>No.</th>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Date of Birth</th>
                                     <th>Grade</th>
                                     <th>Section</th>
                                     <th>Action</th>
@@ -151,13 +156,20 @@ $no = 0;
                                                 <td>
                                                     <?php echo $row ['first_name']. " " . $row['middle_name'] . " " . $row ['last_name']?>
                                                 </td>
-                                                <td><?php echo $row ['date_of_birth']?></td>
                                                 <td><?php echo $row ['grade']?></td>
                                                 <td><?php echo $row ['section']?></td>
                                                 <td>
                                                     <span class="d-flex justify-content-evenly align-items-center">
-                                                        <a class="btn btn-sm btn-primary" href="edit-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="edit"></i> Edit </a>
-                                                        <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="trash-2"></i> Delete</a>
+                                                    <?php
+
+                                                        if($row['ended_day'] < $date){
+                                                            echo "Inactive";
+                                                        }else{
+                                                            echo "Active";
+                                                        }
+
+                                                    ?>
+                                                        <!-- <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id="><i class="align-middle" data-feather="trash-2"></i> Delete</a> -->
                                                     </span>
                                                 </td>
                                             </tr>

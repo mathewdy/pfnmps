@@ -373,25 +373,36 @@ if(isset($_POST['add_patient'])){
         exit();
     }
 
-    if($compute_BMI <= 18.5){
-        echo "Under Weight <br>";
-        $status = "Under Weight";
-    }else if($compute_BMI >= 18.5 || $compute_BMI <= 24.9){
-        echo "Healthy Weight <br>";
-        $status = "Healthy Weight";
-    }else if($compute_BMI >= 25 || $compute_BMI <= 29.9){
-        echo "Over Weight <br>";
-        $status = "Over Weight";
-    }else if($compute_BMI == 30 || $compute_BMI <= 34.9){
-        echo "Obese Class 1 <br>";
-        $status = "Obese Class 1";
-    }else if($compute_BMI == 35 || $compute_BMI <= 39.9){
-        echo "Obese Class 2 <br>";
-        $status = "Obese Class 2";
-    }else if($compute_BMI >= 40){
-        echo "Obese Class 3 <br>";
-        $status = "Obese Class 3";
-    }
+     
+    if($compute_BMI < 18.4){
+        $status =  "Underweight";
+     }else if($compute_BMI >= 18.5 && $compute_BMI <= 24.9){
+         $status =   "Normal";
+     }else if($compute_BMI >= 25 && $compute_BMI <= 29.9){
+         $status =    "Overweight";
+     }else if($compute_BMI >= 30){
+         $status =   "Obesity";
+     }
+
+    // if($compute_BMI <= 18.5){
+    //     echo "Under Weight <br>";
+    //     $status = "Under Weight";
+    // }else if($compute_BMI >= 18.5 || $compute_BMI <= 24.9){
+    //     echo "Healthy Weight <br>";
+    //     $status = "Healthy Weight";
+    // }else if($compute_BMI >= 25 || $compute_BMI <= 29.9){
+    //     echo "Over Weight <br>";
+    //     $status = "Over Weight";
+    // }else if($compute_BMI == 30 || $compute_BMI <= 34.9){
+    //     echo "Obese Class 1 <br>";
+    //     $status = "Obese Class 1";
+    // }else if($compute_BMI == 35 || $compute_BMI <= 39.9){
+    //     echo "Obese Class 2 <br>";
+    //     $status = "Obese Class 2";
+    // }else if($compute_BMI >= 40){
+    //     echo "Obese Class 3 <br>";
+    //     $status = "Obese Class 3";
+    // }
 
     //random number sa user_id
     $user_id = "2022" . rand('00000', '99999');
