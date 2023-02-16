@@ -90,7 +90,13 @@ session_start();
                             <br>
 
                             <label for="">Section</label>
-                            <input type="text" class="form-control py-1"name="section" required> 
+                            <select name="section" class="form-select" id="" required>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="D">D</option>
+                                <option value="E">E</option>
+                            </select>
                             </div>
                             <div class="col-lg-5">
 

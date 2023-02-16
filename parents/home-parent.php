@@ -3,7 +3,9 @@ include('../connection.php');
 session_start();
 include('security-parent.php');
 $email = $_SESSION['email'];
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $student_id = $_SESSION['student_id'];
 ?>
 
@@ -17,6 +19,7 @@ $student_id = $_SESSION['student_id'];
     <!-- <link rel="stylesheet" href="../admin-template/css/app.css"> -->
     <link rel="stylesheet" href="../src/styles/custom/stickynav.css">
     <link rel="stylesheet" href="../src/plugins/evo-calendar/css/evo-calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" integrity="sha512-YFENbnqHbCRmJt5d+9lHimyEMt8LKSNTMLSaHjvsclnZGICeY/0KYEeiHwD1Ux4Tcao0h60tdcMv+0GljvWyHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="../src/styles/custom/sidenav.css"> -->
     <title>Document</title>
 </head>
@@ -95,22 +98,18 @@ $student_id = $_SESSION['student_id'];
     ?>
     <main class="content">
         <div class="container-fluid" style="height: 100%;">
-            <div class="row mb-5 gy-3">
-                <div class="col-lg-12">
+            <div class="row p-5">
+                <!-- <div class="col-lg-12">
                     <div class="card">
                         <div id="calendar" style="box-shadow: none;"></div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4">
-                    <div class="card" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
+                    <div class="card" style="border: none; height: 100%; border-radius:0; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
                             <div class="p-2 pb-0 d-flex flex-column align-items-start">
                                 <span class="d-flex flex-row align-middle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="green" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                                    <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
-                                    </svg>
-                                    <h1 class="h4 bold" style="padding: 0 0 0 3px;">Daily Task</h1> 
-                                    
+                                    <h1 class="h4 bold" style="padding: 0 0 0 3px;"><i class="bi bi-patch-check-fill text-success"></i> Daily Task</h1> 
                                 </span>
                             </div>    
                             <hr class="featurette-divider">
@@ -142,8 +141,8 @@ $student_id = $_SESSION['student_id'];
                                             <span>
                                                 <p class="act d-none"><?= $row2['exercise_acknowledge']?></p>
                                                 <p class="p-0 m-0"><?php echo $row2['exercises'] ?></p>
-                                                <small><p class="text-muted p-0 m-0">Duration: 30 mins.</p></small>
-                                                <small><p class="text-muted p-0 m-0"></p></small>
+                                                <!-- <small><p class="text-muted p-0 m-0">Duration: 30 mins.</p></small> -->
+                                                <!-- <small><p class="text-muted p-0 m-0"></p></small> -->
                                             </span>
                                         
                                         <form action="acknowledge.php" method="POST">
@@ -157,12 +156,13 @@ $student_id = $_SESSION['student_id'];
                                                 <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
                                                 <input type="hidden" name="id" value="<?php echo $row2['id']?>">
                                                 <input type="hidden" name="daily_task" value="1">
-                                                <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_task" value="Acknowledge">
+                                                <button type="submit" name="acknowledge_task" class="btn btn-outline-success btn-sm"><i class="bi bi-check-lg"></i></button>
+                                                <!-- <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_task" value="Acknowledge"> -->
                                         
 
                                                 <?php
                                             }else{
-                                                echo "<div style='color:green;'>Acknowledged </div>";
+                                                echo "<div style='color:green;'><i class='bi bi-check-lg me-2'></i></div>";
                                             }
 
                                         ?>
@@ -189,23 +189,19 @@ $student_id = $_SESSION['student_id'];
                 $row5 = mysqli_num_rows($run_food);
 
                
-                if($row5 == 30){
-                    echo "<script>alert('Daily Meal is done') </script>";
-                }else{
+                // if($row5 == 30){
+                //     echo "<script>alert('Daily Meal is done') </script>";
+                // }else{
 
-                }
+                // }
 
                 ?>
                 <div class="col-lg-8">
-                    <div class="card" style="border: none; height: 100%; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
+                    <div class="card" style="border: none; height: 100%; border-radius:0; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
                             <div class="p-2 pb-0 d-flex flex-column align-items-start">
                                 <span class="d-flex flex-row align-middle">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="Purple" class="bi bi-clipboard-heart-fill" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
-                                    <path fill-rule="evenodd" d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm4 5.982c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
-                                    </svg>
-                                    <h1 class="h4 bold" style="padding: 0 0 0 3px;">Daily Meal</h1> 
+                                    <h1 class="h4 bold" style="padding: 0 0 0 3px;"><i class="bi bi-clipboard-heart-fill" style="color: Purple;"></i> Suggested Meals</h1> 
                                 </span>
                             </div>    
                             <hr class="featurette-divider">
@@ -251,14 +247,14 @@ $student_id = $_SESSION['student_id'];
 
                                 if(mysqli_num_rows($run_program_records) > 0){
                                     foreach($run_program_records as $row1){
-                                        if($row1['food_acknowledge'] == '1'){
-                                            echo $row1['food_acknowledge'];
-                                        }
+                                        // if($row1['food_acknowledge'] == '1'){
+                                        //     echo $row1['food_acknowledge'];
+                                        // }
                                         ?>
                                             <p class="lead text-muted">Day <?php echo $row1['day']?> </p>
                                             <!-- <p></p> -->
                                             
-                                            <label for="">Foods :</label>
+                                            <!-- <label for="">Suggested Foods :</label> -->
                                             <span class="d-flex justify-content-between align-items-end">
                                                 <p><?php echo $row1['foods']?></p>
                                                 <p class="food d-none"><?= $row1['food_acknowledge']?></p>
@@ -272,10 +268,11 @@ $student_id = $_SESSION['student_id'];
                                                                 <input type="hidden" name="student_id" value="<?php echo $s0tudent_id ?>">
                                                                 <input type="hidden" name="id" value="<?php echo $row1['id']?>">
                                                                 <input type="hidden" name="daily_meal" value="1">
-                                                                <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_meal" value="Acknowledge">
+                                                                <!-- <input type="submit" class="btn btn-outline-primary py-1" name="acknowledge_meal" value="Acknowledge"> -->
+                                                                <button type="submit" name="acknowledge_meal" class="btn btn-outline-success btn-sm"><i class="bi bi-check-lg"></i></button>
                                                             <?php
                                                         }else{
-                                                            echo "<div style='color: green;'>Acknowledged </div> ";
+                                                            echo "<div style='color: green;'><i class='bi bi-check-lg me-2'></i></div> ";
                                                         }
                                                 
                                                     ?>
@@ -435,13 +432,13 @@ $student_id = $_SESSION['student_id'];
 <script src="../src/plugins/evo-calendar/js/evo-calendar.js"></script>
 <!-- <script src="../src/plugins/evo-calendar/js/evo-calendar.config.js"></script> -->
 <script>
-    $(document).ready(function(){
-        let start = $('.dateStart').data('id')
-        let end = $('.dateEnd').attr('data-id')
-        $('#calendar').evoCalendar({
-            language: 'en',
-            eventListToggler:false,
-            eventDisplayDefault:false,
+    // $(document).ready(function(){
+    //     let start = $('.dateStart').data('id')
+    //     let end = $('.dateEnd').attr('data-id')
+    //     $('#calendar').evoCalendar({
+    //         language: 'en',
+    //         eventListToggler:false,
+    //         eventDisplayDefault:false,
             // calendarEvents: [{
             //     date: [start, end],
             //     color: '#00bbcc'
@@ -455,24 +452,24 @@ $student_id = $_SESSION['student_id'];
             //     color: '#00bbcc'
             // }
             // ]
-        })
-        console.log(start)
-        $('.day').on('click', function(){
-            console.log('clicked')
-            $.ajax({
-                    url: 'calendar-record.php',
-                    type: 'post',
-                    data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
-                    success: function(response){
-                        $('.modal-body').html(response);
-                        $('#topicModal').modal('show');
-                        // console.log($('.calendar-active').data('id'))
-                    }
-                });
+        // })
+        // console.log(start)
+        // $('.day').on('click', function(){
+        //     console.log('clicked')
+        //     $.ajax({
+        //             url: 'calendar-record.php',
+        //             type: 'post',
+        //             data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
+        //             success: function(response){
+        //                 $('.modal-body').html(response);
+        //                 $('#topicModal').modal('show');
+        //                 // console.log($('.calendar-active').data('id'))
+        //             }
+        //         });
             // alert($('.calendar-active').data('id'))
 
-        })
-    })
+    //     })
+    // })
 </script>
 
 </body>
