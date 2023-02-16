@@ -103,7 +103,7 @@ $student_id = $_GET['student_id'];
                             <span>
                                 <a href="view-students.php" class="btn btn-md btn-danger"><i class="align-middle" data-feather="corner-down-left"></i> Go Back</a>
                             </span>
-                            <span><a class="btn btn-md btn-primary" href="student-history.php?student_id=<?= $student_id; ?>"><i class="align-middle" data-feather="download"></i> Download PDF</a></span>
+                            <!-- <span><a class="btn btn-md btn-primary" href="student-history.php?student_id=<?= $student_id; ?>"><i class="align-middle" data-feather="download"></i> Download PDF</a></span> -->
                          </span>
                          <h2 class="mt-4">History of Records</h2>
 
