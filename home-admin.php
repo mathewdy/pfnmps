@@ -114,7 +114,7 @@ $_SESSION['user_id'];
 
 			$row = mysqli_num_rows($query_total_students);
 			?>
-			<div class="container p-5">
+			<div class="container ">
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="card border border-start border-3 border-bottom-0 border-top-0 border-end-0 border-success p-3 py-4" style="border-radius: 0;">
