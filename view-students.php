@@ -70,7 +70,7 @@ $no = 0;
 
                     <li class="sidebar-item">
 						<a class="sidebar-link" href="bmi-records.php">
-                            <i class="align-middle" data-feather="heart"></i> <span class="align-middle">BMI of Students</span>
+                            <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
                         </a>
 					</li>
 				
@@ -83,6 +83,7 @@ $no = 0;
 				<a class="sidebar-toggle js-sidebar-toggle">
                     <i class="hamburger align-self-center"></i>
                 </a>
+                
                 <span class="mt-2">
                     <h4 class="fw-bold">
                     Personalized Food and Nutritional  Metabolic  Profiling System
@@ -123,9 +124,7 @@ $no = 0;
                         <!-- <h1 class="mb-4 mt-0 text-muted">Students</h1> -->
 
                         <span class="d-flex justify-content-between">
-                            <span class="text-start">
                                 <a href="add-patient.php" class="btn btn-success rounded-circle mb-4" style="padding: 8px 12px;"><i class="align-middle" data-feather="plus"></i></a>
-                            </span>
                             <!-- <span >
                                 <a href="pdf.php" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
                             </span> -->
@@ -139,7 +138,8 @@ $no = 0;
                                     <th>Name</th>
                                     <th>Grade</th>
                                     <th>Section</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody> 
@@ -160,17 +160,19 @@ $no = 0;
                                                 <td><?php echo $row ['section']?></td>
                                                 <td>
                                                     <span class="d-flex justify-content-evenly align-items-center">
+                                                        <a class="btn btn-sm btn-primary" href="edit-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="edit"></i> Edit </a>
+                                                        <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id="><i class="align-middle" data-feather="trash-2"></i> Delete</a>
+                                                    </span>
+                                                </td>
+                                                <td>
                                                     <?php
-
-                                                        if($row['ended_day'] < $date){
-                                                            echo "Inactive";
-                                                        }else{
-                                                            echo "Active";
-                                                        }
+                                                    if($row['ended_day'] < $date){
+                                                        echo "Inactive";
+                                                    }else{
+                                                        echo "Active";
+                                                    }
 
                                                     ?>
-                                                        <!-- <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id="><i class="align-middle" data-feather="trash-2"></i> Delete</a> -->
-                                                    </span>
                                                 </td>
                                             </tr>
                                         

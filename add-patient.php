@@ -56,7 +56,12 @@ include('security-admin.php');
                             <i class="align-middle " data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
-				
+                    
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="bmi-records.php">
+                            <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
+                        </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -262,7 +267,13 @@ include('security-admin.php');
                                             </div>
                                         </span>
                                         <label for="">Section</label>
-                                        <input type="text" class="form-control" name="section" required>
+                                        <select name="section" class="form-select" id="" required>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <hr class="featurette-divider">

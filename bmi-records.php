@@ -18,6 +18,7 @@ ob_start();
 	<!-- <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css"> -->
 	<!-- <link rel="stylesheet" href="./styles/bootstrap/js/bootstrap.bundle.min.js"> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -56,7 +57,7 @@ ob_start();
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="bmi-records.php">
-                            <i class="align-middle text-dark" data-feather="heart"></i> <span class="align-middle">BMI of Students</span>
+                            <i class="align-middle text-dark" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
                         </a>
 					</li>
 
@@ -106,7 +107,6 @@ ob_start();
 
 			<!---Total number of students-->
 			<main class="content">
-				<div class="card">
 				<?php
 
 				$sql_total_students = "SELECT id FROM students";
@@ -114,110 +114,114 @@ ob_start();
 
 				$row = mysqli_num_rows($query_total_students);
 				?>
-				<div class="container p-5">
-				<div class="row">
-					<div class="col-lg-12">
-					<?php
-						$query_success = "SELECT * FROM status";
-						$run_success = mysqli_query($conn,$query_success);
-						$row_success = mysqli_num_rows($run_success);
-
-
-						?>
-
-							<p>Successful Record: <?php echo $row_success?></p>  
-
-							<table class="table">
-								<thead>
-									<tr>
-										<th>Name</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php 
-									
-										$query_names = "select users.student_id, users.first_name, users.middle_name, users.last_name , status.student_id
-										FROM users
-										LEFT JOIN status ON
-										users.student_id = status.student_id WHERE output= 'success' LIMIT 10";
-										$run_names = mysqli_query($conn,$query_names);
-
-										if(mysqli_num_rows($run_names) > 0){
-											foreach($run_names as $row){
-												?>
-
-													<tr>
-														<td><?php echo $row['first_name']?></td>
-														<td><?php echo $row['middle_name']?></td>
-														<td><?php echo $row['last_name']?></td>
-													</tr>
-
-												<?php
-											}
-										}else{
-											echo "Empty Data";
-										}
-									
-									?>
-									
-								</tbody>
-							</table>
-
-							
-						<!--query kung ilang tao yung hindi success don-->
-						<!---query mo yung number ng tao-->
-						<!---query din kung sino yung tao na yon- limit mo lang as 5--->
-
-						<!-------comparison nung previous BMI nya ganon------->
-
-						<?php
-
-						$query_failed1 = "SELECT * FROM failed";
-						$run_failed1 = mysqli_query($conn,$query_failed1);
-						$row_failed1 = mysqli_num_rows($run_failed1);
-
-						?>
-							<p>Unsuccessful Record: <?php echo $row_failed1?></p>
-
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Options</th>
-								</tr>
-							</thead>
-							<tbody>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="card p-5">
 
 								<?php
+									$query_success = "SELECT * FROM status";
+									$run_success = mysqli_query($conn,$query_success);
+									$row_success = mysqli_num_rows($run_success);
 
-									$query_failed = "select users.student_id, users.first_name, users.middle_name, users.last_name , failed.student_id
-									FROM users
-									LEFT JOIN failed ON
-									users.student_id = failed.student_id WHERE output= 'failed' LIMIT 10";
-									$run_failed = mysqli_query($conn,$query_failed);
 
-									if(mysqli_num_rows($run_failed) > 0){
-										foreach($run_failed as $row_failed){
+									?>
 
-											?>
+										<p>Successful Record: <?php echo $row_success?></p>  
+
+										<table class="table table-bordered" id="dataTable">
+											<thead>
 												<tr>
-													<td><?php echo $row_failed['first_name'] . " ".  $row_failed['middle_name'] . " " . $row_failed['last_name']?> </td>
-													<td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Previous BMI</a></td>
+													<th>Name</th>
 												</tr>
+											</thead>
+											<tbody>
+												<?php 
+												
+													$query_names = "select users.student_id, users.first_name, users.middle_name, users.last_name , status.student_id
+													FROM users
+													LEFT JOIN status ON
+													users.student_id = status.student_id WHERE output= 'success' LIMIT 10";
+													$run_names = mysqli_query($conn,$query_names);
+
+													if(mysqli_num_rows($run_names) > 0){
+														foreach($run_names as $row){
+															?>
+
+																<tr>
+																	<td><?php echo $row['first_name']?></td>
+																	<td><?php echo $row['middle_name']?></td>
+																	<td><?php echo $row['last_name']?></td>
+																</tr>
+
+															<?php
+														}
+													}
+												
+												?>
+												
+											</tbody>
+										</table>
+
+										
+									<!--query kung ilang tao yung hindi success don-->
+									<!---query mo yung number ng tao-->
+									<!---query din kung sino yung tao na yon- limit mo lang as 5--->
+
+									<!-------comparison nung previous BMI nya ganon------->
+
+									
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="card p-5">
+								<?php
+									$query_failed1 = "SELECT * FROM failed";
+									$run_failed1 = mysqli_query($conn,$query_failed1);
+									$row_failed1 = mysqli_num_rows($run_failed1);
+
+									?>
+										<p>Unsuccessful Record: <?php echo $row_failed1?></p>
+
+									<table class="table table-bordered" id="dataTable2">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Options</th>
+											</tr>
+										</thead>
+										<tbody>
 
 											<?php
 
-										}
-									}
+												$query_failed = "select users.student_id, users.first_name, users.middle_name, users.last_name , failed.student_id
+												FROM users
+												LEFT JOIN failed ON
+												users.student_id = failed.student_id WHERE output= 'failed' LIMIT 10";
+												$run_failed = mysqli_query($conn,$query_failed);
 
-								?>
-							</tbody>
-						</table>
+												if(mysqli_num_rows($run_failed) > 0){
+													foreach($run_failed as $row_failed){
+
+														?>
+															<tr>
+																<td><?php echo $row_failed['first_name'] . " ".  $row_failed['middle_name'] . " " . $row_failed['last_name']?> </td>
+																<td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Previous BMI</a></td>
+															</tr>
+
+														<?php
+
+													}
+												}
+
+											?>
+										</tbody>
+									</table>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			</div>
-		</main>
+			</main>
 			<footer class="footer">
 				<div class="container-fluid">
 					<div class="row text-muted">
@@ -249,9 +253,16 @@ ob_start();
 <script src="./styles/bootstrap/@popperjs/core/dist/umd/popper.js"></script>
 <script src="./admin-template/js/app.js"></script>
     <!-- jQuery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script>
+	$(document).ready( function() {
+        $('#dataTable').DataTable();
+        $('#dataTable2').DataTable();
+    });
+
+
     const flashdata = $('.flash-data').data('flashdata')
     if(flashdata){
         Swal.fire({
@@ -262,6 +273,7 @@ ob_start();
         })
     }
 </script>
+
 </body>
 </html>
 

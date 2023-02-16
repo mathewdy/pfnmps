@@ -56,7 +56,7 @@ $_SESSION['user_id'];
 
 					<li class="sidebar-item">
 						<a class="sidebar-link" href="bmi-records.php">
-                            <i class="align-middle" data-feather="heart"></i> <span class="align-middle">BMI of Students</span>
+                            <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
                         </a>
 					</li>
 
@@ -106,12 +106,6 @@ $_SESSION['user_id'];
 
 			<!---Total number of students-->
 			<main class="content">
-			<span>
-				<span class="d-flex justify-content-end">
-					<a href="download-all-students.php?student_id=<?php echo $row_1['student_id']?>" class="btn btn-md btn-primary" ><i class="align-middle" data-feather="download"></i> Download List</a>
-				</span>
-			</span>
-			
 
 			<?php
 
