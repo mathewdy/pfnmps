@@ -99,11 +99,11 @@ $student_id = $_SESSION['student_id'];
     <main class="content">
         <div class="container-fluid" style="height: 100%;">
             <div class="row p-5">
-                <!-- <div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="card">
                         <div id="calendar" style="box-shadow: none;"></div>
                     </div>
-                </div> -->
+                </div>
                 <div class="col-lg-4">
                     <div class="card" style="border: none; height: 100%; border-radius:0; box-shadow: 2px 2px 23px -6px rgba(0,0,0,0.17);">
                         <div class="card-body">
@@ -432,44 +432,44 @@ $student_id = $_SESSION['student_id'];
 <script src="../src/plugins/evo-calendar/js/evo-calendar.js"></script>
 <!-- <script src="../src/plugins/evo-calendar/js/evo-calendar.config.js"></script> -->
 <script>
-    // $(document).ready(function(){
-    //     let start = $('.dateStart').data('id')
-    //     let end = $('.dateEnd').attr('data-id')
-    //     $('#calendar').evoCalendar({
-    //         language: 'en',
-    //         eventListToggler:false,
-    //         eventDisplayDefault:false,
-            // calendarEvents: [{
-            //     date: [start, end],
-            //     color: '#00bbcc'
-            // },
-            // {
-            //     id: '1',
-            //     // name: "Daily Meal",
-            //     // badge: food,
-            //     date: [start, end],
-            //     // type: "event",
-            //     color: '#00bbcc'
-            // }
-            // ]
-        // })
-        // console.log(start)
-        // $('.day').on('click', function(){
-        //     console.log('clicked')
-        //     $.ajax({
-        //             url: 'calendar-record.php',
-        //             type: 'post',
-        //             data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
-        //             success: function(response){
-        //                 $('.modal-body').html(response);
-        //                 $('#topicModal').modal('show');
-        //                 // console.log($('.calendar-active').data('id'))
-        //             }
-        //         });
-            // alert($('.calendar-active').data('id'))
+    $(document).ready(function(){
+        let start = $('.dateStart').data('id')
+        let end = $('.dateEnd').attr('data-id')
+        $('#calendar').evoCalendar({
+            language: 'en',
+            eventListToggler:false,
+            eventDisplayDefault:false,
+            calendarEvents: [{
+                date: [start, end],
+                color: '#00bbcc'
+            },
+            {
+                id: '1',
+                // name: "Daily Meal",
+                // badge: food,
+                date: [start, end],
+                // type: "event",
+                color: '#00bbcc'
+            }
+            ]
+        })
+        console.log(start)
+        $('.day').on('click', function(){
+            console.log('clicked')
+            $.ajax({
+                    url: 'calendar-record.php',
+                    type: 'post',
+                    data: {day: $('.calendar-active').data('id'), id : $('.student-id').data('id')},
+                    success: function(response){
+                        $('.modal-body').html(response);
+                        $('#topicModal').modal('show');
+                        // console.log($('.calendar-active').data('id'))
+                    }
+                });
+            alert($('.calendar-active').data('id'))
 
-    //     })
-    // })
+        })
+    })
 </script>
 
 </body>
