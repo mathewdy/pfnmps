@@ -381,14 +381,21 @@ if(isset($_POST['add_patient'])){
 
      
     if($compute_BMI < 18.4){
-        $status =  "Underweight";
-     }else if($compute_BMI >= 18.5 && $compute_BMI <= 24.9){
-         $status =   "Normal";
-     }else if($compute_BMI >= 25 && $compute_BMI <= 29.9){
-         $status =    "Overweight";
-     }else if($compute_BMI >= 30){
-         $status =   "Obesity";
-     }
+    $status =  "Underweight";
+    }else if($compute_BMI >= 18.5 && $compute_BMI <= 24.9){
+        $status =   "Normal";
+    }else if($compute_BMI >= 25 && $compute_BMI <= 29.9){
+        $status =    "Overweight";
+    }else if($compute_BMI >= 30){
+        $status =   "Obesity";
+    }
+
+    if($status == 'Normal' || $status == 'Overweight' || $status == 'Obesity'){
+    echo "<script>alert('You are not allowed to register')</script>";
+    echo "<script>window.location.href='add-patient.php'</script>";
+    exit();
+    }
+ 
 
     // if($compute_BMI <= 18.5){
     //     echo "Under Weight <br>";
