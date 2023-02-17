@@ -53,7 +53,11 @@ $student_id = $_GET['student_id'];
                             <i class="align-middle text-dark" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
-				
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="bmi-records.php">
+                            <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
+                        </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
@@ -157,78 +161,79 @@ $student_id = $_GET['student_id'];
 
 
 
-                                $sql = "SELECT program_records.student_id , program_records.date_started, program_records.foods, program_records.exercises, program_records.day, program_records.ended_day , program_records.food_acknowledge , program_records.exercise_acknowledge
-                                FROM program_records WHERE program_records.student_id = '$student_id'";
-                                $run = mysqli_query($conn,$sql);
+                                // $sql = "SELECT program_records.student_id , program_records.date_started, program_records.foods, program_records.exercises, program_records.day, program_records.ended_day , program_records.food_acknowledge , program_records.exercise_acknowledge
+                                // FROM program_records WHERE program_records.student_id = '$student_id'";
+                                // $run = mysqli_query($conn,$sql);
 
-                                if(mysqli_num_rows($run) > 0){
+                                // if(mysqli_num_rows($run) > 0){
                                     ?>
-                                    <div class="row">
+                                    <!-- <div class="row">
 
-                                        <hr class="mt-4">
+                                        <hr class="mt-4"> -->
                                     <?php
 
-                                    foreach($run as $row){
+                                    // foreach($run as $row){
                                         ?>
                                         
-                                        <div class="col-lg-3">
-                                        <div class="card border border-light rounded-0 shadow p-4" style="width: 15rem; min-height: 16rem;">
+                                        <!-- <div class="col-lg-3">
+                                        <div class="card border border-light rounded-0 shadow p-4" style="width: 15rem; min-height: 16rem;"> -->
 
                                         <!-- <label for="">Date Started</label>
                                         <p><?php echo $row['date_started']?></p> -->
-                                        <p class="m-0 p-0" style="font-size:18px;">Day <?php echo $row ['day']?></p>
+                                        <!-- <p class="m-0 p-0" style="font-size:18px;">Day <?php echo $row ['day']?></p>
                                         <hr class="featurette-divider">
                                         <span class="d-flex flex-row justify-content-between align-items-center">
-                                        <p class="m-0 p-0"  style="font-size:16.7px;">Meals</p>
+                                        <p class="m-0 p-0"  style="font-size:16.7px;">Meals</p> -->
                                         <?php 
                                             //kulay green kapag na acknowledge
                                             // red kapag hindi
 
-                                            if($row['food_acknowledge'] == '1'){
-                                                echo "<span class='badge bg-success'>Done</span>";
-                                            }else{
-                                                echo "<span class='badge bg-danger'>Unfinished</span>";
-                                            }
+                                            // if($row['food_acknowledge'] == '1'){
+                                            //     echo "<span class='badge bg-success'>Done</span>";
+                                            // }else{
+                                            //     echo "<span class='badge bg-danger'>Unfinished</span>";
+                                            // }
 
                                             ?>
-                                        </span>
-                                        <p class="m-0 p-0"><?php echo $row['foods']?></p>
+                                        <!-- </span>
+                                        <p class="m-0 p-0"><?php echo $row['foods']?></p> -->
                                         <!-- <p class="m-0 p-0" style="font-size: 18px;">Status</p> -->
-                                        <p>
+                                        <!-- <p>
                                            
                                         </p>
                                           
                                         <span class="d-flex justify-content-between align-items-center">
-                                            <p class="m-0 p-0" style="font-size:16.7px;">Activities</p>
+                                            <p class="m-0 p-0" style="font-size:16.7px;">Activities</p> -->
 
-                                            <?php if($row ['exercise_acknowledge']== '1'){
-                                                echo "<span class='badge bg-success'>Done</span>";
-                                            }else{
-                                                echo "<span class='badge bg-danger'>Unfinished</span>";
-                                            }
+                                            <?php 
+                                            // if($row ['exercise_acknowledge']== '1'){
+                                            //     echo "<span class='badge bg-success'>Done</span>";
+                                            // }else{
+                                            //     echo "<span class='badge bg-danger'>Unfinished</span>";
+                                            // }
                                             
                                             ?>
-                                        </span>
-                                        <p class="m-0 p-0"> <?php echo $row['exercises']?></p>
+                                        <!-- </span>
+                                        <p class="m-0 p-0"> <?php echo $row['exercises']?></p> -->
 
                                         <!-- <p class="m-0 p-0" style="font-size: 18px;">Status</p> -->
-                                        <p class="m-0 p-0">
+                                        <!-- <p class="m-0 p-0">
                                             
                                         </p>
                                         
                                         </div>
-                                        </div>
+                                        </div> -->
 
                                         <?php
-                                    }
-                                }
+                                //     }
+                                // }
 
 
                                 ?>
                                 <?php
-                                $query_remarks = "SELECT exercise_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.exercise_acknowledge = '1'";
-                                $run_remarks = mysqli_query($conn,$query_remarks);
-                                $row_remarks = mysqli_num_rows($run_remarks);
+                                    $query_remarks = "SELECT exercise_acknowledge FROM program_records WHERE program_records.student_id ='$student_id' AND program_records.exercise_acknowledge = '1'";
+                                    $run_remarks = mysqli_query($conn,$query_remarks);
+                                    $row_remarks = mysqli_num_rows($run_remarks);
                                 ?>
                                 <span class="d-flex justify-content-between align-items-center">
                                 <?php

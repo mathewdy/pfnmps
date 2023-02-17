@@ -18,6 +18,7 @@ ob_start();
 	<!-- <link rel="stylesheet" href="src/styles/bootstrap/css/bootstrap.css"> -->
 	<!-- <link rel="stylesheet" href="./styles/bootstrap/js/bootstrap.bundle.min.js"> -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <title>Document</title>
 </head>
 <body>
@@ -56,7 +57,7 @@ ob_start();
 
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="bmi-records.php">
-                            <i class="align-middle text-dark" data-feather="heart"></i> <span class="align-middle">BMI of Students</span>
+                            <i class="align-middle text-dark" data-feather="clipboard"></i> <span class="align-middle">Report</span>
                         </a>
 					</li>
 
@@ -107,7 +108,7 @@ ob_start();
                 <div class="container p-5">
                 <div class="row">
                     <div class="col-lg-12">
-                    <table class="w-100 table">
+                    <table class="w-100 table table-bordered" id="dataTable">
                         <thead>
                             <tr>
                                 <th>LRN</th>
@@ -235,6 +236,12 @@ ob_start();
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function() {
+        $('#dataTable').DataTable();
+    });
+</script>
 </body>
 </html>
 
