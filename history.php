@@ -167,6 +167,9 @@ $student_id = $_GET['student_id'];
 
                                 // if(mysqli_num_rows($run) > 0){
                                     ?>
+                                    <br>
+                                    <br>
+                                    <!-- tanggalin kapag may bagong content na -->
                                     <!-- <div class="row">
 
                                         <hr class="mt-4"> -->

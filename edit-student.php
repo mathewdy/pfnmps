@@ -305,7 +305,7 @@ ob_start();
                                                 </div>
                                                 <div class="modal-body">
                                                     <label for="">Current BMI:</label>
-                                                    <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" >
+                                                    <input type="number" name="bmi" value="<?php echo $row['health_infos_bmi']?>" class="form-control" readonly>
                                                     <label for="">Current Height:</label>
                                                     <input type="number" name="height" class="form-control" value="<?php echo $row['health_infos_height'] ?>">
                                                     <label for="">Current Weight:</label>
