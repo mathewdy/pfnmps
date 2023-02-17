@@ -385,20 +385,20 @@ ob_start();
                             ?>
                         </div>
                         </div>
-                        <div class="col-lg-12">
+                        <!-- <div class="col-lg-12">
                             <div class="card p-5">
-                                <br>
+                                <br> -->
                             <?php
 
-                                $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
-                                $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
+                                // $sql_program_records_date = "SELECT date_started FROM program_records WHERE student_id = '$student_id' LIMIT 1";
+                                // $run_program_records_date = mysqli_query($conn,$sql_program_records_date);
 
-                                if(mysqli_num_rows($run_program_records_date) > 0){
-                                    foreach($run_program_records_date as $row){
-                                        $new_format = date("F d, Y", strtotime($row['date_started']));
+                                // if(mysqli_num_rows($run_program_records_date) > 0){
+                                //     foreach($run_program_records_date as $row){
+                                //         $new_format = date("F d, Y", strtotime($row['date_started']));
 
                                         ?>
-                                        <span class="d-flex justify-content-between">
+                                        <!-- <span class="d-flex justify-content-between">
                                             <span>
                                                 <h1 class="text-muted">Student Activities</h1>
                                             </span>
@@ -408,62 +408,62 @@ ob_start();
                                             </span>
                                         </span>
                                             
-                                            
+                                             -->
 
                                         <?php
-                                    }
-                                }
+                                //     }
+                                // }
 
                                 //gagawa naman ako ng page ination
 
-                                $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
-                                $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
+                                // $sql_daily_activities = "SELECT exercises,exercise_acknowledge, id FROM program_records WHERE student_id = '$student_id' LIMIT 15";
+                                // $run_daily_activities = mysqli_query($conn,$sql_daily_activities);
                                 ?>
-                                <div class="row d-flex flex-row justify-content-between">
+                                <!-- <div class="row d-flex flex-row justify-content-between">
                                     <div class="col-lg-12">
                                         <h2>Exercises</h2>
                                     </div>
-                                    <hr class="featurette-divider">
+                                    <hr class="featurette-divider"> -->
                                 <?php
-                                if(mysqli_num_rows($run_daily_activities) > 0){
-                                    foreach ($run_daily_activities as $row2){
+                                // if(mysqli_num_rows($run_daily_activities) > 0){
+                                //     foreach ($run_daily_activities as $row2){
                                         ?>
                                         
-                                        <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
+                                        <!-- <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
                                             <span class="d-flex justify-content-between align-items-center">
-                                        
+                                         -->
                                             <!-- <label for="">Activies:</label> -->
-                                                <span>
+                                                <!-- <span>
                                                     <p class="m-0 p-0"><?php echo $row2['exercises'] ?></p>
                                                     <small><p class="m-0 p-0 text-muted">Duration: 30 min.</p></small>
                                                 </span>
-                                                <form action="" method="POST">
+                                                <form action="" method="POST"> -->
                                                     <?php
 
-                                                        if($row2['exercise_acknowledge'] == 0){
-                                                            ?>
+                                                        // if($row2['exercise_acknowledge'] == 0){
+                                                        //     ?>
 
-                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                                            <input type="hidden" name="id" value="<?php echo $row2['id']?>">
-                                                            <input type="hidden" name="daily_task" value="1">
+                                                        <!-- //     <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                        //     <input type="hidden" name="id" value="<?php echo $row2['id']?>">
+                                                        //     <input type="hidden" name="daily_task" value="1">
                                                         
-                                                            <input type="submit" name="acknowledge_task" value="Acknowledge" class="btn btn-outline-primary py-1">
-                                                            <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                        //     <input type="submit" name="acknowledge_task" value="Acknowledge" class="btn btn-outline-primary py-1">
+                                                        //     <input type="hidden" name="student_id" value="<?php echo $student_id ?>"> -->
                                                     
 
-                                                            <?php
-                                                        }else{
-                                                            echo "<div style='color:green;'>Acknowledged </div>";
-                                                        }
+                                                        <?php
+                                                        // }else{
+                                                        //     echo "<div style='color:green;'>Acknowledged </div>";
+                                                        // }
 
                                                     ?>
-                                                </form>
+                                                <!-- </form>
                                                         
                                             </span>   
-                                        </div>
+                                        </div> -->
                                         <?php
-                                    }
-                                }
+                                //     }
+                                // }
                                 ?>
                             </div>
                             <?php
@@ -484,57 +484,58 @@ ob_start();
                             //ETO YUNG SA PAG KAIN NYA RIRI
 
                             ?>
-                        <div class="row d-flex flex-row justify-content-between">
+                        <!-- <div class="row d-flex flex-row justify-content-between">
                             <div class="col-lg-12">
                                 <h2>Meals</h2>
                             </div>
-                            <hr class="featurette-divider">
+                            <hr class="featurette-divider"> -->
 
                             <?php
-                            $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
-                            $run_program_records = mysqli_query($conn,$sql_program_records);
+                            // $sql_program_records = "SELECT * FROM program_records WHERE student_id = '$student_id'";
+                            // $run_program_records = mysqli_query($conn,$sql_program_records);
 
-                            if(mysqli_num_rows($run_program_records) > 0){
-                                foreach($run_program_records as $row1){
+                            // if(mysqli_num_rows($run_program_records) > 0){
+                            //     foreach($run_program_records as $row1){
                                     ?>
-                            <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
+                            <!-- <div class="col-lg-5 mb-5 card py-3" style="border: 1px solid rgba(0, 0, 0, 0.3);">
                                 <span class="d-flex flex-row justify-content-between align-items-center">
                                     <span>
                                         <p class="m-0 p-0">Day: <?php echo $row1['day']?></p>
                                         <p class="m-0 p-0">Foods: <?php echo $row1['foods']?></p>
                                     </span>
                                         <form action="" method="POST">
-                                        <p>
+                                        <p> -->
                                             <?php
 
-                                                if($row1['food_acknowledge'] == 0){
-                                                    ?>      
-                                                        <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
-                                                        <input type="hidden" name="id" value="<?php echo $row1['id']?>">
-                                                        <input type="hidden" name="daily_meal" value="1">
-                                                        <input type="submit" name="acknowledge_meal" value="Acknowledge" class="btn btn-outline-primary py-1">
+                                                // if($row1['food_acknowledge'] == 0){
+                                                //     ?>      
+                                                <!-- //         <input type="hidden" name="student_id" value="<?php echo $student_id ?>">
+                                                //         <input type="hidden" name="id" value="<?php echo $row1['id']?>">
+                                                //         <input type="hidden" name="daily_meal" value="1">
+                                                //         <input type="submit" name="acknowledge_meal" value="Acknowledge" class="btn btn-outline-primary py-1"> -->
                                                     <?php
-                                                }else{
-                                                    echo "<div style='color: green;'>Acknowledged </div> ";
-                                                }
+                                                // }else{
+                                                //     echo "<div style='color: green;'>Acknowledged </div> ";
+                                                // }
                                         
                                             ?>
-                                        </p>
+                                        <!-- </p>
                                         </form>
                                 </span>
-                            </div>
+                            </div> -->
                                     <?php
-                                }
-                            }
+                        //         }
+                        //     }
 
-                        }
-
+                        // }
+                                                }
+                                            
                         ?>
-                        </div>
+                        <!-- </div>
                 </div>
 				</div>
                 </div>
-                </div>
+                </div> -->
 
                 <!---eto yung sa excercises nya haha-->
                 
