@@ -362,9 +362,6 @@ include('security-admin.php');
                                             <option value="Grade 4">Grade 4</option>
                                             <option value="Grade 5">Grade 5</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                        Field cannot be empty.
-                                        </div>
                                         <br>
                                         <span>
                                             <label for="">4PS Member?</label>
@@ -389,9 +386,6 @@ include('security-admin.php');
                                             <option value="D">D</option>
                                             <option value="E">E</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                        Field cannot be empty.
-                                        </div>
                                     </div>
                                 </div>
                                 <hr class="featurette-divider">
