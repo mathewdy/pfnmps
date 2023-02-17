@@ -101,97 +101,139 @@ include('security-admin.php');
 				<div class="container-fluid p-0">
                     <div class="card p-5">
                         <div class="row">
-                            <form action="add-patient.php" method="POST" enctype="multipart/form-data">
+                            <form action="add-patient.php" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
                             <div class="col-lg-12">
                                 <h2 class="text-decoration-underline mb-4">Guardian Information</h2>
                                 <div class="row">
                                     <div class="col-lg-6">
                                               <!----name of parent--->
                                         <label for="">First Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="guardian_firstname" required>
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                        <input type="text" class="form-control" name="guardian_firstname" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback"  required>
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                        </div> -->
 
                                         <br>
 
                                         <label for="">Middle Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="guardian_middle_name" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="guardian_middle_name" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="guardian_middle_name" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
                                         <br>
                                         <label for="">Last Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="guardian_last_name" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="guardian_last_name" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="guardian_last_name" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         
                                         <br>
                                         <label for="">Email</label>
-                                        <input type="email" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="email" required>
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                        Field cannot be empty.
-                                        </div>
+                                        <input type="email" class="form-control" name="email" required>
+                        
                                         <br>
                                         <label for="">Contact Number</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="contact_number" placeholder="+63**********" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="contact_number"  required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                         Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="contact_number" placeholder="+63**********" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
+                                        Field cannot be empty.
                                         </div>
+
                                         <!-----ADDRESS---->
 
                                         <br>
                                         <!-- <label for="">Address</label> -->
                                         <label for="">Room / Floor / Unit No. & Building Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="room" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="room" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="room" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
                                         <label for="">House / Lot & Block No.</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="house" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="house" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="house" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
                                     </div>
                                     <div class="col-lg-6">
                                         <label for="">Street</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="street" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="street" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="street" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
                                         <br>
                                         <label for="">Subdivision</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="subdivision" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="subdivision" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="subdivision" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
 
                                         <br>
                                         <label for="">Barangay</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="barangay" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="barangay" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="barangay" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
 
                                         <br>
                                         <label for="">City</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="city" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="city" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="city" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
                                         
                                         <br>
                                         <label for="">Zip Code</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="zip_code" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="zip_code" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="zip_code" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
@@ -230,29 +272,45 @@ include('security-admin.php');
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <label for="">LRN</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="student_id" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="student_id" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="student_id" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
 
                                         <label for="">First Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="first_name" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="first_name" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="first_name" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
 
                                         <label for="">Middle Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="middle_name" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="middle_name" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="middle_name" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
                                         <br>
                                         <label for="">Last Name</label>
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="last_name" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="last_name" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="last_name" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
 
@@ -261,8 +319,12 @@ include('security-admin.php');
                                         <br>
                                         <label for="">Date of Birth</label>
                                         <!-- <input type="date" class="form-control" name="date_of_birth" id="custom_date" min="2005-01-01" required> -->
-                                        <input type="date" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="date_of_birth" min="2005-01-01" required>
+                                        <!-- <input type="date" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="date_of_birth" min="2005-01-01" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="date_of_birth" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
@@ -292,7 +354,7 @@ include('security-admin.php');
                                         <br>
 
                                         <label for="">Grade</label>
-                                        <select name="grade" class="form-select is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                                        <select name="grade" class="form-select" id="validationCustom03" required>
                                             <option value="Kinder">Kinder</option>
                                             <option value="Grade 1">Grade 1</option>
                                             <option value="Grade 2">Grade 2</option>
@@ -300,7 +362,7 @@ include('security-admin.php');
                                             <option value="Grade 4">Grade 4</option>
                                             <option value="Grade 5">Grade 5</option>
                                         </select>
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
@@ -320,14 +382,14 @@ include('security-admin.php');
                                             </div>
                                         </span>
                                         <label for="">Section</label>
-                                        <select name="section" class="form-select is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                                        <select name="section" class="form-select" id="validationCustom03" aria-describedby="validationServer03Feedback" required>
                                             <option value="A">A</option>
                                             <option value="B">B</option>
                                             <option value="C">C</option>
                                             <option value="D">D</option>
                                             <option value="E">E</option>
                                         </select>
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                     </div>
@@ -338,22 +400,30 @@ include('security-admin.php');
                                         <!----dito health info nya naman---BMI-->
                                         <label for="">Height</label>
                                         <!-- <input type="number" class="form-control" name="height" required> -->
-                                        <input type="number" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="height" placeholder="Weight (kg)" required>
+                                        <!-- <input type="number" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="height" placeholder="Weight (kg)" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="number" class="form-control" name="height" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
 
                                         <label for="">Weight</label>
                                         <!-- <input type="number" class="form-control" name="weight"  required> -->
-                                        <input type="number" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="weight" placeholder="Height (cm)" required>
+                                        <!-- <input type="number" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="weight" placeholder="Height (cm)" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="weight" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <br>
 
                                         <label for="">Activity Level</label>
-                                        <select name="actlevel" class="form-select is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                                        <select name="actlevel" class="form-select" id="validationCustom03" required>
                                         <option value="1">Sedentary</option>
                                         <option value="2">Low Active</option>
                                         <option value="3">Active</option>
@@ -362,11 +432,18 @@ include('security-admin.php');
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
+                                        <div class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div>
                                         <br>
                                         <label for="">Health History</label>
                                         <!-- <input type="text" class="form-control" name="health_history" required> -->
-                                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="health_history" required>
+                                        <!-- <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" name="health_history" required>
                                         <div id="validationServer03Feedback" class="invalid-feedback">
+                                        Field cannot be empty.
+                                        </div> -->
+                                        <input type="text" class="form-control" name="health_history" id="validationCustom03" required>
+                                        <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
                                         <!-----riri ikaw na bahala mag adjust sa stepper--->
@@ -420,6 +497,27 @@ include('security-admin.php');
 
     var max_date = year + "-" + month + "-" + t_date;
     document.getElementById("custom_date").setAttribute("max", max_date);
+</script>
+<script>
+    (function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
 </script>
 </body>
 </html>
