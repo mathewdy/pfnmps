@@ -429,9 +429,6 @@ include('security-admin.php');
                                         <option value="3">Active</option>
                                         <option value="4">Very Active</option>
                                         </select>
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                        Field cannot be empty.
-                                        </div>
                                         <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
