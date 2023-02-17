@@ -54,7 +54,11 @@ $user_id = $_SESSION['user_id'];
                             <i class="align-middle" data-feather="book-open"></i> <span class="align-middle">History</span>
                         </a>
 					</li>
-
+                    <li class="sidebar-item">
+						<a class="sidebar-link" href="bmi-records.php">
+                            <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Reports</span>
+                        </a>
+					</li>
 				</ul>
 			</div>
 		</nav>
