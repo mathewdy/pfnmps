@@ -323,7 +323,7 @@ include('security-admin.php');
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                         Field cannot be empty.
                                         </div> -->
-                                        <input type="text" class="form-control" name="date_of_birth" id="validationCustom03" required>
+                                        <input type="date" class="form-control" name="date_of_birth" id="validationCustom03" min="2005-01-01" required>
                                         <div class="invalid-feedback">
                                         Field cannot be empty.
                                         </div>
