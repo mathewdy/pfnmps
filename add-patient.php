@@ -423,9 +423,6 @@ include('security-admin.php');
                                         <option value="3">Active</option>
                                         <option value="4">Very Active</option>
                                         </select>
-                                        <div class="invalid-feedback">
-                                        Field cannot be empty.
-                                        </div>
                                         <br>
                                         <label for="">Health History</label>
                                         <!-- <input type="text" class="form-control" name="health_history" required> -->
