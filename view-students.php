@@ -161,7 +161,7 @@ $no = 0;
                                                 <td>
                                                     <span class="d-flex justify-content-evenly align-items-center">
                                                         <a class="btn btn-sm btn-primary" href="edit-student.php?student_id=<?php echo $row ['student_id']?>"><i class="align-middle" data-feather="edit"></i> Edit </a>
-                                                        <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id="><i class="align-middle" data-feather="trash-2"></i> Delete</a>
+                                                        <a class="deleteBtn btn btn-sm btn-danger" href="delete-student.php?student_id=<?php echo $row['student_id']?>"><i class="align-middle" data-feather="trash-2"></i> Delete</a>
                                                     </span>
                                                 </td>
                                                 <td>
