@@ -194,10 +194,11 @@ ob_start();
 
 											<?php
 
-												$query_failed = "select users.student_id, users.first_name, users.middle_name, users.last_name , failed.student_id
-												FROM users
-												LEFT JOIN failed ON
-												users.student_id = failed.student_id WHERE output= 'failed' LIMIT 10";
+												$query_failed = "SELECT students.student_id,students.first_name,students.middle_name, students.last_name ,failed.output 
+												FROM students 
+												LEFT JOIN failed 
+												ON students.student_id = failed.student_id 
+												LIMIT 10";
 												$run_failed = mysqli_query($conn,$query_failed);
 
 												if(mysqli_num_rows($run_failed) > 0){
@@ -206,7 +207,7 @@ ob_start();
 														?>
 															<tr>
 																<td><?php echo $row_failed['first_name'] . " ".  $row_failed['middle_name'] . " " . $row_failed['last_name']?> </td>
-																<td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Previous BMI</a></td>
+																<td><a href="previous-bmi.php?student_id=<?php echo $row_failed['student_id']?>">Reprogram</a></td>
 															</tr>
 
 														<?php

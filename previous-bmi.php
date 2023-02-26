@@ -100,8 +100,27 @@ ob_start();
 			<main class="content">
 				<div class="card">
                 <?php
+                // SELECT students.first_name, students.middle_name, students.last_name , failed.output, history_bmi.bmi , students.student_id , history_bmi.date_created
+                // FROM students
+                // LEFT JOIN failed ON
+                // students.student_id = failed.student_id
+                // LEFT JOIN history_bmi ON
+                // students.student_id = history_bmi.student_id
+               
+                // SELECT users.first_name, users.middle_name, users.last_name , failed.output, history_bmi.bmi , users.student_id , history_bmi.date_created
+                // FROM users
+                // LEFT JOIN failed ON
+                // users.student_id = failed.student_id
+                // LEFT JOIN history_bmi ON
+                // users.student_id = history_bmi.student_id
+                // WHERE failed.output = 'failed'
 
-                $sql_total_students = "SELECT id FROM students";
+                $sql_total_students = "SELECT students.first_name, students.middle_name, students.last_name , failed.output, history_bmi.bmi , students.student_id , history_bmi.date_created
+                FROM students
+                LEFT JOIN failed ON
+                students.student_id = failed.student_id
+                LEFT JOIN history_bmi ON
+                students.student_id = history_bmi.student_id WHERE failed.output = 'failed'";
                 $query_total_students = mysqli_query($conn,$sql_total_students);
                 $row = mysqli_num_rows($query_total_students);
                 ?>
@@ -158,7 +177,7 @@ ob_start();
                                                             echo "Reprogram";
                                                             ?>
 
-                                                                <a href="reprogram.php?student_id=<?php echo $row['student_id']?>">Click here to continue</a>
+                                                                <a href="reprogram.php?student_id=<?php echo $row['student_id']?>"> Click here to continue</a>
 
                                                             <?php
                                                         }else if($row['bmi'] == 30 || $row['bmi'] <= 34.9){
